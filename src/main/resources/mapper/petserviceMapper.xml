@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="petservice">
+	
+	<select id="listhospital"  parameterType="String" resultType="petserviceVO">
+		select * from petservice
+		where category = #{category}
+		<!-- category = "동물병원" -->
+	</select>
+	
+	<select id="hospital"  parameterType="int" resultType="petserviceVO">
+		select * from petservice
+		where service_id = #{service_id}
+		<!-- category = "동물병원" -->
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+

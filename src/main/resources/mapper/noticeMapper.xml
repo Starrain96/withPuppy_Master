@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+	<!-- insert, delete, update는 무조건 resultType="int"이므로
+	     프로그래머가 써주지 않아도 이미 resultType="int"가 
+	     있는 것으로 본다.!
+	 -->
+	<insert id="create" parameterType="reportVO" >
+		insert into report  
+		values (null, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<delete id="delete"  parameterType="String">
+		delete from report 
+		where title = #{title}
+	</delete>
+	
+	<update id="update"  parameterType="reportVO">
+		update report 
+		set content = #{content} 
+		where no = #{no}
+	</update>
+	
+	<select id="one" parameterType="Int" resultType="reportVO">
+		select * 
+		from report
+		where no = #{no}
+	</select>
+	
+	<select id="all"  resultType="reportVO">
+		select *
+		from report
+	</select>
+</mapper>
+
+
+
