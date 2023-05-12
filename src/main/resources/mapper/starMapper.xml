@@ -19,7 +19,7 @@
 		where hospital_name = #{hospital_name}
 	</select>
 	
-	<select id="list" resultType="starVO">
+	<select id="listStar" resultType="starVO">
 		select * from star
 	</select>
 </mapper>
