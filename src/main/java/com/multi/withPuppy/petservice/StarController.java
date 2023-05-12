@@ -35,46 +35,39 @@ public class StarController {
 	 * 아니고, webapp 아래 member.jsp로 가고 싶은 경우! return "redirect:member.jsp"; } }
 	 */
 	
-	@RequestMapping("insert")
+	@RequestMapping("insertStar")
 	public void insert(StarVO bag) {
-		//메서드에 입력변수(파라메터)로 변수를
-		//선언해두면 컨트롤러내의 메서드내에서는
-		//(1)bag을 만들어서 클라이언트로부터
-		//전달된 데이터도 다 넣어줌.
-		
 		System.out.println("insert 요청됨.");
 		System.out.println(bag);
-		System.out.println(dao);
-		
 		dao.insert(bag);
 		
 	}
 	
 	@RequestMapping("update")
 	public void update(StarVO bag) {
-		System.out.println("insert 요청됨.");
 		dao.update(bag);
 	}
 	
 	@RequestMapping("delete")
 	public void delte(String id) {
-		System.out.println("insert 요청됨.");
 		dao.delete(id);
 	}
 	
-	@RequestMapping("one")
-	public void one(String id, Model model) {
-		System.out.println("insert 요청됨.");
-		StarVO bag = dao.one(id);
+	@RequestMapping("starpage")
+	public void one(String id, int service_id, Model model) {
+		StarVO bag = new StarVO();
+		bag.setId(id);
+		bag.setService_id(service_id);
 		model.addAttribute("bag", bag);
 	}
 	
 	@RequestMapping("listStar")
 	@ResponseBody
-	public List<StarVO> one(Model model, int service_id) {
+	public List<StarVO> one(int service_id) {
 		List<StarVO> list = dao.list(service_id);
 		return list;
 	}
+	
 	
 
 	  

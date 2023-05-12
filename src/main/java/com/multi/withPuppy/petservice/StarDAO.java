@@ -14,7 +14,7 @@ public class StarDAO {
 	
 	public int insert(StarVO bag) {
 		
-		int result = my.insert("star.create", bag);
+		int result = my.insert("star.insertStar", bag);
 		return result;
 	}
 
@@ -26,11 +26,6 @@ public class StarDAO {
 	public int delete(String id) {
 		int result = my.delete("star.del", id);
 		return result;
-	}
-
-	public StarVO one(String id) {
-		StarVO bag = my.selectOne("star.one", id);
-		return bag;
 	}
 	
 	public List<StarVO> list(int service_id) {
