@@ -5,32 +5,31 @@
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
-	<insert id="create" parameterType="reportVO" >
-		insert into report  
-		values (null, #{title}, #{content}, #{writer})
-	</insert>
 	
-	<delete id="delete"  parameterType="String">
-		delete from report 
-		where title = #{title}
-	</delete>
-	
-	<update id="update"  parameterType="reportVO">
-		update report 
-		set content = #{content} 
-		where no = #{no}
-	</update>
-	
-	<select id="one" parameterType="Int" resultType="reportVO">
+	<select id="one" parameterType="Int" resultType="productVO">
 		select * 
-		from report
-		where no = #{no}
+		from product
+		where detail = #{id}
 	</select>
 	
-	<select id="all"  resultType="reportVO">
+	<select id="all"  resultType="productVO">
 		select *
-		from report
+		from product
 	</select>
+	
+	
+	<select id="dogcate" parameterType="Int" resultType="productVO">
+		select *
+		from product where category2 = #{category2}
+	</select>
+	
+	<!-- 
+	<select id="dogcate2" parameterType="Int" resultType="productVO">
+		select *
+		from product where category2 >= #{cate1} and category2 <= #{cate2}
+	</select> -->
+	
+	
 </mapper>
 
 
