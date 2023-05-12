@@ -11,7 +11,6 @@
 body {
 	flex-direction: column;
 	align-items: center;
-	background: #ffe98c;
 }
 
 td {
@@ -42,8 +41,8 @@ td {
 
 			<tr>
 				<td class="down">${bag.commu_no}</td>
-				<td class="down"><a href = "one2?no=${bag.commu_no}">${bag.title}</a></td>
-				<td class="down">${bag.content}</td>
+				<td class="down"><a href = "one?commu_no=${bag.commu_no}">${bag.commu_title}</a></td>
+				<td class="down">${bag.commu_content}</td>
 				<td class="down">${bag.commu_id}</td>
 			</tr>
 

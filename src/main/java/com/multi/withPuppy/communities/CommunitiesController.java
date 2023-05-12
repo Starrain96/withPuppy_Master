@@ -41,25 +41,25 @@ public class CommunitiesController {
 	}
 	
 	@RequestMapping("communities/one")
-	public void one(int Commu_id, Model model) {
+	public void one(int commu_no, Model model) {
 		System.out.println("one요청됨.");
-		System.out.println(Commu_id);
-		CommunitiesVO bag = dao.one(Commu_id);
+		System.out.println(commu_no);
+		CommunitiesVO bag = dao.one(commu_no);
 		model.addAttribute("bag", bag);
 		//bag에 검색결과 다 들어있음.
 		//views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
 		//views까지 전달할 속성으로 추가해주세요. 
 	}
-	
-	@RequestMapping("communities/one2")
-	public void one2(int Commu_no, Model model) {
-		System.out.println("one요청됨.");
-		System.out.println(Commu_no);
-		CommunitiesVO bag = dao.one(Commu_no);
-		//검색결과가 있는지 프린트!
-		System.out.println(bag);
-		model.addAttribute("bag", bag);
-	}
+
+//	@RequestMapping("communities/one2")
+//	public void one2(int Commu_no, Model model) {
+//		System.out.println("one요청됨.");
+//		System.out.println(Commu_no);
+//		CommunitiesVO bag = dao.one(Commu_no);
+//		//검색결과가 있는지 프린트!
+//		System.out.println(bag);
+//		model.addAttribute("bag", bag);
+//	}
 	
 	@RequestMapping("communities/list")
 	public void list(Model model) {
@@ -81,7 +81,7 @@ public class CommunitiesController {
 	public void communitiesFnd() {
 	}
 	
-	@RequestMapping("list2")
+	@RequestMapping("communities/list2")
 	public void list2(Model model) {
 		ArrayList<CommunitiesVO> list = dao.list();
 		System.out.println(list); //사이즈를 찍어보세요.

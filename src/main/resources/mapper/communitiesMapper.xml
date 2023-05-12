@@ -5,23 +5,24 @@
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
-	<insert id="create" parameterType="CommunitiesVO">
-		insert into communities values (#{commu_id}, null , #{commu_title}, #{commu_content})
+	<insert id="create" parameterType="communitiesVO">
+		insert into communities (commu_id, commu_no,commu_title,commu_content)
+		values (#{commu_id}, null , #{commu_title}, #{commu_content})
 	</insert>
 	
 	<delete id="del"  parameterType="Int">
 		delete from communities where commu_no = #{commu_no}
 	</delete>
 	
-	<update id="up"  parameterType="CommunitiesVO">
-		update communities set content = #{content} where commu_no = #{commu_no}
+	<update id="up"  parameterType="communitiesVO">
+		update communities set commu_content = #{commu_content} where commu_no = #{commu_no}
 	</update>
-	<select id="one"	parameterType="String" resultType="CommunitiesVO">
+	<select id="one" parameterType="communitiesVO" resultType="communitiesVO">
 		select* 
 		from communities
-		where id = #{commu_id}
+		where commu_no = #{commu_no}
 	</select>
-	<select id="all" resultType="CommunitiesVO">
+	<select id="all" resultType="communitiesVO">
 		select*
 		from communities
 	</select>
