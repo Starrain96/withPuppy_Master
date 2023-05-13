@@ -1,16 +1,21 @@
 package com.multi.withPuppy.report;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ReportVO {
 	
 	private int number;
 	private String writer;
+	private String title;
 	private String picture1;
 	private String picture2;
 	private String picture3;
 	private String animal;
-	private Date date;
+	private Timestamp day;
 	private String location1;
 	private String location2;
 	private String location3;
@@ -19,6 +24,12 @@ public class ReportVO {
 	
 	public int getNumber() {
 		return number;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public void setNumber(int number) {
 		this.number = number;
@@ -53,11 +64,11 @@ public class ReportVO {
 	public void setAnimal(String animal) {
 		this.animal = animal;
 	}
-	public Date getDate() {
-		return date;
+	public Timestamp getDay() {
+		return day;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDay(Timestamp day) {
+		this.day = day;
 	}
 	public String getLocation1() {
 		return location1;
@@ -85,9 +96,10 @@ public class ReportVO {
 	}
 	@Override
 	public String toString() {
-		return "ReportVO [number=" + number + ", writer=" + writer + ", picture1=" + picture1 + ", picture2=" + picture2
-				+ ", picture3=" + picture3 + ", animal=" + animal + ", date=" + date + ", location1=" + location1
-				+ ", location2=" + location2 + ", location3=" + location3 + ", content=" + content + "]";
+		return "ReportVO [number=" + number + ", writer=" + writer + ", title=" + title + ", picture1=" + picture1
+				+ ", picture2=" + picture2 + ", picture3=" + picture3 + ", animal=" + animal + ", day=" + day
+				+ ", location1=" + location1 + ", location2=" + location2 + ", location3=" + location3 + ", content="
+				+ content + "]";
 	}
 	
 	
