@@ -1,36 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cart">
-	<!-- insert, delete, update는 무조건 resultType="int"이므로
-	     프로그래머가 써주지 않아도 이미 resultType="int"가 
-	     있는 것으로 본다.!
-	 -->
-	<insert id="create" parameterType="reportVO" >
-		insert into report  
-		values (null, #{title}, #{content}, #{writer})
+	
+	<insert id="add" parameterType="cartVO" >
+		insert into cart  
+		values (null, #{product_id}, #{product_cnt}, #{user_id})
 	</insert>
 	
-	<delete id="delete"  parameterType="String">
-		delete from report 
-		where title = #{title}
+	<delete id="delete"  parameterType="cartVO">
+		delete from cart 
+		where product_id = #{product_id} and user_id = #{user_id}
 	</delete>
 	
-	<update id="update"  parameterType="reportVO">
-		update report 
-		set content = #{content} 
-		where no = #{no}
+	<update id="update"  parameterType="cartVO">
+		update cart 
+		set product_cnt = #{product_cnt} 
+		where product_id = #{product_id} and user_id = #{user_id}
 	</update>
 	
-	<select id="one" parameterType="Int" resultType="reportVO">
-		select * 
-		from report
-		where no = #{no}
+	<select id="all" parameterType="String" resultType="cartVO">
+		select *
+		from cart where user_id = #{user_id}
 	</select>
 	
-	<select id="all"  resultType="reportVO">
-		select *
-		from report
+	<!-- 원래는 파라미터로 user_id가져와야함 -->
+	<select id="allProduct" parameterType="String" resultType="productVO">
+		select product_name, product_price, product_img, c.product_cnt 
+		from product p left join cart c 
+		on(p.product_id = c.product_id) where c.user_id = #{user_id}
 	</select>
+	
+	<select id="emptyCheck" parameterType="cartVO" resultType="Int"> 
+		select count(product_id) from cart 
+		where user_id = #{user_id} and product_id = #{product_id} 
+	</select>
+
 </mapper>
 
 
