@@ -11,7 +11,7 @@
 					placeholder="Enter email" name="email">
 			</div>
 			<div class="mb-3">
-				<label for="pwzd" class="form-label">비밀번호:</label>
+				<label for="pwd" class="form-label">비밀번호:</label>
 				 <input type="password" class="form-control" id="pwd"
 					placeholder="Enter password" name="pswd">
 			</div>
