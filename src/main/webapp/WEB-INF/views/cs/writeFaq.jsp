@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +12,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="resources/css/main.css" />
-	
+
 </head>
 <body>
 	<header
@@ -33,14 +32,16 @@
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
 			<li class="nav-item"><a href="#" class="nav-link link-secondary">커뮤니티</a></li>
-			<li class="nav-item"><a href="shoppingList" class="nav-link link-secondary">쇼핑몰</a></li>
-			<li class="nav-item"><a href="listhospital?category=동물병원" class="nav-link link-secondary">반려동물서비스</a></li>
-			<li class="nav-item"><a href="selectFaqList" class="nav-link link-secondary">고객센터</a></li>
+			<li class="nav-item"><a href="shoppingList"
+				class="nav-link link-secondary">쇼핑몰</a></li>
+			<li class="nav-item"><a href="listhospital?category=동물병원"
+				class="nav-link link-secondary">반려동물서비스</a></li>
+			<li class="nav-item"><a href="selectFaqList"
+				class="nav-link link-secondary">고객센터</a></li>
 			<li class="nav-item"><a href="#" class="nav-link link-secondary">유기견
 					신고</a></li>
 		</ul>
 	</header>
-	
 
 	<div>
 		<h3>고객센터</h3>
@@ -52,15 +53,37 @@
 				class="nav-link link-secondary">1:1문의</a></li>
 		</ul>
 	</div>
-	
-		<hr color="red">
-	
-	<div id="updateFaqCompleteView">
-		<h4>FAQ 수정</h4>
-		<hr>
-		FAQ 게시글 수정 완료
-		<hr>
-		<button type="button" onclick="location='selectFaqList'">FAQ 게시판 돌아가기</button>
+	<hr color="red">
+	<div id="faqWriteView">
+		<h4>FAQ 문의 작성</h4>
+		<form action="insertFaq" method="get">
+			<table class="table">
+				<tr>
+					<td style="width: 100px">category :</td>
+					<td><select name="faq_category">
+							<option value="회원">회원</option>
+							<option value="커뮤니티">커뮤니티</option>
+							<option value="쇼핑몰">쇼핑몰</option>
+							<option value="반려동물서비스">반려동물서비스</option>
+							<option value="유기동물신고">유기동물신고</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td style="width: 100px">title :</td>
+					<td><input name="faq_title" value="FAQ 제목 추가 테스트1"></td>
+				</tr>
+				<tr>
+					<td style="width: 100px">content :</td>
+					<td><textarea cols="50" rows="10"
+							style="width: 200px; height: 100px;" name="faq_content">FAQ 내용 추가 테스트1</textarea></td>
+				</tr>
+				<tr>
+					<td style="width: 100px">writer :</td>
+					<td><input name="faq_writer" value="admin"></td>
+				</tr>
+			</table>
+			<button type="submit">글쓰기 완료</button>
+		</form>
 	</div>
 
 </body>
