@@ -31,7 +31,7 @@ public class CommunitiesController {
 		String fileName = null;
 		if (file != null && !file.isEmpty()) {
 			fileName = file.getOriginalFilename(); // 파일명 추출
-			File dest = new File("C:/upload/" + fileName); // 저장할 경로 + 파일명 지정
+			File dest = new File("C:/Downloads/" + fileName); // 저장할 경로 + 파일명 지정
 			try {
 				file.transferTo(dest);
 			} catch (IOException e) {

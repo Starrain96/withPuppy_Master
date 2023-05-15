@@ -113,7 +113,7 @@ button[type="submit"]:hover {
 		<div class="card">
 			<h5 class="card-header">강아지 게시판 글쓰기</h5>
 			<div class="card-body" style="display: flex; flex-direction: column;">
-				<form action="../communities/insert" method="get">
+				<form action="../communities/insert" method="post">
 					<div class="form-group">
 						<label for="category">카테고리</label> <select id="category"
 							name="category1">
