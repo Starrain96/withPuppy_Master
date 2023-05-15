@@ -9,8 +9,6 @@
 <title>강아지와</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/main.css" />
-<link rel="stylesheet" href="resources/css/main.css" />	
 </head>
 
 <body>
