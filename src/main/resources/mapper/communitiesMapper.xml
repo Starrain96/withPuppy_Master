@@ -5,9 +5,11 @@
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
-	<insert id="create" parameterType="communitiesVO">
-		insert into communities (commu_id, commu_no,commu_title,commu_content)
-		values (#{commu_id}, null , #{commu_title}, #{commu_content})
+	<insert id="insert" parameterType="communitiesVO">
+		insert into communities  (commu_id, commu_no , commu_title, commu_content, commu_img, commu_img2 ,
+		 commu_img3 , category1 , commu_view	)
+		values (#{commu_id}, null , #{commu_title}, #{commu_content}, #{commu_img}, #{commu_img2} ,
+		 #{commu_img3} , #{category1} , #{commu_view}	)
 	</insert>
 	
 	<delete id="del"  parameterType="Int">

@@ -156,6 +156,7 @@
 			</div>
 	
 	<!-- 스크립트 -->
+	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$.ajax({

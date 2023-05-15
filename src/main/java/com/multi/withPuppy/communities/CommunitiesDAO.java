@@ -18,7 +18,8 @@ public class CommunitiesDAO {
 	SqlSessionTemplate my;
 	
 	public int insert(CommunitiesVO vo) {
-		int result = my.insert("communities.create",vo);
+		int result = my.insert("communities.insert",vo);
+		System.out.println(vo);
 		return result;
 	}
 	

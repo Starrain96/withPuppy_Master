@@ -33,17 +33,19 @@ td {
 		<tr>
 			<td class="top">no</td>
 			<td class="top">title</td>
-			<td class="top">content</td>
+			<td class="top">date</td>
 			<td class="top">writer</td>
+			<td class="top">views</td>
 		</tr>
 
-		<c:forEach items="${list}" var="bag">
+		<c:forEach items="${list}" var="vo">
 
 			<tr>
-				<td class="down">${bag.commu_no}</td>
-				<td class="down"><a href = "one?commu_no=${bag.commu_no}">${bag.commu_title}</a></td>
-				<td class="down">${bag.commu_content}</td>
-				<td class="down">${bag.commu_id}</td>
+				<td class="down">${vo.commu_no}</td>
+				<td class="down"><a href = "one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+				<td class="down">${vo.commu_date}</td>
+				<td class="down">${vo.commu_id}</td>
+				<td class="down">${vo.commu_view}</td>
 			</tr>
 
 		</c:forEach>
