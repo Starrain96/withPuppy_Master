@@ -73,12 +73,12 @@ img {
 }
 
 .author {
-	margin-left : 20px;
+	margin-left: 20px;
 }
 
 .cartPTitle {
-	font-size : 20px;
-	font-weight : 600;
+	font-size: 20px;
+	font-weight: 600;
 }
 
 .buyBtn {
@@ -227,12 +227,17 @@ img {
 	color: black;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
+.cntRow {
+	display: inline-block;
+	margin: 2px;
+}
 </style>
 </head>
 <script type="text/javascript">
 
 
-$(function starListLoader() {
+$(function bringCartData() {
     $.ajax({
         url : "cartPriceTotal",
         data : {
@@ -245,33 +250,70 @@ $(function starListLoader() {
         		total += data[i].product_cnt * data[i].product_price;
 				var sen = 
 					`<li class="list-group-item">
-				<div class="d-flex align-items-center" onclick="location.href='productDetail?product_id=`+
-						data[i].detail+`'">
+				<div class="d-flex align-items-center">
 				<img src= ` + data[i].product_img +
 					` alt="image" />
 				<div class="author">
-				<div class = "cartPTitle">` +data[i].product_name+`</div>
-					<div class="rating">수량 :
-					`+data[i].product_cnt+`
+				<div class = "cartPTitle" onclick="location.href='productDetail?product_id=`+
+					data[i].detail+`'">` +data[i].product_name+`</div>
+					<div>
+						<input type='button' onclick='count("minus", `+ i +`)' value=' - '
+							class="cntRow b1" />
+						<div id='resultCnt`+ i +`' class="cntRow">`+data[i].product_cnt+`</div>
+						<input type='button' onclick='count("plus", `+ i +`)' value=' + '
+							class="cntRow b1" />
+						<button onclick="updateCnt(`+data[i].product_id+`,`+ i +`)">수정</button>
 					</div>
-					<div class="rating">상품 가격 :`
+					<div class="rating cntRow">상품 가격 :`
 					+data[i].product_price+
 					`원</div>
+					<div class="rating cntRow">상품 총액 : `
+						+data[i].product_price*data[i].product_cnt+
+						`원</div>
 				</div>
 				</div>
-			</li>
-				
-				`;
+			</li>`;
 				$('#cart_list').append(sen);
 			}
         	
 			$('#cartTotal').append("상품금액 : " + total + "원");
-			var btnSen = `<button class="btn-custom">결제하기</button>`;
+			var btnSen = `<button class="btn-custom" onClick="location.href='orderList'">결제하기</button>`;
         	$('#cartTotal').append(btnSen);
         	
         }
     })
 })
+
+function count(type, nn) {
+		const resultElement = document.getElementById('resultCnt' + nn);
+		let number = resultElement.innerText;
+		// 더하기/빼기
+		if (type === 'plus') {
+			number = parseInt(number) + 1;
+		} else if (type === 'minus') {
+			if (number > 1) {
+				number = parseInt(number) - 1; 
+			}
+		}
+		resultElement.innerText = number;
+	}
+	
+function updateCnt(id, n){
+	const resultElement = document.getElementById('resultCnt' + n);
+	let number = resultElement.innerText;
+	console.log("number : " + number);
+	$.ajax({
+        url : "updateCart",
+        data : {
+            product_id : id,
+            product_cnt : number,
+            user_id : "${user_id}"
+        },
+        success : function(data) {
+        	alert("수정되었습니다.");
+        }
+	})
+}
 </script>
 <body>
 
@@ -282,5 +324,11 @@ $(function starListLoader() {
 		<div class="cartTotal" id="cartTotal"></div>
 	</div>
 
+<!-- 
+<div class="rating">수량 :
+					`+data[i].product_cnt+`
+					</div>
+
+ -->
 </body>
 </html>

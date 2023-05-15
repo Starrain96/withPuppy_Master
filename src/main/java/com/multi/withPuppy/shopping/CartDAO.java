@@ -31,6 +31,7 @@ public class CartDAO {
 	}
 	
 	public void update(CartVO bag)	{
+		System.out.println("updateDao");
 		my.update("cart.update", bag);
 	}
 	

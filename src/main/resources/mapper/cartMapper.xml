@@ -25,7 +25,7 @@
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
 	<select id="allProduct" parameterType="String" resultType="productVO">
-		select product_name, product_price, detail, product_img, c.product_cnt 
+		select p.product_id, product_name, product_price, detail, product_img, c.product_cnt 
 		from product p left join cart c 
 		on(p.product_id = c.product_id) where c.user_id = #{user_id}
 	</select>

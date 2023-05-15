@@ -37,5 +37,16 @@ public class CartController {
 		dao.add(bag);
 	}
 	
+	@RequestMapping("shopping/updateCart")
+	public void updateCart(int product_id, int product_cnt, String user_id) {
+		System.out.println("updateController");
+		CartVO bag = new CartVO();
+		bag.setProduct_id(product_id);
+		bag.setProduct_cnt(product_cnt);
+		bag.setUser_id(user_id);
+		System.out.println(bag);
+		dao.update(bag);
+	}
+	
 }
 
