@@ -37,6 +37,13 @@ public class FaqDAO {
 		return result;
 	}
 	
+	public AskVO updateNo(int Faq_no) {
+		AskVO vo = my.selectOne("Faq.updateNo", Faq_no);
+		//						namespace.id
+		System.out.println(vo);
+		return vo;
+	}
+	
 	public int delete(int faq_no) {
 		int result = my.delete("Faq.del", faq_no);
 		//						namespace.id
