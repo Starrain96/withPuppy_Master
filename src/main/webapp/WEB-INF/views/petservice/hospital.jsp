@@ -70,6 +70,12 @@
 				for (i=0; i<star.length; i++) {
 					date = new Date(star[i].date);
 					
+					//let timeString = date.toLocaleString("en-US", {timeZone: "Asia/Seoul"});
+					//let timeString_KR = date.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+					//console.log(timeString);
+					//console.log(timeString_KR);
+					
+					
 					function dateFormat(date) {
 				        let month = date.getMonth() + 1;
 				        let day = date.getDate();

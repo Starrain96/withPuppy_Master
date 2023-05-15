@@ -3,7 +3,7 @@
 <mapper namespace="star">
 	
 	<insert id="insertStar" parameterType="starVO">
-		insert into star_1 values (null ,#{service_id}, #{id}, #{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price})
+		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, null, null, null)
 	</insert>
 	
 	<delete id="del"  parameterType="starVO">
@@ -14,13 +14,9 @@
 		update star set content = #{content} where star_no = #{star_no}
 	</update>
 	
-	<select id="starpage"  parameterType="String" resultType="starVO">
-		select  *  from star 
-		where service_id = #{service_id}
-	</select>
-	
-	<select id="listStar" resultType="starVO">
+	<select id="listStar" parameterType="int" resultType="starVO">
 		select * from star
+		where service_id = #{service_id}
 	</select>
 </mapper>
 

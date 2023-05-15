@@ -169,17 +169,39 @@
 			map.setCenter(locPosition);
 		}
 	</script>
-	<table>
-		<tr>
-			<td>병원 이름</td>
-		</tr>
-		<c:forEach var="list" items="${list}">
-			<tr>
-				<td><a
-					href="hospital?service_id=${list.service_id}">${list.service_name}, ${list.service_id}</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-
+	
+	 <!-- 메인 컨텐츠 -->
+<div class="col-lg-9 col-md-8 col-sm-12">
+    <div class="card">
+        <h5 class="card-header">병원 목록</h5>
+        <div class="card-body">
+            <!-- 프로필 정보 출력 -->
+            <div class="row">
+                <!-- 게시글 목록 -->
+                <div class="col-sm-12">
+                    <ul class="list-group list-group-flush">
+                        <!-- 반복문으로 게시글 목록 출력 -->
+                        <c:forEach var="bag" items="${list}">
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="hospital?service_id=${bag.service_id}">${bag.service_name}, ${bag.service_id}</a>
+                                </div>
+                                <!-- 추가 정보 -->
+                                <div class="info-box">
+                                    <div class="address">주소: 서울시 강남구 도산대로 45길 24</div>
+                                    <div class="parking">주차 가능 여부: 가능</div>
+                                    <div class="distance">거리: 2km</div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-muted text-end">
+            강아지와🐶
+        </div>
+    </div>
+</div>
 </body>
 </html>
