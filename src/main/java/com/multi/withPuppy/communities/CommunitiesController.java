@@ -1,5 +1,6 @@
 package com.multi.withPuppy.communities;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.protobuf.compiler.PluginProtos.CodeGeneratorResponse.File;
-
 @Controller
 @RequestMapping("/communities")
 public class CommunitiesController {
@@ -20,29 +19,8 @@ public class CommunitiesController {
 	CommunitiesDAO dao;
 
 	@RequestMapping("insert")
-	public String insertCommunity(@RequestParam("category1") int category, 
-			@RequestParam("commu_title") String title,
-			@RequestParam("commu_id") String writer,
-			@RequestParam(name = "commu_image", required = false) MultipartFile file,
-			@RequestParam("commu_content") String content, 
-			@RequestParam("commu_view") int view) {
-
-		// 파일 업로드 처리
-		String fileName = null;
-		if (file != null && !file.isEmpty()) {
-			fileName = file.getOriginalFilename(); // 파일명 추출
-			File dest = new File("C:/Downloads/" + fileName); // 저장할 경로 + 파일명 지정
-			try {
-				file.transferTo(dest);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		// 데이터 삽입 처리
-		Community community = new Community
-				(category, title, writer, fileName, content, view);
-		communityService.insertCommunity(community);
-
+	public String insertCommunity(CommunitiesVO vo){
+		dao.insert(vo);
 		return "redirect:/communitiesList";
 	}
 

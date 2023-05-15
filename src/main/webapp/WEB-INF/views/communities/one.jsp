@@ -1,30 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-body {
-	background: yellow;
-}
-</style>
-<script type="text/javascript" src="resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#b1").click(function() {
 				content = $('#reply').val()
-				writer = "apple"
-			$.ajax({
-				url:"insert4",
+				writer = "yang"
+		$.ajax({
+				url:"insert",
 				data:{
-					 bbsno:${bag.no},
-					 content:content,
-					 writer:writer
+					 commu_no:${vo.commu_no},
+					 commu_content:content,
+					 commu_id:writer
 				},
 				success: function(x) {
 					alert("성공!")
@@ -46,14 +39,14 @@ body {
 
 게시물검색 처리 요청이 완료되었습니다.
 <br>
-${bag.no}, ${bag.title}, 
-${bag.content}, ${bag.writer}
+${vo.commu_no}, ${vo.commu_title}, 
+${vo.commu_content}, ${vo.commu_id}
 <hr color="red">
 댓글달기: <input id="reply"><button id = "b1">댓글달기</button><button id = "b2">댓글삭제</button><br>
 <hr color="red">
 <div id="result">
-	<c:forEach items="${list}" var="bag"> 
-	- ${bag.content}, ${bag.writer} <br>
+	<c:forEach items="${list}" var="vo"> 
+	- ${vo.content}, ${vo.writer} <br>
 	</c:forEach>
 </div>
 </body>
