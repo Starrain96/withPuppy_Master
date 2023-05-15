@@ -31,6 +31,14 @@ public class FaqController {
 		dao.insert(bag);
 	}
 
+//	@RequestMapping("updateFaqNo")
+//	public void updateNo(int Faq_no, Model model) {
+//		System.out.println("updateNo요청됨.");
+//		System.out.println(Faq_no);
+//		FaqVO vo = dao.updateNo(Faq_no);
+//		model.addAttribute("vo", vo);
+//	}
+	
 	@RequestMapping("updateFaq")
 	public void update(FaqVO bag) {
 		System.out.println("update요청됨.");
@@ -47,7 +55,7 @@ public class FaqController {
 
 	@RequestMapping("selectFaqOne")
 	public void one(String faq_title, Model model) {
-		System.out.println("제목 one요청됨.");
+		System.out.println("제목 검색 요청됨.");
 		System.out.println(faq_title);
 //		FaqVO vo = dao.one(title);
 //		model.addAttribute("vo", vo);
@@ -57,7 +65,7 @@ public class FaqController {
 	
 	@RequestMapping("selectFaqOne2")
 	public void one2(String faq_category, Model model) {
-		System.out.println("카테고리 one2요청됨.");
+		System.out.println("카테고리 검색 요청됨.");
 		System.out.println(faq_category);
 //		FaqVO vo = dao.one(title);
 //		model.addAttribute("vo", vo);
@@ -65,6 +73,11 @@ public class FaqController {
 		model.addAttribute("list", list);
 	}
 
+	@RequestMapping("writeFaq")
+	public void write() {
+		System.out.println("글쓰기 페이지 전환 요청됨.");
+	}
+	
 //	@RequestMapping("FaqOne")
 //	public void one(String title, Model model) {
 //		System.out.println("one요청됨.");

@@ -13,9 +13,9 @@
 	<tbody>
 		<c:forEach items="${list}" var="vo">
 			<tr>
-				<td>${vo.ans_writer}</td>
-				<td>${vo.ans_content}</td>
-				<td><fmt:formatDate value="${vo.ans_date}" 
+				<td style="width: 50px">${vo.ans_writer}</td>
+				<td style="width: 300px">${vo.ans_content}</td>
+				<td style="width: 200px"><fmt:formatDate value="${vo.ans_date}" 
                 pattern="yyyy-MM-dd HH:mm:ss" /></td>
 			</tr>
 		</c:forEach>

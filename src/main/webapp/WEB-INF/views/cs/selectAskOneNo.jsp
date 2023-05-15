@@ -48,7 +48,7 @@ body {
 			
 			//기존의 것 삭제됨!
 			$.ajax({
-				url : "insertAnswer",
+				url : "${pageContext.request.contextPath}/cs/insertAnswer",
 				data : {
 					ask_no : ${vo.ask_no},
 					ans_content : $('#ans_content').val(),
@@ -140,18 +140,18 @@ body {
 		<table class="table">
 			<thead class="table-primary">
 				<tr>
-					<th style="width: 50px">writer</th>
-					<th style="width: 300px">content</th>
-					<th style="width: 200px"></th>
+					<th style="width: 65px;">writer</th>
+					<th style="width: 300px;">content</th>
+					<th style="width: 200px;"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width: 50px"><input id="ans_writer"
-						value="admin"></td>
-					<td style="width: 300px"><textarea cols="50" rows="2"
+					<td><input id="ans_writer"
+						value="admin" style="width: 65px;"></td>
+					<td style="width: 300px;"><textarea cols="50" rows="2"
 							id="ans_content">답변댓글내용</textarea></td>
-					<td style="width: 200px"><button id="answerIn">댓글달기</button></td>
+					<td style="width: 200px;"><button id="answerIn">댓글달기</button></td>
 				</tr>
 			</tbody>
 		</table>
