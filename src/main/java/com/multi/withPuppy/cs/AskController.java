@@ -55,7 +55,7 @@ public class AskController {
 
 	@RequestMapping("selectAskOne")
 	public void one(String Ask_title, Model model) {
-		System.out.println("one요청됨.");
+		System.out.println("제목 검색 요청됨.");
 		System.out.println(Ask_title);
 //		AskVO vo = dao.one(title);
 //		model.addAttribute("vo", vo);
@@ -65,7 +65,7 @@ public class AskController {
 	
 	@RequestMapping("selectAskOneNo")
 	public void oneNo(int Ask_no, Model model) {
-		System.out.println("oneNo요청됨.");
+		System.out.println("글번호 선택 요청됨.");
 		System.out.println(Ask_no);
 		AskVO vo = dao.oneNo(Ask_no);
 		model.addAttribute("vo", vo);
@@ -80,6 +80,6 @@ public class AskController {
 
 	@RequestMapping("writeAsk")
 	public void write() {
-		System.out.println("write요청됨.");
+		System.out.println("글쓰기 페이지 전환 요청됨.");
 	}
 }
