@@ -230,6 +230,8 @@ img {
 </style>
 </head>
 <script type="text/javascript">
+
+
 $(function starListLoader() {
     $.ajax({
         url : "cartPriceTotal",
@@ -243,7 +245,8 @@ $(function starListLoader() {
         		total += data[i].product_cnt * data[i].product_price;
 				var sen = 
 					`<li class="list-group-item">
-				<div class="d-flex align-items-center">
+				<div class="d-flex align-items-center" onclick="location.href='productDetail?product_id=`+
+						data[i].detail+`'">
 				<img src= ` + data[i].product_img +
 					` alt="image" />
 				<div class="author">
