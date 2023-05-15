@@ -77,9 +77,9 @@
 			onblur="this.placeholder='검색할 문의사항을 입력해주세요.'">
 		<button type="submit">검색</button>
 	</form>
-	<div id="faqResult">
-		<hr color="red">
-		<h4>검색결과</h4>
+	<div id="faqView">
+		<hr>
+		<h4>리스트</h4>
 		<hr>
 		<table class="table">
 			<thead class="table-primary">
@@ -87,6 +87,7 @@
 					<th style="width: 10px">no</th>
 					<th style="width: 120px">category</th>
 					<th>title</th>
+					<th>관리자메뉴<button type="button" onclick="location='writeFaq'">FAQ 등록</button></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -95,9 +96,10 @@
 						<td>${vo.faq_no}</td>
 						<td>${vo.faq_category}</td>
 						<td><a href="#" onclick="return false;" class="hideView">${vo.faq_title}</a></td>
+						<td><button type="button" onclick="location='updateFaqNo'">수정</button><button type="button" onclick="location='deleteFaq'">삭제</button>
 					</tr>
 					<tr class="hiddenRow" style="display: none;">
-						<td class="table-active" colspan="3">${vo.faq_content}</td>
+						<td class="table-active" colspan="4">${vo.faq_content}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
