@@ -177,7 +177,7 @@
                                 </li>
                             </ul>
                             <div class="mt-3">
-                                <a href="#" class="btn btn-custom">리뷰 사진 추가</a>
+                                <a href="#" class="btn btn-custom">리뷰 사진 추가</a> 
                                 <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     영수증 사진 추가
                                 </button>

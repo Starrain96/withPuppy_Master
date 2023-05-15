@@ -74,8 +74,8 @@ function insertStar() {
 		</div>
 
 		<div class="review-buttons">
-			<button id="img" name="img">리뷰 사진 추가</button>
-			<button id="ocr" name="ocr">영수증 사진 추가</button>
+			<button id="img" name="img">리뷰 사진 추가</button><input type="file" name="file" ><br>
+			<button id="ocr" name="ocr">영수증 사진 추가</button><input type="file" name="file" ><br>
 		</div>
 	</form>
 	<button type="submit" id="submit" onclick="insertStar();">서버로 전송</button>

@@ -53,7 +53,7 @@ $(function insertStar() {
 			</div>
 
 			<div class="review-buttons">
-				<button id="img" name="img">리뷰 사진 추가</button>
+				<button id="img" name="img">리뷰 사진 추가</button><input type="file" name="file" ><br>
 				<button id="ocr" name="ocr">영수증 사진 추가</button>
 			</div>
 
