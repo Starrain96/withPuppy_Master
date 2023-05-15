@@ -28,6 +28,14 @@ public class CartController {
 		return list;
 	}
 	
+	@RequestMapping("shopping/addCart")
+	public void addCart(int product_id, int product_cnt, String user_id, Model model) {
+		CartVO bag = new CartVO();
+		bag.setProduct_id(product_id);
+		bag.setProduct_cnt(product_cnt);
+		bag.setUser_id(user_id);
+		dao.add(bag);
+	}
 	
 }
 

@@ -26,6 +26,7 @@ public class CartDAO {
 	}
 	
 	public void add(CartVO bag)	{
+		System.out.println("dao");
 		my.insert("cart.add", bag);
 	}
 	
