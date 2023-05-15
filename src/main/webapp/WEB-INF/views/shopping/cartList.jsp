@@ -263,7 +263,7 @@ $(function starListLoader() {
 			}
         	
 			$('#cartTotal').append("상품금액 : " + total + "원");
-			var btnSen = `<button class="btn-custom">결제하기</button>`;
+			var btnSen = `<button class="btn-custom" onClick="location.href='orderList'">결제하기</button>`;
         	$('#cartTotal').append(btnSen);
         	
         }

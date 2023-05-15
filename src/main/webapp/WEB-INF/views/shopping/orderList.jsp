@@ -98,7 +98,7 @@ body {
 <script type="text/javascript">
 $(function starListLoader() {
     $.ajax({
-        url : "cartPriceTotal",
+        url : "cartList",
         data : {
             user_id : "${user_id}"
         },
@@ -126,9 +126,9 @@ $(function starListLoader() {
 				</li>`;
 				$('#cart_list').append(sen);
 			}
-        	
+        	$('#cartTotal').empty();
 			$('#cartTotal').append("상품금액 : " + total + "원");
-			var btnSen = `<button class="buyBtn" onClick="location.href='PAGENAME.html'">결제하기</button>`;
+			var btnSen = `<button class="buyBtn">결제하기</button>`;
         	$('#cartTotal').append(btnSen);
         	
         }
@@ -136,13 +136,9 @@ $(function starListLoader() {
 })
 </script>
 <body>
-
-
-
-
 	<div class="cart-wrapper">
 		<ul class="cart-list" id="cart_list">
-
+			<!-- shopping cart items will be displayed here -->
 		</ul>
 		<div class="cartTotal" id="cartTotal"></div>
 	</div>
