@@ -26,7 +26,7 @@
 		</form>
 
 		<ul class="nav nav-pills">
-			<li class="nav-item"><a href="shoppingList?category2=1" class="nav-link link-secondary">쇼핑몰</a></li>
+			<li class="nav-item"><a href="shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
 			<li class="nav-item"><a href="cartList?user_id=apple" class="nav-link link-dark">장바구니</a></li>
 
 
