@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../../../header.jsp"%>
+<%@ include file="../../../shoppingHeader.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,7 @@ body {
 		if (type === 'plus') {
 			number = parseInt(number) + 1;
 		} else if (type === 'minus') {
-			if (number > 0) {
+			if (number > 1) {
 				number = parseInt(number) - 1;
 			}
 		}
@@ -98,11 +98,13 @@ body {
 				<h4 class="productName">${bag.product_name}</h4>
 				<br>
 				<h5>가격 : ${bag.product_price}원</h5>
-				<br> <br> <input type='button' onclick='count("plus")'
-					value=' + ' class="cntRow b1" />
-				<div id='resultCnt' class="cntRow">0</div>
+				<br> <br> 
 				<input type='button' onclick='count("minus")' value=' - '
 					class="cntRow b1" />
+				<div id='resultCnt' class="cntRow">1</div>
+				<input type='button' onclick='count("plus")'
+					value=' + ' class="cntRow b1" />
+				
 
 				<!-- 구매관련 버튼 -->
 				<div class="row" style="float: right">

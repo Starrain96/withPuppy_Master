@@ -39,13 +39,19 @@ public class CartController {
 	
 	@RequestMapping("shopping/updateCart")
 	public void updateCart(int product_id, int product_cnt, String user_id) {
-		System.out.println("updateController");
 		CartVO bag = new CartVO();
 		bag.setProduct_id(product_id);
 		bag.setProduct_cnt(product_cnt);
 		bag.setUser_id(user_id);
-		System.out.println(bag);
 		dao.update(bag);
+	}
+	
+	@RequestMapping("shopping/deleteCart")
+	public void deleteCart(int cart_id, String user_id) {
+		CartVO bag = new CartVO();
+		bag.setCart_id(cart_id);
+		bag.setUser_id(user_id);
+		dao.delete(bag);
 	}
 	
 }

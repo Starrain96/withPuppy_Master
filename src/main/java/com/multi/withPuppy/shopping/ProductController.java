@@ -21,16 +21,14 @@ public class ProductController {
 	@Autowired    
 	ProductDAO dao;
 	
-//	@RequestMapping("shopping/shoppingList")
-//	public void shoppingList(Model model) {
-//		List<ProductVO> list = dao.list();
-//		model.addAttribute("list", list);	
-//	}
-	
-	
 	@RequestMapping("shopping/shoppingList")
-	public void shoppingList(int category2,Model model) {
-		List<ProductVO> list = dao.list(category2);
+	public void shoppingList(int start, int end, int start_num, int end_num, Model model) {
+		CategoryVO bag = new CategoryVO();
+		bag.setEnd(end);
+		bag.setStart(start);
+		bag.setStart_num(start_num);
+		bag.setEnd_num(end_num);
+		List<ProductVO> list = dao.list(bag);
 		model.addAttribute("list", list);	
 	}
 	
@@ -61,9 +59,8 @@ public class ProductController {
 	
 	@RequestMapping("shopping/shoppingList2")
     @ResponseBody
-    public List<ProductVO> shopping2(Model model, int category2) {
-		System.out.println(category2);
-        List<ProductVO> list = dao.list(category2);
+    public List<ProductVO> shopping2(Model model, CategoryVO bag) {
+        List<ProductVO> list = dao.list(bag);
         return list;
     }
 	
