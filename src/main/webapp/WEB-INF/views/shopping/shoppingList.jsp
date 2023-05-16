@@ -20,6 +20,55 @@ body {
 	margin-right: 15%;
 	margin-left: 15%;
 }
+
+
+.card__two {
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity .38s ease-in-out, transform .35s ease-in-out;
+    content: '';
+    opacity: 0;
+    pointer-events: none;
+    border-bottom: 10px solid #ffe98c;
+  }
+
+  &::before {
+    transform: scale3d(0, 1, 1);
+    border-bottom: 20px solid #ffe98c;
+  }
+
+  &::after {
+  	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+  }
+
+  &:hover,
+  &:focus {
+  transform: scale3d(1.006, 1.006, 1);
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+
+
+
+
 </style>
 
 <script type="text/javascript">
@@ -33,8 +82,8 @@ function btnChange(n) {
 			$('#productList').empty();
 			for (i = 0; i < data.length; i++) {
 				var sen = 
-					`<div class="container mt-3 col">
-						<div class="card" style="width: 80%; margin-left: 10%" onclick="location.href='productDetail?product_id=`
+					`<div class="container mt-4 col">
+						<div class="card card__two" style="width: 80%; margin-left: 10%" onclick="location.href='productDetail?product_id=`
 							+ data[i].detail + `'">
 						<img class="card-img-top" src="`
 							+ data[i].product_img +`"
@@ -75,12 +124,12 @@ function btnChange(n) {
 	</nav>
 	<hr>
 	<div>
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3"
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4"
 			id="productList">
 			<c:forEach items="${list}" var="bag">
 
-				<div class="container mt-3 col">
-					<div class="card" style="width: 80%; margin-left: 10%"
+				<div class="container mt-4 col">
+					<div class="card card__two" style="width: 80%; margin-left: 10%"
 						onclick="location.href='productDetail?product_id=${bag.detail}'">
 						<img class="card-img-top" src="${bag.product_img}"
 							alt="Card image" style="width: 100%">
