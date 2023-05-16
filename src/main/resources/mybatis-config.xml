@@ -10,6 +10,9 @@
 		<typeAlias type="com.multi.withPuppy.communities.ReplyVO" alias="replyVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.shopping.ProductVO" alias="productVO"></typeAlias>
+		
+		<typeAlias type="com.multi.withPuppy.shopping.CategoryVO" alias="categoryVO"></typeAlias>
+		
 		<typeAlias type="com.multi.withPuppy.shopping.OrderVO" alias="orderVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.Order_detailVO" alias="order_detailVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.CartVO" alias="cartVO"></typeAlias>

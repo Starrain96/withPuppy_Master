@@ -54,7 +54,7 @@ body {
 	align-items: center;
 }
 
-.cart .content img {
+img {
 	margin: 10px;
 	max-width: 100px;
 	max-height: 100px;
@@ -67,9 +67,18 @@ body {
 }
 
 .cartTotal {
-	display : flex;
+	display: flex;
 	justify-content: right;
-	align-items:center;
+	align-items: center;
+}
+
+.author {
+	margin-left: 20px;
+}
+
+.cartPTitle {
+	font-size: 20px;
+	font-weight: 600;
 }
 
 .buyBtn {
@@ -87,16 +96,148 @@ body {
 	border-radius: 5px;
 	transition: all 0.2s;
 	background: #FFAA40;
-	margin-left : 50px;
+	margin-left: 50px;
 }
 
 .buyBtn:hover {
 	background: #FF8E00
 }
+
+/* new design */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.container-fluid {
+	padding: 50px 10%;
+}
+
+.card-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-color: #ffe98c;
+	color: #000;
+	height: 70px;
+}
+
+.card-footer {
+	background-color: #F5F5F5;
+}
+
+.list-group-item {
+	margin-bottom: 0.75rem !important;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+	font-size: 1.2em;
+	padding-top: 1.2rem !important;
+	padding-bottom: 1.2rem !important;
+}
+
+.list-group-item2 {
+	margin-bottom: 0.75rem !important;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+	font-size: 0.95em;
+}
+
+.list-group-item .list-group-item2 .info-label {
+	display: inline-block;
+	width: 100px;
+	font-weight: bold;
+	margin-right: 1rem;
+}
+
+.list-group-item .list-group-item2 .info-value {
+	display: inline-block;
+	margin-right: 2rem;
+}
+
+.list-group-item:hover, .list-group-item2:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.list-group-item a, .list-group-item2 a {
+	color: #333;
+	text-decoration: none;
+	display: block;
+	padding: 0.5rem;
+}
+
+.list-group-item a:hover, .list-group-item2 a:hover {
+	color: #555;
+}
+
+.list-group-item:before, .list-group-item:after, .list-group-item2:before,
+	.list-group-item2:after {
+	content: "";
+	position: absolute;
+	width: 5px;
+	height: 100%;
+	left: 0;
+	background-color: #ffe98c;
+	transform: translateY(-100%);
+	transition: transform 0.3s ease;
+}
+
+.list-group-item:before, .list-group-item2:before {
+	top: 0;
+}
+
+.list-group-item:after, .list-group-item2:after {
+	bottom: 0;
+	transform: translateY(100%);
+}
+
+.list-group-item:hover:before, .list-group-item:hover:after,
+	.list-group-item2:hover:before, .list-group-item2:hover:after {
+	transform: translateY(0);
+}
+
+.info-label {
+	display: inline-block;
+	width: 100px;
+	font-weight: bold;
+}
+
+.info-value {
+	display: inline-block;
+}
+
+.btn-custom {
+	margin-left: 20px;
+	color: white;
+	background-color: #60626C;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	border: none;
+	padding: 0.5rem;
+	padding-left: 1.0rem;
+	padding-right: 1.0rem;
+}
+
+.btn-custom:hover {
+	background-color: #ffe98c;
+	color: black;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.cntRow {
+	display: inline-block;
+	margin: 2px;
+}
 </style>
 </head>
 <script type="text/javascript">
-$(function starListLoader() {
+
+
+$(function bringCartData() {
     $.ajax({
         url : "cartPriceTotal",
         data : {
@@ -108,37 +249,73 @@ $(function starListLoader() {
         	for (i = 0; i < data.length; i++) {
         		total += data[i].product_cnt * data[i].product_price;
 				var sen = 
-					`<li class="cart">
-					<div class="content">
-						<img src= ` + data[i].product_img +
-						` alt="image" />
-						<div class="author">
-							<div class="cartName">` + data[i].product_name+`
-							</div>
-							<div class="rating">수량 :
-							`+data[i].product_cnt+`
-							</div>
-							<div class="rating">상품 가격 :`
-							+data[i].product_price+
-							`원</div>
-						</div>
+					`<li class="list-group-item">
+				<div class="d-flex align-items-center">
+				<img src= ` + data[i].product_img +
+					` alt="image" />
+				<div class="author">
+				<div class = "cartPTitle" onclick="location.href='productDetail?product_id=`+
+					data[i].detail+`'">` +data[i].product_name+`</div>
+					<div>
+						<input type='button' onclick='count("minus", `+ i +`)' value=' - '
+							class="cntRow b1" />
+						<div id='resultCnt`+ i +`' class="cntRow">`+data[i].product_cnt+`</div>
+						<input type='button' onclick='count("plus", `+ i +`)' value=' + '
+							class="cntRow b1" />
+						<button onclick="updateCnt(`+data[i].product_id+`,`+ i +`)">수정</button>
 					</div>
-				</li>`;
+					<div class="rating cntRow">상품 가격 :`
+					+data[i].product_price+
+					`원</div>
+					<div class="rating cntRow">상품 총액 : `
+						+data[i].product_price*data[i].product_cnt+
+						`원</div>
+				</div>
+				</div>
+			</li>`;
 				$('#cart_list').append(sen);
 			}
         	
 			$('#cartTotal').append("상품금액 : " + total + "원");
-			var btnSen = `<button class="buyBtn">결제하기</button>`;
+			var btnSen = `<button class="btn-custom" onClick="location.href='orderList?user_id=${user_id}'">결제하기</button>`;
         	$('#cartTotal').append(btnSen);
         	
         }
     })
 })
+
+function count(type, nn) {
+		const resultElement = document.getElementById('resultCnt' + nn);
+		let number = resultElement.innerText;
+		// 더하기/빼기
+		if (type === 'plus') {
+			number = parseInt(number) + 1;
+		} else if (type === 'minus') {
+			if (number > 1) {
+				number = parseInt(number) - 1; 
+			}
+		}
+		resultElement.innerText = number;
+	}
+	
+function updateCnt(id, n){
+	const resultElement = document.getElementById('resultCnt' + n);
+	let number = resultElement.innerText;
+	console.log("number : " + number);
+	$.ajax({
+        url : "updateCart",
+        data : {
+            product_id : id,
+            product_cnt : number,
+            user_id : "${user_id}"
+        },
+        success : function(data) {
+        	alert("수정되었습니다.");
+        }
+	})
+}
 </script>
 <body>
-
-
-
 
 	<div class="cart-wrapper">
 		<ul class="cart-list" id="cart_list">
@@ -147,5 +324,11 @@ $(function starListLoader() {
 		<div class="cartTotal" id="cartTotal"></div>
 	</div>
 
+<!-- 
+<div class="rating">수량 :
+					`+data[i].product_cnt+`
+					</div>
+
+ -->
 </body>
 </html>
