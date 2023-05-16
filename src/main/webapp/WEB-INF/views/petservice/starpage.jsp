@@ -41,43 +41,59 @@ function insertStar() {
 </script>
 <body>
 	<form id="form" method="post">
-		<input id="service_id" name="service_id" value="${bag.service_id}">
-		<input id="id" name="id" value="${bag.id}">
-		<div class="review-form">
-			<h2>리얼 리뷰 평가</h2>
-			<div class="form-group">
-				<label for="customer-service-rating">친절</label> <label>고객응대평가</label>
-				<input type="range" id="kind" name="kind" min="0" max="5" step="1">
+		<div class="container-fluid">
+			<!-- 메인 컨텐츠 -->
+			<input id="service_id" name="service_id" value="${bag.service_id}">
+			<input id="id" name="id" value="${bag.id}">
+			<div class="col-lg-9 col-md-8 col-sm-12">
+				<div class="card">
+					<h5 class="card-header">리얼 리뷰 평가</h5>
+					<div class="card-body">
+						<!-- 프로필 정보 출력 -->
+						<div class="row">
+							<div class="col-md-8">
+								<!-- <h5 class="card-title">John Doe</h5> 
+                            <hr>-->
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item"><span class="info-label">친절</span>
+										<span class="info-value"><label>고객응대평가</label> <input
+											type="range" id="kind" name="kind" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">설명</span>
+										<span class="info-value"><label>진료 전 치료 및 가격 설명
+												평가</label> <input type="range" id="explain" name="explain" min="0"
+											max="5" step="1"></span></li>
+									<li class="list-group-item"><span class="info-label">진료</span>
+										<span class="info-value"><label>치료 후 완쾌 수준</label> <input
+											type="range" id="treat" name="treat" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">시설</span>
+										<span class="info-value"><label>시설 및 장비 수준</label> <input
+											type="range" id="facilities" name="facilities" min="0"
+											max="5" step="1"></span></li>
+									<li class="list-group-item"><span class="info-label">가격</span>
+										<span class="info-value"><label>진료비 수준</label> <input
+											type="range" id="price" name="price" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">리뷰
+											내용</span> <span class="info-value"><textarea id="content"
+												name="content" maxlength="500" cols="50" rows="10"></textarea></span>
+									</li>
+								</ul>
+								<div class="mt-3">
+									<a href="#" class="btn btn-custom">리뷰 사진 추가</a>
+									<button class="btn btn-outline-danger" data-bs-toggle="modal"
+										data-bs-target="#exampleModal">영수증 사진 추가</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer text-muted text-end">강아지와🐶</div>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="treatment-explanation-rating">설명</label> <label>진료
-					전 치료 및 가격 설명 평가</label> <input type="range" id="explain" name="explain" min="0" max="5"
-					step="1">
-			</div>
-			<div class="form-group">
-				<label for="treatment-rating">진료</label> <label>치료 후 완쾌 수준</label> <input
-					type="range" id="treat" name="treat" min="0" max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="facility-rating">시설</label> <label>시설 및 장비 수준</label> <input
-					type="range" id="facilities" name="facilities" min="0" max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="price-rating">가격</label> <label>진료비 수준</label> <input
-					type="range" id="price" name="price" min="0" max="5" step="1">
-			</div>
-		</div>
-
-		<div class="review-form">
-			<h2>리뷰 내용</h2>
-			<textarea id="content" name="content"></textarea>
-		</div>
-
-		<div class="review-buttons">
-			<button id="img" name="img">리뷰 사진 추가</button><input type="file" name="file" ><br>
-			<button id="ocr" name="ocr">영수증 사진 추가</button><input type="file" name="file" ><br>
 		</div>
 	</form>
-	<button type="submit" id="submit" onclick="insertStar();">서버로 전송</button>
+	<button type="submit" id="submit" onclick="insertStar();">서버로
+		전송</button>
 </body>
 </html>
