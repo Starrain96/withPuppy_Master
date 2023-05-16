@@ -2,6 +2,7 @@ package com.multi.withPuppy.shopping;
 
 public class ProductVO {
 	private int product_id;
+	private int cart_id;
 	private String product_name;
 	private int product_price;
 	private int category1;
@@ -14,6 +15,12 @@ public class ProductVO {
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+	public int getCart_id() {
+		return cart_id;
+	}
+	public void setCart_id(int cart_id) {
+		this.cart_id = cart_id;
 	}
 	public String getProduct_name() {
 		return product_name;

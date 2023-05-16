@@ -232,6 +232,36 @@ img {
 	display: inline-block;
 	margin: 2px;
 }
+
+.delBtn {
+	float: right;
+	border: none;
+	background-color: white;
+}
+
+.upBtn {
+	border-radius: 10px;
+	border : 1px #ddd solid;
+	font-size: 13px;
+}
+
+.cntBtn {
+	color: white;
+	background-color: #60626C;
+	height : 1.8rem;
+	width : 1.8rem;
+	border-radius: 50%;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	border: none;
+	padding: 0.1rem;
+}
+
+.cntBtn:hover {
+	background-color: #ffe98c;
+	color: black;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
 </style>
 </head>
 <script type="text/javascript">
@@ -250,28 +280,34 @@ $(function bringCartData() {
         		total += data[i].product_cnt * data[i].product_price;
 				var sen = 
 					`<li class="list-group-item">
-				<div class="d-flex align-items-center">
-				<img src= ` + data[i].product_img +
-					` alt="image" />
-				<div class="author">
-				<div class = "cartPTitle" onclick="location.href='productDetail?product_id=`+
-					data[i].detail+`'">` +data[i].product_name+`</div>
 					<div>
-						<input type='button' onclick='count("minus", `+ i +`)' value=' - '
-							class="cntRow b1" />
-						<div id='resultCnt`+ i +`' class="cntRow">`+data[i].product_cnt+`</div>
-						<input type='button' onclick='count("plus", `+ i +`)' value=' + '
-							class="cntRow b1" />
-						<button onclick="updateCnt(`+data[i].product_id+`,`+ i +`)">수정</button>
+					<input type='button' onclick='deleteBtn(`+data[i].cart_id+`)' value=' X '
+						class="delBtn" />
 					</div>
-					<div class="rating cntRow">상품 가격 :`
-					+data[i].product_price+
-					`원</div>
-					<div class="rating cntRow">상품 총액 : `
-						+data[i].product_price*data[i].product_cnt+
-						`원</div>
+				<div class="d-flex  align-items-center">
+					<img src= ` + data[i].product_img +
+						` alt="image" />
+					<div class="author ">
+						<div class = "cartPTitle" onclick="location.href='productDetail?product_id=`+
+							data[i].detail+`'">` +data[i].product_name+`
+						</div>
+						<div>
+							<input type='button' onclick='count("minus", `+ i +`)' value=' - '
+								class="cntRow cntBtn" />
+							<div id='resultCnt`+ i +`' class="cntRow">`+data[i].product_cnt+`</div>
+							<input type='button' onclick='count("plus", `+ i +`)' value=' + '
+								class="cntRow cntBtn" />
+							<button class = "upBtn" onclick="updateCnt(`+data[i].product_id+`,`+ i +`)">수정</button>
+						</div>
+						<div class="rating cntRow">상품 가격 :`
+						+data[i].product_price+`원
+						</div>
+						<div class="rating cntRow">상품 총액 : `
+							+data[i].product_price*data[i].product_cnt+
+							`원</div>
+					</div>
 				</div>
-				</div>
+				
 			</li>`;
 				$('#cart_list').append(sen);
 			}
@@ -297,6 +333,20 @@ function count(type, nn) {
 		}
 		resultElement.innerText = number;
 	}
+
+function deleteBtn(id) {
+	$.ajax({
+        url : "deleteCart",
+        data : {
+            cart_id : id,
+            user_id : "${user_id}"
+        },
+        success : function(data) {
+        	alert("삭제되었습니다.");
+        	document.location.reload();
+        }
+	})
+}
 	
 function updateCnt(id, n){
 	const resultElement = document.getElementById('resultCnt' + n);
@@ -324,7 +374,7 @@ function updateCnt(id, n){
 		<div class="cartTotal" id="cartTotal"></div>
 	</div>
 
-<!-- 
+	<!-- 
 <div class="rating">수량 :
 					`+data[i].product_cnt+`
 					</div>

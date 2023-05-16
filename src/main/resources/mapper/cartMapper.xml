@@ -9,7 +9,7 @@
 	
 	<delete id="delete"  parameterType="cartVO">
 		delete from cart 
-		where product_id = #{product_id} and user_id = #{user_id}
+		where cart_id = #{cart_id} and user_id = #{user_id}
 	</delete>
 	
 	<update id="update"  parameterType="cartVO">
@@ -25,9 +25,9 @@
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
 	<select id="allProduct" parameterType="String" resultType="productVO">
-		select p.product_id, product_name, product_price, detail, product_img, c.product_cnt 
+		select p.product_id, c.cart_id, product_name, product_price, detail, product_img, c.product_cnt 
 		from product p left join cart c 
-		on(p.product_id = c.product_id) where c.user_id = #{user_id}
+		on(p.product_id = c.product_id) where c.user_id = #{user_id} order by p.product_id
 	</select>
 	
 	<select id="emptyCheck" parameterType="cartVO" resultType="Int"> 
