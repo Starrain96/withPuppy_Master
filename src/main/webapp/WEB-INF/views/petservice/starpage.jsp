@@ -29,7 +29,7 @@ function insertStar() {
 	    				content : $('#content').val()
 	    			},
 	                success: function (data) {
-	                    alert("후기 작성 완료!");
+	                    alert(${savedName} + "후기 작성 완료!");
 	                    window.close();
 	                },
 	                error: function () {
@@ -81,7 +81,7 @@ function insertStar() {
 									</li>
 								</ul>
 								<div class="mt-3">
-									<a href="#" class="btn btn-custom">리뷰 사진 추가</a>
+									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" name="file" >
 									<button class="btn btn-outline-danger" data-bs-toggle="modal"
 										data-bs-target="#exampleModal">영수증 사진 추가</button>
 								</div>

@@ -3,7 +3,7 @@
 <mapper namespace="star">
 	
 	<insert id="insertStar" parameterType="starVO">
-		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, null, null, null)
+		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, #{img1}, null, null)
 	</insert>
 	
 	<delete id="del"  parameterType="starVO">
