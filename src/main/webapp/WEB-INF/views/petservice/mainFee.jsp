@@ -4,7 +4,7 @@
 	
 
 <div id="searchFee">
-	<h3>진료비 평균가 조회</h3>
+	<h3>진료비 평균가 조회 테스트본</h3>
 	<hr>
 	<form action="selectDxName" method="get">
 		<input type="search" name="DxName" size="60"
