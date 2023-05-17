@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star">
 	
-	<insert id="insertStar" parameterType="starVO">
-		insert into star_1 values (null ,#{service_id}, #{id}, #{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price})
+
+	<insert id="insertStar" 
+			parameterType="starVO" 
+			useGeneratedKeys="true" 
+			keyProperty="star_id">
+		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, #{img1}, null, null)
 	</insert>
 	
 	<delete id="del"  parameterType="starVO">
@@ -14,13 +18,9 @@
 		update star set content = #{content} where star_no = #{star_no}
 	</update>
 	
-	<select id="starpage"  parameterType="String" resultType="starVO">
-		select  *  from star 
-		where service_id = #{service_id}
-	</select>
-	
-	<select id="listStar" resultType="starVO">
+	<select id="listStar" parameterType="int" resultType="starVO">
 		select * from star
+		where service_id = #{service_id}
 	</select>
 </mapper>
 

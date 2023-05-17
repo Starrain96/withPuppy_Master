@@ -1,14 +1,16 @@
 package com.multi.withPuppy.petservice;
 
+import java.io.File;
 import java.util.List;
 
- 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller //스프링에서 제어하는 역활로 등록
 @RequestMapping("petservice")
@@ -16,32 +18,17 @@ public class StarController {
 	
 	@Autowired
 	StarDAO dao;
-	//컨트롤 하는 기능 (CRUD)
-	//회원가입, 수정, 탈퇴, 정보검색
 	
-	//클래스 내에서 기능처리 담당
-	//멤버변수 + 멤버메서드(기능처리 담당)
-	//하나의 요청당 하나의 메서드
-	//하나의 버튼호출당 하나의 함수 연결!
-	// 요청된 주소가 어떻게 될 때
-	// 바로 아래에 있는 메서드가 호출이 될지를
-	// 써주어야 한다.
-	/*
-	 * @RequestMapping("login") public String login(MemberVO bag, HttpSession
-	 * session) { System.out.println(bag); System.out.println(dao);
-	 * 
-	 * int result = dao.login(bag); if(result==1) { //로그인에 성공을 하면 세션을 설정하자!
-	 * session.setAttribute("id", bag.getId()); return "ok"; } else { //views 아래가
-	 * 아니고, webapp 아래 member.jsp로 가고 싶은 경우! return "redirect:member.jsp"; } }
-	 */
-	
-	@RequestMapping("insertStar")
-	public void insert(StarVO bag) {
-		System.out.println("insert 요청됨.");
-		System.out.println(bag);
-		dao.insert(bag);
-		
-	}
+	//@RequestMapping("insertStar")
+    //@ResponseBody
+    //public int insertUser(StarVO bag) {
+    //    System.out.println("insert bag : " + bag);
+    //    System.out.println(dao);
+    //    int result = dao.insert(bag);
+    //    System.out.println("컨트롤ㄹㄹㄹㄹ러 : " + result);
+    //    return result;
+    //}
+
 	
 	@RequestMapping("update")
 	public void update(StarVO bag) {
@@ -68,7 +55,38 @@ public class StarController {
 		return list;
 	}
 	
+	@RequestMapping("insertStar")
+	public void insert(
+					StarVO starVO,
+					HttpServletRequest request, 
+					MultipartFile file, 
+					Model model) throws Exception {
+		if (!file.isEmpty()) {
+			String savedName = file.getOriginalFilename();
+			String uploadPath 
+				= request.getSession().getServletContext().getRealPath("resources/upload");
+			File target = new File(uploadPath + "/" + savedName);
+			file.transferTo(target);	
+			model.addAttribute("savedName", savedName);
+			starVO.setImg1(savedName);
+		} 
+		dao.insert(starVO);
+		//컨트롤로의 vo변수명을 맨앞글자만 소문자로 바꾸어서 변수를 만들면,
+		//자동으로 모델의 속성으로 등록시켜줌.
+		//model.addAttribute("movieVO", movieVO);
+	}
 	
+	@RequestMapping("uploadForm")
+	public void uploadForm(
+					HttpServletRequest request, 
+					MultipartFile file, 
+					Model model) throws Exception {
+		String savedName = file.getOriginalFilename();
+		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
+		File target = new File(uploadPath + "/" + savedName);
+		file.transferTo(target);
+		model.addAttribute("savedName", savedName);
+	}
 
 	  
 	/*

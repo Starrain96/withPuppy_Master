@@ -20,6 +20,9 @@
 		<typeAlias type="com.multi.withPuppy.petservice.PetserviceVO" alias="petserviceVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.StarVO" alias="starVO"></typeAlias>
 		
+		<typeAlias type="com.multi.withPuppy.petservice.BillVO" alias="billVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.petservice.Bill_detailVO" alias="bill_detailVO"></typeAlias>
+		
 		<typeAlias type="com.multi.withPuppy.user.UserVO" alias="userVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.user.PetVO" alias="petVO"></typeAlias>
 		
@@ -43,6 +46,9 @@
 		
 		<mapper resource="mapper/petserviceMapper.xml" />
 		<mapper resource="mapper/starMapper.xml" />
+		
+		<mapper resource="mapper/billMapper.xml" />
+		<mapper resource="mapper/bill_detailMapper.xml" />
 		
 		<mapper resource="mapper/userMapper.xml" />
 		<mapper resource="mapper/petMapper.xml" />

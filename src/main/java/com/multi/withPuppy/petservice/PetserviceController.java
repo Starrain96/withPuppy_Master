@@ -13,32 +13,6 @@ public class PetserviceController {
 	
 	@Autowired
 	PetserviceDAO dao;
-	//컨트롤 하는 기능 (CRUD)
-	//회원가입, 수정, 탈퇴, 정보검색
-	
-	//클래스 내에서 기능처리 담당
-	//멤버변수 + 멤버메서드(기능처리 담당)
-	//하나의 요청당 하나의 메서드
-	//하나의 버튼호출당 하나의 함수 연결!
-	// 요청된 주소가 어떻게 될 때
-	// 바로 아래에 있는 메서드가 호출이 될지를
-	// 써주어야 한다.
-	/*
-	 * @RequestMapping("login") public String login(MemberVO bag, HttpSession
-	 * session) { System.out.println(bag); System.out.println(dao);
-	 * 
-	 * int result = dao.login(bag); if(result==1) { //로그인에 성공을 하면 세션을 설정하자!
-	 * session.setAttribute("id", bag.getId()); return "ok"; } else { //views 아래가
-	 * 아니고, webapp 아래 member.jsp로 가고 싶은 경우! return "redirect:member.jsp"; } }
-	 */
-	
-	
-	//@RequestMapping("one")
-	//public void one(String id, Model model) {
-	//	System.out.println("insert 요청됨.");
-	//	PetserviceVO bag = dao.one(id);
-	//	model.addAttribute("bag", bag);
-	//}
 	
 	@RequestMapping("listhospital")
 	public void all(Model model,String category) {
