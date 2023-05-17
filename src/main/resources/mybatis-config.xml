@@ -39,6 +39,7 @@
 		<mapper resource="mapper/orderMapper.xml" />
 		<mapper resource="mapper/order_detailMapper.xml" />
 		<mapper resource="mapper/cartMapper.xml" />
+		<mapper resource="mapper/manageMapper.xml" />
 		
 		<mapper resource="mapper/petserviceMapper.xml" />
 		<mapper resource="mapper/starMapper.xml" />
