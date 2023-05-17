@@ -11,6 +11,34 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <link rel="stylesheet" href="../resources/css/star.css" />
 </head>
+<script type="text/javascript">
+function insertStar() {
+	/* 	$('#submit').click(function() { */
+				console.log("clicked");
+	            $.ajax({
+	            	type: 'POST',
+	            	url: "insertStar",
+	            	data : {
+	            		service_id : ${bag.service_id},
+	    				id : '${bag.id}',
+	    				kind : $('#kind').val(),
+	    				explain : $('#explain').val(),
+	    				treat : $('#treat').val(),
+	    				facilities : $('#facilities').val(),
+	    				price : $('#price').val(),
+	    				content : $('#content').val()
+	    			},
+	                success: function (data) {
+	                    alert("후기 작성 완료!");
+	                    window.close();
+	                },
+	                error: function () {
+	                	 alert("실패");
+	                }//error
+		})//ajax
+	/* })//fun */
+}//fun insertStar
+</script>
 <body>
 	<form action="insertStar" id="form" method="post" enctype="multipart/form-data" >
 		<div class="container-fluid">
@@ -66,5 +94,6 @@
 			</div>
 		</div>
 	</form>
+	<button type="submit" id="submit" onclick="insertStar();">서버로 전송</button>
 </body>
 </html>

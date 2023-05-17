@@ -28,6 +28,7 @@ public class StarController {
     //    System.out.println("컨트롤ㄹㄹㄹㄹ러 : " + result);
     //    return result;
     //}
+
 	
 	@RequestMapping("update")
 	public void update(StarVO bag) {

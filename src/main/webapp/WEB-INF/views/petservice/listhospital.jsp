@@ -41,7 +41,9 @@
 		 new kakao.maps.LatLng(0, 0)
 	];
 	var selectedMarker = null; // 클릭한 마커를 담을 변수
-	console.log(positions.length);
+
+	console.log(positions.length); // 몇 개 들어갔나 체크
+
 	
 	//[ new kakao.maps.LatLng(33.44975, 126.56967),
 	//new kakao.maps.LatLng(33.450579, 126.56956),
