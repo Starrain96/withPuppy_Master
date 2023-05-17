@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller //스프링에서 제어하는 역활로 등록
 @RequestMapping("petservice")
-public class BillController {
+public class Bill_detailController {
 	
 	@Autowired
 	BillDAO dao;
 	
 
-	@RequestMapping("mainFee")
-	//@ResponseBody
-	public void list() {
+	@RequestMapping("mainFee1")
+	@ResponseBody
+	public void list(Model model) {
 		//List<BillVO> list = dao.list();
 		//model.addAttribute("list", list);
 	}
 	
 	
-	@RequestMapping("insertBill")
+	@RequestMapping("insertBill1")
     @ResponseBody
     public int insertBill(BillVO bag) {
         System.out.println("insert bag : " + bag);
