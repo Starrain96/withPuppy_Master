@@ -1,18 +1,14 @@
 package com.multi.withPuppy.communities;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping("/communities")
+@RequestMapping("communities/")
 public class CommunitiesController {
 
 	@Autowired
@@ -21,7 +17,7 @@ public class CommunitiesController {
 	@RequestMapping("insert")
 	public String insertCommunity(CommunitiesVO vo){
 		dao.insert(vo);
-		return "redirect:/communitiesList";
+		return "redirect:/communities/communitiesList";
 	}
 
 	@RequestMapping("update")
@@ -29,7 +25,7 @@ public class CommunitiesController {
 //		System.out.println("update요청됨.");
 //		System.out.println(vo);
 		dao.update(vo);
-		return "redirect:/communitiesList";
+		return "redirect:/communities/communitiesList";
 	}
 
 	@RequestMapping("delete")
@@ -37,7 +33,7 @@ public class CommunitiesController {
 //		System.out.println("delete요청됨.");
 //		System.out.println(commu_no);
 		dao.delete(commu_no);
-		return "redirect:/communitiesList";
+		return "redirect:/communities/communitiesList";
 	}
 
 	@RequestMapping("one")

@@ -9,23 +9,51 @@
 <title>Insert title here</title>
 <style>
 body {
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    justify-content: center;
+}
+
+table {
+    max-width: 800px;
 }
 
 td {
-	width: 100px;
-	text-align: center;
+    width: 100px;
+    
+    text-align: center;
+    padding: 10px;
 }
 
 .top {
-	background: black;
-	color: white;
+    background-color: #333;
+    color: #fff;
 }
 
-/*.down {
-	background: lime;
-}*/
+.down:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.down:nth-child(odd) {
+    background-color: #fff;
+}
+
+.down:hover {
+    background-color: #fba60b;
+}
+
+a:link {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: #fba60b;
+}
+
 </style>
 </head>
 <body>

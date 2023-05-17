@@ -7,18 +7,18 @@
 	 -->
 	<insert id="create" parameterType="replyVO" >
 		insert into reply  
-		values (null, #{title}, #{content}, #{writer})
+		values (null, #{reply_id}, #{reply_content}, #{reply_date})
 	</insert>
 	
-	<delete id="delete"  parameterType="String">
+	<delete id="delete"  parameterType="Int">
 		delete from reply 
-		where title = #{title}
+		where reply_no = #{reply_no}
 	</delete>
 	
 	<update id="update"  parameterType="replyVO">
 		update reply 
-		set content = #{content} 
-		where no = #{no}
+		set reply_content = #{reply_content} 
+		where reply_no = #{reply_no}
 	</update>
 	
 	<select id="all"  resultType="replyVO">

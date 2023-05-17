@@ -18,17 +18,17 @@ public class ReplyDAO {
 	SqlSessionTemplate my;
 	
 	public int insert(ReplyVO vo) {
-		int result = my.insert("Reply.create",vo);
+		int result = my.insert("reply.create",vo);
 		return result;
 	}
 	
 	public int update(ReplyVO vo) {
-		int result = my.update("Reply.up",vo);
+		int result = my.update("reply.up",vo);
 		return result;
 	}
 	
 	public int delete(int reply_no) {
-		int result = my.delete("Reply.del", reply_no);
+		int result = my.delete("reply.del", reply_no);
 		return result;
 	}
 	
@@ -56,7 +56,7 @@ public class ReplyDAO {
 			System.out.println("2. mySQL 연결 성공.");
 			// 컨트롤 + 쉬프트 + f : 코드 자동 정리!
 
-			String sql = "select * from communities";
+			String sql = "select * from reply";
 			
 			PreparedStatement ps = con.prepareStatement(sql); // PreparedStatement
 			// 삭제!!!! ps.setString(1, id);

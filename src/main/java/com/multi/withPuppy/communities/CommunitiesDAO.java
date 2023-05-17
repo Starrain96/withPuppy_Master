@@ -19,7 +19,7 @@ public class CommunitiesDAO {
 	
 	public int insert(CommunitiesVO vo) {
 		int result = my.insert("communities.insert",vo);
-		System.out.println(vo);
+//		System.out.println(vo);
 		return result;
 	}
 	
