@@ -1,13 +1,16 @@
 package com.multi.withPuppy.petservice;
 
+import java.io.File;
 import java.util.List;
 
- 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller //스프링에서 제어하는 역활로 등록
 @RequestMapping("petservice")
@@ -16,15 +19,16 @@ public class StarController {
 	@Autowired
 	StarDAO dao;
 	
-	@RequestMapping("insertStar")
-    @ResponseBody
-    public int insertUser(StarVO bag) {
-        System.out.println("insert bag : " + bag);
-        System.out.println(dao);
-        int result = dao.insert(bag);
-        System.out.println("컨트롤ㄹㄹㄹㄹ러 : " + result);
-        return result;
-    }
+	//@RequestMapping("insertStar")
+    //@ResponseBody
+    //public int insertUser(StarVO bag) {
+    //    System.out.println("insert bag : " + bag);
+    //    System.out.println(dao);
+    //    int result = dao.insert(bag);
+    //    System.out.println("컨트롤ㄹㄹㄹㄹ러 : " + result);
+    //    return result;
+    //}
+
 	
 	@RequestMapping("update")
 	public void update(StarVO bag) {
@@ -51,7 +55,38 @@ public class StarController {
 		return list;
 	}
 	
+	@RequestMapping("insertStar")
+	public void insert(
+					StarVO starVO,
+					HttpServletRequest request, 
+					MultipartFile file, 
+					Model model) throws Exception {
+		if (!file.isEmpty()) {
+			String savedName = file.getOriginalFilename();
+			String uploadPath 
+				= request.getSession().getServletContext().getRealPath("resources/upload");
+			File target = new File(uploadPath + "/" + savedName);
+			file.transferTo(target);	
+			model.addAttribute("savedName", savedName);
+			starVO.setImg1(savedName);
+		} 
+		dao.insert(starVO);
+		//컨트롤로의 vo변수명을 맨앞글자만 소문자로 바꾸어서 변수를 만들면,
+		//자동으로 모델의 속성으로 등록시켜줌.
+		//model.addAttribute("movieVO", movieVO);
+	}
 	
+	@RequestMapping("uploadForm")
+	public void uploadForm(
+					HttpServletRequest request, 
+					MultipartFile file, 
+					Model model) throws Exception {
+		String savedName = file.getOriginalFilename();
+		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
+		File target = new File(uploadPath + "/" + savedName);
+		file.transferTo(target);
+		model.addAttribute("savedName", savedName);
+	}
 
 	  
 	/*
