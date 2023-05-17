@@ -11,40 +11,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <link rel="stylesheet" href="../resources/css/star.css" />
 </head>
-<script type="text/javascript">
-function insertStar() {
-	/* 	$('#submit').click(function() { */
-				console.log("clicked");
-	            $.ajax({
-	            	type: 'POST',
-	            	url: "insertStar",
-	            	data : {
-	            		service_id : ${bag.service_id},
-	    				id : '${bag.id}',
-	    				kind : $('#kind').val(),
-	    				explain : $('#explain').val(),
-	    				treat : $('#treat').val(),
-	    				facilities : $('#facilities').val(),
-	    				price : $('#price').val(),
-	    				content : $('#content').val()
-	    			},
-	                success: function (data) {
-	                    alert(${savedName} + "후기 작성 완료!");
-	                    window.close();
-	                },
-	                error: function () {
-	                	 alert("실패");
-	                }//error
-		})//ajax
-	/* })//fun */
-}//fun insertStar
-</script>
 <body>
-	<form id="form" method="post">
+	<form action="insertStar" id="form" method="post" enctype="multipart/form-data" >
 		<div class="container-fluid">
 			<!-- 메인 컨텐츠 -->
-			<input id="service_id" name="service_id" value="${bag.service_id}">
-			<input id="id" name="id" value="${bag.id}">
+			<input type="hidden" id="service_id"  name="service_id" value="${bag.service_id}">
+			<input type="hidden" id="id" name="id" value="${bag.id}">
 			<div class="col-lg-9 col-md-8 col-sm-12">
 				<div class="card">
 					<h5 class="card-header">리얼 리뷰 평가</h5>
@@ -77,23 +49,22 @@ function insertStar() {
 									</li>
 									<li class="list-group-item"><span class="info-label">리뷰
 											내용</span> <span class="info-value"><textarea id="content"
-												name="content" maxlength="500" cols="50" rows="10"></textarea></span>
+												name="content" maxlength="500" cols="50" rows="10" placeholder="500자까지 입력 가능합니다."></textarea></span>
 									</li>
 								</ul>
 								<div class="mt-3">
-									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" name="file" >
-									<button class="btn btn-outline-danger" data-bs-toggle="modal"
-										data-bs-target="#exampleModal">영수증 사진 추가</button>
+									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file" >
+									<!-- <button class="btn btn-outline-danger" data-bs-toggle="modal"
+										data-bs-target="#exampleModal">영수증 사진 추가</button> -->
 								</div>
 							</div>
 						</div>
+						<button type="submit">후기 등록</button>
 					</div>
 					<div class="card-footer text-muted text-end">강아지와🐶</div>
 				</div>
 			</div>
 		</div>
 	</form>
-	<button type="submit" id="submit" onclick="insertStar();">서버로
-		전송</button>
 </body>
 </html>

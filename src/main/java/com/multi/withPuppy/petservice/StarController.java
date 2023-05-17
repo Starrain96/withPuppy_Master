@@ -60,17 +60,15 @@ public class StarController {
 					HttpServletRequest request, 
 					MultipartFile file, 
 					Model model) throws Exception {
-		String savedName = file.getOriginalFilename();
-		String uploadPath 
-			= request.getSession().getServletContext().getRealPath("resources/upload");
-		File target = new File(uploadPath + "/" + savedName);
-		file.transferTo(target);
-		
-		model.addAttribute("savedName", savedName);
-		System.out.println("img넣기 전>> " + starVO);
-		starVO.setImg1(savedName);
-		System.out.println("img넣은 후>> " + starVO);
-		
+		if (!file.isEmpty()) {
+			String savedName = file.getOriginalFilename();
+			String uploadPath 
+				= request.getSession().getServletContext().getRealPath("resources/upload");
+			File target = new File(uploadPath + "/" + savedName);
+			file.transferTo(target);	
+			model.addAttribute("savedName", savedName);
+			starVO.setImg1(savedName);
+		} 
 		dao.insert(starVO);
 		//컨트롤로의 vo변수명을 맨앞글자만 소문자로 바꾸어서 변수를 만들면,
 		//자동으로 모델의 속성으로 등록시켜줌.

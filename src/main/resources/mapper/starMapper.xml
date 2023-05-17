@@ -2,7 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="star">
 	
-	<insert id="insertStar" parameterType="starVO">
+	<insert id="insertStar" 
+			parameterType="starVO" 
+			useGeneratedKeys="true" 
+			keyProperty="star_id">
 		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, #{img1}, null, null)
 	</insert>
 	

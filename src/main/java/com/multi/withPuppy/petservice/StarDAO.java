@@ -12,10 +12,8 @@ public class StarDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
-	public int insert(StarVO bag) {
-		
-		int result = my.insert("star.insertStar", bag);
-		return result;
+	public void insert(StarVO bag) {
+		my.insert("star.insertStar", bag);
 	}
 
 	public int update(StarVO bag) {
