@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Bill">
+	<!-- insert, delete, update는 무조건 resultType="int"이므로
+		프로그래머가 써주지 않아도 이미 resultType="int"가 있는 것으로 본다!
+	-->
+	<insert id="create" parameterType="BillVO">
+		insert into faq values (null, #{faq_category}, #{faq_title}, #{faq_content}, #{faq_writer}, now(), #{faq_img1}, #{faq_img2}, #{faq_img3})
+	</insert>
+	
+	<delete id="del"  parameterType="Integer">
+		delete from faq where faq_no = #{faq_no}
+	</delete>
+	
+	<update id="up"  parameterType="BillVO">
+		update faq set faq_title = #{faq_title}, faq_content = #{faq_content} where faq_no = #{faq_no}
+	</update>
+	
+	<select id="one"  parameterType="String" resultType="BillVO">
+		select * from faq where faq_title like CONCAT('%', #{faq_title}, '%')
+	</select>
+	
+	<select id="one2"  parameterType="String" resultType="BillVO">
+		select * from faq where faq_category = #{faq_category}
+	</select>
+	
+	<select id="all" resultType="BillVO">
+		select * from faq
+	</select>
+	
+</mapper>
