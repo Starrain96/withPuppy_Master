@@ -34,16 +34,9 @@
 	overMarkerOffset = new kakao.maps.Point(OVER_OFFSET_X, OVER_OFFSET_Y), // 오버 마커의 기준 좌표
 	spriteImageSize = new kakao.maps.Size(SPRITE_WIDTH, SPRITE_HEIGHT); // 스프라이트 이미지의 크기
 
-	var positions = [
-		 <c:forEach var="bag" items="${list}">
-		 new kakao.maps.LatLng(${bag.latitude}, ${bag.longitude}),
-		 </c:forEach>
-		 new kakao.maps.LatLng(0, 0)
-	];
+	var positions = [];
 	var selectedMarker = null; // 클릭한 마커를 담을 변수
-
-	console.log(positions.length); // 몇 개 들어갔나 체크
-
+	
 	
 	//[ new kakao.maps.LatLng(33.44975, 126.56967),
 	//new kakao.maps.LatLng(33.450579, 126.56956),

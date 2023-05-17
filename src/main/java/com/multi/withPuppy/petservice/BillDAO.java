@@ -7,16 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StarDAO {
+public class BillDAO {
 
 	@Autowired
 	SqlSessionTemplate my;
 	
-	public void insert(StarVO bag) {
-		my.insert("star.insertStar", bag);
+	public int insert(BillVO bag) {
+		
+		int result = my.insert("bill.insertBill", bag);
+		return result;
 	}
 
-	public int update(StarVO bag) {
+	public int update(BillVO bag) {
 		int result = my.update("star.up", bag);
 		return result;
 	}
@@ -26,8 +28,8 @@ public class StarDAO {
 		return result;
 	}
 	
-	public List<StarVO> list(int service_id) {
-		List<StarVO> list = my.selectList("star.listStar", service_id);
+	public List<BillVO> list(int service_id) {
+		List<BillVO> list = my.selectList("bill.listBill", service_id);
 		return list;
 	}
 }

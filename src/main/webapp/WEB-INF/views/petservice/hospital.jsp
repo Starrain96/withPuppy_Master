@@ -70,6 +70,12 @@
 				for (i=0; i<star.length; i++) {
 					date = new Date(star[i].date);
 					
+					//let timeString = date.toLocaleString("en-US", {timeZone: "Asia/Seoul"});
+					//let timeString_KR = date.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+					//console.log(timeString);
+					//console.log(timeString_KR);
+					
+					
 					function dateFormat(date) {
 				        let month = date.getMonth() + 1;
 				        let day = date.getDate();
@@ -135,7 +141,7 @@
 				tag2 = `
 				<div class="review-title">리얼후기</div>
 	<h1>
-	<button onclick="window.open('starpage?service_id=${bag.service_id}&&id=apple','리얼후기 작성하기','width=600,height=800,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
+	<button onclick="window.open('starpage?service_id=${bag.service_id}&&id=apple','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
 	</h1>
 	<div class="review-all">총점</div>
 	<div id=review-avg style="width: 80%; height: 300px; margin: 0 auto;">

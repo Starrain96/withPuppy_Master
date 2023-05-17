@@ -26,10 +26,12 @@ public class CartDAO {
 	}
 	
 	public void add(CartVO bag)	{
+		System.out.println("dao");
 		my.insert("cart.add", bag);
 	}
 	
 	public void update(CartVO bag)	{
+		System.out.println("updateDao");
 		my.update("cart.update", bag);
 	}
 	

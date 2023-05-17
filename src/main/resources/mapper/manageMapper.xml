@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cart">
+<mapper namespace="manage">
 	
 	<insert id="add" parameterType="cartVO" >
 		insert into cart  
@@ -18,13 +18,12 @@
 		where product_id = #{product_id} and user_id = #{user_id}
 	</update>
 	
-	<select id="all" parameterType="String" resultType="cartVO">
-		select *
-		from cart where user_id = #{user_id}
+	<select id="all" resultType="productVO">
+		select * from product
 	</select>
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
-	<select id="allProduct" parameterType="String" resultType="productVO">
+	<!-- <select id="allProduct" parameterType="String" resultType="productVO">
 		select p.product_id, c.cart_id, product_name, product_price, detail, product_img, c.product_cnt 
 		from product p left join cart c 
 		on(p.product_id = c.product_id) where c.user_id = #{user_id} order by p.product_id
@@ -33,6 +32,6 @@
 	<select id="emptyCheck" parameterType="cartVO" resultType="Int"> 
 		select count(product_id) from cart 
 		where user_id = #{user_id} and product_id = #{product_id} 
-	</select>
+	</select> -->
 
 </mapper>

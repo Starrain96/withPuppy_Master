@@ -7,171 +7,64 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.review-form {
-	margin-bottom: 20px;
-}
-
-.form-group {
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-}
-
-.form-group label {
-	margin-right: 10px;
-	font-weight: bold;
-}
-
-.form-group input[type="range"] {
-	width: 200px;
-	margin-right: 10px;
-}
-
-#average-rating {
-	display: inline-block;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: gray;
-	text-align: center;
-	line-height: 40px;
-	font-weight: bold;
-	font-size: 18px;
-	color: white;
-	margin-left: 10px;
-}
-
-div {
-	border: 1px solid black;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-textarea {
-	width: 100%;
-	height: 150px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	margin-bottom: 20px;
-}
-
-button {
-	background-color: #4CAF50;
-	color: white;
-	padding: 12px 20px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 16px;
-	margin-right: 10px;
-}
-
-button:hover {
-	background-color: #45a049;
-}
-
-.form-group {
-	margin-bottom: 20px;
-}
-
-.form-group label {
-	font-size: 1.2em;
-}
-
-label {
-	display: inline-block;
-	width: 150px;
-	font-weight: bold;
-	margin-right: 10px;
-}
-
-#average-rating {
-	display: inline-block;
-	width: 50px;
-	font-weight: bold;
-	margin-left: 10px;
-}
-
-.container {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #f2f2f2;
-	border-radius: 5px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-button[type="submit"] {
-	margin-top: 10px;
-	align-self: flex-end;
-}
-
-
-textarea {
-  width: 100%;
-  height: 150px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-}
-
-</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="../resources/css/star.css" />
 </head>
 <body>
-	<form action="insertStar" method="post">
-	<input id="service_id" name="service_id" value="${bag.service_id}">
-	<input id="id" name="id" value="${bag.id}">
-		<div class="review-form">
-			<h2>리얼 리뷰 평가</h2>
-			<div class="form-group">
-				<label for="customer-service-rating">친절</label> <label>고객응대평가</label>
-				<input type="range"
-					name="kind" min="0" max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="treatment-explanation-rating">설명</label> <label>진료
-					전 치료 및 가격 설명 평가</label> <input type="range"
-					name="explain" min="0" max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="treatment-rating">진료</label> <label>치료 후 완쾌 수준</label> <input
-					type="range" name="treat" min="0"
-					max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="facility-rating">시설</label> <label>시설 및 장비 수준</label> <input
-					type="range"  name="facilities" min="0"
-					max="5" step="1">
-			</div>
-			<div class="form-group">
-				<label for="price-rating">가격</label> <label>진료비 수준</label> <input
-					type="range"  name="price" min="0" max="5"
-					step="1">
+	<form action="insertStar" id="form" method="post" enctype="multipart/form-data" >
+		<div class="container-fluid">
+			<!-- 메인 컨텐츠 -->
+			<input type="hidden" id="service_id"  name="service_id" value="${bag.service_id}">
+			<input type="hidden" id="id" name="id" value="${bag.id}">
+			<div class="col-lg-9 col-md-8 col-sm-12">
+				<div class="card">
+					<h5 class="card-header">리얼 리뷰 평가</h5>
+					<div class="card-body">
+						<!-- 프로필 정보 출력 -->
+						<div class="row">
+							<div class="col-md-8">
+								<!-- <h5 class="card-title">John Doe</h5> 
+                            <hr>-->
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item"><span class="info-label">친절</span>
+										<span class="info-value"><label>고객응대평가</label> <input
+											type="range" id="kind" name="kind" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">설명</span>
+										<span class="info-value"><label>진료 전 치료 및 가격 설명
+												평가</label> <input type="range" id="explain" name="explain" min="0"
+											max="5" step="1"></span></li>
+									<li class="list-group-item"><span class="info-label">진료</span>
+										<span class="info-value"><label>치료 후 완쾌 수준</label> <input
+											type="range" id="treat" name="treat" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">시설</span>
+										<span class="info-value"><label>시설 및 장비 수준</label> <input
+											type="range" id="facilities" name="facilities" min="0"
+											max="5" step="1"></span></li>
+									<li class="list-group-item"><span class="info-label">가격</span>
+										<span class="info-value"><label>진료비 수준</label> <input
+											type="range" id="price" name="price" min="0" max="5" step="1"></span>
+									</li>
+									<li class="list-group-item"><span class="info-label">리뷰
+											내용</span> <span class="info-value"><textarea id="content"
+												name="content" maxlength="500" cols="50" rows="10" placeholder="500자까지 입력 가능합니다."></textarea></span>
+									</li>
+								</ul>
+								<div class="mt-3">
+									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file" >
+									<!-- <button class="btn btn-outline-danger" data-bs-toggle="modal"
+										data-bs-target="#exampleModal">영수증 사진 추가</button> -->
+								</div>
+							</div>
+						</div>
+						<button type="submit">후기 등록</button>
+					</div>
+					<div class="card-footer text-muted text-end">강아지와🐶</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="review-form">
-			<h2>리뷰 내용</h2>
-			<textarea id="content" name="content"></textarea>
-		</div>
-
-		<div class="review-buttons">
-			<button id="img" name="img">리뷰 사진 추가</button>
-			<button id="ocr" name="ocr">영수증 사진 추가</button>
-		</div>
-
-		<button type="submit">서버로 전송</button>
 	</form>
 </body>
 </html>
