@@ -114,7 +114,7 @@
 		
 		.info-label {
 		  display: inline-block;
-		  width: 200px;
+		  width: 150px;
 		  font-weight: bold;
 		}
 		.info-value {
@@ -131,16 +131,13 @@
             background-color: #ffe98c;
             color: black;
         }
+        
+        #tel1, #tel2, #tel3 {
+			width: 150px;
+        }
+        
     </style>
 </head>
-<%
-//세션에서 값을 꺼내는 방법 
-String user_id = (String) session.getAttribute("user_id");
-System.out.println("user_id : " + user_id);
-/* userVO bag = (userVO)session.getAttribute("bag");
-System.out.println("bag : " + bag); */
-String contextPath = (String) request.getContextPath();
-%>
 <div class="container-fluid">
     <div class="row">
         <!-- 사이드 메뉴 -->
@@ -149,17 +146,16 @@ String contextPath = (String) request.getContextPath();
                 <h5 class="card-header">마이페이지</h5>
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-						<li class="list-group-item">
-						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
-							<ul class="list-group2 list-group-flush">
-								<li class="list-group-item2"><a href="<%=contextPath%>/user/userHistory">커뮤니티</a></li>
-								<li class="list-group-item2"><a href="#">쇼핑몰</a></li>
-								<li class="list-group-item2"><a href="#">리뷰</a></li>
-							</ul>
-						</li>
-					</ul>
+                        <li class="list-group-item"><a href="#">프로필 관리</a></li>
+                        <li class="list-group-item"><a href="#">내 반려동물</a></li>
+                        <li class="list-group-item"><a href="#">내 활동기록</a>
+                        	<ul class="list-group2 list-group-flush">
+					        <li class="list-group-item2"><a href="#">커뮤니티</a></li>
+					        <li class="list-group-item2"><a href="#">쇼핑몰</a></li>
+					        <li class="list-group-item2"><a href="#">리뷰</a></li>
+					        <li class="list-group-item2"><a href="#">반려동물 신고</a></li>
+					    </ul></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -170,33 +166,23 @@ String contextPath = (String) request.getContextPath();
                 <div class="card-body">
                     <!-- 프로필 정보 출력 -->
                     <div class="row">
-                        <div class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-						  <img src="https://picsum.photos/200/" alt="John Doe" class="rounded-circle img-fluid">
-						  <a href="#" class="mt-3 btn btn-custom">반려동물 사진 변경</a>
-						</div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <!-- <h5 class="card-title">John Doe</h5> 
                             <hr>-->
                             <ul class="list-group list-group-flush">
-                            	<li class="list-group-item">
-								    <span class="info-label">반려동물 이름</span> 
-								    <span class="info-value">john</span>
+                                <li class="list-group-item">
+              						<span class="info-label">비밀번호</span> 
+								    <input type="password" id="pw" maxlength="20">
 								</li>
                                 <li class="list-group-item">
-								    <span class="info-label">반려동물 출생일</span> 
-								    <span class="info-value">2020.02.02</span>
-								  </li>
-                                <li class="list-group-item">
-                                	<span class="info-label">반려동물 종</span> 
-								    <span class="info-value">포메라니안</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">반려동물 몸무게</span> 
-								    <span class="info-value">8kg</span>
+              						<span class="info-label">비밀번호 확인</span> 
+								    <input type="password" id="pw2" maxlength="20">
 								</li>
                             </ul>
                             <div class="mt-3">
-							    <a href="#" class="btn btn-custom">반려동물 추가</a>
+							    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							        탈퇴하기
+							    </button>
 							</div>
                         </div>
                     </div>
@@ -208,8 +194,30 @@ String contextPath = (String) request.getContextPath();
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">경고</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                정말 탈퇴하시겠습니까?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" id="deleteUser" class="btn btn-primary">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+	
+</script>
 </body>
 </html>

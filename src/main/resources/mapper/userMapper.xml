@@ -7,7 +7,7 @@
 	 -->
 	<insert id="insertUser" parameterType="userVO">
 		insert into user (user_id, user_pw, user_name, user_email, user_tel, user_nickname, user_addr1, user_addr2, user_addr3, user_addr4, user_addr5, user_interest, user_img, user_level, user_state, user_joindate, user_visit)
-		values (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_tel}, #{user_nickname}, #{user_addr1}, #{user_addr2}, #{user_addr3}, #{user_addr4}, #{user_addr5}, #{user_interest}, NULL, "집사", NULL, now(), 0)
+		values (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_tel}, #{user_nickname}, #{user_addr1}, #{user_addr2}, #{user_addr3}, #{user_addr4}, #{user_addr5}, #{user_interest}, "profile.png", "집사", NULL, now(), 0)
 	</insert>
 	
 	<select id="idCheck" parameterType="String" resultType="int">
@@ -18,9 +18,26 @@
 		select COUNT(*) from user where user_nickname = #{user_nickname}
 	</select>
 	
-	<select id="one" parameterType="userVO" resultType="userVO">
-		select * from user where user_id = #{user_id} and user_pw = #{user_pw}
+	<select id="loginUser" parameterType="userVO" resultType="userVO">
+		select COUNT(*) from user where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
+
+	<select id="pwCheck" resultType="String">
+		select user_pw from user where user_id = #{user_id}
+	</select>
+	
+	<delete id="deleteUser">
+		delete from user where user_id = #{user_id}
+	</delete>
+	
+	<update id="updateUser" parameterType="userVO">
+		update user set user_tel = #{user_tel}, user_nickname =  #{user_nickname},
+		user_addr1 = #{user_addr1}, user_addr2 = #{user_addr2}, user_addr3 = #{user_addr3}, user_addr4 = #{user_addr4}, user_addr5 = #{user_addr5}, user_img = #{user_img})
+	</update>
+	
+	<update id="updatePw" parameterType="userVO">
+		update user set user_pw = #{user_pw}
+	</update>
 	
 	<select id="all"  resultType="userVO">
 		select * from user

@@ -1,23 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="header.jsp"%>
-<!-- Latest compiled and minified CSS -->
 
-	<div class="con1">
-		<form action="/action_page.php">
-			<div class="mb-3 mt-3">
-				<label for="email" class="form-label">아이디:</label> 
-				<input type="email" class="form-control" id="email"
-					placeholder="Enter email" name="email">
-			</div>
-			<div class="mb-3">
-				<label for="pwzd" class="form-label">비밀번호:</label>
-				 <input type="password" class="form-control" id="pwd"
-					placeholder="Enter password" name="pswd">
-			</div>
-			<button type="submit" class="btn btn-primary">로그인</button>
-		</form>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+			<a href="communities/communitiesMain">
+				<p style="position: relative; top: 10px; text-align: center;">커뮤니티</p>
+				<img src="resources/img/community.jpg" alt="커뮤니티" width="100%"
+				height="70%">
+			</a>
+		</div>
+
+		<div class="col-md-4">
+			<a href="petservice/listhospital?category=동물병원">
+				<p style="position: relative; top: 10px; text-align: center;">동물병원</p>
+				<img src="resources/img/hospital.jpg" alt="동물병원" width="100%"
+				height="70%">
+
+			</a>
+		</div>
+
+		<div class="col-md-4">
+			<a href="shopping/shoppingList?start=1&end=4&start_num=1&end_num=12">
+				<p style="position: relative; top: 10px; text-align: center;">쇼핑몰</p>
+				<img src="resources/img/shop.jpg" alt="쇼핑몰" width="100%"
+				height="70%">
+			</a>
+		</div>
 	</div>
+</div>
+
+<div style="text-align: center;">
+  <img src="resources/img/sample.png">
+</div>
+
 
 </body>
 </html>

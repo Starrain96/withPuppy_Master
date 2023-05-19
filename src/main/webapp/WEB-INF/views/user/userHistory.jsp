@@ -157,77 +157,32 @@
         <!-- 메인 컨텐츠 -->
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="card">
-                <h5 class="card-header">프로필 관리</h5>
+                <h5 class="card-header">게시글 목록</h5>
                 <div class="card-body">
                     <!-- 프로필 정보 출력 -->
                     <div class="row">
-                        <div class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-						  <img src="https://picsum.photos/200/" alt="John Doe" class="rounded-circle img-fluid">
-						</div>
-                        <div class="col-md-8">
-                            <!-- <h5 class="card-title">John Doe</h5> 
-                            <hr>-->
-                            <ul class="list-group list-group-flush">
-                            	<li class="list-group-item">
-								    <span class="info-label">이름</span> 
-								    <span class="info-value">john</span>
-								</li>
-                                <li class="list-group-item">
-								    <span class="info-label">이메일</span> 
-								    <span class="info-value">john.doe@example.com</span>
-								  </li>
-                                <li class="list-group-item">
-                                	<span class="info-label">전화번호</span> 
-								    <span class="info-value">010-1234-5678</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">주소</span> 
-								    <span class="info-value">서울특별시 강남구</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">닉네임</span> 
-								    <span class="info-value">John Doe</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">회원 등급</span> 
-								    <span class="info-value">집사</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">방문 횟수</span> 
-								    <span class="info-value">1</span>
-								</li>
-                            </ul>
-                            <div class="mt-3">
-							    <a href="#" class="btn btn-custom">수정하기</a>
-							    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-							        탈퇴하기
-							    </button>
-							</div>
-                        </div>
-                    </div>
+					<!-- 게시글 목록 -->
+					<div class="col-sm-12">
+					    <ul class="list-group list-group-flush">
+					        <li class="list-group-item">
+					            <div class="d-flex justify-content-between align-items-center">
+					                <a href="#">제목</a>
+					                <span class="badge bg-secondary text-light">2022-01-01</span>
+					            </div>
+					        </li>
+					        <li class="list-group-item">
+					            <div class="d-flex justify-content-between align-items-center">
+					                <a href="#">제목</a>
+					                <span class="badge bg-secondary text-light">2022-01-02</span>
+					            </div>
+					        </li>
+					    </ul>
+					</div>
+					</div>
                 </div>
                 <div class="card-footer text-muted text-end">
                    	강아지와🐶
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">경고</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                정말 탈퇴하시겠습니까?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary">확인</button>
             </div>
         </div>
     </div>
