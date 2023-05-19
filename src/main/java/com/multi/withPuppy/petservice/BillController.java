@@ -17,7 +17,7 @@ public class BillController {
 	BillDAO dao;
 	
 
-	@RequestMapping("mainFee")
+	@RequestMapping("mainFeeTest")
 	//@ResponseBody
 	public void list() {
 		//List<BillVO> list = dao.list();
