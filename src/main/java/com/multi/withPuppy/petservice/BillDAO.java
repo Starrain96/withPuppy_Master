@@ -22,11 +22,6 @@ public class BillDAO {
 		int result = my.update("star.up", bag);
 		return result;
 	}
-
-	public int delete(String id) {
-		int result = my.delete("star.del", id);
-		return result;
-	}
 	
 	public List<BillVO> list(int service_id) {
 		List<BillVO> list = my.selectList("bill.listBill", service_id);
