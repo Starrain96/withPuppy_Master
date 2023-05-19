@@ -9,8 +9,6 @@
 	</p>
 	<div id="map" style="width: 800px; height: 350px;"></div>
 	<hr color=grey>
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript"
@@ -81,7 +79,7 @@
 		
 		//클러스터리(군집마커) 코드 끝나는 곳입니다.
 		
-		var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 이중배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
+		const arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 이중배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
 		
 		// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 		if (navigator.geolocation) {
@@ -98,72 +96,26 @@
 				// 마커와 인포윈도우를 표시합니다
 				displayMarker(locPosition, message);
 				
-				//거리계산하는 함수
-				
-				function distance(lat1, lon1, lat2, lon2) {
-  				const R = 6371;    // 지구 반지름 (단위: km)
-				const dLat = deg2rad(lat2 - lat1);
- 				const dLon = deg2rad(lon2 - lon1);
- 				const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-       				     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-       				     Math.sin(dLon/2) * Math.sin(dLon/2);
-  				const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  				const distance = R * c; // 두 지점 간의 거리 (단위: km)
- 				 return distance;
-				}
-				
-				function deg2rad(deg) {
-					  return deg * (Math.PI/180);
-					}
-				
-				var hpLat =0.0;
-				var hpLon =0.0;
-				var dist = 0.0;
-				let name = "";
-				let address = "";
-				let park = "";
 				
 				//거리를 본인위치 기반 거리를 계산하여 이중 배열에 값을 넣는 시작부분입니다.
-				
-				let distString = "";
-				let test =1.1;
-				
 				<c:forEach var="bag" items="${list}">
-				hpLat = ${bag.latitude};
-				hpLon = ${bag.longitude};
-				name = '${bag.service_name}';
-				address = '${bag.road_address}';
-				park = '${bag.parking}';
-				id = '${bag.service_id}'
-				
-				dist = distance(lat, lon, hpLat, hpLon);
-				distString = dist.toFixed(1);
-				
-				arrDistance.push({id: id, name: name, address: address ,park: park, dist: distString})
+				var lat2 = ${bag.latitude},
+				lon2 = ${bag.longitude};
+				function getDistanceFromLatLonInKm(lat,lon,lat2,lon2) {
+    				function deg2rad(deg) {
+     				   return deg * (Math.PI/180)
+   					 }
+
+   					 var R = 6371; // Radius of the earth in km
+   					 var dLat = deg2rad(lat2-lat1);  // deg2rad below
+   					 var dLon = deg2rad(lo2-lon1);
+   					 var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
+    			     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+   					 var d = R * c; // Distance in km
+   					 
+   					arrDistance.push([${bag.service_name}, ${bag.road_address}, ${bag.parking}, d]);
+					}
 				</c:forEach>
-				
-				var sortingField = "dist";
-				
-				arrDistance.sort(function(a, b) { 
-					  return a[sortingField] - b[sortingField];  // 13, 21, 25, 44 
-					});
-				
-				for(i=0; i<5; i++) {
-					var id = arrDistance[i].id
-					var tag =
-						`<li class="list-group-item">
-					<div class="d-flex justify-content-between align-items-center">
-						<a href="hospital?service_id=`+ id +`">`+ arrDistance[i].name + ` </a>
-					</div> <!-- 추가 정보 -->
-					<div class="info-box">
-						<div class="address">주소: `+ arrDistance[i].address + `</div>
-						<div class="parking">주차 가능 여부: `+  arrDistance[i].park + `</div>
-						<div class="distance">거리: `+ arrDistance[i].dist + `km</div>
-					</div>
-				</li>`
-				
-				$("#hpList").append(tag);
-				}
 				
 				
 			});
@@ -191,9 +143,21 @@
 				<div class="row">
 					<!-- 게시글 목록 -->
 					<div class="col-sm-12">
-						<ul class="list-group list-group-flush" id = "hpList">
+						<ul class="list-group list-group-flush">
 							<!-- 반복문으로 게시글 목록 출력 -->
-							
+							<c:forEach var="bag" items="${list}">
+								<li class="list-group-item">
+									<div class="d-flex justify-content-between align-items-center">
+										<a href="hospital?service_id=${bag.service_id}">${bag.service_name},
+											${bag.service_id}</a>
+									</div> <!-- 추가 정보 -->
+									<div class="info-box">
+										<div class="address">주소: ${bag.road_address}</div>
+										<div class="parking">주차 가능 여부: ${bag.parking}</div>
+										<div class="distance">거리: 2km</div>
+									</div>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
