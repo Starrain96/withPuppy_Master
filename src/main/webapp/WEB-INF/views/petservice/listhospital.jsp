@@ -4,9 +4,13 @@
 <%@ include file="serviceheader.jsp"%>
 </head>
 <body>
-	<p style="margin-top: -12px">
-		<b>본인 위치 기반 주변 동물병원 5개의 리스트를 뽑아오고 모든 동물병원 마커 표시</b>
-	</p>
+
+<div>
+  <h1>동물병원찾기</h1>
+  <input type="text" placeholder="동물병원 검색">
+</div>
+<hr color = grey>
+
 	<div id="map" style="width: 800px; height: 350px;"></div>
 	<hr color=grey>
 	<script
@@ -16,6 +20,10 @@
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05"></script>
 	<script>
+	
+	
+	
+	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -183,9 +191,10 @@
 	</script>
 
 	<!-- 메인 컨텐츠 -->
+	
 	<div class="col-lg-9 col-md-8 col-sm-12">
 		<div class="card">
-			<h5 class="card-header">병원 목록</h5>
+			<h5 class="card-header">근처 병원 5개 목록</h5>
 			<div class="card-body">
 				<!-- 프로필 정보 출력 -->
 				<div class="row">
