@@ -28,6 +28,31 @@ public class CartController {
 		return list;
 	}
 	
+	@RequestMapping("shopping/addCart")
+	public void addCart(int product_id, int product_cnt, String user_id, Model model) {
+		CartVO bag = new CartVO();
+		bag.setProduct_id(product_id);
+		bag.setProduct_cnt(product_cnt);
+		bag.setUser_id(user_id);
+		dao.add(bag);
+	}
+	
+	@RequestMapping("shopping/updateCart")
+	public void updateCart(int product_id, int product_cnt, String user_id) {
+		CartVO bag = new CartVO();
+		bag.setProduct_id(product_id);
+		bag.setProduct_cnt(product_cnt);
+		bag.setUser_id(user_id);
+		dao.update(bag);
+	}
+	
+	@RequestMapping("shopping/deleteCart")
+	public void deleteCart(int cart_id, String user_id) {
+		CartVO bag = new CartVO();
+		bag.setCart_id(cart_id);
+		bag.setUser_id(user_id);
+		dao.delete(bag);
+	}
 	
 }
 

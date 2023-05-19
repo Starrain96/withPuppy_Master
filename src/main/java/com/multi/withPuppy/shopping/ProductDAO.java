@@ -38,8 +38,8 @@ public class ProductDAO {
 		ProductVO vo = my.selectOne("product.one", id);
 		return vo;
 	}
-	public List<ProductVO> list(int category2) {
-		List<ProductVO> list = my.selectList("product.dogcate", category2);
+	public List<ProductVO> list(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate", bag);
 		return list;
 	}
 }

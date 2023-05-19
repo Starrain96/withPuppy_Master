@@ -4,7 +4,7 @@ public class CartVO {
 	private int cart_id;
 	private int product_id;
 	private int product_cnt;
-	private int user_id;
+	private String user_id;
 	public int getCart_id() {
 		return cart_id;
 	}
@@ -23,10 +23,10 @@ public class CartVO {
 	public void setProduct_cnt(int product_cnt) {
 		this.product_cnt = product_cnt;
 	}
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	@Override

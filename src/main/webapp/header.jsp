@@ -33,7 +33,7 @@
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
             <li class="nav-item"><a href="communities/communitiesMain" class="nav-link link-secondary">커뮤니티</a></li>
-			<li class="nav-item"><a href="shopping/shoppingList?category2=1" class="nav-link link-secondary">쇼핑몰</a></li>
+			<li class="nav-item"><a href="shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
 			<li class="nav-item"><a href="petservice/listhospital?category=동물병원" class="nav-link link-secondary">반려동물서비스</a></li>
 			<li class="nav-item"><a href="cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
 			<li class="nav-item"><a href="report/report" class="nav-link link-secondary">반려동물 신고</a></li>
