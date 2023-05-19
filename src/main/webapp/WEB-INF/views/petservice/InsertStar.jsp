@@ -13,8 +13,8 @@
 		$(document).ready(function() {
 			window.close();
 		})
+		
+		
 	</script>
-
-
 </body>
 </html>

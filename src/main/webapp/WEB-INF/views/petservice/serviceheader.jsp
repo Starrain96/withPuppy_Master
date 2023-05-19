@@ -32,10 +32,7 @@
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
 			<li class="nav-item"><a href="#" class="nav-link link-secondary">동물병원</a></li>
-			<li class="nav-item"><a href="shoppingList" class="nav-link link-secondary">동물약국</a></li>
-			<li class="nav-item"><a href="listhospital?category3=동물병원" class="nav-link link-secondary">증상별질병</a></li>
-			<li class="nav-item"><a href="#" class="nav-link link-secondary">부가서비스</a></li>
-
+			<li class="nav-item"><a href="mainFee" class="nav-link link-secondary">진료비 비교</a></li>
 
 		</ul>
 	</header>
