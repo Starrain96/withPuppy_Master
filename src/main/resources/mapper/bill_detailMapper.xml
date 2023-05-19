@@ -1,31 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Bill_detail">
-	<!-- insert, delete, update는 무조건 resultType="int"이므로
-		프로그래머가 써주지 않아도 이미 resultType="int"가 있는 것으로 본다!
-	-->
-	<insert id="create" parameterType="Bill_detailVO">
-		insert into faq values (null, #{faq_category}, #{faq_title}, #{faq_content}, #{faq_writer}, now(), #{faq_img1}, #{faq_img2}, #{faq_img3})
-	</insert>
 	
-	<delete id="del"  parameterType="Integer">
-		delete from faq where faq_no = #{faq_no}
-	</delete>
-	
-	<update id="up"  parameterType="Bill_detailVO">
-		update faq set faq_title = #{faq_title}, faq_content = #{faq_content} where faq_no = #{faq_no}
-	</update>
+	<!-- 등록된 개별 진료비 전체 갯수 -->
+	<select id="count" resultType="Integer">
+		select count(bill_no) from bill_detail
+	</select>
 	
 	<select id="one"  parameterType="String" resultType="Bill_detailVO">
-		select * from faq where faq_title like CONCAT('%', #{faq_title}, '%')
+		select * from bill_detail where bill_dx = #{bill_dx} limit 1
 	</select>
 	
-	<select id="one2"  parameterType="String" resultType="Bill_detailVO">
-		select * from faq where faq_category = #{faq_category}
+	<select id="minTotal" parameterType="String" resultType="Integer">
+		select min(bill_fee) from bill_detail where bill_dx = #{bill_dx}
 	</select>
 	
-	<select id="all" resultType="Bill_detailVO">
-		select * from faq
+	<select id="avgTotal" parameterType="String" resultType="Integer">
+		select avg(bill_fee) from bill_detail where bill_dx = #{bill_dx}
+	</select>
+	
+	<select id="maxTotal" parameterType="String" resultType="Integer">
+		select max(bill_fee) from bill_detail where bill_dx = #{bill_dx}
+	</select>
+	
+	<select id="minSido" parameterType="Map" resultType="Integer">
+		select min(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT(#{bill_addr}, '%')
+	</select>
+	
+	<select id="avgSido" parameterType="Map" resultType="Integer">
+		select avg(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT(#{bill_addr}, '%')
+	</select>
+	
+	<select id="maxSido" parameterType="Map" resultType="Integer">
+		select max(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT(#{bill_addr}, '%')
+	</select>
+	
+	<select id="minGugun" parameterType="Map" resultType="Integer">
+		select min(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT('% ', #{bill_addr}, ' %')
+	</select>
+	
+	<select id="avgGugun" parameterType="Map" resultType="Integer">
+		select avg(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT('% ', #{bill_addr}, ' %')
+	</select>
+	
+	<select id="maxGugun" parameterType="Map" resultType="Integer">
+		select max(bill_fee) from bill 
+		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
+		where bill_dx = #{bill_dx} and bill_addr like CONCAT('% ', #{bill_addr}, ' %')
 	</select>
 	
 </mapper>

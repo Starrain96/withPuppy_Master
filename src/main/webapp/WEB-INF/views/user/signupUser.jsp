@@ -165,6 +165,7 @@
             } else { // 비밀번호 유효성 불만족
             	$('#successPwChk').text('비밀번호를 정확히 입력해주세요.');
             	$('#successPwChk').css("color", "red");
+            	$('#pwDoubleChk').val(false);
                 $('#pw').focus();
             }
         }); // pw
@@ -297,7 +298,7 @@
             }
         	}); // nickname_check
         
-    });
+    }); // func
     
     function addrFind() {
         new daum.Postcode({
@@ -365,7 +366,6 @@
     	
     	if ($('#idDoubleChk').val(true) && $('#pwDoubleChk').val(true) && $('#pwDoubleChk2').val(true) &&
     			$('#nameDoubleChk').val(true) && $('#emailDoubleChk').val(true) && $('#addrDoubleChk').val(true)){
-        	console.log("if 들어왔담");
     		$.ajax({
                 type: 'POST',
                 url: "<%=contextPath%>"+'/user/goUser',
@@ -391,7 +391,6 @@
                 },
                 error: function() {
                 	alert("회원가입 실패! 회원 정보를 다시 입력해주세요.");
-                    console.log("실패!");
                 } 	
             });
     	}
