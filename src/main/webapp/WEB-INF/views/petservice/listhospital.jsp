@@ -4,26 +4,26 @@
 <%@ include file="serviceheader.jsp"%>
 </head>
 <body>
+	<div class="search-top-container">
+		<h3 class="title">동물병원·약국찾기</h3>
+	</div>
+	<div class="search-box-container">
+		<div class="inner">
+			<input type="text" placeholder="동물병원 검색">
+		</div>
+		<!-- <button type="button" class="search-button">검색</button> -->
+	</div>
+	<hr color=grey>
 
-<div>
-  <h1>동물병원찾기</h1>
-  <input type="text" placeholder="동물병원 검색">
-</div>
-<hr color = grey>
-
-	<div id="map" style="width: 800px; height: 350px;"></div>
+	<div id="map" style="width: 800px; height: 350px; margin: 0 auto;"></div>
 	<hr color=grey>
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05"></script>
 	<script>
-	
-	
-	
-	
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 		mapOption = {
 			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -191,24 +191,23 @@
 	</script>
 
 	<!-- 메인 컨텐츠 -->
-	
-	<div class="col-lg-9 col-md-8 col-sm-12">
-		<div class="card">
-			<h5 class="card-header">근처 병원 5개 목록</h5>
-			<div class="card-body">
-				<!-- 프로필 정보 출력 -->
-				<div class="row">
-					<!-- 게시글 목록 -->
-					<div class="col-sm-12">
-						<ul class="list-group list-group-flush" id = "hpList">
-							<!-- 반복문으로 게시글 목록 출력 -->
-							
-						</ul>
+		<div class="card-center">
+			<div class="card">
+				<h5 class="card-header">근처 병원 5개 목록</h5>
+				<div class="card-body">
+					<!-- 프로필 정보 출력 -->
+					<div class="row">
+						<!-- 게시글 목록 -->
+						<div class="col-sm-12">
+							<ul class="list-group list-group-flush" id="hpList">
+								<!-- 반복문으로 게시글 목록 출력 -->
+
+							</ul>
+						</div>
 					</div>
 				</div>
+				<div class="card-footer text-muted text-end">강아지와🐶</div>
 			</div>
-			<div class="card-footer text-muted text-end">강아지와🐶</div>
-		</div>
-	</div>
+			</div>
 </body>
 </html>
