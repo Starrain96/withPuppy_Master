@@ -131,14 +131,27 @@
             background-color: #ffe98c;
             color: black;
         }
+        .img-wrapper {
+		    position: relative;
+		    width: 200px;
+		    height: 200px;
+		    overflow: hidden;
+		    border-radius: 50%;
+		}
+		
+		.img-wrapper img {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    margin: auto;
+		    height: 100%;
+		    width: auto;
+		}
     </style>
 </head>
 <%
-//세션에서 값을 꺼내는 방법 
-String user_id = (String) session.getAttribute("user_id");
-System.out.println("user_id : " + user_id);
-/* userVO bag = (userVO)session.getAttribute("bag");
-System.out.println("bag : " + bag); */
 String contextPath = (String) request.getContextPath();
 %>
 <div class="container-fluid">
@@ -149,7 +162,7 @@ String contextPath = (String) request.getContextPath();
                 <h5 class="card-header">마이페이지</h5>
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-						<li class="list-group-item">
+                        <li class="list-group-item">
 						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
 						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
 						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
@@ -159,7 +172,7 @@ String contextPath = (String) request.getContextPath();
 								<li class="list-group-item2"><a href="#">리뷰</a></li>
 							</ul>
 						</li>
-					</ul>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -171,7 +184,9 @@ String contextPath = (String) request.getContextPath();
                     <!-- 프로필 정보 출력 -->
                     <div class="row">
                         <div class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-						  <img src="https://picsum.photos/200/" alt="John Doe" class="rounded-circle img-fluid">
+						  <div class="img-wrapper">
+							<img src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+							</div>
 						  <a href="#" class="mt-3 btn btn-custom">반려동물 사진 변경</a>
 						</div>
                         <div class="col-md-8">
