@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.multi.withPuppy.user.UserVO"%>
+<%
+    UserVO userVo = (UserVO) session.getAttribute("bag");
+    System.out.println("header bag : " + userVo);
+    String userId = userVo.getUser_id();
+%>
+
 
 <!DOCTYPE html>
 <html>
@@ -16,7 +23,7 @@
 		<div class="container-fluid">
 			<!-- 메인 컨텐츠 -->
 			<input type="hidden" id="service_id"  name="service_id" value="${bag.service_id}">
-			<input type="hidden" id="id" name="id" value="${bag.id}">
+			<input type="hidden" id="id" name="id" value="<%=userId%>">
 			<div class="col-lg-9 col-md-8 col-sm-12">
 				<div class="card">
 					<h5 class="card-header">리얼 리뷰 평가</h5>

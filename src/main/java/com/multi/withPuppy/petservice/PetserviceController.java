@@ -23,7 +23,7 @@ public class PetserviceController {
 	@RequestMapping("hospital")
 	public void one(PetserviceVO bag1, Model model) {
 		PetserviceVO bag = dao.hospital(bag1);
-		model.addAttribute("bag", bag);
+		model.addAttribute("hpbag", bag);
 	}
 	
 
