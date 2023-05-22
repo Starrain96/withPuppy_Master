@@ -17,16 +17,14 @@
 		from product
 	</select>
 	
-	
-	<!-- <select id="dogcate" parameterType="categoryVO" resultType="productVO">
-		select * from product 
+	<select id="allCnt" parameterType="categoryVO" resultType="Int">
+		select count(product_id) from product
 		<![CDATA[
-		where category2 <= #{end} and category2 >= #{start}
-		]]>
+				where category2 <= #{end} and category2 >= #{start}
+			]]>
 	</select>
-	 -->
 	
-	<select id="dogcate" parameterType="categoryVO" resultType="productVO">
+	<select id="dogcate1" parameterType="categoryVO" resultType="productVO">
 		select * from (
 		select row_number() over(order by product_id) as p_no, p.* from product p 
 			<![CDATA[
@@ -35,14 +33,23 @@
 		where p_no between #{start_num} and #{end_num}
 	</select>
 	
+	<select id="dogcate2" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_price) as p_no, p.* from product p 
+			<![CDATA[
+				where category2 <= #{end} and category2 >= #{start}
+			]]>) p2
+		where p_no between #{start_num} and #{end_num}
+	</select>
 	
-	
-	<!-- 
-	<select id="dogcate2" parameterType="Int" resultType="productVO">
-		select *
-		from product where category2 >= #{cate1} and category2 <= #{cate2}
-	</select> -->
-	
+	<select id="dogcate3" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_price desc) as p_no, p.* from product p 
+			<![CDATA[
+				where category2 <= #{end} and category2 >= #{start}
+			]]>) p2
+		where p_no between #{start_num} and #{end_num}
+	</select>
 	
 </mapper>
 

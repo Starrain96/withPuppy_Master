@@ -13,105 +13,55 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="../resources/css/shopping.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<style>
-body {
-	margin-right: 15%;
-	margin-left: 15%;
-}
-
-.card__two { &::before , &: :after {
-    position : absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	transition: opacity .38s ease-in-out, transform .35s ease-in-out;
-	content: '';
-	opacity: 0;
-	pointer-events: none;
-	border-bottom: 10px solid #ffe98c;
-}
-
-&
-::before {
-	transform: scale3d(0, 1, 1);
-	border-bottom: 20px solid #ffe98c;
-}
-
-&
-::after {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
-	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0
-		rgba(0, 0, 0, .15);
-	content: '';
-	opacity: 0;
-	z-index: -1;
-}
-
-	&:hover, &:focus {
-		transform: scale3d(1.006, 1.006, 1);
-		
-		&::before,&::
-		after{      
-		opacity	: 1;
-		}
-	}
-}
-.t1 {
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.t2 {
-	font-size: 14px;
-}
-
-.pageBtn{
-	border-left : 1px solid #ddd;
-	border-right : 1px solid #ddd;
-	border-top : none;
-	border-bottom : none;
-	
-	background-color: white;
-	margin-top : 20px;
-	margin-bottom : 20px;
-	padding-right : 0.5rem;
-	padding-left : 0.5rem;
-	
-	font-size: 16px;
-}
-
-.pageBtn.active{
-	background-color: #ffe98c;
-	color : black;
-}
-.pageBtn:visited{
-	background-color: #ffe98c;
-	color : black;
-}
-
-</style>
 
 <script type="text/javascript">
-function btnChange(n1, n2, n3, n4) {
+
+var productCnt = 0;
+var n1, n2;
+
+$(function shoppingStart() {
+	$("#firstBtn").trigger('click');
+})
+
+//카테고리 선택시 호출되는 함수
+function btnChange(n11, n22, n3, n4, item) {
 	
-	btn1 = `<button class = "pageBtn" onclick="btnChange(`+ n1 +`,`+n2+`,1,12)">1</button>`;
-	btn2 = `<button class = "pageBtn" onclick="btnChange(`+ n1 +`,`+n2+`,13,24)">2</button>`;
-	btn3 = `<button class = "pageBtn" onclick="btnChange(`+ n1 +`,`+n2+`,35,36)">3</button>`;
-	$('#pageBtn').empty();
-	$('#pageBtn').append(btn1);
-	$('#pageBtn').append(btn2);
-	$('#pageBtn').append(btn3);
+	n1 = n11;
+	n2 = n22;
 	
+	$('#menuName').empty();
+	var cateName = $(item).text();
+	console.log(cateName);
+	$('#menuName').append(cateName);
+	
+	//카테고리별 갯수 가져와서 전역변수 저장 -> 페이징 버튼 용
+	bringCnt(n1, n2);
+	
+	//카테고리별 list 불러오기
+	bringList(n1, n2, n3, n4, 1);
+}
+
+//상품 갯수 가져오는 함수 (카테고리 시작번호, 끝번호)
+function bringCnt(n1, n2){
 	$.ajax({
-		url : "shoppingList2",
+		url : "allCnt",
+		data : {
+			start : n1,
+			end : n2
+		},
+		success : function(data){
+			productCnt = data;
+		}
+	})
+}
+
+//쇼핑몰 list 가져오는 함수
+function bringList(n1, n2, n3, n4, sortN){
+	$.ajax({
+		url : "shoppingList"+sortN,
 		data : {
 			start : n1,
 			end : n2,
@@ -135,46 +85,86 @@ function btnChange(n1, n2, n3, n4) {
 					</div>
 				</div>`;
 				$('#productList').append(sen);
-				
 				}
+			$('#pageBtn').empty();
+			var btnCnt=0
+			if(productCnt%12==0){
+				btnCnt = productCnt/12-1;
+			}else{
+				btnCnt = productCnt/12;
+			}
+			for(i=0; i<btnCnt; i++){
+				btn = `<button class = "pageBtn" onclick="bringList(`+ n1 +`,`+n2+`,`+ (i*12+1) +`,`+(i*12+12)+`,`+sortN+`)">`+(i+1)+`</button>`;
+				$('#pageBtn').append(btn);
+			}
 		},
 		error : function(){
 			alert("에러");
 		}
 	})//ajax
 }
+
+//정렬select 변경시 호출되는 함수
+function sorting(){
+	var select  = document.getElementById("showNum");
+	var selectVal = (select.options[select.selectedIndex].value);
+	if(selectVal == 3){
+		bringList(n1, n2, 1, 12, 3);
+	}
+	else if(selectVal == 2){
+		bringList(n1, n2, 1, 12, 2);
+	}
+	else{
+		bringList(n1, n2, 1, 12, 1);
+	}
+}
+
+
 </script>
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-light justify-content-center">
 		<!-- Links -->
 		<ul class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" id="firstBtn"
+				onclick="btnChange(1,4,1,12,this);">사료</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(1,4,1,12);">사료</a></li>
+				onclick="btnChange(5,14,1,12,this);">간식</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(5,14,1,12);">간식</a></li>
+				onclick="btnChange(15,23,1,12,this);">건강관리</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(15,23,1,12);">건강관리</a></li>
+				onclick="btnChange(24,29,1,12,this);">위생/배변</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(24,29,1,12);">위생/배변</a></li>
+				onclick="btnChange(30,36,1,12,this);">미용/목욕</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(30,36,1,12);">미용/목욕</a></li>
+				onclick="btnChange(37,41,1,12,this)">급식기/급수기</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(37,41,1,12)">급식기/급수기</a></li>
+				onclick="btnChange(42,46,1,12,this)">하우스/울타리</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(42,46,1,12)">하우스/울타리</a></li>
+				onclick="btnChange(47,49,1,12,this)">이동장</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(47,49,1,12)">이동장</a></li>
+				onclick="btnChange(50,56,1,12,this)">의류/악세서리</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(50,56,1,12)">의류/악세서리</a></li>
+				onclick="btnChange(57,60,1,12,this)">목줄/인식표/리드줄</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(57,60,1,12)">목줄/인식표/리드줄</a></li>
+				onclick="btnChange(61,66,1,12,this)">장난감</a></li>
 			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(61,66,1,12)">장난감</a></li>
-			<li class="nav-item"><a class="nav-link"
-				onclick="btnChange(67,67,1,12)">훈련</a></li>
+				onclick="btnChange(67,67,1,12,this)">훈련</a></li>
 		</ul>
 	</nav>
+	<hr>
+	
+	<div class= "sorting">
+		<h5 id="menuName">사료</h5>
+		<form id = "sort_id" action="#" class="sortDetail" onchange="sorting()">
+			<select name="showNum" id = "showNum">
+				<option value="1">기본순</option>
+				<option value="2">저가순</option>
+				<option value="3">고가순</option>
+			</select> 
+			<!-- <input type="submit" value="적용" /> -->
+		</form>
+	</div>
 	<hr>
 	<div>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4"
