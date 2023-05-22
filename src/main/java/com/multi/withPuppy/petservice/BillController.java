@@ -16,15 +16,13 @@ public class BillController {
 	@Autowired
 	BillDAO dao;
 	
-
+	//테스트용 코드로 추후 삭제 예
 	@RequestMapping("mainFeeTest")
 	//@ResponseBody
 	public void list() {
-		//List<BillVO> list = dao.list();
-		//model.addAttribute("list", list);
 	}
-	
-	
+
+	//영수증 데이터 입력용으로 OCR데이터를 어떻게 넣을지 구상 및 진행하면서 수정 예정. 
 	@RequestMapping("insertBill")
     @ResponseBody
     public int insertBill(BillVO bag) {

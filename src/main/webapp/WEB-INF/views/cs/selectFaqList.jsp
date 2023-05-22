@@ -12,7 +12,8 @@
 			<li class="nav-item"><a href="selectAskList"
 				class="nav-link link-secondary">1:1문의</a></li>
 		</ul>
-		<hr color="red">
+		<hr>
+		
 		<h4>카테고리</h4>
 		<hr color="red">
 		<ul class="nav nav-pills">
@@ -28,7 +29,9 @@
 				class="nav-link link-secondary">유기동물신고</a></li>
 		</ul>
 	</div>
-	<hr color="red">
+	
+	<hr style="color: red">
+	
 	<h4>검색</h4>
 	<hr color="red">
 	<form action="selectFaqOne" method="get">
@@ -37,6 +40,7 @@
 			onblur="this.placeholder='검색할 문의사항을 입력해주세요.'">
 		<button type="submit">검색</button>
 	</form>
+	
 	<div id="faqView">
 		<hr>
 		<h4>리스트</h4>
@@ -56,7 +60,7 @@
 						<td>${vo.faq_no}</td>
 						<td>${vo.faq_category}</td>
 						<td><a href="#" onclick="return false;" class="hideView">${vo.faq_title}</a></td>
-						<td><button type="button" onclick="location='updateFaqNo'">수정</button><button type="button" onclick="location='deleteFaq'">삭제</button>
+						<td><button type="button" onclick="location'updateFaqNo'">수정</button><button type="button" onclick="location='deleteFaq'">삭제</button>
 					</tr>
 					<tr class="hiddenRow" style="display: none;">
 						<td class="table-active" colspan="4">${vo.faq_content}</td>
@@ -69,6 +73,7 @@
 	<script type="text/javascript"
 		src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript">
+	//리스트 title 클릭시 content display 여부
 		$(document).ready(function() {
 			$(".hideView").click(function() {
 				parent = $(this).closest('tr');

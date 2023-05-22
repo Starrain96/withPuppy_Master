@@ -69,40 +69,40 @@
 	
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
-	$(function() {
-		//리스트 불러오는 함수
-		function selectAnswer() {
-			$('#replyAnswer').empty()
-			$.ajax({
-				url : "${pageContext.request.contextPath}/cs/selectAnswerOne",
-				data : {
-					ask_no : ${vo.ask_no},
-				},
-				success : function(x) {	
-					$('#replyAnswer').append(x)
-				}
-			}) //ajax
+//댓글리스트 첫 호출
+$(function start() {
+	selectAnswer();
+})
+
+// 댓글리스트 호출 함수
+function selectAnswer() {
+	$('#replyAnswer').empty()
+	$.ajax({
+		url : "${pageContext.request.contextPath}/cs/selectAnswerOne",
+		data : {
+			ask_no : ${vo.ask_no}
+		},
+		success : function(x) {	
+			$('#replyAnswer').append(x)
 		}
-		
-		selectAnswer();
-		
-		$('#answerIn').click(function() {
-			
-			//기존의 것 삭제됨!
-			$.ajax({
-				url : "${pageContext.request.contextPath}/cs/insertAnswer",
-				data : {
-					ask_no : ${vo.ask_no},
-					ans_content : $('#ans_content').val(),
-					ans_writer : $('#ans_writer').val()
-				},
-				success : function(x) {
-					selectAnswer();
-				} //success
-			}) // ajax
-		}) //answerInsert
-		
-	}) //$function
+	}) //ajax
+}
+
+//댓글 추가 후 리스트 호출 함수
+$('#answerIn').click(function() {
+	$.ajax({
+		url : "${pageContext.request.contextPath}/cs/insertAnswer",
+		data : {
+			ask_no : ${vo.ask_no},
+			ans_content : $('#ans_content').val(),
+			ans_writer : $('#ans_writer').val()
+		},
+		success : function(x) {
+			selectAnswer();
+		} //success
+	}) // ajax
+}) //answerInsert
+
 </script>
 </body>
 </html>

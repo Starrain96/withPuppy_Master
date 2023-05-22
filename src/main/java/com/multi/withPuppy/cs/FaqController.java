@@ -31,7 +31,6 @@ public class FaqController {
 		dao.insert(bag);
 	}
 
-	
 	@RequestMapping("updateFaq")
 	public void update(FaqVO bag) {
 		System.out.println("update요청됨.");
@@ -58,8 +57,6 @@ public class FaqController {
 	public void one2(String faq_category, Model model) {
 		System.out.println("카테고리 검색 요청됨.");
 		System.out.println(faq_category);
-//		FaqVO vo = dao.one(title);
-//		model.addAttribute("vo", vo);
 		List<FaqVO> list = dao.one2(faq_category);
 		model.addAttribute("list", list);
 	}
