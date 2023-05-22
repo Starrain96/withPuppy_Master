@@ -385,7 +385,7 @@
                 success: function(result) {
                 	if (result == '1'){
                 		alert("회원가입 완료!");
-                    	window.location.replace("loginPage.jsp")
+                    	window.location.replace("<%=contextPath%>"+'/user/loginPage')
                 	}
                     
                 },
@@ -431,7 +431,7 @@
 	    </tr>
 	    <tr>
 	        <td class="col1">이름*</td>
-	        <td class="col2"><input type="text" id="name" maxlength="16">
+	        <td class="col2"><input type="text" id="name" oninput="this.value = this.value.replace(/[^ㄱ-힣.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="16">
 	        <p><span id="successNameChk"></span></p>
 	        <input type="hidden" id="nameDoubleChk"/></td>
 	    </tr>

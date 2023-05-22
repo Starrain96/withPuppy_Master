@@ -210,10 +210,10 @@ String contextPath = (String) request.getContextPath();
 								<li class="list-group-item"><span class="info-label">이메일</span>
 									<span class="info-value">${bag.user_email}</span></li>
 								<li class="list-group-item"><span class="info-label">주소</span>
-								<p></p> <span class="info-value">addr1<%-- ${bag.user_addr1} --%></span>
-								<p></p> <span class="info-value">addr2<%-- ${bag.user_addr2} --%></span>
-								<p></p> <span class="info-value">addr3<%-- ${bag.user_addr3} --%></span>
-								<p></p> <span class="info-value">addr4<%-- ${bag.user_addr4} --%></span>
+								<p></p> <span class="info-label">우편번호</span><span class="info-value">${bag.user_addr1}</span>
+								<p></p> <span class="info-label">주소</span><span class="info-value">${bag.user_addr2}</span>
+								<p></p> <span class="info-label">상세주소</span><span class="info-value">${bag.user_addr3}</span>
+								<p></p> <span class="info-label">참고항목</span><span class="info-value">${bag.user_addr4}</span>
 								<p></p></li>
 								<li class="list-group-item"><span class="info-label">회원
 										등급</span> <span class="info-value">${bag.user_level}</span></li>

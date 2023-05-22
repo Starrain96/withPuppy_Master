@@ -74,10 +74,10 @@
     
 <% if(session.getAttribute("id") == null){ %>
     <div class="login-form">
-        <form action="loginPage" method="post">
+        <form action="loginUser" method="post">
             <h1>로그인🐶</h1>
-            <input name="id" type="text" class="text-field" placeholder="아이디">
-            <input name="pw" type="password" class="text-field" placeholder="비밀번호">
+            <input name="user_id" type="text" class="text-field" placeholder="아이디">
+            <input name="user_pw" type="password" class="text-field" placeholder="비밀번호">
             <input type="submit" class="submit-btn" value="로그인">
         </form>
         <div class="links">
@@ -85,6 +85,5 @@
         </div>
     </div>
 <%} else {%>
-    <a href="main.jsp">메인페이지</a>
-    <a href="mypage">마이페이지</a>
+    <a href="../main.jsp">메인페이지</a>
 <%} %>

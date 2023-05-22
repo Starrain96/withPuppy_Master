@@ -19,7 +19,7 @@
 	</select>
 	
 	<select id="loginUser" parameterType="userVO" resultType="userVO">
-		select COUNT(*) from user where user_id = #{user_id} and user_pw = #{user_pw}
+		select * from user where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
 
 	<select id="pwCheck" resultType="String">
