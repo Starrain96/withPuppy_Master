@@ -15,6 +15,12 @@ public class ProductDAO {
 	@Autowired
 	public SqlSessionTemplate my;
 	
+	
+	public int allCnt(CategoryVO bag) {
+		int result = my.selectOne("product.allCnt", bag);
+		return result;
+	}
+	
 	public void insert(ProductVO bag) {
 		
 		System.out.println(bag.getProduct_img());
@@ -38,8 +44,19 @@ public class ProductDAO {
 		ProductVO vo = my.selectOne("product.one", id);
 		return vo;
 	}
-	public List<ProductVO> list(CategoryVO bag) {
-		List<ProductVO> list = my.selectList("product.dogcate", bag);
+	
+	public List<ProductVO> list1(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate1", bag);
+		return list;
+	}
+	
+	public List<ProductVO> list2(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate2", bag);
+		return list;
+	}
+	
+	public List<ProductVO> list3(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate3", bag);
 		return list;
 	}
 }

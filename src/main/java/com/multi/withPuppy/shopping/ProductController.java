@@ -28,9 +28,17 @@ public class ProductController {
 		bag.setStart(start);
 		bag.setStart_num(start_num);
 		bag.setEnd_num(end_num);
-		List<ProductVO> list = dao.list(bag);
+		List<ProductVO> list = dao.list1(bag);
 		model.addAttribute("list", list);	
 	}
+	
+	@RequestMapping("shopping/allCnt")
+	@ResponseBody
+	public int allCnt(CategoryVO bag) {
+		int result = dao.allCnt(bag);
+		return result;
+	}
+	
 	
 	@RequestMapping("shopping/productDetail")
 	public void productDetail(int product_id, Model model) {
@@ -57,10 +65,24 @@ public class ProductController {
 		return details;
 	}
 	
+	@RequestMapping("shopping/shoppingList1")
+    @ResponseBody
+    public List<ProductVO> shopping1(Model model, CategoryVO bag) {
+        List<ProductVO> list = dao.list1(bag);
+        return list;
+    }
+	
 	@RequestMapping("shopping/shoppingList2")
     @ResponseBody
     public List<ProductVO> shopping2(Model model, CategoryVO bag) {
-        List<ProductVO> list = dao.list(bag);
+        List<ProductVO> list = dao.list2(bag);
+        return list;
+    }
+	
+	@RequestMapping("shopping/shoppingList3")
+    @ResponseBody
+    public List<ProductVO> shopping3(Model model, CategoryVO bag) {
+        List<ProductVO> list = dao.list3(bag);
         return list;
     }
 	
