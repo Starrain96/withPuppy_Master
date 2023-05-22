@@ -1,6 +1,7 @@
 package com.multi.withPuppy.shopping;
 
 public class ProductVO {
+	
 	private int product_id;
 	private int cart_id;
 	private String product_name;
@@ -10,6 +11,7 @@ public class ProductVO {
 	private int detail;
 	private String product_img;
 	private int product_cnt;
+	
 	public int getProduct_id() {
 		return product_id;
 	}
