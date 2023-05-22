@@ -1,0 +1,177 @@
+@charset "UTF-8";
+
+.choice {
+	position: relative;
+	left: 70%;
+}
+
+.flex {
+	display: flex;
+}
+
+thead {
+	background-color: #FFE98C;
+	padding: 0.5rem;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.tableList {
+	display: flex;
+	width: 100%;
+}
+
+.realTable {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+table td, table th {
+	padding: 0.75rem 1rem;
+	text-align: center;
+	border: 1px solid #D9D9D9;
+}
+
+tbody td:first-child, thead td:first-child, thead td:last-child, tbody td:nth-child(3),
+	thead td:nth-child(3) {
+	text-align: left;
+}
+
+tbody tr:hover {
+	background-color: #F5F5F5;
+}
+
+.sideBar {
+	border-radius: 10px;
+	width: 200px;
+	height: 550px;
+	position: fixed;
+	right: 20px;
+	background-color: lightgray;
+	width: 200px;
+	height: 550px;
+	position: fixed;
+	right: 20px;
+	background-color: lightgray;
+	padding-left: 5px;
+	padding-top: 30px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul {
+	text-decoration: none;
+	list-style: none;
+}
+
+.categoryLi {
+	margin-bottom: 10px;
+}
+
+a:hover {
+	color: #ffe98c;
+}
+
+.addBtn {
+	margin-left: 45px;
+	margin-top: 30px;
+	color: black;
+	background-color: #ffe98c;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	border: none;
+	padding: 0.5rem;
+	padding-left: 1.0rem;
+	padding-right: 1.0rem;
+	color: black;
+}
+
+.addBtn:hover {
+	background-color: #60626C;
+	color: white;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.pagingList {
+	text-align: center;
+}
+
+.pageBtn {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-top: none;
+	border-bottom: none;
+	background-color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-right: 0.5rem;
+	padding-left: 0.5rem;
+	font-size: 16px;
+}
+
+.pageBtn.active {
+	background-color: #ffe98c;
+	color: black;
+}
+
+.pageBtn:visited {
+	background-color: #ffe98c;
+	color: black;
+}
+
+/* ------------------------------------------------ */
+.modal_wrap {
+	display: none;
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -250px 0 0 -250px;
+	background: #eee;
+	z-index: 2;
+}
+
+.black_bg {
+	display: none;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.modal_close {
+	width: 26px;
+	height: 26px;
+	position: absolute;
+	top: -30px;
+	right: 0;
+}
+
+.modal_close>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: url(https://img.icons8.com/metro/26/000000/close-window.png);
+	text-indent: -9999px;
+}
+
+.modal_content{
+	padding : 20px;
+}
+
+.inputForm{
+	margin-bottom : 10px;
+}

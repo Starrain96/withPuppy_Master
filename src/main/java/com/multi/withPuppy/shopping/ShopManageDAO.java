@@ -34,13 +34,26 @@ public class ShopManageDAO {
 //		System.out.println(result);
 //	}
 //	
-//	public ProductVO one(int id) {
-//		ProductVO vo = my.selectOne("product.one", id);
-//		return vo;
+	public List<ProductVO> search(String aa) {
+		String name = "%" +aa+ "%";
+		List<ProductVO> list = my.selectList("manage.search", name);
+		System.out.println(list.size());
+		return list;
+	}
+//	
+//	public List<ProductVO> list() {
+//		System.out.println("list 왔음");
+//		List<ProductVO> list = my.selectList("manage.all");
+//		return list;
 //	}
 	
-	public List<ProductVO> list() {
-		List<ProductVO> list = my.selectList("manage.all");
+	public int cnt() {
+		int n = my.selectOne("manage.allCnt");
+		return n;
+	}
+	
+	public List<ProductVO> list2(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("manage.allCatePage", bag);
 		return list;
 	}
 }
