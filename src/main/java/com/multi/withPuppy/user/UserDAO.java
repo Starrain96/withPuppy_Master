@@ -20,7 +20,7 @@ public class UserDAO {
 	SqlSessionTemplate my;
 	
 	public UserVO loginUser(UserVO bag) {
-		System.out.println(bag);
+		System.out.println("dao bag : " + bag);
 		UserVO vo = my.selectOne("user.loginUser", bag);
 		System.out.println("vo>> : " + vo);
 		return vo;

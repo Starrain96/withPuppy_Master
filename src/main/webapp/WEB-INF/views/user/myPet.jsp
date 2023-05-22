@@ -192,24 +192,28 @@ String contextPath = (String) request.getContextPath();
                         <div class="col-md-8">
                             <!-- <h5 class="card-title">John Doe</h5> 
                             <hr>-->
+                            <c:if test="${not empty petList}">
+                            <c:forEach var="pet" items="${petList}">
                             <ul class="list-group list-group-flush">
                             	<li class="list-group-item">
 								    <span class="info-label">반려동물 이름</span> 
-								    <span class="info-value">john</span>
+								    <span class="info-value">${pet.pet_name}</span>
 								</li>
                                 <li class="list-group-item">
 								    <span class="info-label">반려동물 출생일</span> 
-								    <span class="info-value">2020.02.02</span>
+								    <span class="info-value">${pet.pet_age}</span>
 								  </li>
                                 <li class="list-group-item">
                                 	<span class="info-label">반려동물 종</span> 
-								    <span class="info-value">포메라니안</span>
+								    <span class="info-value">${pet.pet_kind}</span>
 								</li>
                                 <li class="list-group-item">
               						<span class="info-label">반려동물 몸무게</span> 
-								    <span class="info-value">8kg</span>
+								    <span class="info-value">${pet.pet_weight}</span>
 								</li>
                             </ul>
+                            </c:forEach>
+                            </c:if>
                             <div class="mt-3">
 							    <a href="#" class="btn btn-custom">반려동물 추가</a>
 							</div>

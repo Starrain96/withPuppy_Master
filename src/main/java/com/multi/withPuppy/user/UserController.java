@@ -1,20 +1,12 @@
 package com.multi.withPuppy.user;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
 	@Autowired
 	UserDAO dao;
-
+	
 	@RequestMapping("/signupUser")
 	public void signupUser() {
 	}
@@ -57,6 +49,8 @@ public class UserController {
 	@RequestMapping("/loginUser")
 	public String loginUser(UserVO bag, Model model, HttpSession session) {
 
+		System.out.println("컨트롤러 bag : " + bag);
+		
 		UserVO vo = dao.loginUser(bag);
 		model.addAttribute("vo", vo);
 		System.out.println("컨트롤러 vo : " + vo);
@@ -65,9 +59,9 @@ public class UserController {
 			session.setAttribute("bag", vo);
 			System.out.println("세션에 아이디가 들어 있는지? : " + (String) session.getAttribute("id"));
 			System.out.println("login success");
-			return "main";
+			return "redirect:../main.jsp";
 		} else {
-			return "redirect:user/loginPage";
+			return "redirect:loginPage";
 		}
 	}
 
@@ -75,7 +69,7 @@ public class UserController {
 	@RequestMapping("logoutUser")
 	public String logoutUser(HttpSession session) {
 		session.invalidate();
-		return "main";
+		return "redirect:../main.jsp";
 	}
 
 	// 회원가입 : 아이디 중복체크
