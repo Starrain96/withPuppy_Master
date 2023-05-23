@@ -81,7 +81,7 @@
 					//console.log(timeString_KR);
 					
 					
-					function dateFormat(date) {
+					function dateFormat(date) { //date 값 변환
 				        let month = date.getMonth() + 1;
 				        let day = date.getDate();
 				        let hour = date.getHours();
@@ -226,9 +226,9 @@
 </table>
 
 
-<hr color=grey>
+<hr color=gray>
 <div id=review-all style="width: 80%; height: 300px; margin: 0 auto;"></div>
-<hr color=grey>
+<hr color=gray>
 <div id="comment-wrapper"
 	style="width: 80%; height: 300px; margin: 0 auto;"></div>
 </body>

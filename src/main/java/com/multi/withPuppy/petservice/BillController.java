@@ -23,16 +23,4 @@ public class BillController {
 		//List<BillVO> list = dao.list();
 		//model.addAttribute("list", list);
 	}
-	
-	
-	@RequestMapping("insertBill")
-    @ResponseBody
-    public int insertBill(BillVO bag) {
-        System.out.println("insert bag : " + bag);
-        System.out.println(dao);
-        int result = dao.insert(bag);
-        System.out.println("insertBill Controller : " + result);
-        return result;
-    }
-	 
 }

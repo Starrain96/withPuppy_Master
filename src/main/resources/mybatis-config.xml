@@ -20,6 +20,7 @@
 		<typeAlias type="com.multi.withPuppy.petservice.PetserviceVO" alias="petserviceVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.StarVO" alias="starVO"></typeAlias>
 		
+		<typeAlias type="com.multi.withPuppy.petservice.OcrVO" alias="ocrVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.BillVO" alias="billVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.Bill_detailVO" alias="bill_detailVO"></typeAlias>
 		
