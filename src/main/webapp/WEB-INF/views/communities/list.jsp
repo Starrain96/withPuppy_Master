@@ -48,12 +48,22 @@ a:hover, a:active {
 </style>
 
 <table>
-	<c:forEach items="${list2}" var="vo2">
+	<tr>
+		<th class="top">번호</th>
+		<th class="top">제목</th>
+		<th class="top">작성일</th>
+		<th class="top">글쓴이</th>
+		<th class="top">조회수</th>
+	</tr>
+
+	<c:forEach items="${list}" var="vo">
 
 		<tr>
-			<td class="down">${vo2.reply_id}</td>
-			<td class="down">${vo2.reply_content}</td>
-			<td class="down">${vo2.reply_date}</td>
+			<td class="down">${vo.commu_no}</td>
+			<td class="down"><a href="one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+			<td class="down">${vo.commu_date}</td>
+			<td class="down">${vo.commu_id}</td>
+			<td class="down">${vo.commu_view}</td>
 		</tr>
 
 	</c:forEach>

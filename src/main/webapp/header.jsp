@@ -35,7 +35,7 @@
 		<ul class="nav nav-pills">
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
-            <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain" class="nav-link link-secondary">커뮤니티</a></li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain?page=1" class="nav-link link-secondary">커뮤니티</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital?category=동물병원" class="nav-link link-secondary">반려동물서비스</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
