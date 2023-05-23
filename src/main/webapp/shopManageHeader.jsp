@@ -9,6 +9,12 @@
 <title>강아지와</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	margin-right: 15%;
+	margin-left: 15%;
+}
+</style>
 </head>
 
 <body>
@@ -26,7 +32,7 @@
 		</form>
 
 		<ul class="nav nav-pills">
-			<li class="nav-item"><a href="shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">물품관리</a></li>
+			<li class="nav-item"><a href="shopManageMain?start_num=1&end_num=10" class="nav-link link-secondary">물품관리</a></li>
 			<li class="nav-item"><a href="cartList?user_id=apple" class="nav-link link-dark">통계</a></li>
 
 

@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="manage">
-	
-	<insert id="add" parameterType="cartVO" >
-		insert into cart  
-		values (null, #{product_id}, #{product_cnt}, #{user_id})
-	</insert>
-	
 	<delete id="delete"  parameterType="cartVO">
 		delete from cart 
 		where cart_id = #{cart_id} and user_id = #{user_id}
 	</delete>
 	
-	<update id="update"  parameterType="cartVO">
-		update cart 
-		set product_cnt = #{product_cnt} 
-		where product_id = #{product_id} and user_id = #{user_id}
-	</update>
-	
 	<select id="all" resultType="productVO">
 		select * from product
 	</select>
+	
+	<select id="search" parameterType="productVO" resultType="productVO">
+		select  * from product where product_name like #{product_name}
+	</select>
+	
+	<select id="allCnt" resultType="Int">
+		select count(product_id) from product 
+	</select>
+	
+	<select id="allCatePage" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_id) as p_no, p.* from product p 
+		) p2
+		where p_no between #{start_num} and #{end_num}
+	</select>
+	
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
 	<!-- <select id="allProduct" parameterType="String" resultType="productVO">

@@ -2,25 +2,20 @@ package com.multi.withPuppy.petservice;
 
 public class BillVO { 
 	private int bill_no;
-	private int bill_brn;
+	private String bill_brn;
 	private String bill_name;
 	private String bill_addr;
 	private int bill_totalfee;
-	@Override
-	public String toString() {
-		return "BillVO [bill_no=" + bill_no + ", bill_brn=" + bill_brn + ", bill_name=" + bill_name + ", bill_addr="
-				+ bill_addr + ", bill_totalfee=" + bill_totalfee + "]";
-	}
 	public int getBill_no() {
 		return bill_no;
 	}
 	public void setBill_no(int bill_no) {
 		this.bill_no = bill_no;
 	}
-	public int getBill_brn() {
+	public String getBill_brn() {
 		return bill_brn;
 	}
-	public void setBill_brn(int bill_brn) {
+	public void setBill_brn(String bill_brn) {
 		this.bill_brn = bill_brn;
 	}
 	public String getBill_name() {
@@ -41,5 +36,11 @@ public class BillVO {
 	public void setBill_totalfee(int bill_totalfee) {
 		this.bill_totalfee = bill_totalfee;
 	}
+	@Override
+	public String toString() {
+		return "BillVO [bill_no=" + bill_no + ", bill_brn=" + bill_brn + ", bill_name=" + bill_name + ", bill_addr="
+				+ bill_addr + ", bill_totalfee=" + bill_totalfee + "]";
+	}
+	
 	
 }

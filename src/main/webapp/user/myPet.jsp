@@ -133,6 +133,14 @@
         }
     </style>
 </head>
+<%
+//세션에서 값을 꺼내는 방법 
+String user_id = (String) session.getAttribute("user_id");
+System.out.println("user_id : " + user_id);
+/* userVO bag = (userVO)session.getAttribute("bag");
+System.out.println("bag : " + bag); */
+String contextPath = (String) request.getContextPath();
+%>
 <div class="container-fluid">
     <div class="row">
         <!-- 사이드 메뉴 -->
@@ -141,16 +149,17 @@
                 <h5 class="card-header">마이페이지</h5>
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="#">프로필 관리</a></li>
-                        <li class="list-group-item"><a href="#">내 반려동물</a></li>
-                        <li class="list-group-item"><a href="#">내 활동기록</a>
-                        	<ul class="list-group2 list-group-flush">
-					        <li class="list-group-item2"><a href="#">커뮤니티</a></li>
-					        <li class="list-group-item2"><a href="#">쇼핑몰</a></li>
-					        <li class="list-group-item2"><a href="#">리뷰</a></li>
-					        <li class="list-group-item2"><a href="#">반려동물 신고</a></li>
-					    </ul></li>
-                    </ul>
+						<li class="list-group-item">
+						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
+						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
+						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
+							<ul class="list-group2 list-group-flush">
+								<li class="list-group-item2"><a href="<%=contextPath%>/user/userHistory">커뮤니티</a></li>
+								<li class="list-group-item2"><a href="#">쇼핑몰</a></li>
+								<li class="list-group-item2"><a href="#">리뷰</a></li>
+							</ul>
+						</li>
+					</ul>
                 </div>
             </div>
         </div>
@@ -188,9 +197,6 @@
                             </ul>
                             <div class="mt-3">
 							    <a href="#" class="btn btn-custom">반려동물 추가</a>
-							    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-							        탈퇴하기
-							    </button>
 							</div>
                         </div>
                     </div>
@@ -202,26 +208,6 @@
         </div>
     </div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">경고</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                정말 탈퇴하시겠습니까?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary">확인</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 

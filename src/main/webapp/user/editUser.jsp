@@ -133,7 +133,7 @@
         }
         
         #tel1, #tel2, #tel3 {
-			width: 200px;
+			width: 150px;
         }
     </style>
 </head>
@@ -178,7 +178,7 @@
 								    <span class="info-value">john</span>
 								</li>
                                 <li class="list-group-item">
-                                	<span class="info-label">전화번호</span> <p></p>
+                                	<span class="info-label">전화번호</span>
 								    <input type="text" id="tel1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3">
 	        						<span class="hypen">-</span>
 	        						<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">

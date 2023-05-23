@@ -1,5 +1,7 @@
 package com.multi.withPuppy.user;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -18,8 +20,8 @@ public class UserDAO {
 	SqlSessionTemplate my;
 	
 	public UserVO loginUser(UserVO bag) {
-		System.out.println(bag);
-		UserVO vo = my.selectOne("user.one", bag);
+		System.out.println("dao bag : " + bag);
+		UserVO vo = my.selectOne("user.loginUser", bag);
 		System.out.println("vo>> : " + vo);
 		return vo;
 	}
@@ -90,4 +92,32 @@ public class UserDAO {
 		System.out.println("다오 insertUser : " + result);
 		return result;
 	}
+	
+	// 비밀번호 체크
+	public String pwCheck(String id) {
+		System.out.println(id);
+		return my.selectOne("user.pwCheck", id);
+	}
+	
+	// 회원탈퇴
+	public void deleteUser(String id) {
+		my.delete("user.deleteUser", id);
+	}
+	
+	// 회원수정
+	public int updateUser(UserVO bag) {
+		int result = my.update("user.updateUser", bag);
+		System.out.println("다오 updateUser : " + result);
+		return result;
+	}
+	
+	// 회원 비밀번호 수정
+	public int updatePw(String id, String pw) {
+		Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("password", pw);
+        int result = my.update("user.updatePw", params);
+		return result;
+	}
+
 }
