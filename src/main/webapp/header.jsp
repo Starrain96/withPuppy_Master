@@ -35,14 +35,7 @@
 		<ul class="nav nav-pills">
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
-<<<<<<< HEAD
-            <li class="nav-item"><a href="communities/communitiesMain?page=1" class="nav-link link-secondary">커뮤니티</a></li>
-			<li class="nav-item"><a href="shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
-			<li class="nav-item"><a href="petservice/listhospital?category=동물병원" class="nav-link link-secondary">반려동물서비스</a></li>
-			<li class="nav-item"><a href="cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
-			<li class="nav-item"><a href="report/report" class="nav-link link-secondary">반려동물 신고</a></li>
-=======
-            <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain" class="nav-link link-secondary">커뮤니티</a></li>
+            <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain?page=1" class="nav-link link-secondary">커뮤니티</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital?category=동물병원" class="nav-link link-secondary">반려동물서비스</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
@@ -53,7 +46,6 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/myPage" class="nav-link link-secondary">마이페이지</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/logoutUser" class="nav-link link-secondary">로그아웃</a></li>
             <%} %>
->>>>>>> 0d1c3768d5e60d81d49ca13a98c39e8bef3c4ee1
 
 		</ul>
 	</header>
