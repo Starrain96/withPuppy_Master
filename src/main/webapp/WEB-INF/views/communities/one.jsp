@@ -77,33 +77,22 @@ hr {
 }
 
 .edit-field {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .edit-field.hidden {
-  display: none;
+	display: none;
 }
-
 </style>
 <script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 <script type="text/javascript">
 $(function() {
-  // 댓글 목록의 li 엘리먼트를 클릭할 때마다, 데이터를 보이거나 가리는 토글 효과 적용
-  $(".reply-list li").click(function(event) {
-    const clickedLi = event.target;
-    // li 요소를 찾는 부분은 클릭된 엘리먼트가 li 안에 있는 하위 엘리먼트일 경우를 생각해 특정 조건을 추가하는 것이 더 안전합니다
-    while (clickedLi.tagName.toLowerCase() !== "li") {
-      clickedLi = clickedLi.parentElement;
-    }
-    $(clickedLi).find(".edit-field").toggleClass("hidden");
-  });
-
   $("#b1").click(function() {
     content = $('#reply').val()
     writer = "yang"
     $.ajax({
-      url:"insert2",
+      url:"../reply/insert2",
       data:{
           commu_no:${vo.commu_no},
           reply_content:content,
@@ -116,45 +105,50 @@ $(function() {
           // val() : 입력한 값을 가져온다.
           // val("안녕") : 안녕 이란 값을 input 에 value안으로 넣는다.
       }
-    });
-  });
-});
+    })
+  })
+	
+})
+
 </script>
 
 </head>
 <body>
 	<div class="container">
 		<nav>
-			<a href="../communitiesMain.jsp">처음페이지로</a> <a href="list2">이전페이지</a>
+			<a href="communitiesMain">처음페이지로</a> <a href="communitiesList?page=1">이전페이지</a>
 		</nav>
 		<hr>
 		<section class="article">
-			<p>${vo.commu_no},${vo.commu_title},${vo.commu_content},
-				${vo.commu_id}</p>
+			<p>No : ${vo.commu_no}</p>
+			<!-- 번호를 출력하는 부분 -->
+			<p>Writer : ${vo.commu_id}</p>
+			<!-- 작성자를 출력하는 부분 -->
+			<p>Title : ${vo.commu_title}</p>
+			<!-- 제목을 출력하는 부분 -->
+			<p>Content : ${vo.commu_content}</p>
+			<!-- 내용을 출력하는 부분 -->
+			<p>
+				Image : <img src="../resources/upload/${vo.commu_img}">
+			</p>
+			<!-- 내용을 출력하는 부분 -->
 		</section>
+		<a href="communitiesFnD?commu_no=${vo.commu_no} & page=1"><button>수정/삭제📝</button></a>
 		<hr>
+		<section class="reply-list" style="display: none;">
+			<ul id="result">
+				<c:forEach items="${list2}" var="vo2">
+					<li>
+						<p>${vo2.reply_id} : ${vo2.reply_content},  ${vo2.reply_date}</p>
+						</li>
+				</c:forEach>
+			</ul>
+		</section>
+
 		<section class="reply-form">
 			<input id="reply" placeholder="댓글을 입력하세요">
 			<button id="b1">댓글달기</button>
 			<button id="b2">댓글삭제</button>
-		</section>
-		<hr>
-		<section class="reply-list">
-			<h2>댓글 목록</h2>
-			<ul id="result">
-				<c:forEach items="${list}" var="vo">
-					<li>
-						<p>${vo.reply_content},${vo.reply_id}</p>
-						<button class="edit-button" onclick="editReply(this)">수정</button>
-						<div class="edit-field hidden">
-							<textarea class="edit-content">${vo.reply_content}</textarea>
-							<textarea class="edit-writer">${vo.reply_id}</textarea>
-							<button class="save-button" onclick="saveReply(this)">저장</button>
-							<button class="cancel-button" onclick="cancelEdit(this)">취소</button>
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
 		</section>
 	</div>
 </body>

@@ -8,6 +8,7 @@
    <typeAliases>
 		<typeAlias type="com.multi.withPuppy.communities.CommunitiesVO" alias="communitiesVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.communities.ReplyVO" alias="replyVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.communities.PageVO" alias="pageVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.shopping.ProductVO" alias="productVO"></typeAlias>
 		

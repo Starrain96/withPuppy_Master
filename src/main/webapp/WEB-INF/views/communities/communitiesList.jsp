@@ -6,6 +6,48 @@
 	<meta charset="UTF-8">
 	<title>강아지와🐶</title>
 <style type="text/css">
+
+	table{
+		border-collapse: collapse;
+		width: 100%;
+	}
+	th, td {
+		text-align: left;
+		padding: 8px;
+	}
+
+	th {
+		background-color: #3aa4c1;
+		color: white;
+	}
+
+	tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+
+	tr:hover {
+		background-color: #ddd;
+	}
+
+	a:link, a:visited {
+		color: #3aa4c1;
+		text-decoration: none;
+	}
+
+	a:hover, a:active {
+		color: #1e80a3;
+		text-decoration: underline;
+	}
+
+	.top{
+		background-color: #f1f1f1;
+		font-weight: bold;
+	}
+
+	.down{
+		border-bottom: 1px solid #ddd;
+	}
+
 	/* 전체 body의 스타일 */
 	body {
 		font-family: 'Noto Sans KR', sans-serif;
@@ -162,7 +204,7 @@
 
 </head>
 <body>
-	<!-- 검색 폼 -->
+<!-- 검색 폼 -->
 	<div class="search">
 		<select>
 			<option>제목</option>
@@ -175,21 +217,59 @@
 		<a href="../communities/communitiesWrite"><button type="button" class="btn-write">글쓰기📝</button></a>
 	</div>
 		
-			<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
-			<div id="result">
-			</div>
+<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
+	<div id="result">
+		<table>
+		<tr>
+			<td class="top">번호</td>
+			<td class="top">제목</td>
+			<td class="top">글쓴이</td>
+			<td class="top">작성일</td>
+			<td class="top">조회수</td>
+		</tr>
+
+		<c:forEach items="${list}" var="vo">
+
+			<tr>
+				<td class="down">${vo.commu_no}</td>
+				<td class="down"><a href = "one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+				<td class="down">${vo.commu_date}</td>
+				<td class="down">${vo.commu_id}</td>
+				<td class="down">${vo.commu_view}</td>
+			</tr>
+
+		</c:forEach>
+		</table>
+	</div>
+	<%
+	int pages = (int)request.getAttribute("pages");
+    for (int p = 1; p <= pages; p++) {
+%>	
 	
+		<button class ="pages"><%= p %></button>
+	
+<%
+	}
+%>
 	<!-- 스크립트 -->
 	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 	<script type="text/javascript">
-		$(function() {
+	$(function() {
+		$('.pages').click(function() {
 			$.ajax({
-				url : "list2",
+				url: "list",
+				data : {
+					page : $(this).text()
+				},
 				success: function(x) {
-					$('#result').append(x)
+					$("#result").html(x)
+				},
+				error: function() {
+					alert("nope")
 				}
-			})
-		})
+		})		
+	})
+})
 	</script>
 </body>
 </html>

@@ -6,10 +6,8 @@
 	     있는 것으로 본다.!
 	 -->
 	<insert id="insert" parameterType="communitiesVO">
-		insert into communities  (commu_id, commu_no , commu_title, commu_content, commu_img, commu_img2 ,
-		 commu_img3 , category1 , commu_view	)
-		values (#{commu_id}, null , #{commu_title}, #{commu_content}, #{commu_img}, #{commu_img2} ,
-		 #{commu_img3} , #{category1} , #{commu_view}	)
+		insert into communities  (commu_id, commu_no , commu_title, commu_content, commu_img, category1 , commu_view	)
+		values (#{commu_id}, null , #{commu_title}, #{commu_content}, #{commu_img} , #{category1} , #{commu_view}	)
 	</insert>
 	
 	<delete id="del"  parameterType="Int">
@@ -17,17 +15,26 @@
 	</delete>
 	
 	<update id="up"  parameterType="communitiesVO">
-		update communities set commu_content = #{commu_content} where commu_no = #{commu_no}
+		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} where commu_no = #{commu_no}
 	</update>
+	
 	<select id="one" parameterType="communitiesVO" resultType="communitiesVO">
-		select* 
+		select * 
 		from communities
 		where commu_no = #{commu_no}
 	</select>
-	<select id="all" resultType="communitiesVO">
-		select*
-		from communities
+	
+	<select id="list" parameterType="pageVO" resultType="communitiesVO">
+		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view 
+			from communities c) c2
+			where c2.c_no between ${start} and ${end}
 	</select>
+	
+	<select id="count" resultType="Integer">
+		select count(*) from communities
+	</select>
+	
 </mapper>
 
 

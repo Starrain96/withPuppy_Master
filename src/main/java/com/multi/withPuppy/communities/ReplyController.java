@@ -2,6 +2,7 @@ package com.multi.withPuppy.communities;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("reply")
+@RequestMapping("reply/")
 public class ReplyController {
 	
 	@Autowired
@@ -62,9 +63,9 @@ public class ReplyController {
 //		//model.addAttribute("bag", bag);
 //	}
 	
-	@RequestMapping("list2")
-	public void list(Model model) {
-	}
+//	@RequestMapping("list2")
+//	public void list(Model model) {
+//	}
 	
 	@RequestMapping("replyMain")
 	public void replyMain() {
@@ -82,9 +83,9 @@ public class ReplyController {
 	public void replyFnd() {
 	}
 	
-	@RequestMapping("list22")
-	public void list2(Model model) {
-		ArrayList<ReplyVO> list = dao.list();
+	@RequestMapping("list2")
+	public void list2(ReplyVO vo,Model model) {
+		List<ReplyVO> list = dao.list(vo);
 		System.out.println(list.size()); //사이즈를 찍어보세요.
 		model.addAttribute("list", list);
 	}

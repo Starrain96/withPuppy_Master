@@ -1,8 +1,10 @@
 package com.multi.withPuppy.communities;
 
+
 import java.sql.Timestamp;
 
 public class CommunitiesVO {
+	private int c_no;
 	private int commu_no;
 	private String commu_id;
 	private String commu_title;
@@ -13,7 +15,14 @@ public class CommunitiesVO {
 	private String category1;
 	private int commu_view;
 	private Timestamp commu_date;
-	
+
+	public int getC_no() {
+		return c_no;
+	}
+	public void setC_no(int c_no) {
+		this.c_no = c_no;
+	}
+
 	public int getCommu_no() {
 		return commu_no;
 	}
@@ -81,7 +90,7 @@ public class CommunitiesVO {
 		return "CommunitiesVO [commu_no=" + commu_no + ", commu_id=" + commu_id + ", commu_title=" + commu_title
 				+ ", commu_content=" + commu_content + ", commu_img=" + commu_img + ", commu_img2=" + commu_img2
 				+ ", commu_img3=" + commu_img3 + ", category1=" + category1+ ", commu_view=" + commu_view 
-				+ ", commu_date=" + commu_date
+				+ ", commu_Timestamp=" + commu_date
 				+ "]";
 	}
 	
