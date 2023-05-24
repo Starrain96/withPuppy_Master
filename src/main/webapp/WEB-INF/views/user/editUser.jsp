@@ -12,159 +12,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
-<style>
-* {
-	font-family: 'Noto Sans KR', sans-serif;
-}
-
-.container-fluid {
-	padding: 50px 10%;
-}
-
-.card-header {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	background-color: #ffe98c;
-	color: #000;
-	height: 70px;
-}
-
-.card-footer {
-	background-color: #F5F5F5;
-}
-
-.list-group-item {
-	margin-bottom: 0.75rem !important;
-	border-radius: 10px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease;
-	font-size: 1.2em;
-	padding-top: 1.2rem !important;
-	padding-bottom: 1.2rem !important;
-}
-
-.list-group-item2 {
-	margin-bottom: 0.75rem !important;
-	border-radius: 10px;
-	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	transition: all 0.3s ease;
-	font-size: 0.95em;
-}
-
-.list-group-item .list-group-item2 .info-label {
-	display: inline-block;
-	width: 100px;
-	font-weight: bold;
-	margin-right: 1rem;
-}
-
-.list-group-item .list-group-item2 .info-value {
-	display: inline-block;
-	margin-right: 2rem;
-}
-
-.list-group-item:hover, .list-group-item2:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-}
-
-.list-group-item a, .list-group-item2 a {
-	color: #333;
-	text-decoration: none;
-	display: block;
-	padding: 0.5rem;
-}
-
-.list-group-item a:hover, .list-group-item2 a:hover {
-	color: #555;
-}
-
-.list-group-item:before, .list-group-item:after, .list-group-item2:before,
-	.list-group-item2:after {
-	content: "";
-	position: absolute;
-	width: 5px;
-	height: 100%;
-	left: 0;
-	background-color: #ffe98c;
-	transform: translateY(-100%);
-	transition: transform 0.3s ease;
-}
-
-.list-group-item:before, .list-group-item2:before {
-	top: 0;
-}
-
-.list-group-item:after, .list-group-item2:after {
-	bottom: 0;
-	transform: translateY(100%);
-}
-
-.list-group-item:hover:before, .list-group-item:hover:after,
-	.list-group-item2:hover:before, .list-group-item2:hover:after {
-	transform: translateY(0);
-}
-
-.info-label {
-	display: inline-block;
-	width: 150px;
-	font-weight: bold;
-}
-
-.info-value {
-	display: inline-block;
-}
-
-/* 추가 스타일 */
-.btn-custom {
-	color: white;
-	background-color: #60626C;
-}
-
-.btn-custom:hover, label.upload-btn:hover, #file-delete:hover {
-	background-color: #ffe98c;
-	color: black;
-}
-
-/* 파일 선택 버튼 디자인 */
-label.upload-btn, #file-delete {
-	display: inline-block;
-	border-radius: 8px;
-	padding: 6px 12px;
-	margin-top: 16px;
-	background-color: #60626C;
-	color: #fff;
-	font-size: 16px;
-	cursor: pointer;
-}
-
-#tel1, #tel2, #tel3 {
-	width: 150px;
-}
-
-.img-wrapper {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
-.img-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    height: 100%;
-    width: auto;
-}
-</style>
+<link rel="stylesheet" href="../resources/css/user.css">
 </head>
 <%
 //세션에서 값을 꺼내는 방법 
@@ -174,14 +22,18 @@ System.out.println("user_id : " + user_id);
 System.out.println("bag : " + bag); */
 String contextPath = (String) request.getContextPath();
 %>
-<div
-	class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-	<div class="img-wrapper">
-	<img src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+<div class="col text-center container">
+	<div class="row">
+		<button style="width:30px; height:30px; float:left">뒤</button>
 	</div>
-	<label for="file-input" class="upload-btn">프로필 사진 변경</label>
-	<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">프로필 사진 삭제</a>
-	<input type="file" id="file-input" name="file-input" onclick="editImg()" style="display: none">
+	<div class="row d-flex flex-column align-items-center">
+		<div class="img-wrapper">
+			<img src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+		</div>
+		<label for="file-input" class="upload-btn">프로필 사진 변경</label>
+		<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">프로필 사진 삭제</a>
+		<input type="file" id="file-input" name="file-input" onclick="editImg()" style="display: none">
+	</div>
 </div>
 <div class="col-md-8">
     <h3>개인정보 수정</h3>
@@ -195,28 +47,30 @@ String contextPath = (String) request.getContextPath();
 			<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
 			<span class="hypen">-</span>
 			<input type="text" id="tel3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
+			<input type="hidden" id="telDoubleChk">
 		</li>
-		<li class="list-group-item"><span class="info-label">아이디</span> <span
-			class="info-value">${bag.user_id}</span></li>
-		<li class="list-group-item"><span class="info-label">닉네임</span>
-			<p></p> <input type="text" id="nickname" maxlength="10" placeholder="${bag.user_nickname}"> 
-					<input id="nickname_check" type="button" onclick="nicknameCheck()" value="중복확인">
+		<li class="list-group-item"><span class="info-label">아이디</span>
+			<span class="info-value">${bag.user_id}</span></li>
+		<li class="list-group-item"><span class="info-label">닉네임</span><p></p>
+			<input type="text" id="nickname" maxlength="10"> 
+			<input id="nickname_check" type="button" onclick="nicknameCheck()" value="중복확인">
 			<p>
-				<span id="successNicknameChk" style="font-size: 15px;">※닉네임은 2자 이상 10자 이하로 설정해주시기
-					바랍니다.</span>
-			</p> <input type="hidden" id="nicknameDoubleChk" /></li>
+				<span id="successNicknameChk" style="font-size: 15px;">※닉네임은 2자 이상 10자 이하로 설정해주시기 바랍니다.</span>
+			</p> <input type="hidden" id="nicknameDoubleChk" />
+		</li>
 		<li class="list-group-item"><span class="info-label">이메일</span>
-			<span class="info-value">${bag.user_email}</span></li>
-		<li class="list-group-item"><span class="info-label">주소</span>
-			<p></p> <input type="text" id="addr1" placeholder="${bag.user_addr1}">
-			<input id='addr_find' type="button" onclick="addrFind()" value="우편번호 찾기">
-		<p></p> <input type="text" id="addr2" placeholder="${bag.user_addr2}" style="width: 500px;">
-		<p></p> <input type="text" id="addr3" placeholder="${bag.user_addr3}" style="width: 300px;">
-				<input type="text" id="addr4" placeholder="${bag.user_addr4}" style="width: 300px;">
-				<input type="hidden" id="addrDoubleChk" /></li>
+			<span class="info-value">${bag.user_email}</span>
+		</li>
+		<li class="list-group-item"><span class="info-label">주소</span><p></p>
+			<input type="text" id="addr1" placeholder="${bag.user_addr1}"><p></p>
+			<input type="text" id="addr2" placeholder="${bag.user_addr2}" style="width: 500px;"><p></p>
+			<input type="text" id="addr3" placeholder="${bag.user_addr3}" style="width: 300px;">
+			<input type="text" id="addr4" style="width: 300px;">
+			<input type="hidden" id="addrDoubleChk">
+		</li>
 	</ul>
 	<div class="mt-3">
-		<a href="#" class="btn btn-custom" id="edit" onclick="go()">수정하기</a>
+		<a href="#" class="btn btn-custom" onclick="editUser()">수정하기</a>
 	</div>
 	<hr>
 	<h3>비밀번호 수정</h3>
@@ -238,29 +92,33 @@ String contextPath = (String) request.getContextPath();
 		</li>
 	</ul>
 	<div class="mt-3">
-		<a href="#" class="btn btn-custom" id="edit" onclick="editPw()">수정하기</a>
+		<a href="#" class="btn btn-custom" onclick="editPw()">수정하기</a>
 	</div>
 </div>
 
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+$(function() {
 	var tel = `${bag.user_tel}`;
 	var tel1 = tel.slice(0, 3); // 첫 번째 번호
 	var tel2 = tel.slice(3, 7); // 두 번째 번호
 	var tel3 = tel.slice(7, 11); // 세 번째 번호
+	$('#tel1').val(tel1);
+	$('#tel2').val(tel2);
+	$('#tel3').val(tel3);
+	$('#nickname').val("${bag.user_nickname}");
+	$('#addr1').val("${bag.user_addr1}");
+	$('#addr2').val("${bag.user_addr2}");
+	$('#addr3').val("${bag.user_addr3}");
+	$('#addr4').val("${bag.user_addr4}");
+	$('#nicknameDoubleChk').val(true);
+})
 	
-	console.log(tel1);
-	console.log(tel2);
-	console.log(tel3); 
 	
-	document.getElementById("tel1").innerHTML = tel1;
-	document.getElementById("tel2").innerHTML = tel2;
-	document.getElementById("tel3").innerHTML = tel3;
-	
-	$("#edit").click(function() {
-    	var tel = $('#tel1').val() + $('#tel2').val() + $('#tel3').val();
+	/* $("#edit").click(function() {
     	var nickname = $('#nickname').val();
     	var addr1 = $('#addr1').val();
     	var addr2 = $('#addr2').val();
@@ -269,7 +127,7 @@ String contextPath = (String) request.getContextPath();
     	var addr5 = $('#addr1').val() + "/" + $('#addr2').val() + "/" + $('#addr3').val() + "/" + $('#addr4').val();
         	
         	
-	}); // edit
+	}); // edit */
 	
 	// 닉네임 체크
 	function nicknameCheck() {
@@ -357,7 +215,7 @@ String contextPath = (String) request.getContextPath();
         }).open();
     } // addrFind
     
-    function go() {
+    function editUser() {
     	var form = new FormData();
         form.append( "file-input", $("#file-input")[0].files[0] );
     	var tel = $('#tel1').val() + $('#tel2').val() + $('#tel3').val();
@@ -403,6 +261,7 @@ String contextPath = (String) request.getContextPath();
             });
     }
     
+    // 현재 비밀번호 입력
     $('#cur_pw').change(function (event) {
     	event.preventDefault();
     	var pw = $('#cur_pw').val();
@@ -428,6 +287,7 @@ String contextPath = (String) request.getContextPath();
 	    }); // ajax
     }); // cur_pw
     
+    // 새 비밀번호 입력
     $('#new_pw').change(function (event) {
     	event.preventDefault();
     	var pw = $('#new_pw').val();
@@ -466,6 +326,7 @@ String contextPath = (String) request.getContextPath();
         }
     }); // new_pw
 
+ 	// 새 비밀번호 입력2
     $('#new_pw2').change(function (event) {
         event.preventDefault();
         var pw = $('#new_pw').val();
@@ -483,6 +344,7 @@ String contextPath = (String) request.getContextPath();
         }
     }); // new_pw2
     
+    // 비밀번호 수정
     function editPw() {
         if ($('#pwDoubleChk1').val() == 'true' && $('#pwDoubleChk2').val() == 'true' && $('#pwDoubleChk3').val() == 'true') {
         	$.ajax({
@@ -502,7 +364,7 @@ String contextPath = (String) request.getContextPath();
         }
     } // editPw
     
-  //이미지 미리보기
+  	//이미지 미리보기
     var sel_file;
  
     $(document).ready(function() {
