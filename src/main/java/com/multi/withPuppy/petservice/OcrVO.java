@@ -1,11 +1,13 @@
 package com.multi.withPuppy.petservice;
 
-public class BillVO { 
+public class OcrVO { 
 	private String bill_no;
 	private String bill_brn;
 	private String bill_name;
 	private String bill_addr;
-	private int bill_totalfee;
+	private String bill_totalfee;
+	private String bill_dx;
+	private String bill_fee;
 	public String getBill_no() {
 		return bill_no;
 	}
@@ -30,16 +32,29 @@ public class BillVO {
 	public void setBill_addr(String bill_addr) {
 		this.bill_addr = bill_addr;
 	}
-	public int getBill_totalfee() {
+	public String getBill_totalfee() {
 		return bill_totalfee;
 	}
-	public void setBill_totalfee(int bill_totalfee) {
+	public void setBill_totalfee(String bill_totalfee) {
 		this.bill_totalfee = bill_totalfee;
+	}
+	public String getBill_dx() {
+		return bill_dx;
+	}
+	public void setBill_dx(String bill_dx) {
+		this.bill_dx = bill_dx;
+	}
+	public String getBill_fee() {
+		return bill_fee;
+	}
+	public void setBill_fee(String bill_fee) {
+		this.bill_fee = bill_fee;
 	}
 	@Override
 	public String toString() {
-		return "BillVO [bill_no=" + bill_no + ", bill_brn=" + bill_brn + ", bill_name=" + bill_name + ", bill_addr="
-				+ bill_addr + ", bill_totalfee=" + bill_totalfee + "]";
+		return "OcrVO [bill_no=" + bill_no + ", bill_brn=" + bill_brn + ", bill_name=" + bill_name + ", bill_addr="
+				+ bill_addr + ", bill_totalfee=" + bill_totalfee + ", bill_dx=" + bill_dx + ", bill_fee=" + bill_fee
+				+ "]";
 	}
 	
 	
