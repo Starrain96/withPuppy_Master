@@ -11,145 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-       .container-fluid {
-		  padding: 50px 10%;
-		}
-		
-		.card-header {
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  text-align: center;
-		  background-color: #ffe98c;
-		  color: #000;
-		  height: 70px;
-		}
-		
-		.card-footer {
-		  background-color: #F5F5F5;
-		}
-		
-		.list-group-item {
-		  margin-bottom: 0.75rem !important;
-		  border-radius: 10px;
-		  overflow: hidden;
-		  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-		  transition: all 0.3s ease;
-		  font-size: 1.2em;
-		  padding-top: 1.2rem !important;
-		  padding-bottom: 1.2rem !important;
-		}
-		
-		.list-group-item2 {
-		  margin-bottom: 0.75rem !important;
-		  border-radius: 10px;
-		  overflow: hidden;
-		  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-		  transition: all 0.3s ease;
-		  font-size: 0.95em;
-		}
-		
-		.list-group-item .list-group-item2 .info-label {
-		  display: inline-block;
-		  width: 100px;
-		  font-weight: bold;
-		  margin-right: 1rem;
-		}
-		
-		.list-group-item .list-group-item2 .info-value {
-		  display: inline-block;
-		  margin-right: 2rem;
-		}
-		
-		.list-group-item:hover, .list-group-item2:hover {
-		  transform: translateY(-5px);
-		  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-		}
-		
-		.list-group-item a, .list-group-item2 a {
-		  color: #333;
-		  text-decoration: none;
-		  display: block;
-		  padding: 0.5rem;
-		}
-		
-		.list-group-item a:hover, .list-group-item2 a:hover {
-		  color: #555;
-		}
-		
-		.list-group-item:before,
-		.list-group-item:after, 
-		.list-group-item2:before,
-		.list-group-item2:after  {
-		  content: "";
-		  position: absolute;
-		  width: 5px;
-		  height: 100%;
-		  left: 0;
-		  background-color: #ffe98c;
-		  transform: translateY(-100%);
-		  transition: transform 0.3s ease;
-		}
-		
-		.list-group-item:before, .list-group-item2:before {
-		  top: 0;
-		}
-		
-		.list-group-item:after, .list-group-item2:after {
-		  bottom: 0;
-		  transform: translateY(100%);
-		}
-		
-		.list-group-item:hover:before,
-		.list-group-item:hover:after,
-		.list-group-item2:hover:before,
-		.list-group-item2:hover:after{
-		  transform: translateY(0);
-		}
-		
-		.info-label {
-		  display: inline-block;
-		  width: 200px;
-		  font-weight: bold;
-		}
-		.info-value {
-		  display: inline-block;
-		}
-		
-       	/* 추가 스타일 */
-        .btn-custom {
-        	color: white;
-			background-color: #60626C;
-        }
-
-        .btn-custom:hover {
-            background-color: #ffe98c;
-            color: black;
-        }
-        .img-wrapper {
-		    position: relative;
-		    width: 200px;
-		    height: 200px;
-		    overflow: hidden;
-		    border-radius: 50%;
-		}
-		
-		.img-wrapper img {
-		    position: absolute;
-		    top: 0;
-		    left: 0;
-		    right: 0;
-		    bottom: 0;
-		    margin: auto;
-		    height: 100%;
-		    width: auto;
-		}
-    </style>
+    <link rel="stylesheet" href="../resources/css/user.css">
 </head>
 <%
 String contextPath = (String) request.getContextPath();
@@ -179,47 +41,52 @@ String contextPath = (String) request.getContextPath();
         <!-- 메인 컨텐츠 -->
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="card">
-                <h5 class="card-header">프로필 관리</h5>
+                <h5 class="card-header">반려동물 관리</h5>
                 <div class="card-body">
                     <!-- 프로필 정보 출력 -->
-                    <div class="row">
-                        <div class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
-						  <div class="img-wrapper">
-							<img src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+                    <div class="container">
+	                    <div class="row">
+	                    	<!-- 상단 우측 버튼을 위한 영역 -->
+	                    	<div class="register-div">
+						    	<a class="btn btn-custom" onclick="addPet()" style="float: right; margin-bottom:20px">반려동물 등록</a>
 							</div>
-						  <a href="#" class="mt-3 btn btn-custom">반려동물 사진 변경</a>
-						</div>
-                        <div class="col-md-8">
-                            <!-- <h5 class="card-title">John Doe</h5> 
-                            <hr>-->
-                            <c:if test="${not empty petList}">
-                            <c:forEach var="pet" items="${petList}">
-                            <ul class="list-group list-group-flush">
-                            	<li class="list-group-item">
-								    <span class="info-label">반려동물 이름</span> 
-								    <span class="info-value">${pet.pet_name}</span>
-								</li>
-                                <li class="list-group-item">
-								    <span class="info-label">반려동물 출생일</span> 
-								    <span class="info-value">${pet.pet_age}</span>
-								  </li>
-                                <li class="list-group-item">
-                                	<span class="info-label">반려동물 종</span> 
-								    <span class="info-value">${pet.pet_kind}</span>
-								</li>
-                                <li class="list-group-item">
-              						<span class="info-label">반려동물 몸무게</span> 
-								    <span class="info-value">${pet.pet_weight}</span>
-								</li>
-                            </ul>
-                            </c:forEach>
-                            </c:if>
-                            <div class="mt-3">
-							    <a href="#" class="btn btn-custom">반려동물 추가</a>
+	                    </div>
+	                    <div class="row">
+	                    	<!-- 반려동물을 등록하세요! 영역 -->
+	                    	<div class="empty" style="text-align: center;" id="empty">
+						    	<span style="font-size: 2.2em; font-weight: bold;">반려동물을 등록하세요!</span>
 							</div>
-                        </div>
+	                    </div>
+	                    <div class="row d-flex flex-column align-items-center" id="pet_info">
+	                    	<!-- 반려동물이 들어갈 영역 -->
+	                    	<%-- <div class="container ms-4">
+		                        <div id="pet_img" style="float: left; margin-right:30px; margin-top:70px" class="col-3">
+									<img class="img-wrapper" src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+								</div>
+		                        <div style="float: left;" class="col-8">
+		                            <ul class="list-group list-group-flush">
+		                            	<li class="list-group-item">
+										    <span class="info-label">반려동물 이름</span> 
+										    <span class="info-value">${mypet.pet_name}</span>
+										</li>
+		                                <li class="list-group-item">
+										    <span class="info-label">반려동물 출생일</span> 
+										    <span class="info-value">${mypet.pet_age}</span>
+										  </li>
+		                                <li class="list-group-item">
+		                                	<span class="info-label">반려동물 종</span> 
+										    <span class="info-value">${mypet.pet_kind}</span>
+										</li>
+		                                <li class="list-group-item">
+		              						<span class="info-label">반려동물 몸무게</span> 
+										    <span class="info-value">${mypet.pet_weight}</span>
+										</li>
+		                            </ul>
+		                     	</div>
+	                        </div> --%>
+	                    </div>
                     </div>
-                </div>
+                	</div>
                 <div class="card-footer text-muted text-end">
                    	강아지와🐶
                 </div>
@@ -229,6 +96,89 @@ String contextPath = (String) request.getContextPath();
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+$(function() {
+	petlist();
+})
 
+function petlist() {
+$.ajax({
+    url : "../user/petList",
+    success : function(data) {
+    	if (data.length!= "0") {
+    		var div = document.getElementById('empty');
+			div.remove();
+	    	$('#pet_info').empty();
+	    	for (i = 0; i < data.length; i++) {
+	    		//var hr = `<hr>`
+				var petInfo = 
+					`<div class="container ms-4">
+		                        <div id="pet_img" style="float: left; margin-right:30px; margin-top:70px" class="col-3">
+									<img class="img-wrapper" src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+								</div>
+		                        <div style="float: left;" class="col-8">
+		                            <ul class="list-group list-group-flush">
+		                            	<li class="list-group-item">
+										    <span class="info-label">반려동물 이름</span> 
+										    <span class="info-value">`+data[i].pet_name+`</span>
+										</li>
+		                                <li class="list-group-item">
+										    <span class="info-label">반려동물 출생일</span> 
+										    <span class="info-value">`+data[i].pet_birth+`</span>
+										  </li>
+		                                <li class="list-group-item">
+		                                	<span class="info-label">반려동물 종</span> 
+										    <span class="info-value">`+data[i].pet_kind+`</span>
+										</li>
+		                                <li class="list-group-item">
+		              						<span class="info-label">반려동물 몸무게</span> 
+										    <span class="info-value">`+data[i].pet_weight+`kg</span>
+										</li>
+		                            </ul>
+		                            <div style="margin-bottom:20px">
+					            		<button class="btn btn-custom" onClick="location.href='updatePetPage?pet_no=`+data[i].pet_no+`'">✏️</button>
+					            		<button class="btn btn-custom" onclick="deletePet(`+data[i].pet_no+`,`+data[i].pet_name+`)">❌</button>
+				            		</div>
+		                     	</div>
+	                        </div>`;
+				$('#pet_info').append(petInfo);
+				if (i < data.length-1) {
+					$('#pet_info').append(`<hr>`);
+				}
+			}
+    	}
+    	
+    }
+})
+}
+
+// 반려동물 등록
+function addPet() {
+	console.log("등록");
+    $.ajax({
+        url: "<%=contextPath%>"+'/user/addPet',
+        success: function(data) {
+            $("#row").html(data);
+        }
+    });
+}
+
+//반려동물 삭제
+function deletePet(petno, petname) {
+	if (confirm(petname + "를(을) 삭제하시겠습니까?")) {
+		$.ajax({
+	        url : "deletePet",
+	        data : {
+	            pet_no : petno
+	        },
+	        success : function(data) {
+	        	alert("반려동물이 삭제되었습니다.");
+	        	document.location.reload();
+	        }
+		})
+    }
+}
+</script>
 </body>
 </html>

@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserController {
 	@Autowired
 	UserDAO dao;
-	
+
 	@RequestMapping("/signupUser")
 	public void signupUser() {
 	}
@@ -40,6 +40,10 @@ public class UserController {
 	@RequestMapping("/myPet")
 	public void myPet() {
 	}
+	
+	@RequestMapping("/addPet")
+	public void addPet() {
+	}
 
 	@RequestMapping("/userHistory")
 	public void userHistory() {
@@ -49,15 +53,15 @@ public class UserController {
 	@RequestMapping("/loginUser")
 	public String loginUser(UserVO bag, Model model, HttpSession session) {
 
-		System.out.println("컨트롤러 bag : " + bag);
-		
+		//System.out.println("컨트롤러 bag : " + bag);
+
 		UserVO vo = dao.loginUser(bag);
 		model.addAttribute("vo", vo);
-		System.out.println("컨트롤러 vo : " + vo);
+		//System.out.println("컨트롤러 vo : " + vo);
 		if (vo != null) {
 			session.setAttribute("id", bag.getUser_id());
 			session.setAttribute("bag", vo);
-			System.out.println("세션에 아이디가 들어 있는지? : " + (String) session.getAttribute("id"));
+			//System.out.println("세션에 아이디가 들어 있는지? : " + (String) session.getAttribute("id"));
 			System.out.println("login success");
 			return "redirect:../main.jsp";
 		} else {
@@ -101,7 +105,7 @@ public class UserController {
 	}
 
 	// 회원가입 : 제출 버튼
-	@RequestMapping("/goUser")
+	@RequestMapping("/insertUser")
 	@ResponseBody
 	public int insertUser(UserVO bag) {
 		System.out.println("insert bag : " + bag);
@@ -118,6 +122,8 @@ public class UserController {
 		String id = (String) session.getAttribute("id");
 		String userPW = dao.pwCheck(id);
 
+		System.out.println("화면에서 받아온에서 받아온 pw : " + pw);
+		System.out.println("dao에서 받아온 pw : " + userPW);
 		if (userPW == null) {
 			// 사용자의 비밀번호가 데이터베이스에서 검색되지 않은 경우
 			return -1;
@@ -134,14 +140,16 @@ public class UserController {
 
 	// 회원탈퇴
 	@RequestMapping("/deleteUser")
-	public String deleteUser(HttpSession session) throws Exception {
+	public void deleteUser(HttpSession session,  Model model) throws Exception {
 		String id = (String) session.getAttribute("id"); // 세션에서 아이디 값을 가져온다.
+		int result = 0;
 		if (id != null) {
-			dao.deleteUser(id); // memberService에서 해당 아이디 값을 가진 회원을 삭제한다.
+			result = dao.deleteUser(id); // memberService에서 해당 아이디 값을 가진 회원을 삭제한다.
 			session.invalidate(); // 탈퇴 후 자동으로 로그아웃 처리하기 위해 세션을 모두 무효화한다.
 		}
-		return "main"; // 탈퇴 후 메인 페이지로 이동한다.
+		model.addAttribute("result", result);
 	}
+	
 
 	// 회원수정 : 제출 버튼
 //	@RequestMapping("/updateUser")
@@ -157,23 +165,22 @@ public class UserController {
 	// 회원수정 : 제출 버튼
 	@PostMapping("/updateUser")
 	@ResponseBody
-	public int updateUser(@RequestParam("user_img") MultipartFile file,
-			@RequestParam("user_tel") String tel, @RequestParam("user_nickname") String nickname,
-			@RequestParam("user_addr1") String addr1, @RequestParam("user_addr2") String addr2,
-			@RequestParam("user_addr3") String addr3, @RequestParam("user_addr4") String addr4,
-			@RequestParam("user_addr5") String addr5, UserVO bag, HttpServletRequest request, Model model) throws Exception {
-		
+	public int updateUser(@RequestParam("user_img") MultipartFile file, @RequestParam("user_tel") String tel,
+			@RequestParam("user_nickname") String nickname, @RequestParam("user_addr1") String addr1,
+			@RequestParam("user_addr2") String addr2, @RequestParam("user_addr3") String addr3,
+			@RequestParam("user_addr4") String addr4, @RequestParam("user_addr5") String addr5, UserVO bag,
+			HttpServletRequest request, Model model) throws Exception {
+
 		String savedName = file.getOriginalFilename();
-		String uploadPath 
-			= request.getSession().getServletContext().getRealPath("resources/upload");
+		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
 		File target = new File(uploadPath + "/" + savedName);
 		file.transferTo(target);
-		
+
 		model.addAttribute("savedName", savedName);
 		System.out.println("img넣기 전>> " + bag);
 		bag.setUser_img(savedName);
 		System.out.println("img넣은 후>> " + bag);
-		
+
 		bag.setUser_nickname(nickname);
 		bag.setUser_tel(tel);
 		bag.setUser_addr1(addr1);

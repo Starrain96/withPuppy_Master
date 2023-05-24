@@ -11,22 +11,26 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript">
-	$(function () {
-		$.ajax({
-			url : "insertBill",
-			data : {
-				ocr : "${bag.ocr}"
-			},
-			success : function() {
-				alert("성공");
-				window.close();
-			}, //success
-			error : function () {
-			alert("실패");
+	 $(function () {
+		if (("${bag.ocr}")==("")) {
 			window.close();
-			}
-		})
-	})
+		} else {
+			$.ajax({
+				url : "insertBill",	 // OCR API 호출
+				data : {
+					ocr : "${bag.ocr}"	// 입력된 OCR 이미지 이름
+				},
+				success : function() {
+					alert("성공");
+					window.close();
+				}, //success
+				error : function () {
+				alert("실패");
+				window.close();
+				} //error
+			})//ajax
+		} // else
+	}) // fun 
 	</script>
 </body>
 </html>
