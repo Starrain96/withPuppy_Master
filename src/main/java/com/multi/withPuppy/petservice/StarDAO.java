@@ -35,13 +35,13 @@ public class StarDAO {
 		my.insert("star.insertBill", bag);
 		
 		for (int i = 0; i < ocrAll.length; i++) {
-			System.out.println(ocrAll[0][0]);
-			System.out.println(ocrAll[i][5]);
-			System.out.println(ocrAll[i][6]);
+			System.out.println(i + ocrAll[0][0]);
+			System.out.println(i + ocrAll[i][5]);
+			System.out.println(i + ocrAll[i][6]);
 			
-			bag.setBill_no(ocrAll[0][0]);
-			bag.setBill_dx(ocrAll[i][5]);
-			bag.setBill_fee(ocrAll[i][6]);
+			bag2.setBill_no(ocrAll[0][0]);
+			bag2.setBill_dx(ocrAll[i][5]);
+			bag2.setBill_fee(ocrAll[i][6]);
 			my.insert("star.insertBD", bag2);
 		}
 	}

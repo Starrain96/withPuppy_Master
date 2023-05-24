@@ -60,9 +60,8 @@
 									</li>
 								</ul>
 								<div class="mt-3">
-									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file" >
-									 <button class="btn btn-outline-danger" data-bs-toggle="modal"
-										data-bs-target="#exampleModal" onclick="location'insertBill'" >영수증 사진 추가</button>
+									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file1" >
+									 <button class="btn btn-outline-danger">영수증 사진 추가</button><input type="file" id="ocr" name="file2" >
 								</div>
 							</div>
 						</div>

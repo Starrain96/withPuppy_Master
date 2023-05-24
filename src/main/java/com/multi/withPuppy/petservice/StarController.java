@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,7 +49,10 @@ public class StarController {
 	}
 
 	@RequestMapping("insertStar") // 후기 insert
-	public void insert(StarVO starVO, HttpServletRequest request, MultipartFile file, Model model) throws Exception {
+	public void insert(StarVO starVO, HttpServletRequest request,@RequestParam(name="file1") MultipartFile file,@RequestParam(name="file2") MultipartFile ocr , Model model) throws Exception {
+		
+		String ocrName = "";
+		
 		if (!file.isEmpty()) {
 			String savedName = file.getOriginalFilename();
 			String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
@@ -59,7 +63,23 @@ public class StarController {
 			model.addAttribute("savedName", savedName);
 			starVO.setImg1(savedName);
 		}
+		
+		if (!ocr.isEmpty()) {
+			String savedName = ocr.getOriginalFilename();
+			String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
+			File target = new File(uploadPath + "/" + savedName);
+			ocr.transferTo(target);
+			
+			// System.out.println("target : "+ target);  <<<< upload 되는 절대경로 찾는 방법!!!
+			model.addAttribute("savedName", savedName);
+			starVO.setOcr(savedName);
+			ocrName = savedName;
+			
+			// System.out.println(ocrName); 이름 잘 들어감 확인 완료
+		}
+		
 		dao.insert(starVO);
+		model.addAttribute("bag", starVO);
 		// 컨트롤로의 vo변수명을 맨앞글자만 소문자로 바꾸어서 변수를 만들면,
 		// 자동으로 모델의 속성으로 등록시켜줌.
 		// model.addAttribute("movieVO", movieVO);
@@ -76,7 +96,7 @@ public class StarController {
 
 	
 	@RequestMapping("insertBill") // 후기 사진 upload
-	public void insertBill() throws Exception {
+	public void insertBill(String ocr) throws Exception {
 		
 		System.out.println("영수증 OCR 실행");
 		
@@ -84,7 +104,7 @@ public class StarController {
 		String secretKey = NaverVISIONAPI.SECRECT_KEY;
 		// String imageFile = "alone1.jpeg";
 		// String imageFile = "doc1.jpeg";
-		String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\hp_fee01.jpg";
+		String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\"+ ocr;
 		// String imageFile = HttpServletRequest.getServletContext().getRealPath("/resources/upload/hp_fee01.jpg")
 		
 		try {
