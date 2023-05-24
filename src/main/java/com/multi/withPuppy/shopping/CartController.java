@@ -13,10 +13,8 @@ public class CartController {
 	@Autowired
 	CartDAO dao;
 
-	// 미완
 	@RequestMapping("shopping/cartList")
-	public void cartList(String user_id, Model model) {
-		model.addAttribute("user_id", user_id);
+	public void cartList() {
 	}
 	
 	@RequestMapping("shopping/cartPriceTotal")
