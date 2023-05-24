@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="insertBill"><button>영수증 등록하기</button></a>
+
 </body>
 </html>
