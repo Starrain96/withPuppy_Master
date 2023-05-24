@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,6 +32,7 @@ public class ShopManageController {
 		return list;
 	}
 	
+	//상품 전체 개수 -> 페이지네이션용
 	@RequestMapping("shopping/productCnt")
 	@ResponseBody
 	public int productCnt() {
@@ -38,11 +40,33 @@ public class ShopManageController {
 		return n;
 	}
 	
+	//관리자 상품 검색
 	@RequestMapping("shopping/productSearch")
 	@ResponseBody
 	public List<ProductVO> productSearch(String name) {
 		List<ProductVO> list = dao.search(name);
-		System.out.println(list.size());
 		return list;
 	}
+	
+	//관리자 상품 추가
+	@RequestMapping("shopping/productAdd")
+	public void productAdd(ProductVO bag) {
+		int result = dao.addProduct(bag);
+	}
+	
+	//관리자 상품 수정
+	@RequestMapping("shopping/updateProduct")
+	@ResponseBody
+	public int updateProduct(ProductVO bag) {
+		int result = dao.updateProduct(bag);
+		return result;
+	}
+	
+	//관리자 상품 수정시 정보 불러오기
+		@RequestMapping("shopping/bringInfo")
+		@ResponseBody
+		public ProductVO bringInfo(int product_id) {
+			ProductVO result = dao.bringInfo(product_id);
+			return result;
+		}
 }
