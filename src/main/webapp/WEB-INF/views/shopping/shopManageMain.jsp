@@ -9,10 +9,14 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<script src="../resources/js/manage.js"></script> 
+<script src="../resources/js/manage.js"></script>
 <script src="../resources/js/category.js"></script> 
 <link rel="stylesheet" href="../resources/css/manage.css">
 </head>
+
+<script type="text/javascript">
+
+</script>
 
 <body>
 	<div class="flex">
@@ -95,19 +99,19 @@
 			<a href="#">close</a>
 		</div>
 		<div class="modal_content">
-		<form action="productAdd" method="post">
+		<form id="addForm">
 		<table>
 			<tr>
 				<td>상품명 : </td>
-				<td><input type="text" name = "product_name" class="inputForm" id="pName" placeholder="상품명입력"></td>
+				<td><input type="text" name = "product_name" class="inputForm" id="product_name" placeholder="상품명입력"></td>
 			</tr>
 			<tr>
 				<td>가격 :</td>
-				<td><input type="text" name = "product_price" class="inputForm" id="pPrice" placeholder="가격 입력"></td>
+				<td><input type="text" name = "product_price" class="inputForm" id="product_price" placeholder="가격 입력"></td>
 			</tr>
 			<tr>
 				<td>카테고리 : </td>
-				<td><input type="text" name = "category2" class="inputForm" id="pCate" placeholder="카테고리 번호 입력"></td>
+				<td><input type="text" name = "category2" class="inputForm" id="category2" placeholder="카테고리 번호 입력"></td>
 			</tr>
 			<tr>
 				<td>상세 정보 : </td>
@@ -115,14 +119,14 @@
 			</tr>
 			<tr>
 				<td>재고 : </td>
-				<td><input type="text" name = "product_cnt" class="inputForm" id="pCnt" placeholder="재고 입력"></td>
+				<td><input type="text" name = "product_cnt" class="inputForm" id="product_cnt" placeholder="재고 입력"></td>
 			</tr>
 			<tr>
 				<td>이미지 url: </td>
-				<td><input type="text" name = "product_img" class="inputForm" id="pImg" placeholder="이미지 url"></td>
+				<td><input type="text" name = "product_img" class="inputForm" id="product_img" placeholder="이미지 url"></td>
 			</tr>
 		</table>
-		<button type="submit" class="addBtn">상품 추가하기</button>
+		<button  class="addBtn" onclick="addProduct()">상품 추가하기</button>
 		</form>
 		</div>
 	</div>
@@ -161,6 +165,7 @@
 			</tr>
 		</table>
 		<button type="button" class="addBtn" onclick="editProduct()">상품수정하기</button>
+		<button type="button" class="addBtn" onclick="deleteProduct()">상품삭제하기</button>
 		</form>
 		</div>
 	</div>

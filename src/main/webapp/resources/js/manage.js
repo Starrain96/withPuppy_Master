@@ -1,4 +1,19 @@
-var productCnt=0;
+function deleteProduct(){
+	var inputValue = document.getElementById('product_id').value;
+	$.ajax({
+        url : "deleteProduct",
+        data : {product_id : inputValue},
+        success : function(data) {
+        	alert("삭제되었습니다.");
+        	document.querySelector('.modal_wrap').style.display = 'none';
+			document.querySelector('.black_bg').style.display = 'none';
+			document.location.reload();
+        }
+	})
+}
+/**
+ * 
+ */var productCnt=0;
 var n1, n2;
 
 //쇼핑몰 list 가져오는 함수
@@ -58,6 +73,11 @@ function onClick1(p_id) {/* 상품수정하기 */
 		function offClick() {
 			document.querySelector('.modal_wrap').style.display = 'none';
 			document.querySelector('.black_bg').style.display = 'none';
+			$('input[name=product_name]').attr('value',"");
+        	$('input[name=product_price]').attr('value',"");
+        	$('input[name=category2]').attr('value',"");
+        	$('input[name=product_cnt]').attr('value',"");
+        	$('input[name=product_img]').attr('value',"");
 		}
 		document.getElementById('modal_btn').addEventListener('click', onClick);
 		document.querySelector('.modal_close').addEventListener('click', offClick);
@@ -65,9 +85,29 @@ function onClick1(p_id) {/* 상품수정하기 */
 		function offClick1() {
 			document.querySelector('.modal_wrap1').style.display = 'none';
 			document.querySelector('.black_bg1').style.display = 'none';
+			$('input[name=product_name]').attr('value',"");
+        	$('input[name=product_price]').attr('value',"");
+        	$('input[name=category2]').attr('value',"");
+        	$('input[name=product_cnt]').attr('value',"");
+        	$('input[name=product_img]').attr('value',"");
 		}
 		document.querySelector('.modal_close1').addEventListener('click', offClick1);
 	};
+	
+function addProduct(){
+	console.log("addproduct함수");
+	$.ajax({
+        url : "addProduct",
+        type : 'POST',
+        data : $("#addForm").serialize(),
+        success : function(data) {
+        	alert("상품 등록 완료");
+        	document.querySelector('.modal_wrap').style.display = 'none';
+			document.querySelector('.black_bg').style.display = 'none';
+			document.location.reload();
+        }
+	})
+}
 
 function editProduct(){
 	$.ajax({
@@ -76,6 +116,9 @@ function editProduct(){
         data : $("#updateForm").serialize(),
         success : function(data) {
         	alert("수정되었습니다.");
+        	document.querySelector('.modal_wrap').style.display = 'none';
+			document.querySelector('.black_bg').style.display = 'none';
+			document.location.reload();
         }
 	})
 }
@@ -125,26 +168,33 @@ $(function shoppingStart() {
 //이름 검색 기능
 function searching(){
 	var value = document.getElementById("searching").value;
-	console.log("ajax : " + value);
 	$.ajax({
 		url : "productSearch",
 		data : {
 			name : value
 		},
 		success : function(data){
-		$('#pagingList').empty();
-			$('#manageList').empty();
-			for (i = 0; i < data.length; i++) {
-				var sen =`<tr id = "editBtn">
-					<td>`+data[i].product_id+`</td>
-					<td  ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
-					<td>`+data[i].category2+`</td>
-					<td>`+data[i].product_cnt+`</td>
-					<td>`+data[i].product_price+`</td>
-					<td></td>
-				</tr>`
+			$('#pagingList').empty();
+			if(data.length == 0){
+				$('#manageList').empty();
+				var sen = "검색된 값이 없습니다.";
 				$('#manageList').append(sen);
+			}
+			else{
+				$('#manageList').empty();
+				for (i = 0; i < data.length; i++) {
+					var sen =`<tr id = "editBtn">
+						<td>`+data[i].product_id+`</td>
+						<td  ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
+						<td>`+data[i].category2+`</td>
+						<td>`+data[i].product_cnt+`</td>
+						<td>`+data[i].product_price+`</td>
+						<td></td>
+					</tr>`
+					$('#manageList').append(sen);
+				}
 			}
 		}
 	})
 }
+ 
