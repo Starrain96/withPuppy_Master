@@ -16,8 +16,8 @@
 		update ask set ask_title = #{ask_title}, ask_content = #{ask_content} where ask_no = #{ask_no}
 	</update>
 	
-	<select id="one"  parameterType="String" resultType="AskVO">
-		select * from ask where ask_title like CONCAT('%', #{ask_title}, '%') order by ask_no desc
+	<select id="one"  parameterType="AskVO" resultType="AskVO">
+		select * from ask where ask_title like CONCAT('%', #{ask_title}, '%') and ask_writer = #{ask_writer} order by ask_no desc
 	</select>
 	
 	<select id="oneNo"  parameterType="Integer" resultType="AskVO">
@@ -26,6 +26,10 @@
 	
 	<select id="updateNo"  parameterType="Integer" resultType="AskVO">
 		select * from ask where ask_no = #{ask_no}
+	</select>
+	
+	<select id="allUser" parameterType="String" resultType="AskVO">
+		select * from ask where ask_writer = #{ask_writer} order by ask_no desc
 	</select>
 	
 	<select id="all" resultType="AskVO">

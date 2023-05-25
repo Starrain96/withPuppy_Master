@@ -16,8 +16,7 @@
 <div id="statFee">
 	<h4>${vo.bill_dx} 평균가 비교</h4>
 	<br>
-<!-- 	<select name="sido1" id="sido1"></select>
-	<select name="gugun1" id="gugun1"></select>  -->
+	<!-- 진료비 비교할 지역 선택 및 현재 위치로 이동 -->
     <div style="display: flex;">
   		<select style="width: 150px; margin-right: 10px;" class="form-select" name="selSido" id="selSido"></select>
   		<select style="width: 150px; margin-right: 10px;" class="form-select" name="selGugun" id="selGugun"></select>
@@ -212,12 +211,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
-
-
 // 주소 선택 ajax
 $('document').ready(function() {
-	
-
 	
 	// 주소 선택 관련 필요 변수
 	var area0 = ["시/도 선택","서울","인천","대전","광주","대구","울산","부산","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
@@ -248,12 +243,12 @@ $('document').ready(function() {
 	});
 
 	 // 시/도 선택시 구/군 설정
-
 	 $("select[name^=selSido]").change(function() {
 	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
-	  var $gugun = $(this).next(); // 선택영역 군구 객체
+	  var $gugun = $(this).next(); // 선택영역 구군 객체
 	  $("option",$gugun).remove(); // 구군 초기화
 
+	  //시,도 선택에 따른 구군 자동 변환
 	  if(area == "area0")
 	   $gugun.append("<option value=''>구/군 선택</option>");
 	  else {
@@ -263,9 +258,9 @@ $('document').ready(function() {
 	  }
 	 });
 	 
-	 
 });
  
+
 $(function() {
 	
 	// 내 위치 위도 경도 팝업 geolocation 및 kakao map api 이용.
@@ -275,7 +270,7 @@ $(function() {
 		var lat = position.coords.latitude;
 		var lon = position.coords.longitude;
 
-		console.log(lat, lon)
+		console.log(lat, lon) // 콘솔 출력 테스트용
 	  
 		var geocoder = new kakao.maps.services.Geocoder();
 
@@ -285,9 +280,9 @@ $(function() {
 				var sido = address.region_1depth_name; // 시/도
 				var gugun = address.region_2depth_name; // 구/군
 				
-	    		console.log(sido, gugun);
+	    		console.log(sido, gugun); // 콘솔 출력 테스트용
 				
-	    		compareCity(sido, gugun);
+	    		compareCity(sido, gugun); // 시도, 구군 진료비 비교 함수 호출
 			}
 		}); 
 	});
@@ -308,6 +303,7 @@ $(function() {
  		}) //ajax
  	}
  	
+ 	// 도시 진료비 비교
  	function compareCity(selSido, selGugun) {
  	    
  		$('#sidoName').empty()
@@ -362,8 +358,8 @@ $(function() {
  		})
  	}
 
- 	compareTotal();
- 	geolocation();
+ 	compareTotal(); // 전체 비교
+ 	geolocation(); //위치 호출
  	
  	$('#submit').click(function() {
  		var selSido = $('#selSido').val();
@@ -371,8 +367,9 @@ $(function() {
  		compareCity(selSido, selGugun);
  	})
  	
+ 	//현재 위치 버튼 클릭시 위치 호출
  	$('#gps').click(function() {
- 	 	geolocation();
+ 	 	geolocation(); 
  	})
  	
 }) //$function

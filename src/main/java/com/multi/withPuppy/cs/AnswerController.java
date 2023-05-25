@@ -49,12 +49,4 @@ public class AnswerController {
 		model.addAttribute("list", list);
 	}
 
-//	@RequestMapping("answerOne")
-//	public void one(String title, Model model) {
-//		System.out.println("one요청됨.");
-//		System.out.println(title);
-//		AnswerVO vo = dao.one(title);
-//		model.addAttribute("vo", vo);
-//	}
-
 }
