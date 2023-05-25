@@ -18,9 +18,14 @@ public class AskController {
 	AskDAO dao; 
 
 	@RequestMapping("selectAskList")
-	public void list(Model model) {
-		List<AskVO> list = dao.list();
+	public void list(String Ask_writer, Model model) {
+		if (Ask_writer.equals("admin1234")) {
+			List<AskVO> list = dao.list();
+			model.addAttribute("list", list);
+		} else {
+		List<AskVO> list = dao.listUser(Ask_writer);
 		model.addAttribute("list", list);
+		}
 	}
 	
 	@RequestMapping("insertAsk")

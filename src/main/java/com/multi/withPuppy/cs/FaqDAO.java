@@ -35,8 +35,8 @@ public class FaqDAO {
 		return result;
 	}
 	
-	public AskVO updateNo(int Faq_no) {
-		AskVO vo = my.selectOne("Faq.updateNo", Faq_no);
+	public FaqVO updateNo(int Faq_no) {
+		FaqVO vo = my.selectOne("Faq.updateNo", Faq_no);
 		System.out.println(vo);
 		return vo;
 	}
@@ -57,5 +57,6 @@ public class FaqDAO {
 		System.out.println(list.size());
 		return list;
 	}
+	
 	
 }
