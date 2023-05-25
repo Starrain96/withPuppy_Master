@@ -1,36 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="asdf">
+<mapper namespace="order">
 	<!-- insert, delete, update는 무조건 resultType="int"이므로
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
-	<insert id="create" parameterType="reportVO" >
-		insert into report  
-		values (null, #{title}, #{content}, #{writer})
+	
+	
+	 <insert id="insertOr" parameterType="orderVO" >
+		insert into order1(order_id, user_id, order_date, receiver_name, receiver_phone, receiver_id, addr1, addr2, addr3, total_price)
+		values (null, #{user_id}, now(), #{receiver_name}, #{receiver_phone}, #{receiver_id}, #{addr1}, #{addr2}, #{addr3}, #{total_price})
 	</insert>
 	
-	<delete id="delete"  parameterType="String">
-		delete from report 
-		where title = #{title}
+    <delete id="delete"  parameterType="String">
+		delete from order
+		where title = #{user_id}
 	</delete>
 	
-	<update id="update"  parameterType="reportVO">
-		update report 
-		set content = #{content} 
-		where no = #{no}
+	<update id="update"  parameterType="orderVO">
+		update order 
+		set order_address = #{order_address} 
+		where order_id = #{order_id}
 	</update>
 	
-	<select id="one" parameterType="Int" resultType="reportVO">
+	<select id="one" parameterType="String" resultType="orderVO">
 		select * 
-		from report
-		where no = #{no}
+		from order1
+		where user_id = #{user_id}
 	</select>
 	
-	<select id="all"  resultType="reportVO">
+	<select id="all"  resultType="orderVO">
 		select *
-		from report
-	</select>
+		from order
+	</select> 
+	
+	<select id="bringUserInfo" parameterType="String"  resultType="userVO">
+		select *
+		from user where user_id = #{user_id}
+	</select> 
+	
+	
 </mapper>
 
 
