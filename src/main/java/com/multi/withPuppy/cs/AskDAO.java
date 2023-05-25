@@ -23,6 +23,12 @@ public class AskDAO {
 		System.out.println(list.size());
 		return list;
 	}
+	
+	public List<AskVO> listUser(String Ask_writer) {
+		List<AskVO> list = my.selectList("Ask.allUser", Ask_writer);
+		System.out.println(list.size());
+		return list;
+	}
 
 	public int insert(AskVO bag) {
 		int result = my.insert("Ask.create", bag);

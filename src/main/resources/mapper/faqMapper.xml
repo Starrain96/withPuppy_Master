@@ -16,6 +16,10 @@
 		update faq set faq_title = #{faq_title}, faq_content = #{faq_content} where faq_no = #{faq_no}
 	</update>
 	
+	<select id="updateNo"  parameterType="Integer" resultType="FaqVO">
+		select * from faq where faq_no = #{faq_no}
+	</select>
+	
 	<select id="one"  parameterType="String" resultType="FaqVO">
 		select * from faq where faq_title like CONCAT('%', #{faq_title}, '%')
 	</select>

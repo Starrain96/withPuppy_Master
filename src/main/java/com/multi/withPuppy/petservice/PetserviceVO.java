@@ -5,7 +5,6 @@ public class PetserviceVO {
 	// 각 칼럼과 일치시켜 줌.
 	private int service_id;
 	private String service_name;       
-	private String category;
 	private double latitude;
 	private double longitude;
 	private String zipcode;
@@ -14,17 +13,9 @@ public class PetserviceVO {
 	private String tel;
 	private String homepage;
 	private String dayoff;
-	private String admission;
-	private String accompany;
 	private String petsize;
-	private String limited;
-	private String indoors;
-	private String outdoors;
-	private String normal_category;
-	private String additional_fee;
 	private String operating;
 	private String parking;
-	
 	public int getService_id() {
 		return service_id;
 	}
@@ -36,12 +27,6 @@ public class PetserviceVO {
 	}
 	public void setService_name(String service_name) {
 		this.service_name = service_name;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
 	}
 	public double getLatitude() {
 		return latitude;
@@ -91,53 +76,11 @@ public class PetserviceVO {
 	public void setDayoff(String dayoff) {
 		this.dayoff = dayoff;
 	}
-	public String getAdmission() {
-		return admission;
-	}
-	public void setAdmission(String admission) {
-		this.admission = admission;
-	}
-	public String getAccompany() {
-		return accompany;
-	}
-	public void setAccompany(String accompany) {
-		this.accompany = accompany;
-	}
 	public String getPetsize() {
 		return petsize;
 	}
 	public void setPetsize(String petsize) {
 		this.petsize = petsize;
-	}
-	public String getLimited() {
-		return limited;
-	}
-	public void setLimited(String limited) {
-		this.limited = limited;
-	}
-	public String getIndoors() {
-		return indoors;
-	}
-	public void setIndoors(String indoors) {
-		this.indoors = indoors;
-	}
-	public String getOutdoors() {
-		return outdoors;
-	}
-	public void setOutdoors(String outdoors) {
-		this.outdoors = outdoors;
-	}
-	public String getNormal_category() {
-		return normal_category;
-	}
-	public void setNormal_category(String normal_category) {
-		this.normal_category = normal_category;
-	}
-	public String getAdditional_fee() {
-		return additional_fee;
-	}
-	public void setAdditional_fee(String additional_fee) {
-		this.additional_fee = additional_fee;
 	}
 	public String getOperating() {
 		return operating;
@@ -153,15 +96,11 @@ public class PetserviceVO {
 	}
 	@Override
 	public String toString() {
-		return "PetserviceVO [service_id=" + service_id + ", service_name=" + service_name + ", category=" + category
-				+ ", latitude=" + latitude + ", longitude=" + longitude + ", zipcode=" + zipcode + ", road_address="
-				+ road_address + ", address=" + address + ", tel=" + tel + ", homepage=" + homepage + ", dayoff="
-				+ dayoff + ", admission=" + admission + ", accompany=" + accompany + ", petsize=" + petsize
-				+ ", limited=" + limited + ", indoors=" + indoors + ", outdoors=" + outdoors + ", normal_category="
-				+ normal_category + ", additional_fee=" + additional_fee + ", operating=" + operating + ", parking="
-				+ parking + "]";
+		return "PetserviceVO [service_id=" + service_id + ", service_name=" + service_name + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", zipcode=" + zipcode + ", road_address=" + road_address + ", address="
+				+ address + ", tel=" + tel + ", homepage=" + homepage + ", dayoff=" + dayoff + ", petsize=" + petsize
+				+ ", operating=" + operating + ", parking=" + parking + "]";
 	}
-	
 	
 	
 }

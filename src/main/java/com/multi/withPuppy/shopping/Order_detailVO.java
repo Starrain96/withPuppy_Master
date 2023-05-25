@@ -1,16 +1,11 @@
 package com.multi.withPuppy.shopping;
 
 public class Order_detailVO {
-	private int detail_id;
 	private int order_id;
 	private int product_id;
 	private int ordered_cnt;
-	public int getDetail_id() {
-		return detail_id;
-	}
-	public void setDetail_id(int detail_id) {
-		this.detail_id = detail_id;
-	}
+	private String order_status;
+	private String refundCheck_YN;
 	public int getOrder_id() {
 		return order_id;
 	}
@@ -29,11 +24,25 @@ public class Order_detailVO {
 	public void setOrdered_cnt(int ordered_cnt) {
 		this.ordered_cnt = ordered_cnt;
 	}
+	public String getOrder_status() {
+		return order_status;
+	}
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
+	public String getRefundCheck_YN() {
+		return refundCheck_YN;
+	}
+	public void setRefundCheck_YN(String refundCheck_YN) {
+		this.refundCheck_YN = refundCheck_YN;
+	}
 	@Override
 	public String toString() {
-		return "order_detailVO [detail_id=" + detail_id + ", order_id=" + order_id + ", product_id=" + product_id
-				+ ", ordered_cnt=" + ordered_cnt + "]";
+		return "Order_detailVO [order_id=" + order_id + ", product_id=" + product_id + ", ordered_cnt=" + ordered_cnt
+				+ ", order_status=" + order_status + ", refundCheck_YN=" + refundCheck_YN + "]";
 	}
+	
+	
 	
 	
 }

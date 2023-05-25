@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.multi.withPuppy.user.UserVO;
+
 @Component 
 public class OrderDAO {
 	
@@ -13,26 +15,48 @@ public class OrderDAO {
 	SqlSessionTemplate my;
 	
 	public int insert(OrderVO bag) {
-		int result = my.insert("report.insertRe", bag);
+		int result = my.insert("order.insertOr", bag);
 		System.out.println(result);
 		return result;
 	}
+
+	public int insert(Order_detailVO bag) {
+		int result = my.insert("order_detail.insertDe", bag);
+		System.out.println(result);
+		return result;
+	}
+	
+	public int lastId() {
+		int result = my.selectOne("order_detail.lastId");
+		System.out.println(result);
+		return result;
+	}
+
+	
 	public int delete(String title) {
-		int result = my.delete("report.delete", title);
+		int result = my.delete("order.delete", title);
 		System.out.println(result);
 		return result;
 	}
 	public int update(OrderVO bag) {
-		int result = my.update("report.update", bag);
+		int result = my.update("order.update", bag);
 		System.out.println(result);
 		return result;
 	}
-	public OrderVO one(int order_id) {
-		OrderVO vo = my.selectOne("report.one", order_id);
+	public OrderVO one(String user_id) {
+		System.out.println("dao : " + user_id);
+		OrderVO vo =my.selectOne("order.one", user_id);
+		System.out.println("daoVo : " + vo);
 		return vo;
 	}
-	public List<OrderVO> list() {
-		List<OrderVO> list = my.selectList("report.all");
+	
+	public UserVO bringUser(String user_id) {
+		UserVO vo = my.selectOne("order.bringUserInfo", user_id);
+		return vo;
+	}
+	
+	public List<ProductVO> listP(String user_id) {
+		List<ProductVO> list = my.selectList("cart.allProduct", user_id);
 		return list;
 	}
 }

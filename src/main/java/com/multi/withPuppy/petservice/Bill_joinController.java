@@ -20,13 +20,13 @@ public class Bill_joinController {
 	@Autowired
 	Bill_joinDAO dao;
 	
+	//시,도 진료비 비교
 	@RequestMapping("compareSido")
 	@ResponseBody
 	public List<Integer> compareSido(String bill_dx, String bill_addr) {
 		System.out.println(bill_addr + ": 시/도 요청됨");
 		System.out.println(bill_dx + ": 진료비 비교 요청됨");
 	
-		
 		int min = dao.minSido(bill_dx, bill_addr);
 		int avg = dao.avgSido(bill_dx, bill_addr);
 		int max = dao.maxSido(bill_dx, bill_addr);
@@ -39,13 +39,13 @@ public class Bill_joinController {
 	    return result;
 	}
 	
+	//구,군 진료비 비교
 	@RequestMapping("compareGugun")
 	@ResponseBody
 	public List<Integer> compareGugun(String bill_dx, String bill_addr) {
 		System.out.println(bill_addr + ": 구/군 요청됨");
 		System.out.println(bill_dx + ": 진료비 비교 요청됨");
 	
-		
 		int min = dao.minGugun(bill_dx, bill_addr);
 		int avg = dao.avgGugun(bill_dx, bill_addr);
 		int max = dao.maxGugun(bill_dx, bill_addr);
