@@ -17,6 +17,7 @@
 		<typeAlias type="com.multi.withPuppy.shopping.OrderVO" alias="orderVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.Order_detailVO" alias="order_detailVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.CartVO" alias="cartVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.shopping.StatisticsVO" alias="statisticsVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.petservice.PetserviceVO" alias="petserviceVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.StarVO" alias="starVO"></typeAlias>
