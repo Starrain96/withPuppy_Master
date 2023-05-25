@@ -20,6 +20,13 @@ public class PetserviceController {
 		model.addAttribute("list", list);
 	}
 	
+	@RequestMapping("searchHospital")
+	public void searchHp(Model model,String service_name) {
+		System.out.println(service_name);
+		List<PetserviceVO> list = dao.listhp(service_name);
+		model.addAttribute("list", list);
+	}
+	
 	@RequestMapping("hospital")
 	public void one(PetserviceVO bag1, Model model) {
 		PetserviceVO bag = dao.hospital(bag1);

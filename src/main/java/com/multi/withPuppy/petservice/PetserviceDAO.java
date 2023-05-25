@@ -18,6 +18,12 @@ public class PetserviceDAO {
 		return list;
 	}
 	
+	public List<PetserviceVO> listhp(String service_name) {
+		System.out.println(service_name);
+		List<PetserviceVO> list = my.selectList("petservice.searchHospital", service_name);
+		return list;
+	}
+	
 	public PetserviceVO hospital(PetserviceVO bag1) {
 		PetserviceVO bag = my.selectOne("petservice.hospital", bag1);
 		return bag;
