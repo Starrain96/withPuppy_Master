@@ -27,9 +27,4 @@ public class Bill_detailVO {
 		return "Bill_detailVO [bill_no=" + bill_no + ", bill_dx=" + bill_dx + ", bill_fee=" + bill_fee + "]";
 	}
 	
-	
-	
-	
-	
-	
 }

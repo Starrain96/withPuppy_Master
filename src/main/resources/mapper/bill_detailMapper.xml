@@ -7,10 +7,13 @@
 		select count(bill_no) from bill_detail
 	</select>
 	
+	<!-- 진료항목명 하나 리턴 -->
 	<select id="one"  parameterType="String" resultType="Bill_detailVO">
 		select * from bill_detail where bill_dx = #{bill_dx} limit 1
 	</select>
 	
+	
+	<!-- 전국 진료비 비교 3개 -->
 	<select id="minTotal" parameterType="String" resultType="Integer">
 		select min(bill_fee) from bill_detail where bill_dx = #{bill_dx}
 	</select>
@@ -23,6 +26,8 @@
 		select max(bill_fee) from bill_detail where bill_dx = #{bill_dx}
 	</select>
 	
+	
+	<!-- 전국 시,도 비교 3개 -->
 	<select id="minSido" parameterType="Map" resultType="Integer">
 		select min(bill_fee) from bill 
 		inner join bill_detail on bill.bill_no = bill_detail.bill_no 
@@ -41,6 +46,7 @@
 		where bill_dx = #{bill_dx} and bill_addr like CONCAT(#{bill_addr}, '%')
 	</select>
 	
+	<!-- 구,군 진료비 비교 3개 -->
 	<select id="minGugun" parameterType="Map" resultType="Integer">
 		select min(bill_fee) from bill 
 		inner join bill_detail on bill.bill_no = bill_detail.bill_no 

@@ -16,11 +16,9 @@ public class BillController {
 	@Autowired
 	BillDAO dao;
 	
-
+	//테스트용 코드로 추후 삭제 예
 	@RequestMapping("mainFeeTest")
 	//@ResponseBody
 	public void list() {
-		//List<BillVO> list = dao.list();
-		//model.addAttribute("list", list);
 	}
 }

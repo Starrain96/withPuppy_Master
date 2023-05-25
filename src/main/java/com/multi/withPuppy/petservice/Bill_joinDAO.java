@@ -13,6 +13,7 @@ public class Bill_joinDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
+	// 시,도 진료비 비교 3개
 	public int minSido(String bill_dx, String bill_addr) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("bill_dx", bill_dx);
@@ -39,7 +40,9 @@ public class Bill_joinDAO {
 		int result = my.selectOne("Bill_detail.maxSido", parameters);
 		return result;
     }
-	
+
+
+	// 구,군 진료비 비교 3개
 	public int minGugun(String bill_dx, String bill_addr) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("bill_dx", bill_dx);

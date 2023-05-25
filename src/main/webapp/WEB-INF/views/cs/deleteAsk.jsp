@@ -2,28 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="../../../header.jsp"%>
-	
+<%@ include file="askCSMenuHeader.jsp"%>
 
-	<div>
-		<h3>고객센터</h3>
-		<hr color="red">
-		<ul class="nav nav-pills">
-			<li class="nav-item"><a href="selectFaqList"
-				class="nav-link link-secondary">FAQ</a></li>
-			<li class="nav-item"><a href="selectAskList"
-				class="nav-link active">1:1문의</a></li>
-		</ul>
-	</div>
-	
-		<hr color="red">
-	
-	<div id="deleteAskCompleteView">
-		<h4>1:1문의 삭제</h4>
-		<hr>
-		1:1문의 게시글 삭제 완료
-		<hr>
-		<button type="button" onclick="location='selectAskList'">1:1문의 게시판 돌아가기</button>
-	</div>
+<%
+    String userId = userVo.getUser_id(); //사용할 값 정의하는 부분
+%>
+
+<div id="deleteAskCompleteView">
+	<h4>1:1문의 삭제</h4>
+	<hr>
+	1:1문의 게시글 삭제 완료
+	<hr>
+	<button type="button" onclick="location='selectAskList?Ask_writer=<%= userId %>'">1:1문의
+		게시판 돌아가기</button>
+</div>
 
 </body>
 </html>
