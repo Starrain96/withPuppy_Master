@@ -1,12 +1,6 @@
 package com.multi.withPuppy.communities;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +13,29 @@ public class ReplyDAO {
 	SqlSessionTemplate my;
 	
 	public int insert(ReplyVO vo) {
-		int result = my.insert("reply.create2",vo);
+		int result = my.insert("reply.create_reply",vo);
 		return result;
 	}
 	
 	public int update(ReplyVO vo) {
-		int result = my.update("reply.update2",vo);
+		int result = my.update("reply.update_reply",vo);
 		return result;
 	}
 	
 	public int delete(int reply_no) {
-		int result = my.delete("reply.delete2", reply_no);
+		int result = my.delete("reply.delete_reply", reply_no);
 		return result;
 	}
 	
-	public List<ReplyVO> list(ReplyVO vo) {
-		System.out.println(vo);
-		return my.selectList("reply.list2", vo);	
+	public ReplyVO modify(int reply_no) {
+        ReplyVO bag = my.selectOne("reply.one",reply_no);
+        return bag;
+    }
+	
+	public List<ReplyVO> list(int commu_no) {
+		System.out.println(commu_no);
+		List<ReplyVO> list =my.selectList("reply.list_reply", commu_no);	
+		System.out.println("reply : " + list.size());
+		return list;
 	}
 }

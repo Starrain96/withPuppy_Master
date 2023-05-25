@@ -131,5 +131,13 @@ public class CommunitiesController {
 		model.addAttribute("list", list);
 	
 	}
+	
+	@RequestMapping("list_category")
+	public void list_category(PageVO vo,Model model) {
+		vo.setStartEnd(vo.getPage());
+		List<CommunitiesVO> list = dao.list(vo);	
+		model.addAttribute("list", list);
+		
+	}
 
 }

@@ -136,15 +136,6 @@ body {
 </style>
 </head>
 <body>
-	<!-- 오른쪽 메뉴 리스트 -->
-	<div class="position-fixed top-50 end-0 translate-middle-y">
-		<ul class="list-group">
-			<li id="b1" class="list-group-item list-group-item-action">수도권</li>
-			<li id="b2" class="list-group-item list-group-item-action">지방</li>
-			<li id="b3" class="list-group-item list-group-item-action">자유게시판</li>
-			<li id="b4" class="list-group-item list-group-item-action"><a href = "../report/report">신고게시판</a></li>
-		</ul>
-	</div>
 	<div class="container">
 		<a href="communitiesList?page=1" class="link">전체 게시물</a>
 		<hr>
@@ -153,9 +144,9 @@ body {
 			<table>
 				<tr>
 					<td class="top">번호</td>
-					<td class="top">제목</td>
-					<td class="top">글쓴이</td>
+		 			<td class="top">제목</td>
 					<td class="top">작성일</td>
+					<td class="top">글쓴이</td>
 					<td class="top">조회수</td>
 				</tr>
 
@@ -173,20 +164,90 @@ body {
 			</table>
 		</div>
 	</div>
-	<!-- 페이지 이동 -->
-		<div style="text-align: center;">
-				<!-- 페이지 이동 -->
-				<%
-				int pages = (int) request.getAttribute("pages");
-				for (int p = 1; p <= pages; p++) {
-				%>
+	<div class="container">
+		<a href="communitiesList?page=1" class="link">수도권</a>
+		<hr>
+		<div id="result">
+			<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
+			<table>
+				<tr>
+					<td class="top">번호</td>
+		 			<td class="top">제목</td>
+					<td class="top">작성일</td>
+					<td class="top">글쓴이</td>
+					<td class="top">조회수</td>
+				</tr>
 
-				<button class="pages"><%=p%></button>
+				<c:forEach items="${list}" var="vo">
 
-				<%
-				}
-				%>
+					<tr>
+						<td class="down">${vo.commu_no}</td>
+						<td class="down"><a href="one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+						<td class="down">${vo.commu_date}</td>
+						<td class="down">${vo.commu_id}</td>
+						<td class="down">${vo.commu_view}</td>
+					</tr>
+
+				</c:forEach>
+			</table>
 		</div>
+	</div>
+	<div class="container">
+		<a href="communitiesList?page=1" class="link">지방</a>
+		<hr>
+		<div id="result">
+			<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
+			<table>
+				<tr>
+					<td class="top">번호</td>
+		 			<td class="top">제목</td>
+					<td class="top">작성일</td>
+					<td class="top">글쓴이</td>
+					<td class="top">조회수</td>
+				</tr>
+
+				<c:forEach items="${list}" var="vo">
+
+					<tr>
+						<td class="down">${vo.commu_no}</td>
+						<td class="down"><a href="one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+						<td class="down">${vo.commu_date}</td>
+						<td class="down">${vo.commu_id}</td>
+						<td class="down">${vo.commu_view}</td>
+					</tr>
+
+				</c:forEach>
+			</table>
+		</div>
+	</div>
+	<div class="container">
+		<a href="communitiesList?page=1" class="link">자유게시판</a>
+		<hr>
+		<div id="result">
+			<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
+			<table>
+				<tr>
+					<td class="top">번호</td>
+		 			<td class="top">제목</td>
+					<td class="top">작성일</td>
+					<td class="top">글쓴이</td>
+					<td class="top">조회수</td>
+				</tr>
+
+				<c:forEach items="${list}" var="vo">
+
+					<tr>
+						<td class="down">${vo.commu_no}</td>
+						<td class="down"><a href="one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
+						<td class="down">${vo.commu_date}</td>
+						<td class="down">${vo.commu_id}</td>
+						<td class="down">${vo.commu_view}</td>
+					</tr>
+
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 	<!-- 스크립트 -->
 	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 	<script type="text/javascript">
@@ -204,11 +265,6 @@ body {
 						alert("nope")
 					}
 				})
-			})
-		})
-		$(function() {
-			$('#b4').click(function() {
-				$.ajax
 			})
 		})
 	</script>

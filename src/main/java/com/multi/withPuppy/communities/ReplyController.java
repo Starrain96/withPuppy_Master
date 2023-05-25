@@ -1,13 +1,13 @@
 package com.multi.withPuppy.communities;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
@@ -21,28 +21,30 @@ public class ReplyController {
 	@Autowired
 	ReplyDAO dao;
 	
-	@RequestMapping("insert2")
+	@RequestMapping("insert_reply")
 	public void insert(ReplyVO vo) {
 		System.out.println(vo);
 		System.out.println(dao);
 		dao.insert(vo);
 	}
 	
-	@RequestMapping("update2")
+	@RequestMapping("update_reply")
 	public void update(ReplyVO bag) {
 		System.out.println("update요청됨.");
 		System.out.println(bag);
 		dao.update(bag);
 	}
 	
-	@RequestMapping("delete2")
-	public void delete(int commu_no) {
+	@RequestMapping("delete_reply")
+	@ResponseBody
+	public int delete(int reply_no) {
 		System.out.println("delete요청됨.");
-		System.out.println(commu_no);
-		dao.delete(commu_no);
+		System.out.println(reply_no);
+		int n = dao.delete(reply_no);
+		return n;
 	}
 	
-	@RequestMapping("one2")
+	@RequestMapping("one_reply")
 	public void one(int Commu_id, Model model) {
 		System.out.println("one요청됨.");
 		System.out.println(Commu_id);
@@ -83,11 +85,12 @@ public class ReplyController {
 	public void replyFnd() {
 	}
 	
-	@RequestMapping("list2")
-	public void list2(ReplyVO vo,Model model) {
-		List<ReplyVO> list = dao.list(vo);
-		System.out.println(list.size()); //사이즈를 찍어보세요.
-		model.addAttribute("list", list);
+	@RequestMapping("list_reply")
+	@ResponseBody
+	public List<ReplyVO> list2(int commu_no) {
+		List<ReplyVO> list = dao.list(commu_no);
+		System.out.println("controller : " + list.size());
+		return list;
 	}
 	
 }
