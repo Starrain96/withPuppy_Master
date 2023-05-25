@@ -349,7 +349,7 @@
         }).open();
     } // addrFind
     
-    function go() {
+    function insertUser() {
     	var id = $('#id').val();
     	var pw = $('#pw').val();
     	var name = $('#name').val();
@@ -501,7 +501,7 @@
   </div>
   <div class="create">
         <input class="cancle" type="button" value="가입취소" onclick="location.href='loginPage.jsp'">
-        <input class="go" type="button" value="회원가입" onclick="go()">
+        <input class="go" type="button" value="회원가입" onclick="insertUser()">
   </div>
   </div>
   </form>

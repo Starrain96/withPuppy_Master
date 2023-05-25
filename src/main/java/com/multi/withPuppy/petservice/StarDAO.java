@@ -16,18 +16,33 @@ public class StarDAO {
 		my.insert("star.insertStar", bag);
 	}
 
-	public int update(StarVO bag) {
-		int result = my.update("star.up", bag);
-		return result;
-	}
-
-	public int delete(String id) {
-		int result = my.delete("star.del", id);
-		return result;
-	}
-	
 	public List<StarVO> list(int service_id) {
 		List<StarVO> list = my.selectList("star.listStar", service_id);
 		return list;
+	}
+	
+	public void insertOCR(String [][] ocrAll) {
+		OcrVO bag = new OcrVO();
+		OcrVO bag2 = new OcrVO();
+		bag.setBill_no(ocrAll[ocrAll.length-1][0]);
+		bag.setBill_brn(ocrAll[ocrAll.length-1][1]);
+		bag.setBill_name(ocrAll[ocrAll.length-1][2]);
+		bag.setBill_addr(ocrAll[ocrAll.length-1][3]);
+		bag.setBill_totalfee(ocrAll[ocrAll.length-1][4]);
+		// bag.setBill_dx(ocrAll[7][5]);
+		// bag.setBill_fee(ocrAll[7][6]);
+		
+		my.insert("star.insertBill", bag);
+		
+		for (int i = 0; i < ocrAll.length; i++) {
+			System.out.println(i + ocrAll[0][0]);
+			System.out.println(i + ocrAll[i][5]);
+			System.out.println(i + ocrAll[i][6]);
+			
+			bag2.setBill_no(ocrAll[0][0]);
+			bag2.setBill_dx(ocrAll[i][5]);
+			bag2.setBill_fee(ocrAll[i][6]);
+			my.insert("star.insertBD", bag2);
+		}
 	}
 }

@@ -207,7 +207,7 @@
 							        <input type="text" id="addr2" placeholder="주소" style="width: 500px;"><p></p>
 							        <input type="text" id="addr3" placeholder="상세주소" style="width: 300px;">
 							        <input type="text" id="addr4" placeholder="참고항목" style="width: 300px;">
-							        <input type="hidden" id="addrDoubleChk"/></td>
+							        <input type="hidden" id="addrDoubleChk"/>
 								</li>
                             </ul>
                             <div class="mt-3">

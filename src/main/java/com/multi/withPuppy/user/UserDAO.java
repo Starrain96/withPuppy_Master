@@ -19,9 +19,9 @@ public class UserDAO {
 	@Autowired
 	SqlSessionTemplate my;
 	
-	public UserVO loginUser(UserVO bag) {
-		System.out.println("dao bag : " + bag);
-		UserVO vo = my.selectOne("user.loginUser", bag);
+	public UserVO loginUser(UserVO userBag) {
+		System.out.println("dao bag : " + userBag);
+		UserVO vo = my.selectOne("user.loginUser", userBag);
 		System.out.println("vo>> : " + vo);
 		return vo;
 	}
@@ -95,13 +95,12 @@ public class UserDAO {
 	
 	// 비밀번호 체크
 	public String pwCheck(String id) {
-		System.out.println(id);
 		return my.selectOne("user.pwCheck", id);
 	}
 	
 	// 회원탈퇴
-	public void deleteUser(String id) {
-		my.delete("user.deleteUser", id);
+	public int deleteUser(String id) {
+		return my.delete("user.deleteUser", id);
 	}
 	
 	// 회원수정

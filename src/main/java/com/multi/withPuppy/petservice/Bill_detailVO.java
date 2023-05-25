@@ -1,13 +1,13 @@
 package com.multi.withPuppy.petservice;
 
 public class Bill_detailVO { 
-	private int bill_no;
+	private String bill_no;
 	private String bill_dx;
 	private int bill_fee;
-	public int getBill_no() {
+	public String getBill_no() {
 		return bill_no;
 	}
-	public void setBill_no(int bill_no) {
+	public void setBill_no(String bill_no) {
 		this.bill_no = bill_no;
 	}
 	public String getBill_dx() {

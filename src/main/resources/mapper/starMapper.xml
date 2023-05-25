@@ -7,7 +7,15 @@
 			parameterType="starVO" 
 			useGeneratedKeys="true" 
 			keyProperty="star_id">
-		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, #{img1}, null, null)
+		insert into star values (null ,#{service_id}, #{id}, now() ,#{content}, #{kind}, #{explain}, #{treat}, #{facilities}, #{price}, #{img1}, null, #{ocr})
+	</insert>
+	
+	<insert id="insertBill"  parameterType="ocrVO">
+		insert into bill values (#{bill_no}, #{bill_brn}, #{bill_name}, #{bill_addr}, #{bill_totalfee})
+	</insert>
+	
+	<insert id="insertBD"  parameterType="ocrVO">
+		insert into bill_detail values (#{bill_no}, #{bill_dx}, #{bill_fee})
 	</insert>
 	
 	<delete id="del"  parameterType="starVO">

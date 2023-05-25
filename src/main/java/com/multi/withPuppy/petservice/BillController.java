@@ -21,16 +21,4 @@ public class BillController {
 	//@ResponseBody
 	public void list() {
 	}
-
-	//영수증 데이터 입력용으로 OCR데이터를 어떻게 넣을지 구상 및 진행하면서 수정 예정. 
-	@RequestMapping("insertBill")
-    @ResponseBody
-    public int insertBill(BillVO bag) {
-        System.out.println("insert bag : " + bag);
-        System.out.println(dao);
-        int result = dao.insert(bag);
-        System.out.println("insertBill Controller : " + result);
-        return result;
-    }
-	 
 }
