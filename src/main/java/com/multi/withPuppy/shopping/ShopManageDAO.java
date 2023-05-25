@@ -37,6 +37,11 @@ public class ShopManageDAO {
 		return n;
 	}
 	
+	public int deleteProduct(int product_id) {
+		int n = my.delete("manage.delete", product_id);
+		return n;
+	}
+	
 	public ProductVO bringInfo(int p_id) {
 		ProductVO result = my.selectOne("product.bringOne", p_id);
 		return result;
@@ -44,6 +49,11 @@ public class ShopManageDAO {
 	
 	public List<ProductVO> list2(CategoryVO bag) {
 		List<ProductVO> list = my.selectList("manage.allCatePage", bag);
+		return list;
+	}
+	
+	public List<StatisticsVO> bringS(){
+		List<StatisticsVO> list = my.selectList("manage.cateS");
 		return list;
 	}
 }

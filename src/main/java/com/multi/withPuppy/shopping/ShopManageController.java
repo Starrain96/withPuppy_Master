@@ -24,6 +24,12 @@ public class ShopManageController {
 		model.addAttribute("list", list);
 	}
 	
+	//통계페이지로 이동
+	@RequestMapping("shopping/shopManageStatis")
+	public void statistics() {
+	}
+	
+	
 	//관리자 페이지 내에서 페이지네이션 할때 사용
 	@RequestMapping("shopping/shopManageMain2")
 	@ResponseBody
@@ -49,9 +55,12 @@ public class ShopManageController {
 	}
 	
 	//관리자 상품 추가
-	@RequestMapping("shopping/productAdd")
-	public void productAdd(ProductVO bag) {
+	@RequestMapping("shopping/addProduct")
+	@ResponseBody
+	public int addProduct(ProductVO bag) {
+		System.out.println("controller : " + bag);
 		int result = dao.addProduct(bag);
+		return result;
 	}
 	
 	//관리자 상품 수정
@@ -62,11 +71,26 @@ public class ShopManageController {
 		return result;
 	}
 	
+	@RequestMapping("shopping/deleteProduct")
+	@ResponseBody
+	public int deleteProduct(int product_id) {
+		int result = dao.deleteProduct(product_id);
+		return result;
+	}
+	
 	//관리자 상품 수정시 정보 불러오기
-		@RequestMapping("shopping/bringInfo")
-		@ResponseBody
-		public ProductVO bringInfo(int product_id) {
-			ProductVO result = dao.bringInfo(product_id);
-			return result;
-		}
+	@RequestMapping("shopping/bringInfo")
+	@ResponseBody
+	public ProductVO bringInfo(int product_id) {
+		ProductVO result = dao.bringInfo(product_id);
+		return result;
+	}
+	
+	@RequestMapping("shopping/bringStatistics")
+	@ResponseBody
+	public List<StatisticsVO> bringStatistics() {
+		List<StatisticsVO> result = dao.bringS();
+		
+		return result;
+	}
 }
