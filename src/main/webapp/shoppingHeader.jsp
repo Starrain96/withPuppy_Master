@@ -5,7 +5,7 @@
 <% 
     UserVO userVo = (UserVO) session.getAttribute("bag");
 	String user_level=null;
-if(userVo != null){
+	if(userVo != null){
 	user_level = userVo.getUser_level();
 }
 %>
@@ -22,7 +22,8 @@ if(userVo != null){
 <script type="text/javascript">
 var user_level = "<%=user_level%>";
 function loginCheck(){
-	if( user_level != null){
+	if( user_level != "null"){
+		console.log(user_level);
 		location.href="cartList";
 	}else{
 		alert("로그인해야 이동가능한 페이지입니다.");

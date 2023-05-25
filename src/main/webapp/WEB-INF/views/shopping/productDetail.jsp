@@ -25,6 +25,7 @@ if(userVo != null){
 function addToCart(product_id, user_id) {
 	if(user_id == "null"){
 		alert("로그인하세요!");
+		location.href="../user/loginPage";
 	}else{
 	const element = document.getElementById('resultCnt');
 	$.ajax({
