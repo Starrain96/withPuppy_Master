@@ -14,9 +14,8 @@
 	</div>
 	<div class="search-box-container">
 		<div class="inner">
-			<input type="text" placeholder="동물병원 검색">
+			<input type="text" placeholder="동물병원 검색"><button type="button" class="search-button">검색</button>
 		</div>
-		<!-- <button type="button" class="search-button">검색</button> -->
 	</div>
 	<hr color=grey>
 
@@ -139,7 +138,6 @@
 			//거리를 본인위치 기반 거리를 계산하여 이중 배열에 값을 넣는 시작부분입니다.
 			
 			let distString = "";
-			let test =1.1;
 			
 			<c:forEach var="bag" items="${list}">
 			hpLat = ${bag.latitude};
