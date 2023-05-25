@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<a href="petservice/listhospital?category=동물병원">
+			<a href="petservice/listhospital">
 				<p style="position: relative; top: 10px; text-align: center;">동물병원</p>
 				<img src="resources/img/hospital.jpg" alt="동물병원" width="100%"
 				height="70%">

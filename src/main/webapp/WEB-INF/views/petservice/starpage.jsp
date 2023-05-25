@@ -5,7 +5,9 @@
 <%
     UserVO userVo = (UserVO) session.getAttribute("bag");
     System.out.println("header bag : " + userVo);
-    String userId = userVo.getUser_id();
+  //  if(userVo!=null){
+    	String userId = userVo.getUser_id();
+  //  }
 %>
 
 
