@@ -5,9 +5,10 @@
 <%
     UserVO userVo = (UserVO) session.getAttribute("bag");
     System.out.println("header bag : " + userVo);
-  //  if(userVo!=null){
-    	String userId = userVo.getUser_id();
-  //  }
+    String userId = null;
+  if(userVo!=null){
+    	userId = userVo.getUser_id();
+  }
 %>
 
 
@@ -21,6 +22,7 @@
 <link rel="stylesheet" href="../resources/css/star.css" />
 </head>
 <body>
+<%if(userVo!=null) {%>
 	<form action="insertStar" id="form" method="post" enctype="multipart/form-data" >
 		<div class="container-fluid">
 			<!-- 메인 컨텐츠 -->
@@ -74,5 +76,14 @@
 			</div>
 		</div>
 	</form>
+	<% } else {%>
+	<script>
+		alert("로그인을 해야지 후기작성이 가능합니다!");
+		window.close(); // 페이지를 닫습니다.
+	</script>
+	<%} %>
+	
+	
+	
 </body>
 </html>
