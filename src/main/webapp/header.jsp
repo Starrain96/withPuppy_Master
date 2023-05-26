@@ -27,19 +27,14 @@
                     <use xlink:href="#bootstrap"></use>
             </svg> <span class="fs-4" style="color: black; font-weight: bold">강아지와</span>
 		</a>
-		<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-			<input type="search" class="form-control" placeholder="Search..."
-				aria-label="Search">
-		</form>
 
 		<ul class="nav nav-pills">
 			<!-- <li class="nav-item"><a href="#" class="nav-link active"
                 aria-current="page">Home</a></li> -->
             <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain?page=1" class="nav-link link-secondary">커뮤니티</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
-			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital" class="nav-link link-secondary">반려동물서비스</a></li>
+			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital" class="nav-link link-secondary">동물병원</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
-			<li class="nav-item"><a href="${pageContext.request.contextPath}/report/report" class="nav-link link-secondary">반려동물 신고</a></li>
 			<%if (userVo == null) {%>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/loginPage" class="nav-link link-secondary">로그인</a></li>
             <%} else { %>
