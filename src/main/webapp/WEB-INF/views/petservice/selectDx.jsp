@@ -45,6 +45,9 @@
 						<td>최고가</td>
 						<td><div id="maxSido2"></div></td>
 					</tr>
+					<tr>
+						<td colspan="2"><div id="chartSido2"></div></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -68,6 +71,9 @@
 						<td>최고가</td>
 						<td><div id="maxGugun2"></div></td>
 					</tr>
+					<tr>
+						<td colspan="2"><div id="chartGugun2"></div></td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -75,7 +81,7 @@
 			<table class="table">
 				<thead class="table-primary">
 					<tr>
-						<th colspan="2">전국 평균가</th>
+						<th colspan="2"><div id = "totalName">전국 평균가</div></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -90,6 +96,9 @@
 					<tr>
 						<td>최고가</td>
 						<td><div id="maxTotal2"></div></td>
+					</tr>
+					<tr>
+						<td colspan="2"><div id="chartTotal2"></div></td>
 					</tr>
 				</tbody>
 			</table>
@@ -209,6 +218,7 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b11359f91c9e299d4b89d25de10ea57b&libraries=services"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
 // 주소 선택 ajax
@@ -299,7 +309,22 @@ $(function() {
  				$('#minTotal2').append(x[0] + "원");
  				$('#avgTotal2').append(x[1] + "원");
  				$('#maxTotal2').append(x[2] + "원");
- 			}
+ 				
+ 			    google.charts.setOnLoadCallback(() => {
+ 			    	  min = x[0];
+ 			    	  avg = x[1];
+ 			    	  max = x[2];
+ 			    	  position = "chartTotal2";
+ 			    	  drawChart(min, avg, max, position);
+ 			    	});
+ 			},
+ 			error: function() {
+ 	            $('#totalName').empty().append("전국 데이터 없음");
+ 	            $('#minTotal2').empty().append("없음");
+ 	            $('#avgTotal2').empty().append("없음");
+ 	            $('#maxTotal2').empty().append("없음");
+ 	            $('#chartTotal2').empty()
+ 	        }
  		}) //ajax
  	}
  	
@@ -327,12 +352,21 @@ $(function() {
  	 				$('#minSido2').append(x[0] + "원");
  	 				$('#avgSido2').append(x[1] + "원");
  	 				$('#maxSido2').append(x[2] + "원");
+ 	 				
+ 	 			    google.charts.setOnLoadCallback(() => {
+ 	 			    	  min = x[0];
+ 	 			    	  avg = x[1];
+ 	 			    	  max = x[2];
+ 	 			    	  position = "chartSido2";
+ 	 			    	  drawChart(min, avg, max, position);
+ 	 			    	});
  			},
  			error: function() {
  	            $('#sidoName').empty().append(selSido + " 데이터 없음");
  	            $('#minSido2').empty().append("없음");
  	            $('#avgSido2').empty().append("없음");
  	            $('#maxSido2').empty().append("없음");
+ 	            $('#chartSido2').empty()
  	        }
  		})
  		
@@ -348,12 +382,21 @@ $(function() {
  	 				$('#minGugun2').append(x[0] + "원");
  	 				$('#avgGugun2').append(x[1] + "원");
  	 				$('#maxGugun2').append(x[2] + "원");
+ 	 				
+ 	 				google.charts.setOnLoadCallback(() => {
+	 			    	  min = x[0];
+	 			    	  avg = x[1];
+	 			    	  max = x[2];
+	 			    	  position = "chartGugun2";
+	 			    	  drawChart(min, avg, max, position);
+	 			    	});
  			},
  			error: function() {
  	            $('#gugunName').empty().append(selGugun + " 데이터 없음");
  	            $('#minGugun2').empty().append("없음");
  	            $('#avgGugun2').empty().append("없음");
  	            $('#maxGugun2').empty().append("없음");
+ 	            $('#chartGugun2').empty()
  	        }
  		})
  	}
@@ -372,6 +415,40 @@ $(function() {
  	 	geolocation(); 
  	})
  	
+
+    
+    google.charts.load("current", {packages:['corechart']});
+    
+    function drawChart(min, avg, max, position) {
+       var data = google.visualization.arrayToDataTable([
+        ["종류", "진료비", { role: "style" } ],
+        ["최저가", min, "#b87333"],
+        ["평균가", avg, "silver"],
+        ["최고가", max, "gold"],
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        width: 400,
+        height: 300,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+      };
+        var chart = new google.visualization.ColumnChart(document.getElementById(position));
+      
+    chart.draw(view, options);
+  }
+    
+    
+
+    
 }) //$function
  
 </script>
