@@ -306,6 +306,7 @@ $(function() {
  				bill_dx : "${vo.bill_dx}"
  			},
  			success : function(x) {
+ 	            $('#totalName').empty().append("전국 평균가");
  				$('#minTotal2').append(x[0] + "원");
  				$('#avgTotal2').append(x[1] + "원");
  				$('#maxTotal2').append(x[2] + "원");
