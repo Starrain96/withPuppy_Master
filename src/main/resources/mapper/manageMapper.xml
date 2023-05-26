@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="manage">
-	<delete id="delete"  parameterType="cartVO">
-		delete from cart 
-		where cart_id = #{cart_id} and user_id = #{user_id}
+
+	<delete id="delete"  parameterType="Int">
+		delete from product 
+		where product_id = #{product_id}
 	</delete>
 	
 	<select id="all" resultType="productVO">
@@ -23,6 +24,17 @@
 		select row_number() over(order by product_id) as p_no, p.* from product p 
 		) p2
 		where p_no between #{start_num} and #{end_num}
+	</select>
+	
+	<select id="cateS" resultType="statisticsVO">
+		SELECT bc.categoryName AS s_name, SUM(p2.mult) AS s_num
+		FROM big_category bc, category c, 
+    	(SELECT category2 AS categoryNum, (od.ordered_cnt * p.product_price) AS mult 
+     		FROM order_detail od, product p 
+     		WHERE od.product_id = p.product_id) AS p2
+		WHERE bc.categoryNum = c.bigCategoryNum AND c.categoryNum = p2.categoryNum
+		GROUP BY s_name
+		ORDER BY s_name ASC
 	</select>
 	
 	

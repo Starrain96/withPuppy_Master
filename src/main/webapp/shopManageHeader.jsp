@@ -33,7 +33,7 @@ body {
 
 		<ul class="nav nav-pills">
 			<li class="nav-item"><a href="shopManageMain?start_num=1&end_num=10" class="nav-link link-secondary">물품관리</a></li>
-			<li class="nav-item"><a href="cartList?user_id=apple" class="nav-link link-dark">통계</a></li>
+			<li class="nav-item"><a href="shopManageStatis" class="nav-link link-dark">통계</a></li>
 
 
 		</ul>
