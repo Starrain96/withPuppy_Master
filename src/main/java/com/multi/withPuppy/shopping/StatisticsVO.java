@@ -21,5 +21,5 @@ public class StatisticsVO {
 	public String toString() {
 		return "StatisticsVO [s_name=" + s_name + ", s_num=" + s_num + "]";
 	}
-	
+	 
 }
