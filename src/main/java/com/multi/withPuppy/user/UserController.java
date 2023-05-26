@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,10 +40,6 @@ public class UserController {
 
 	@RequestMapping("/myPet")
 	public void myPet() {
-	}
-	
-	@RequestMapping("/addPet")
-	public void addPet() {
 	}
 
 	@RequestMapping("/userHistory")
@@ -116,7 +113,7 @@ public class UserController {
 	}
 
 	// 회원탈퇴 : 비밀번호 체크
-	@PostMapping("/pwCheck")
+	@RequestMapping("/pwCheck")
 	@ResponseBody
 	public int pwCheck(@RequestParam("pw") String pw, HttpSession session) {
 		String id = (String) session.getAttribute("id");
@@ -150,48 +147,32 @@ public class UserController {
 		model.addAttribute("result", result);
 	}
 	
-
 	// 회원수정 : 제출 버튼
-//	@RequestMapping("/updateUser")
-//	@ResponseBody
-//	public int editUser(UserVO bag) {
-//		System.out.println("edit bag : " + bag);
-//		System.out.println(dao);
-//		int result = dao.updateUser(bag);
-//		System.out.println("컨트롤ㄹㄹㄹㄹ러 : " + result);
-//		return result;
-//	}
-
-	// 회원수정 : 제출 버튼
-	@PostMapping("/updateUser")
-	@ResponseBody
-	public int updateUser(@RequestParam("user_img") MultipartFile file, @RequestParam("user_tel") String tel,
-			@RequestParam("user_nickname") String nickname, @RequestParam("user_addr1") String addr1,
-			@RequestParam("user_addr2") String addr2, @RequestParam("user_addr3") String addr3,
-			@RequestParam("user_addr4") String addr4, @RequestParam("user_addr5") String addr5, UserVO bag,
-			HttpServletRequest request, Model model) throws Exception {
-
-		String savedName = file.getOriginalFilename();
-		String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
-		File target = new File(uploadPath + "/" + savedName);
-		file.transferTo(target);
-
-		model.addAttribute("savedName", savedName);
-		System.out.println("img넣기 전>> " + bag);
-		bag.setUser_img(savedName);
-		System.out.println("img넣은 후>> " + bag);
-
-		bag.setUser_nickname(nickname);
-		bag.setUser_tel(tel);
-		bag.setUser_addr1(addr1);
-		bag.setUser_addr2(addr2);
-		bag.setUser_addr3(addr3);
-		bag.setUser_addr4(addr4);
-		bag.setUser_addr5(addr5);
-
-		int result = dao.updateUser(bag);
-
-		return result;
+	@RequestMapping("/updateUser")
+	public void updateUser(UserVO userVO, HttpSession session, HttpServletRequest request, MultipartFile file, Model model) throws Exception {
+		if (!file.isEmpty()) {
+			String savedName = file.getOriginalFilename();
+			String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
+			File target = new File(uploadPath + "/" + savedName);
+			file.transferTo(target);
+			
+			model.addAttribute("savedName", savedName);
+			userVO.setUser_img(savedName);
+		}
+		String id = (String) session.getAttribute("id");
+		userVO.setUser_id(id);
+		dao.updateUser(userVO);
+		UserVO vo = (UserVO) session.getAttribute("bag");
+		vo.setUser_tel(userVO.getUser_tel());
+		vo.setUser_addr1(userVO.getUser_addr1());
+		vo.setUser_addr2(userVO.getUser_addr2());
+		vo.setUser_addr3(userVO.getUser_addr3());
+		vo.setUser_addr4(userVO.getUser_addr4());
+		vo.setUser_addr5(userVO.getUser_addr5());
+		vo.setUser_nickname(userVO.getUser_nickname());
+		vo.setUser_img(userVO.getUser_img());
+		System.out.println("업데이트 vo : " + userVO);
+		model.addAttribute("bag", userVO);
 	}
 
 	// 회원수정 : 비밀번호 변경 제출 버튼
@@ -203,31 +184,5 @@ public class UserController {
 		return result;
 	}
 
-	@RequestMapping("/test2")
-	public void test2() {
-	}
-
-	@RequestMapping("/imgUpload")
-	public int imgUpload(@RequestParam("file1") MultipartFile file, HttpServletRequest request,
-			HttpServletResponse response, Model model) throws Exception {
-
-		String savedName = file.getOriginalFilename();
-		String uploadPath = request.getSession().getServletContext().getRealPath("resources/img");
-
-		System.out.println("uploadpath : " + uploadPath);
-		System.out.println("originFilename : " + savedName);
-
-		if (!file.isEmpty()) {
-			File target = new File(uploadPath, savedName);
-			file.transferTo(target);
-
-			model.addAttribute("savedName", savedName);
-			model.addAttribute("uploadPath", target.getAbsolutePath());
-
-			return 1;
-		}
-
-		return 0;
-	}
 
 }

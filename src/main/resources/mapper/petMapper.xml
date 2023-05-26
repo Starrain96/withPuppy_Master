@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pet">
-	<insert id="insertPet" parameterType="petVO" >
+	<insert id="insertPet" parameterType="petVO">
 		insert into pet (pet_owner, pet_name, pet_birth, pet_kind, pet_weight, pet_img)  
 		values (#{pet_owner}, #{pet_name}, #{pet_birth}, #{pet_kind}, #{pet_weight}, #{pet_img})
 	</insert>
+	
+	<update id="updatePet" parameterType="petVO">
+		update pet set pet_name =  #{pet_name},
+		pet_birth = #{pet_birth}, pet_kind = #{pet_kind}, pet_weight = #{pet_weight},
+					 <if test="pet_img!=null">pet_img = #{pet_img}</if> where pet_no = #{pet_no}
+	</update>
 	
 	<delete id="deletePet">
 		delete from pet 

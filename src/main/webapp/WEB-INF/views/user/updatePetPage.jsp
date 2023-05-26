@@ -1,44 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%-- header --%>
-    <%@ include file="/header.jsp"%>
-    <%-- header END --%>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>프로필</title>
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="../resources/css/user.css">
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<%@ include file="/mypageHeader.jsp"%>
 <%
-String contextPath = (String) request.getContextPath();
 String pet_no = request.getParameter("pet_no");
 %>
-<div class="container-fluid">
-    <div class="row">
-        <!-- 사이드 메뉴 -->
-        <div class="col-lg-3 col-md-4 col-sm-12">
-            <div class="card">
-                <h5 class="card-header">마이페이지</h5>
-                <div class="card-body p-0">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
-							<ul class="list-group2 list-group-flush">
-								<li class="list-group-item2"><a href="<%=contextPath%>/user/userHistory">커뮤니티</a></li>
-								<li class="list-group-item2"><a href="#">쇼핑몰</a></li>
-								<li class="list-group-item2"><a href="#">리뷰</a></li>
-							</ul>
-						</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
         <!-- 메인 컨텐츠 -->
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="card">
@@ -46,32 +11,34 @@ String pet_no = request.getParameter("pet_no");
                 <div class="card-body">
                     <!-- 프로필 정보 출력 -->
                     <div class="container">
+	                    <form action="updatePet" id="form" method="post" enctype="multipart/form-data" onsubmit="return checkForm()" target='blankifr'>
 	                    <div class="row d-flex flex-column align-items-center" id="pet_info">
 	                    	<!-- 반려동물이 들어갈 영역 -->
 	                    	<div class="container ms-4">
 		                        <div id="pet_img" style="float: left; margin-right:30px; text-align: center" class="col-3">
-									<img class="img-wrapper" src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+									<img class="img-wrapper" src="" alt="profile img" id="img">
 									<label for="file-input" class="upload-btn">반려동물 사진 변경</label>
 									<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">반려동물 사진 삭제</a>
-									<input type="file" id="file-input" name="file-input" onclick="editImg()" style="display: none">
+									<input type="file" id="file-input" name="file" onclick="editImg()" style="display: none">
 								</div>
 		                        <div style="float: left;" class="col-8">
+		                        	<input type="hidden" id ="petNo" name="pet_no" value="<%=pet_no%>">
 		                            <ul class="list-group list-group-flush">
 		                            	<li class="list-group-item">
 										    <span class="info-label" oninput="this.value = this.value.replace(/[^ㄱ-힣.]/g, '').replace(/(\..*)\./g, '$1');">반려동물 이름</span> 
-								    		<input type="text" id="petName">
+								    		<input type="text" id="petName" name="pet_name">
 										</li>
 		                                <li class="list-group-item">
 										    <span class="info-label">반려동물 출생일</span> 
-								    		<input type="text" id="petBirth">
+								    		<input type="text" id="petBirth" name="pet_birth">
 										</li>
 		                                <li class="list-group-item">
 		                                	<span class="info-label" oninput="this.value = this.value.replace(/[^ㄱ-힣.]/g, '').replace(/(\..*)\./g, '$1');">반려동물 종</span> 
-										    <input type="text" id="petKind">
+										    <input type="text" id="petKind" name="pet_kind">
 										</li>
 		                                <li class="list-group-item">
 		              						<span class="info-label">반려동물 몸무게</span> 
-										    <input type="text" id="petWeight" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">&nbsp;kg
+										    <input type="text" id="petWeight" name="pet_weight" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">&nbsp;kg
 										</li>
 		                            </ul>
 		                     	</div>
@@ -80,9 +47,11 @@ String pet_no = request.getParameter("pet_no");
 	                    <div class="row">
 	                    	<!-- 하단 우측 버튼을 위한 영역 -->
 	                    	<div class="register-div">
-						    	<a class="btn btn-custom" onclick="updatePet()" style="float: right; margin-right:35px">반려동물 수정</a>
+						    	<button class="btn btn-custom" type="submit" style="float: right; margin-right:35px">반려동물 수정</button>
 							</div>
 	                    </div>
+	                    </form>
+	                    <iframe name='blankifr' style='display:none;'></iframe>
                     </div>
                 	</div>
                 <div class="card-footer text-muted text-end">
@@ -98,6 +67,7 @@ String pet_no = request.getParameter("pet_no");
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript">
+var img;
 $(function() {
 	petlist();
 })
@@ -107,6 +77,13 @@ function petlist() {
 		success: function(data) {
 			for (i = 0; i < data.length; i++) {
 				if (data[i].pet_no == <%=pet_no%>) {
+					if (!data[i].pet_img) { // 프로필 이지미지가 null이면
+						$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
+					} else {
+						$("#img").attr("src", "<%=contextPath%>/resources/upload/"+data[i].pet_img);
+					}
+				   	img = data[i].pet_img;
+				   	console.log($("#img").attr("src"));
 					$('#petName').val(data[i].pet_name);
 					
 					// pet_birth 값을 Date 객체로 변환
@@ -157,20 +134,26 @@ function handleImgFileSelect(e) {
     });
 }
 
-// 이미지 등록
-function editImg() {
-    console.log('이미지선택');
-} // editPw
-
 // 이미지 삭제
 function deleteImage() {
-	var img = document.getElementById("img");
-	img.src = "<%=contextPath%>/resources/img/profile.png";
+	$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
 }
 
-function updatePet(){
-	console.log(<%=pet_no%>);
-	console.log(<%=pet_no%>);
+function checkForm() {
+    var petname = $('#petName').val();
+    var petbirth = $('#petBirth').val();
+    var petkind = $('#petKind').val();
+    var petweight = $('#petWeight').val();
+    var petimg = $('#file-input').val();
+    
+    if (petname == "" || petbirth == "" || petkind == "" || petweight == "") {
+        alert("정보를 모두 입력하세요!");
+        console.log("정보 미입력");
+        return false;
+    }
+    alert("반려동물 정보 수정 완료!")
+    location.replace("<%=contextPath%>/user/myPet");
+    return true;
 }
 </script>
 </body>
