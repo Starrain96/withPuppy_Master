@@ -96,20 +96,6 @@
 				} //success
 			}) //ajax
 		})//b1
-		$('#b2').click(function() {
-			$('#result').empty()
-			$.ajax({
-				url : "delete",
-				data : {
-					commu_no : $("#delete").val()
-				},
-				success : function(x) {
-					alert("삭제처리가 완료 됐습니다!")
-					document.location.reload()
-					$('#result').append(x)
-				} //success
-			}) //ajax
-		})//b2
 	})
 
 

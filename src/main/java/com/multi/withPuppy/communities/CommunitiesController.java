@@ -1,7 +1,11 @@
 package com.multi.withPuppy.communities;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,6 +58,8 @@ public class CommunitiesController {
 		dao.delete(commu_no);
 		return "redirect:/communities/communitiesList";
 	}
+	
+	
 
 	@RequestMapping("one")
 	public void one(int commu_no, Model model) {
@@ -131,5 +138,14 @@ public class CommunitiesController {
 		model.addAttribute("list", list);
 	
 	}
+	
+	@RequestMapping("list_category")
+	public void list_category(PageVO vo,Model model) {
+		vo.setStartEnd(vo.getPage());
+		List<CommunitiesVO> list = dao.list(vo);	
+		model.addAttribute("list", list);
+		
+	}
+	
 
 }

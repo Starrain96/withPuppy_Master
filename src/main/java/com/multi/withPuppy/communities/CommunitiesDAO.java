@@ -51,6 +51,9 @@ public class CommunitiesDAO {
 		return my.selectList("communities.list", vo2);
 	}
 
+	public List<CommunitiesVO> list_category(PageVO vo2) {
+		return my.selectList("communities.list_category", vo2);
+	}
 
 
 	

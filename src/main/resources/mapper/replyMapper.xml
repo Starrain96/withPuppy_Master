@@ -5,27 +5,33 @@
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
-	<insert id="create2" parameterType="replyVO" >
+	<insert id="create_reply" parameterType="replyVO" >
 		insert into reply (reply_no, reply_id, reply_content, commu_no)
 		values (null, #{reply_id}, #{reply_content},#{commu_no})
 	</insert>
 	
-	<delete id="delete2"  parameterType="Int">
+	<delete id="delete_reply"  parameterType="Int">
 		delete from reply 
 		where reply_no = #{reply_no}
 	</delete>
 	
-	<update id="update2"  parameterType="replyVO">
+	<update id="update_reply"  parameterType="replyVO">
 		update reply 
 		set reply_content = #{reply_content} 
 		where reply_no = #{reply_no}
 	</update>
 	
-	<select id="list2"  resultType="replyVO">
+	<select id="one" parameterType="replyVO" resultType="replyVO">
+		select * 
+		from reply
+		where reply_no = #{reply_no}
+	</select>
+	
+	<select id="list_reply"  parameterType="Int" resultType="replyVO">
 		select *
 		from reply
+		where commu_no = #{commu_no}
+		
 	</select>
 </mapper>
-
-
 
