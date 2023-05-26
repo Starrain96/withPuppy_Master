@@ -48,26 +48,8 @@ public class ReplyController {
 	public void one(int Commu_id, Model model) {
 		System.out.println("one요청됨.");
 		System.out.println(Commu_id);
-		//ReplyVO bag = dao.one(Commu_id);
-		//model.addAttribute("bag", bag);
-		//bag에 검색결과 다 들어있음.
-		//views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
-		//views까지 전달할 속성으로 추가해주세요. 
+ 
 	}
-	
-//	@RequestMapping("one2.multi")
-//	public void one2(int Commu_no, Model model) {
-//		System.out.println("one요청됨.");
-//		System.out.println(Commu_no);
-//		//ReplyVO bag = dao.one(Commu_no);
-//		//검색결과가 있는지 프린트!
-//	//	System.out.println(bag);
-//		//model.addAttribute("bag", bag);
-//	}
-	
-//	@RequestMapping("list2")
-//	public void list(Model model) {
-//	}
 	
 	@RequestMapping("replyMain")
 	public void replyMain() {
@@ -92,5 +74,6 @@ public class ReplyController {
 		System.out.println("controller : " + list.size());
 		return list;
 	}
+	
 	
 }

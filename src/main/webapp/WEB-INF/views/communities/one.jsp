@@ -162,13 +162,13 @@ $(function() {
 	
 })
 
-function delBtn(num){
+function delBtn(deletNum){
   			$('#result').empty();
-  			console.log(num);
+  			console.log(deletNum);
 			$.ajax({
 				url : "../reply/delete_reply",
 				data : {
-					reply_no : num
+					reply_no : deletNum
 				},
 				success : function(x) {
 					alert("삭제처리가 완료 됐습니다!");
@@ -178,14 +178,12 @@ function delBtn(num){
 			}) //ajax
   		}
 
-/* function upBtn(up_num) {
-	$('#result').empty();
-	console.log(up_num);
-	$.ajax({
-		url : "../reply/update_reply",
-		data : {
-			reply_no = up_num
-		},
+function upBtn(updateNum) {
+    $.ajax({
+      url: "../reply/get_reply",
+      data: {
+        reply_no: updateNum
+      },
 		success : function(update) {
 			 var updateContent = prompt("수정할 내용을 입력하세요", reply.reply_content);
 		        if (updateContent !== null) {
@@ -201,9 +199,9 @@ function delBtn(num){
 		            }
 		          })
 		} //success
-		}
+	  }
 	}) //ajax
-}//bth-update	 */
+}//bth-update
 
 
 
