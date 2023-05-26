@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4">
-			<a href="communities/communitiesMain">
+			<a href="communities/communitiesMain?page=1">
 				<p style="position: relative; top: 10px; text-align: center;">커뮤니티</p>
 				<img src="resources/img/community.jpg" alt="커뮤니티" width="100%"
 				height="70%">
