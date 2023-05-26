@@ -1,41 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../../shopManageHeader.jsp"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 <script src="../resources/js/manage.js"></script>
-
+<script src="../resources/js/category.js"></script> 
 <link rel="stylesheet" href="../resources/css/manage.css">
-
 </head>
 
 <script type="text/javascript">
-	window.onload = function() {
-		function onClick() {
-			document.querySelector('.modal_wrap').style.display = 'block';
-			document.querySelector('.black_bg').style.display = 'block';
-		}
-		function offClick() {
-			document.querySelector('.modal_wrap').style.display = 'none';
-			document.querySelector('.black_bg').style.display = 'none';
-		}
 
-		document.getElementById('modal_btn').addEventListener('click', onClick);
-		document.querySelector('.modal_close').addEventListener('click', offClick);
-	};
 </script>
-
 
 <body>
 	<div class="flex">
-
 		<input type="text" id="searching" placeholder="상품이름을 입력하세요">
 		<button onclick="searching()">search</button>
 		<div class="choice" id="choice">
@@ -64,9 +48,9 @@
 				</thead>
 				<tbody id="manageList">
 					<c:forEach items="${list}" var="bag">
-						<tr>
+						<tr id = "editBtn">
 							<td>${bag.product_id}</td>
-							<td>${bag.product_name}</td>
+							<td  ondblclick="onClick1(${bag.product_id})">${bag.product_name}</td>
 							<td>${bag.category2}</td>
 							<td>${bag.product_cnt}</td>
 							<td>${bag.product_price}</td>
@@ -104,12 +88,7 @@
 				<li class="categoryLi"><a class="cateBtn"
 					onclick="btnChange(67,67,1,12,this)">훈련</a></li>
 			</ul>
-
-
-			<button id="modal_btn" class="addBtn" onclick="addProduct()">상품 등록</button>
-
-
-
+			<button id="modal_btn" class="addBtn">상품 등록</button>
 		</div>
 	</div>
 
@@ -120,43 +99,77 @@
 			<a href="#">close</a>
 		</div>
 		<div class="modal_content">
-		<form action="#">
+		<form id="addForm">
 		<table>
 			<tr>
 				<td>상품명 : </td>
-				<td><input type="text" class="inputForm" id="pName" placeholder="상품명입력"></td>
+				<td><input type="text" name = "product_name" class="inputForm" id="product_name" placeholder="상품명입력"></td>
 			</tr>
 			<tr>
 				<td>가격 :</td>
-				<td><input type="text" class="inputForm" id="pPrice" placeholder="가격 입력"></td>
+				<td><input type="text" name = "product_price" class="inputForm" id="product_price" placeholder="가격 입력"></td>
 			</tr>
 			<tr>
 				<td>카테고리 : </td>
-				<td><input type="text" class="inputForm" id="pCate" placeholder="카테고리 번호 입력"></td>
-			</tr>
-			<tr>
-				<td>재고 : </td>
-				<td><input type="text" class="inputForm" id="pCnt" placeholder="재고 입력"></td>
+				<td><input type="text" name = "category2" class="inputForm" id="category2" placeholder="카테고리 번호 입력"></td>
 			</tr>
 			<tr>
 				<td>상세 정보 : </td>
-				<td><input type="text" class="inputForm" id="pDetail" placeholder="상품 설명"></td>
+				<td><input type="text" name = "detail" class="inputForm" id="detail" placeholder="상품 설명"></td>
+			</tr>
+			<tr>
+				<td>재고 : </td>
+				<td><input type="text" name = "product_cnt" class="inputForm" id="product_cnt" placeholder="재고 입력"></td>
 			</tr>
 			<tr>
 				<td>이미지 url: </td>
-				<td><input type="text" class="inputForm" id="pImg" placeholder="이미지 url"></td>
+				<td><input type="text" name = "product_img" class="inputForm" id="product_img" placeholder="이미지 url"></td>
 			</tr>
 		</table>
-		<button type="submit" class="addBtn">Submit</button>
+		<button  class="addBtn" onclick="addProduct()">상품 추가하기</button>
+		</form>
+		</div>
+	</div>
+	
+	<div class="black_bg1"></div>
+	<div class="modal_wrap1">
+		<div class="modal_close1">
+			<a href="#">close</a>
+		</div>
+		<div class="modal_content1">
+		<form id="updateForm">
+		<table class="modal_table">
+			<tr>
+				<td>상품번호: </td>
+				<td><input type="text" name = "product_id" class="inputForm_1" id="product_id" value="" readonly/></td>
+			</tr>
+			<tr>
+				<td>상품명 : </td>
+				<td><input type="text" name = "product_name" class="inputForm" id="product_name" placeholder="상품명입력"></td>
+			</tr>
+			<tr>
+				<td>가격 :</td>
+				<td><input type="text" name = "product_price" class="inputForm" id="product_price" placeholder="가격 입력"></td>
+			</tr>
+			<tr>
+				<td>카테고리 : </td>
+				<td><input type="text" name = "category2" class="inputForm" id="category2" placeholder="카테고리 번호 입력"></td>
+			</tr>
+			<tr>
+				<td>재고 : </td>
+				<td><input type="text" name = "product_cnt" class="inputForm" id="product_cnt" placeholder="재고 입력"></td>
+			</tr>
+			<tr>
+				<td>이미지 url: </td>
+				<td><input type="text" name = "product_img" class="inputForm" id="product_img" placeholder="이미지 url"></td>
+			</tr>
+		</table>
+		<button type="button" class="addBtn" onclick="editProduct()">상품수정하기</button>
+		<button type="button" class="addBtn" onclick="deleteProduct()">상품삭제하기</button>
 		</form>
 		</div>
 	</div>
 
-
-
-			<!-- <div id="paging" class="paging">
-		<button onclick="main_(1,10)">1</button>
-	</div> -->
-			<div id="pagingList" class="pagingList"></div>
+	<div id="pagingList" class="pagingList"></div>
 </body>
 </html>
