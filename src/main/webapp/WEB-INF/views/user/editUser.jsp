@@ -1,134 +1,176 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>프로필</title>
-<!-- Latest compiled and minified CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/user.css">
-</head>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<%@ include file="/mypageHeader.jsp"%>
 <%
-//세션에서 값을 꺼내는 방법 
-String user_id = (String) session.getAttribute("user_id");
-System.out.println("user_id : " + user_id);
-/* userVO bag = (userVO)session.getAttribute("bag");
-System.out.println("bag : " + bag); */
-String contextPath = (String) request.getContextPath();
+/* UserVO userVo2 = (UserVO) session.getAttribute("bag");
+System.out.println("editUser bag : " + userVo2); */
 %>
-<div class="col text-center container">
-	<div class="row">
-		<button style="width:30px; height:30px; float:left">뒤</button>
-	</div>
-	<div class="row d-flex flex-column align-items-center">
-		<div class="img-wrapper">
-			<img src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
-		</div>
-		<label for="file-input" class="upload-btn">프로필 사진 변경</label>
-		<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">프로필 사진 삭제</a>
-		<input type="file" id="file-input" name="file-input" onclick="editImg()" style="display: none">
-	</div>
+        <!-- 메인 컨텐츠 -->
+        <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="card">
+                <h5 class="card-header">프로필 관리</h5>
+                <div class="card-body">
+                    <!-- 프로필 정보 출력 -->
+                    <div class="container">
+	                    <form action="updateUser" id="form" method="post" enctype="multipart/form-data" onsubmit="return editUser()" target='blankifr'>
+	                    <div class="row d-flex flex-column align-items-center">
+	                    	<!-- 개인정보 수정이 들어갈 영역 -->
+	                    	<div class="container ms-4">
+		                        <div id="pet_img" style="float: left; margin-top:40px; text-align: center" class="col-3">
+									<img class="img-wrapper" src="<%=contextPath%>/resources/upload/${bag.user_img}" alt="profile img" id="img">
+									<label for="file-input" class="upload-btn">프로필 사진 변경</label>
+									<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">프로필 사진 삭제</a>
+									<input type="file" id="file-input" name="file" style="display: none">
+								</div>
+		                        <div style="float: left;" class="col-8">
+		                            <h3>개인정보 수정</h3>
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item"><span class="info-label">이름</span>
+											<span class="info-value">${bag.user_name}</span>
+										</li>
+										<li class="list-group-item"><span class="info-label">전화번호</span>
+											<input type="text" id="tel1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3">
+											<span class="hypen">-</span>
+											<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
+											<span class="hypen">-</span>
+											<input type="text" id="tel3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
+											<input type="hidden" id="telDoubleChk">
+											<input type="hidden" id="tel" name="user_tel">
+										</li>
+										<li class="list-group-item"><span class="info-label">아이디</span>
+											<span class="info-value">${bag.user_id}</span></li>
+										<li class="list-group-item"><span class="info-label">닉네임</span><p></p>
+											<input type="text" id="nickname" name="user_nickname" maxlength="10"> 
+											<input id="nickname_check" type="button" onclick="nicknameCheck()" value="중복확인">
+											<p>
+												<span id="successNicknameChk" style="font-size: 15px;">※닉네임은 2자 이상 10자 이하로 설정해주시기 바랍니다.</span>
+											</p> <input type="hidden" id="nicknameDoubleChk" />
+										</li>
+										<li class="list-group-item"><span class="info-label">이메일</span>
+											<span class="info-value">${bag.user_email}</span>
+										</li>
+										<li class="list-group-item"><span class="info-label">주소</span><p></p>
+											<input type="text" id="addr1" name="user_addr1" placeholder="${bag.user_addr1}">
+											<input id='addr_find' type="button" onclick="addrFind()" value="우편번호 찾기"><p></p>
+											<input type="text" id="addr2" name="user_addr2" placeholder="${bag.user_addr2}" style="width: 500px;"><p></p>
+											<input type="text" id="addr3" name="user_addr3" placeholder="${bag.user_addr3}" style="width: 300px;">
+											<input type="text" id="addr4" name="user_addr4" style="width: 300px;">
+											<input type="hidden" id="addr5" name="user_addr5" >
+											<input type="hidden" id="addrDoubleChk">
+										</li>
+									</ul>
+				                    <!-- 하단 우측 수정하기 버튼을 위한 영역 -->
+				                    <div class="mt-3">
+										<button class="btn btn-custom" type="submit">수정하기</button>
+									</div>
+									</form>
+	                   	 			<iframe name='blankifr' style='display:none;'></iframe>
+									<hr>	
+				                    <!-- 비밀번호 수정이 들어갈 영역 -->
+				                    <h3>비밀번호 수정</h3>
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item"><span class="info-label">현재 비밀번호</span>
+											<input type="password" id="cur_pw" maxlength="20">
+									        <p><span id="successPwChk1" style="font-size: 15px;">※현재 비밀번호를 입력해주세요</span></p>
+									        <input type="hidden" id="pwDoubleChk1"/>
+										</li>
+										<li class="list-group-item"><span class="info-label">새 비밀번호</span>
+											<input type="password" id="new_pw" maxlength="20">
+									        <p><span id="successPwChk2" style="font-size: 15px;">※비밀번호는 문자, 숫자, 특수문자(!@#$%^&*)의 조합 8 ~ 20자리로 입력이 가능합니다.</span></p>
+									        <input type="hidden" id="pwDoubleChk2"/>
+									    </li>
+										<li class="list-group-item"><span class="info-label">새 비밀번호 확인</span>
+											<input type="password" id="new_pw2" maxlength="20">
+										    <p><span id="successPwChk3" style="font-size: 15px;"></span></p>
+											<input type="hidden" id="pwDoubleChk3"/>
+										</li>
+									</ul>
+									<div class="mt-3">
+										<button type="button" class="btn btn-custom" onclick="editPw()">수정하기</button>
+									</div>
+		                     	</div>
+	                        </div>
+	                    </div>
+                    </div>
+                	</div>
+                <div class="card-footer text-muted text-end">
+                   	강아지와🐶
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="col-md-8">
-    <h3>개인정보 수정</h3>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><span class="info-label">이름</span>
-			<span class="info-value">${bag.user_name}</span>
-		</li>
-		<li class="list-group-item"><span class="info-label">전화번호</span>
-			<input type="text" id="tel1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3">
-			<span class="hypen">-</span>
-			<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
-			<span class="hypen">-</span>
-			<input type="text" id="tel3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4">
-			<input type="hidden" id="telDoubleChk">
-		</li>
-		<li class="list-group-item"><span class="info-label">아이디</span>
-			<span class="info-value">${bag.user_id}</span></li>
-		<li class="list-group-item"><span class="info-label">닉네임</span><p></p>
-			<input type="text" id="nickname" maxlength="10"> 
-			<input id="nickname_check" type="button" onclick="nicknameCheck()" value="중복확인">
-			<p>
-				<span id="successNicknameChk" style="font-size: 15px;">※닉네임은 2자 이상 10자 이하로 설정해주시기 바랍니다.</span>
-			</p> <input type="hidden" id="nicknameDoubleChk" />
-		</li>
-		<li class="list-group-item"><span class="info-label">이메일</span>
-			<span class="info-value">${bag.user_email}</span>
-		</li>
-		<li class="list-group-item"><span class="info-label">주소</span><p></p>
-			<input type="text" id="addr1" placeholder="${bag.user_addr1}"><p></p>
-			<input type="text" id="addr2" placeholder="${bag.user_addr2}" style="width: 500px;"><p></p>
-			<input type="text" id="addr3" placeholder="${bag.user_addr3}" style="width: 300px;">
-			<input type="text" id="addr4" style="width: 300px;">
-			<input type="hidden" id="addrDoubleChk">
-		</li>
-	</ul>
-	<div class="mt-3">
-		<a href="#" class="btn btn-custom" onclick="editUser()">수정하기</a>
-	</div>
-	<hr>
-	<h3>비밀번호 수정</h3>
-	<ul class="list-group list-group-flush">
-		<li class="list-group-item"><span class="info-label">현재 비밀번호</span>
-			<input type="password" id="cur_pw" maxlength="20">
-	        <p><span id="successPwChk1" style="font-size: 15px;">※현재 비밀번호를 입력해주세요</span></p>
-	        <input type="hidden" id="pwDoubleChk1"/>
-		</li>
-		<li class="list-group-item"><span class="info-label">새 비밀번호</span>
-			<input type="password" id="new_pw" maxlength="20">
-	        <p><span id="successPwChk2" style="font-size: 15px;">※비밀번호는 문자, 숫자, 특수문자(!@#$%^&*)의 조합 8 ~ 20자리로 입력이 가능합니다.</span></p>
-	        <input type="hidden" id="pwDoubleChk2"/>
-	    </li>
-		<li class="list-group-item"><span class="info-label">새 비밀번호 확인</span>
-			<input type="password" id="new_pw2" maxlength="20">
-		    <p><span id="successPwChk3"></span></p>
-			<input type="hidden" id="pwDoubleChk3"/>
-		</li>
-	</ul>
-	<div class="mt-3">
-		<a href="#" class="btn btn-custom" onclick="editPw()">수정하기</a>
-	</div>
-</div>
-
 <!-- Latest compiled and minified JavaScript -->
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-$(function() {
-	var tel = `${bag.user_tel}`;
-	var tel1 = tel.slice(0, 3); // 첫 번째 번호
-	var tel2 = tel.slice(3, 7); // 두 번째 번호
-	var tel3 = tel.slice(7, 11); // 세 번째 번호
-	$('#tel1').val(tel1);
-	$('#tel2').val(tel2);
-	$('#tel3').val(tel3);
-	$('#nickname').val("${bag.user_nickname}");
-	$('#addr1').val("${bag.user_addr1}");
-	$('#addr2').val("${bag.user_addr2}");
-	$('#addr3').val("${bag.user_addr3}");
-	$('#addr4').val("${bag.user_addr4}");
-	$('#nicknameDoubleChk').val(true);
-})
+	$(function() {
+		var btel = `${bag.user_tel}`;
+		var btel1 = btel.slice(0, 3); // 첫 번째 번호
+		var btel2 = btel.slice(3, 7); // 두 번째 번호
+		var btel3 = btel.slice(7, 11); // 세 번째 번호
+		$('#tel1').val(btel1);
+		$('#tel2').val(btel2);
+		$('#tel3').val(btel3);
+		$('#nickname').val("${bag.user_nickname}");
+		$('#addr1').val("${bag.user_addr1}");
+		$('#addr2').val("${bag.user_addr2}");
+		$('#addr3').val("${bag.user_addr3}");
+		$('#addr4').val("${bag.user_addr4}");
+		$('#nicknameDoubleChk').val(true);
+		$('#addrDoubleChk').val(true);
+		if (!"${bag.user_img}") { // 프로필 이지미지가 null이면
+			$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
+		} else {
+			$("#img").attr("src", "<%=contextPath%>/resources/upload/${bag.user_img}");
+		}
+	})
 	
+	//이미지 미리보기
+	var sel_file;
 	
-	/* $("#edit").click(function() {
-    	var nickname = $('#nickname').val();
-    	var addr1 = $('#addr1').val();
-    	var addr2 = $('#addr2').val();
-    	var addr3 = $('#addr3').val();
-    	var addr4 = $('#addr4').val();
-    	var addr5 = $('#addr1').val() + "/" + $('#addr2').val() + "/" + $('#addr3').val() + "/" + $('#addr4').val();
-        	
-        	
-	}); // edit */
+	$(document).ready(function() {
+	    $("#file-input").on("change", handleImgFileSelect);
+	});
 	
+	function handleImgFileSelect(e) {
+	    var files = e.target.files;
+	    var filesArr = Array.prototype.slice.call(files);
+	
+	    var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+	
+	    filesArr.forEach(function(f) {
+	        if (!f.type.match(reg)) {
+	            alert("확장자는 이미지 확장자만 가능합니다.");
+	            return;
+	        }
+	
+	        sel_file = f;
+	
+	        var reader = new FileReader();
+	        reader.onload = function(e) {
+	            $("#img").attr("src", e.target.result);
+	        }
+	        reader.readAsDataURL(f);
+	    });
+	}
+	
+	// 프로필 사진 삭제
+	function deleteImage() {
+		var img = document.getElementById("img");
+		img.src = "<%=contextPath%>/resources/upload/profile.png";
+	}
+	
+	 // 현재 비밀번호 입력
+    $('#nickname').change(function (event) {
+    	event.preventDefault();
+    	if ($('#nickname').val() != "${bag.user_nickname}") {
+    		$('#nicknameDoubleChk').val(false);
+    	}
+    });
+
 	// 닉네임 체크
 	function nicknameCheck() {
 		var nickname = $('#nickname').val();
@@ -142,7 +184,6 @@ $(function() {
                     if (result == '0') {
                         $('#successNicknameChk').text('사용 가능한  닉네임입니다.');
                         $('#successNicknameChk').css("color", "green");
-                        $('#nicknameDoubleChk').val(true);
                     } else {
                         $('#successNicknameChk').text('이미 사용중인 닉네임입니다.');
                         $('#successNicknameChk').css("color", "red");
@@ -210,55 +251,30 @@ $(function() {
                 document.getElementById("addr2").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("addr3").focus();
-                $('#addrDoubleChk').val(true);
             }
         }).open();
     } // addrFind
     
+    // 회원정보 수정
     function editUser() {
-    	var form = new FormData();
-        form.append( "file-input", $("#file-input")[0].files[0] );
-    	var tel = $('#tel1').val() + $('#tel2').val() + $('#tel3').val();
-    	var nickname = $('#nickname').val();
-    	var addr1 = $('#addr1').val();
-    	var addr2 = $('#addr2').val();
-    	var addr3 = $('#addr3').val();
-    	var addr4 = $('#addr4').val();
-    	var addr5 = $('#addr1').val() + "/" + $('#addr2').val() + "/" + $('#addr3').val() + "/" + $('#addr4').val();
-    	form.append("user_tel", tel);
-    	form.append("user_nickname", nickname);
-    	form.append("user_addr1", addr1);
-    	form.append("user_addr2", addr2);
-    	form.append("user_addr3", addr3);
-    	form.append("user_addr4", addr4);
-    	form.append("user_addr5", addr5);
+    	var tel1 = $('#tel1').val();
+    	var tel2 = $('#tel2').val();
+    	var tel3 = $('#tel3').val();
+    	var tel = tel1 + tel2 + tel3;
+    	$('#tel').val(tel);
     	
-    		$.ajax({
-                type: 'POST',
-                url: "<%=contextPath%>"+'/user/updateUser',
-                data: { user_img : formData,
-                		user_tel : tel,
-                		user_nickname : nickname,
-                		user_addr1 : addr1,
-                		user_addr2 : addr2,
-                		user_addr3 : addr3,
-                		user_addr4 : addr4,
-                		user_addr5 : addr5
-                },
-                enctype : 'multipart/form-data',
-                contentType: false,
-                processData: false,
-                success: function(result) {
-                	 if (result === 1){
-                		alert("수정 완료!");
-                    	window.location.replace("myPage.jsp")
-                	}
-                    
-                },
-                error: function() {
-                	alert("수정 실패!");
-                } 	
-            });
+    	var addr5 = $('#addr1').val() + "/" + $('#addr2').val() + "/" + $('#addr3').val() + "/" + $('#addr4').val();
+    	$('#addr5').val(addr5);
+    	
+    	if (tel.length == "11" && $('#nicknameDoubleChk').val(true)) {
+	    	alert("회원정보 수정 완료!");
+	    	window.location.replace("<%=contextPath%>/user/myPage");
+    		return true;
+    	} else {
+    		alert("회원 정보를 다시 입력해주세요.");
+    		return false;
+    	}
+    	return true;
     }
     
     // 현재 비밀번호 입력
@@ -266,10 +282,11 @@ $(function() {
     	event.preventDefault();
     	var pw = $('#cur_pw').val();
     	$.ajax({
-	        url: "<%=contextPath%>"+'/pwCheck',
+	        url: "<%=contextPath%>"+'/user/pwCheck',
 	        type: 'POST',
-	        data: { pw: $('#pw').val() },
+	        data: { pw: $('#cur_pw').val() },
 	        success: function (result) {
+	        	console.log(result);
 	            if (result === 1) { 
 	            	$('#successPwChk1').text('비밀번호가 일치합니다.');
 	            	$('#successPwChk1').css("color", "green");
@@ -299,7 +316,7 @@ $(function() {
                     
         } else if (passwordRule.test(pw) && pw.length >= 8) { // 비밀번호 유효성 만족
         	$.ajax({
-                url: "<%=contextPath%>"+'/pwCheck',
+                url: "<%=contextPath%>"+'/user/pwCheck',
                 type: 'POST',
                 data: { pw: pw },
                 success: function (result) {
@@ -307,10 +324,12 @@ $(function() {
                         $('#successPwChk2').text('현재 사용 중인 비밀번호입니다. 다시 입력해주세요.');
                         $('#successPwChk2').css("color", "red");
                         $('#pwDoubleChk2').val(false);
+                        console.log("사용중 비밀번호");
                     } else { // 비밀번호 불일치
                         $('#successPwChk2').text('사용 가능한 비밀번호입니다.');
                         $('#successPwChk2').css("color", "green");
                         $('#pwDoubleChk2').val(true);
+                        console.log("사용 가능 비밀번호");
                     }
                 },
                 error: function () {
@@ -319,6 +338,7 @@ $(function() {
             });
                     
         } else { // 비밀번호 유효성 불만족
+        	console.log("비밀번호 유효성 불만족");
         	$('#successPwChk2').text('비밀번호를 정확히 입력해주세요.');
         	$('#successPwChk2').css("color", "red");
         	$('#pwDoubleChk2').val(false);
@@ -346,62 +366,26 @@ $(function() {
     
     // 비밀번호 수정
     function editPw() {
-        if ($('#pwDoubleChk1').val() == 'true' && $('#pwDoubleChk2').val() == 'true' && $('#pwDoubleChk3').val() == 'true') {
+        if ($('#pwDoubleChk1').val(true) && $('#pwDoubleChk2').val(true) && $('#pwDoubleChk3').val(true)) {
         	$.ajax({
-                url: "<%=contextPath%>"+'/updatePw',
+                url: "<%=contextPath%>"+'/user/updatePw',
                 type: 'POST',
                 data: { pw: $('#new_pw').val() },
                 success: function(result) {
+                	console.log(result);
                 	if (result === 1){
                 		alert("비밀번호 수정 완료!");
-                    	window.location.replace("myPage.jsp")
+                    	window.location.replace("<%=contextPath%>/user/myPage");
                 	}
                 },
                 error: function() {
                 	alert("비밀번호 수정 실패!");
                 } 	
             });
+        } else {
+        	alert("비밀번호를 올바르게 입력해주세요.");
         }
-    } // editPw
-    
-  	//이미지 미리보기
-    var sel_file;
- 
-    $(document).ready(function() {
-        $("#file-input").on("change", handleImgFileSelect);
-    });
- 
-    function handleImgFileSelect(e) {
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
- 
-        var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
- 
-        filesArr.forEach(function(f) {
-            if (!f.type.match(reg)) {
-                alert("확장자는 이미지 확장자만 가능합니다.");
-                return;
-            }
- 
-            sel_file = f;
- 
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $("#img").attr("src", e.target.result);
-            }
-            reader.readAsDataURL(f);
-        });
-    }
-    
-    function deleteImage() {
-    	var img = document.getElementById("img");
-    	img.src = "<%=contextPath%>/resources/img/profile.png";
-    }
-    
-    function editImg() {
-        console.log('이미지선택');
-    } // editPw
-    
+    } // editPw  
 </script>
 </body>
 </html>

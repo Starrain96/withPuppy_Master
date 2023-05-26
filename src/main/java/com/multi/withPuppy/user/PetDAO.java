@@ -26,6 +26,13 @@ public class PetDAO {
 		return result;
 	}
 	
+	// 반려동물 수정
+	public int updatePet(PetVO bag) {
+		int result = my.update("pet.updatePet", bag);
+		System.out.println("다오 updatePet : " + result);
+		return result;
+	}
+	
 	// 펫 리스트
 	public List<PetVO> petList(String pet_owner) {
 		List<PetVO> petList = my.selectList("pet.petList", pet_owner);

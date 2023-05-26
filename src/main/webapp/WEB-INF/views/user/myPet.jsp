@@ -1,43 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%-- header --%>
-    <%@ include file="/header.jsp"%>
-    <%-- header END --%>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>프로필</title>
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="../resources/css/user.css">
-</head>
-<%
-String contextPath = (String) request.getContextPath();
-%>
-<div class="container-fluid">
-    <div class="row">
-        <!-- 사이드 메뉴 -->
-        <div class="col-lg-3 col-md-4 col-sm-12">
-            <div class="card">
-                <h5 class="card-header">마이페이지</h5>
-                <div class="card-body p-0">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
-							<ul class="list-group2 list-group-flush">
-								<li class="list-group-item2"><a href="<%=contextPath%>/user/userHistory">커뮤니티</a></li>
-								<li class="list-group-item2"><a href="#">쇼핑몰</a></li>
-								<li class="list-group-item2"><a href="#">리뷰</a></li>
-							</ul>
-						</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/header.jsp"%>
+<%@ include file="/mypageHeader.jsp"%>
+
         <!-- 메인 컨텐츠 -->
         <div class="col-lg-9 col-md-8 col-sm-12">
             <div class="card">
@@ -48,7 +12,7 @@ String contextPath = (String) request.getContextPath();
 	                    <div class="row">
 	                    	<!-- 상단 우측 버튼을 위한 영역 -->
 	                    	<div class="register-div">
-						    	<a class="btn btn-custom" onclick="addPet()" style="float: right; margin-bottom:20px">반려동물 등록</a>
+						    	<a class="btn btn-custom" onClick="location.href='addPet'" style="float: right; margin-bottom:20px; margin-right:37px">반려동물 등록</a>
 							</div>
 	                    </div>
 	                    <div class="row">
@@ -111,11 +75,13 @@ $.ajax({
 			div.remove();
 	    	$('#pet_info').empty();
 	    	for (i = 0; i < data.length; i++) {
-	    		//var hr = `<hr>`
+	    		if (!data[i].pet_img) { // 프로필 이지미지가 null이면
+	    			data[i].pet_img = "profile.png";
+	    		}
 				var petInfo = 
 					`<div class="container ms-4">
 		                        <div id="pet_img" style="float: left; margin-right:30px; margin-top:70px" class="col-3">
-									<img class="img-wrapper" src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
+									<img class="img-wrapper" src="<%=contextPath%>/resources/upload/`+data[i].pet_img+`" alt="profile img" id="img">
 								</div>
 		                        <div style="float: left;" class="col-8">
 		                            <ul class="list-group list-group-flush">
@@ -138,7 +104,7 @@ $.ajax({
 		                            </ul>
 		                            <div style="margin-bottom:20px">
 					            		<button class="btn btn-custom" onClick="location.href='updatePetPage?pet_no=`+data[i].pet_no+`'">✏️</button>
-					            		<button class="btn btn-custom" onclick="deletePet(`+data[i].pet_no+`,`+data[i].pet_name+`)">❌</button>
+					            		<button class="btn btn-custom" onclick="deletePet(`+data[i].pet_no+`)">❌</button>
 				            		</div>
 		                     	</div>
 	                        </div>`;
@@ -157,16 +123,16 @@ $.ajax({
 function addPet() {
 	console.log("등록");
     $.ajax({
-        url: "<%=contextPath%>"+'/user/addPet',
+        url: "addPet",
         success: function(data) {
-            $("#row").html(data);
+            $("#pet_info").html(data);
         }
     });
 }
 
 //반려동물 삭제
-function deletePet(petno, petname) {
-	if (confirm(petname + "를(을) 삭제하시겠습니까?")) {
+function deletePet(petno) {
+	if (confirm("반려동물을 삭제하시겠습니까?")) {
 		$.ajax({
 	        url : "deletePet",
 	        data : {
