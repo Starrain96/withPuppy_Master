@@ -365,12 +365,12 @@ h1 {
 .search-box-container .search-button {
     background-color: #ffe98c;
     border: none;
-    border-radius: 5px;
     color: #000;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
     padding: 10px;
 }
+
 
 .listHpcenter {
 	align-items: center;

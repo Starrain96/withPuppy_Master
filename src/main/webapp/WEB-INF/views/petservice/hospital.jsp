@@ -207,7 +207,7 @@
 	</tr>
 	<tr>
 		<td>전문분야</td>
-		<td>${bag.normal_category}</td>
+		<td>${bag.petsize}</td>
 		<td style="border-left: 1px solid black;">휴무일</td>
 		<td>${bag.dayoff}</td>
 	</tr>

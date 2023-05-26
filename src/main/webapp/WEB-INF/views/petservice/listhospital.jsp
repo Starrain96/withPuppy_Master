@@ -12,12 +12,15 @@
 	<div class="search-top-container">
 		<h3 class="title">동물병원·약국찾기</h3>
 	</div>
+	
+	<form action="searchHospital" method="get">
 	<div class="search-box-container">
 		<div class="inner">
-			<input type="text" placeholder="동물병원 검색">
+			<input type="text" id="service_name" name="service_name" placeholder="검색할 동물병원을 입력해주세요." onfocus="this.placeholder=''"
+			onblur="this.placeholder='검색할 동물병원을 입력해주세요.'"><button type="submit" class="search-button">검색</button>
 		</div>
-		<!-- <button type="button" class="search-button">검색</button> -->
 	</div>
+	</form>
 	<hr color=grey>
 
 	<div id="map" style="width: 800px; height: 350px; margin: 0 auto;"></div>
@@ -94,7 +97,7 @@
 	
 	//클러스터리(군집마커) 코드 끝나는 곳입니다.
 	
-	var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 이중배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
+	var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
 	
 	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 	if (navigator.geolocation) {
@@ -139,7 +142,6 @@
 			//거리를 본인위치 기반 거리를 계산하여 이중 배열에 값을 넣는 시작부분입니다.
 			
 			let distString = "";
-			let test =1.1;
 			
 			<c:forEach var="bag" items="${list}">
 			hpLat = ${bag.latitude};
@@ -172,6 +174,7 @@
 					<div class="address">주소: `+ arrDistance[i].address + `</div>
 					<div class="parking">주차 가능 여부: `+  arrDistance[i].park + `</div>
 					<div class="distance">거리: `+ arrDistance[i].dist + `km</div>
+					<a href="hospital?service_id=`+ id +`"><button>자세히</button></a>
 				</div>
 			</li>`
 			
