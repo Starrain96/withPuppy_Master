@@ -174,6 +174,7 @@
 					<div class="address">주소: `+ arrDistance[i].address + `</div>
 					<div class="parking">주차 가능 여부: `+  arrDistance[i].park + `</div>
 					<div class="distance">거리: `+ arrDistance[i].dist + `km</div>
+					<a href="hospital?service_id=`+ id +`"><button>자세히</button></a>
 				</div>
 			</li>`
 			
