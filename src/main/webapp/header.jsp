@@ -37,9 +37,8 @@
                 aria-current="page">Home</a></li> -->
             <li class="nav-item"><a href="${pageContext.request.contextPath}/communities/communitiesMain?page=1" class="nav-link link-secondary">커뮤니티</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12" class="nav-link link-secondary">쇼핑몰</a></li>
-			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital" class="nav-link link-secondary">반려동물서비스</a></li>
+			<li class="nav-item"><a href="${pageContext.request.contextPath}/petservice/listhospital" class="nav-link link-secondary">동물병원</a></li>
 			<li class="nav-item"><a href="${pageContext.request.contextPath}/cs/selectFaqList" class="nav-link link-secondary">고객센터</a></li>
-			<li class="nav-item"><a href="${pageContext.request.contextPath}/report/report" class="nav-link link-secondary">반려동물 신고</a></li>
 			<%if (userVo == null) {%>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/loginPage" class="nav-link link-secondary">로그인</a></li>
             <%} else { %>

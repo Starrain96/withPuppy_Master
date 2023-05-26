@@ -29,8 +29,6 @@
 			</a>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
 </div>
 
 <div style="text-align: center;">
@@ -38,6 +36,5 @@
 </div>
 
 
->>>>>>> 0d1c3768d5e60d81d49ca13a98c39e8bef3c4ee1
 </body>
 </html>
