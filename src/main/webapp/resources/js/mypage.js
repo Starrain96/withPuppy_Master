@@ -53,8 +53,3 @@ $("#card-body").html(`
         	 return; 
         }
     }  // delete2
-
-$("#edit").click(function(){
-	console.log("수정");
-	$("#row").load(path+'/user/editUser');
-}); // edit

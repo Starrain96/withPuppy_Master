@@ -32,11 +32,11 @@
 	
 	<update id="updateUser" parameterType="userVO">
 		update user set user_tel = #{user_tel}, user_nickname =  #{user_nickname},
-		user_addr1 = #{user_addr1}, user_addr2 = #{user_addr2}, user_addr3 = #{user_addr3}, user_addr4 = #{user_addr4}, user_addr5 = #{user_addr5}, user_img = #{user_img})
+		user_addr1 = #{user_addr1}, user_addr2 = #{user_addr2}, user_addr3 = #{user_addr3}, user_addr4 = #{user_addr4}, user_addr5 = #{user_addr5}, user_img = #{user_img} where user_id = #{user_id}
 	</update>
 	
-	<update id="updatePw" parameterType="userVO">
-		update user set user_pw = #{user_pw}
+	<update id="updatePw" parameterType="Map">
+		update user set user_pw = #{password} where user_id = #{id}
 	</update>
 	
 	<select id="all"  resultType="userVO">
