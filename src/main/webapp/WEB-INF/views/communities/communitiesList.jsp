@@ -200,6 +200,25 @@
 		left: 10px;
 		font-size: 16px;
 	}
+	.pages {
+	display: inline-block;
+	margin: 5px;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	text-align: center;
+	cursor: pointer;
+	background-color: white;
+	color: #3aa4c1;
+	font-size: 16px;
+	font-weight: bold;
+	transition: background-color 200ms linear, color 200ms linear;
+}
+
+.pages:hover {
+	background-color: #3aa4c1;
+	color: white;
+}
 </style>
 
 </head>
@@ -223,8 +242,8 @@
 		<tr>
 			<td class="top">번호</td>
 			<td class="top">제목</td>
-			<td class="top">글쓴이</td>
 			<td class="top">작성일</td>
+			<td class="top">글쓴이</td>
 			<td class="top">조회수</td>
 		</tr>
 

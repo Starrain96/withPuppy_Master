@@ -10,8 +10,6 @@ public class CommunitiesVO {
 	private String commu_title;
 	private String commu_content;
 	private String commu_img;
-	private String commu_img2;
-	private String commu_img3;
 	private String category1;
 	private int commu_view;
 	private Timestamp commu_date;
@@ -53,18 +51,6 @@ public class CommunitiesVO {
 	public void setCommu_img(String commu_img) {
 		this.commu_img = commu_img;
 	}
-	public String getCommu_img2() {
-		return commu_img2;
-	}
-	public void setCommu_img2(String commu_img2) {
-		this.commu_img2 = commu_img2;
-	}
-	public String getCommu_img3() {
-		return commu_img3;
-	}
-	public void setCommu_img3(String commu_img3) {
-		this.commu_img3 = commu_img3;
-	}
 	public String getCategory1() {
 		return category1;
 	}
@@ -88,8 +74,8 @@ public class CommunitiesVO {
 	@Override
 	public String toString() {
 		return "CommunitiesVO [commu_no=" + commu_no + ", commu_id=" + commu_id + ", commu_title=" + commu_title
-				+ ", commu_content=" + commu_content + ", commu_img=" + commu_img + ", commu_img2=" + commu_img2
-				+ ", commu_img3=" + commu_img3 + ", category1=" + category1+ ", commu_view=" + commu_view 
+				+ ", commu_content=" + commu_content + ", commu_img=" + commu_img 
+			 + ", category1=" + category1+ ", commu_view=" + commu_view 
 				+ ", commu_Timestamp=" + commu_date
 				+ "]";
 	}

@@ -30,6 +30,13 @@
 			from communities c) c2
 			where c2.c_no between ${start} and ${end}
 	</select>
+
+	<select id="list_category" parameterType="pageVO" resultType="communitiesVO">
+		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view 
+			from communities c) c2
+			where c2.c_no between ${start} and ${end}
+	</select>
 	
 	<select id="count" resultType="Integer">
 		select count(*) from communities

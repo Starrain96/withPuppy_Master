@@ -76,13 +76,49 @@ hr {
 	font-weight: bold;
 }
 
-.edit-field {
-	display: flex;
-	flex-direction: column;
+.reply-section {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
-.edit-field.hidden {
-	display: none;
+.reply-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.reply-id {
+  font-weight: bold;
+}
+
+.reply-date {
+  color: #777;
+  font-size: 12px;
+}
+
+.reply-content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.edit-delete {
+  background-color: #ff3d3d;
+  margin-left: 10px;
+  background-color: #f9c13d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-delete:hover {
+  background-color: #ff5f5f;
 }
 </style>
 <script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
@@ -92,31 +128,117 @@ $(function() {
     content = $('#reply').val()
     writer = "yang"
     $.ajax({
-      url:"../reply/insert2",
+      url:"../reply/insert_reply",
       data:{
           commu_no:${vo.commu_no},
           reply_content:content,
           reply_id:writer
       },
       success: function(x) {
-          alert("성공!")
-          $('#result').append("- " + content +", "+ writer + "<br>")
-          $('#reply').val('') // 작성 후 글자 사라지게 하는것
+          alert("성공!");
+          $('#reply').val(''); // 작성 후 글자 사라지게 하는것
+          document.location.reload();
           // val() : 입력한 값을 가져온다.
           // val("안녕") : 안녕 이란 값을 input 에 value안으로 넣는다.
+		$('#commu_de').click(function() {
+			$('#result').empty()
+			$.ajax({
+				url : "delete",
+				data : {
+					commu_no : ${vo.commu_no}
+				},
+				success : function(x) {
+					history.back();
+					$('#result').append(x)
+				} //success
+			}) //ajax
+		})//commu_de
       }
     })
   })
+  bringReplyList();
+})
+$(function() {	
 	
 })
 
+function delBtn(deletNum){
+  			$('#result').empty();
+  			console.log(deletNum);
+			$.ajax({
+				url : "../reply/delete_reply",
+				data : {
+					reply_no : deletNum
+				},
+				success : function(x) {
+					alert("삭제처리가 완료 됐습니다!");
+					document.location.reload();
+					$('#result').append(x);
+				} //success
+			}) //ajax
+  		}
+
+function upBtn(updateNum) {
+    $.ajax({
+      url: "../reply/get_reply",
+      data: {
+        reply_no: updateNum
+      },
+		success : function(update) {
+			 var updateContent = prompt("수정할 내용을 입력하세요", reply.reply_content);
+		        if (updateContent !== null) {
+		          $.ajax({
+		            url: "../reply/update_reply",
+		            data: {
+		              reply_no: replyNo,
+		              reply_content: updateContent
+		            },
+		            success: function() {
+		              alert("수정이 정상적으로 처리되었습니다!");
+		              document.location.reload();
+		            }
+		          })
+		} //success
+	  }
+	}) //ajax
+}//bth-update
+
+
+
+function bringReplyList() {
+  $.ajax({
+    url: "../reply/list_reply",
+    data: {
+      commu_no: ${vo.commu_no}
+    },
+    success: function(x) {
+      $('#result').empty();
+      for (i = 0; i < x.length; i++) {
+        var reply = x[i];
+        var replySection ='<div class="reply-section">' +
+          '<div class="reply-info">' +
+          '<span class="reply-id">' + reply.reply_id + '</span>' +
+          '<span class="reply-date">' + reply.reply_date + '</span>' +
+          '</div>' +
+          '<div class="reply-content">' + reply.reply_content + '</div>' +
+          '<button id ="btn-update" onclick="upBtn('+reply.reply_no+')" class ="edit-delete">수정</button>'+
+          '<button id="btn-delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button>'+
+          '</div>';
+	// onclick 을 써서 paramater 을 넘겨주자.
+          
+	
+        $('#result').append(replySection);
+      }
+    }
+  })
+}
 </script>
 
 </head>
 <body>
 	<div class="container">
 		<nav>
-			<a href="communitiesMain">처음페이지로</a> <a href="communitiesList?page=1">이전페이지</a>
+			<a href="communitiesMain?page=1" class="edit-delete">처음페이지로</a> <a href="communitiesList?page=1" class= "edit-delete">이전페이지</a>
 		</nav>
 		<hr>
 		<section class="article">
@@ -133,22 +255,17 @@ $(function() {
 			</p>
 			<!-- 내용을 출력하는 부분 -->
 		</section>
-		<a href="communitiesFnD?commu_no=${vo.commu_no} & page=1"><button>수정/삭제📝</button></a>
+		<a href="communitiesFnD?commu_no=${vo.commu_no} & page=1"><button class= "edit-delete">수정📝</button></a>
+		<button id="commu_de" class= "edit-delete">삭제📝</button>
 		<hr>
-		<section class="reply-list" style="display: none;">
-			<ul id="result">
-				<c:forEach items="${list2}" var="vo2">
-					<li>
-						<p>${vo2.reply_id} : ${vo2.reply_content},  ${vo2.reply_date}</p>
-						</li>
-				</c:forEach>
-			</ul>
+		<section class="reply-list">
+			<div id="result">
+			</div>
 		</section>
 
 		<section class="reply-form">
 			<input id="reply" placeholder="댓글을 입력하세요">
-			<button id="b1">댓글달기</button>
-			<button id="b2">댓글삭제</button>
+			<button id="b1">댓글달기</button> 
 		</section>
 	</div>
 </body>
