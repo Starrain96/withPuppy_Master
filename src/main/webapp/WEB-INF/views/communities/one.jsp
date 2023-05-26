@@ -178,7 +178,7 @@ function delBtn(deletNum){
 			}) //ajax
   		}
 
-function upBtn(updateNum) {
+/* function upBtn(updateNum) {
     $.ajax({
       url: "../reply/get_reply",
       data: {
@@ -201,7 +201,7 @@ function upBtn(updateNum) {
 		} //success
 	  }
 	}) //ajax
-}//bth-update
+}//bth-update */
 
 
 
