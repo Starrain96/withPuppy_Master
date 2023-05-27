@@ -18,10 +18,10 @@
 		select COUNT(*) from user where user_nickname = #{user_nickname}
 	</select>
 	
-	<select id="loginUser" parameterType="userVO" resultType="userVO">
-		select * from user where user_id = #{user_id} and user_pw = #{user_pw}
+	<select id="loginUser" parameterType="Map" resultType="userVO">
+		select * from user where user_id = #{id} and user_pw = #{pw}
 	</select>
-
+	
 	<select id="pwCheck" resultType="String">
 		select user_pw from user where user_id = #{user_id}
 	</select>

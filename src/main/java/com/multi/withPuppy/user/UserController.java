@@ -1,6 +1,8 @@
 package com.multi.withPuppy.user;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,24 +46,23 @@ public class UserController {
 	@RequestMapping("/userHistory")
 	public void userHistory() {
 	}
-
+	
 	// 로그인
 	@RequestMapping("/loginUser")
-	public String loginUser(UserVO bag, Model model, HttpSession session) {
-
-		//System.out.println("컨트롤러 bag : " + bag);
-
-		UserVO vo = dao.loginUser(bag);
+	@ResponseBody
+	public int loginUser(@RequestParam("id") String id, @RequestParam("pw") String pw, Model model, HttpSession session) throws IOException {
+		
+		UserVO vo = dao.loginUser(id, pw);
+		System.out.println("컨트롤러 vo : " + vo);
 		model.addAttribute("vo", vo);
 		//System.out.println("컨트롤러 vo : " + vo);
 		if (vo != null) {
-			session.setAttribute("id", bag.getUser_id());
+			session.setAttribute("id", vo.getUser_id());
 			session.setAttribute("bag", vo);
-			//System.out.println("세션에 아이디가 들어 있는지? : " + (String) session.getAttribute("id"));
 			System.out.println("login success");
-			return "redirect:../main.jsp";
+			return 1;
 		} else {
-			return "redirect:loginPage";
+			return 0;
 		}
 	}
 

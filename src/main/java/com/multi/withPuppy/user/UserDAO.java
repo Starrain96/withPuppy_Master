@@ -18,10 +18,12 @@ public class UserDAO {
 	
 	@Autowired
 	SqlSessionTemplate my;
-	
-	public UserVO loginUser(UserVO userBag) {
-		System.out.println("dao bag : " + userBag);
-		UserVO vo = my.selectOne("user.loginUser", userBag);
+
+	public UserVO loginUser(String id, String pw) {
+		Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        params.put("pw", pw);
+		UserVO vo = my.selectOne("user.loginUser", params);
 		System.out.println("vo>> : " + vo);
 		return vo;
 	}
