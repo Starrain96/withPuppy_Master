@@ -18,6 +18,7 @@
         <input name="user_id" id="id" type="text" class="text-field" placeholder="아이디">
        	<input name="user_pw" id="pw" type="password" class="text-field" placeholder="비밀번호">
         <input type="button" class="submit-btn" onclick="loginUser()" value="로그인">
+        <p><span id="loginFail" style="font-size: 13px;"></span></p>
         <div class="links">
             <a href="signupUser">회원가입</a>
         </div>
@@ -43,8 +44,8 @@ function loginUser() {
         	if (result == '1'){
             	window.location.replace("<%=contextPath%>"+'/main.jsp')
             } else {
-            	alert("아이디 또는 비밀번호를 잘못 입력했습니다!");
-            	window.location.replace("<%=contextPath%>"+'/user/loginPage')
+            	$('#loginFail').text('아이디 또는 비밀번호를 잘못 입력했습니다!');
+        		$('#loginFail').css("color", "red");
             }
       	}
    	});
