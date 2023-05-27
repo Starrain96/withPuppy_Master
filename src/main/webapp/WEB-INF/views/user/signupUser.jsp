@@ -368,7 +368,7 @@
     			$('#nameDoubleChk').val(true) && $('#emailDoubleChk').val(true) && $('#addrDoubleChk').val(true)){
     		$.ajax({
                 type: 'POST',
-                url: "<%=contextPath%>"+'/user/goUser',
+                url: "<%=contextPath%>"+'/user/insertUser',
                 data: { user_id : id,
                 		user_pw : pw,
                 		user_name : name,
