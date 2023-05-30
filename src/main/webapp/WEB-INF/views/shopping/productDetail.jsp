@@ -36,7 +36,7 @@ function addToCart(product_id, user_id) {
 			user_id : user_id
 		},
 		success : function(data) {
-			alert("성공!");
+			alert("상품이 장바구니에 담겼습니다");
 		},
 		error : function(){
 			alert("에러");

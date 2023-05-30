@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="order_detail">
-	<!-- insert, delete, update는 무조건 resultType="int"이므로
-	     프로그래머가 써주지 않아도 이미 resultType="int"가 
-	     있는 것으로 본다.!
-	 -->
-	<insert id="insertDe" parameterType="order_detailVO" >
-		insert into order_detail(order_id, product_id, ordered_cnt, order_status, refundCheck_YN)
-		values (#{order_id}, #{product_id}, #{ordered_cnt}, #{order_status}, #{refundCheck_YN})
+	<!-- insert, delete, update는 무조건 resultType="int"이므로 프로그래머가 써주지 않아도 이미 resultType="int"가 
+		있는 것으로 본다.! -->
+	<insert id="insertDe" parameterType="order_detailVO">
+		insert into
+		order_detail(order_id, product_id, ordered_cnt, order_status,
+		refundCheck_YN)
+		values (#{order_id}, #{product_id}, #{ordered_cnt},
+		#{order_status}, #{refundCheck_YN})
 	</insert>
-	
+
 	<select id="lastId" resultType="int">
-		select order_id 
+		select order_id
 		from order1
-	    order by order_id desc
-	    limit 1
+		order by order_id desc
+		limit 1
 	</select>
+
+	<select id="productCnt" resultType="int">
+		select product_cnt from product p where product_id =#{product_id}
+	</select>
+
 
 </mapper>
 

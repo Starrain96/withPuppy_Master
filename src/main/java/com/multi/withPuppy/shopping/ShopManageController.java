@@ -85,12 +85,5 @@ public class ShopManageController {
 		ProductVO result = dao.bringInfo(product_id);
 		return result;
 	}
-	
-	@RequestMapping("shopping/bringStatistics")
-	@ResponseBody
-	public List<StatisticsVO> bringStatistics() {
-		List<StatisticsVO> result = dao.bringS();
-		
-		return result;
-	}
+
 }
