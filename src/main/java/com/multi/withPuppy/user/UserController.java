@@ -2,10 +2,9 @@ package com.multi.withPuppy.user;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +42,20 @@ public class UserController {
 	public void myPet() {
 	}
 
-	@RequestMapping("/userHistory")
-	public void userHistory() {
+	@RequestMapping("/userCommu")
+	public void userCommu() {
+	}
+	
+	@RequestMapping("/userShopping")
+	public void userShopping() {
+	}
+	
+	@RequestMapping("/userReview")
+	public void userReview() {
+	}
+	
+	@RequestMapping("/userManagement")
+	public void userManagement() {
 	}
 	
 	// 로그인
@@ -184,5 +195,36 @@ public class UserController {
 		return result;
 	}
 
-
+	// 내 활동 기록 : 커뮤니티
+	@RequestMapping("/userCommuList")
+	@ResponseBody
+	public List<UserCommuVO> userCommuList(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		
+		List<UserCommuVO> commuList = dao.userCommuList(id);
+		model.addAttribute("commuList", commuList);
+		return commuList;
+	}
+	
+	// 내 활동 기록 : 쇼핑
+	@RequestMapping("/userShoppingList")
+	@ResponseBody
+	public List<UserShoppingVO> userShoppingList(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		
+		List<UserShoppingVO> shoppingList = dao.userShoppingList(id);
+		model.addAttribute("shoppingList", shoppingList);
+		return shoppingList;
+	}
+	
+	// 내 활동 기록 : 리뷰
+	@RequestMapping("/userReviewList")
+	@ResponseBody
+	public List<UserReviewVO> userReviewList(Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		
+		List<UserReviewVO> reviewList = dao.userReviewList(id);
+		model.addAttribute("reviewList", reviewList);
+		return reviewList;
+	}
 }
