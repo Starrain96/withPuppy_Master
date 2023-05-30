@@ -5,6 +5,10 @@
 <%
     UserVO userVo = (UserVO) session.getAttribute("bag");
     System.out.println("header bag : " + userVo);
+    String user_level = null;
+	if(userVo != null){
+		user_level = userVo.getUser_level();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +42,9 @@
 			<%if (userVo == null) {%>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/loginPage" class="nav-link link-secondary">로그인</a></li>
             <%} else { %>
+            	<% if (user_level != null && user_level.equals("관리자")) { %>
+                	<li class="nav-item"><a href="${pageContext.request.contextPath}/user/userManagement" class="nav-link link-secondary">회원관리</a></li>
+                <%} %>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/myPage" class="nav-link link-secondary">마이페이지</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/user/logoutUser" class="nav-link link-secondary">로그아웃</a></li>
             <%} %>
