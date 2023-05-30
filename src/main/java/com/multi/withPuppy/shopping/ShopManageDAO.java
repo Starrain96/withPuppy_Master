@@ -52,8 +52,4 @@ public class ShopManageDAO {
 		return list;
 	}
 	
-	public List<StatisticsVO> bringS(){
-		List<StatisticsVO> list = my.selectList("manage.cateS");
-		return list;
-	}
 }

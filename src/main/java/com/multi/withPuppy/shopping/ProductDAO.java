@@ -40,6 +40,11 @@ public class ProductDAO {
 		System.out.println(result);
 	}
 	
+	public int minusProductCnt(ProductVO bag) {
+		int result = my.update("product.updateCnt", bag);
+		return result;
+	}
+	
 	public ProductVO one(int id) {
 		ProductVO vo = my.selectOne("product.one", id);
 		return vo;

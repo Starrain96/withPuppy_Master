@@ -59,4 +59,10 @@ public class OrderDAO {
 		List<ProductVO> list = my.selectList("cart.allProduct", user_id);
 		return list;
 	}
+	
+	
+	public int bringProductCnt(int product_id) {
+		int ans = my.selectOne("order_detail.productCnt", product_id);
+		return ans;
+	}
 }

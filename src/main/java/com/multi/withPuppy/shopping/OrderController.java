@@ -19,6 +19,10 @@ public class OrderController {
 
 	@Autowired
 	OrderDAO dao;
+	
+	@Autowired
+	ProductDAO dao1;
+	
 
 	@RequestMapping("insertOr")
 	@ResponseBody
@@ -35,6 +39,14 @@ public class OrderController {
 		System.out.println("order_detailVO : " + bag);
 		bag.setOrder_id(order_id);
 		int result = dao.insert(bag);
+		
+		int p_cnt = dao.bringProductCnt(bag.getProduct_id());
+		
+		//상품 재고 마이너스
+		ProductVO bag2 = new ProductVO();
+		bag2.setProduct_id(bag.getProduct_id());
+		bag2.setProduct_cnt(p_cnt - bag.getOrdered_cnt());
+		int cntResult = dao1.minusProductCnt(bag2);
 		return result;
 	}
 
