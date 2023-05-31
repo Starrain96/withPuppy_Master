@@ -71,7 +71,8 @@ public class StarController {
 			File target = new File(uploadPath + "/" + savedName);
 			ocr.transferTo(target);
 			
-			// System.out.println("target : "+ target);  <<<< upload 되는 절대경로 찾는 방법!!!
+			System.out.println("target : "+ target);  // <<<< upload 되는 절대경로 찾는 방법!!!
+			
 			model.addAttribute("savedName", savedName);
 			starVO.setOcr(savedName);
 			ocrName = savedName;
@@ -104,7 +105,8 @@ public class StarController {
 		String secretKey = NaverVISIONAPI.SECRECT_KEY;
 		// String imageFile = "alone1.jpeg";
 		// String imageFile = "doc1.jpeg";
-		String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\"+ ocr;
+		String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\withPuppy_Master\\resources\\upload\\" + ocr;
+		
 		//String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\hp_fee01.JPG";
 		
 		try {
