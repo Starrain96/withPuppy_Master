@@ -197,20 +197,9 @@ label.upload-btn, #file-delete {
 }
 
 .img-wrapper {
-	position: relative;
     width: 200px;
     height: 200px;
-}
-
-.img-wrapper img {
-	position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(50, 50);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: auto;
+    border-radius: 50%;
 }
 
 #petBirth {
@@ -219,4 +208,73 @@ label.upload-btn, #file-delete {
 
 .empty {
 	padding: 142px;
+}
+
+/* userHistory.jsp */
+.meta-area1{
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    margin-bottom:5px;
+}
+
+.meta-area2{
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    gap:20px;
+    font-size:15px;
+    color:#747272;
+}
+
+.meta-area3{
+    display: flex;
+    justify-content:start;
+    align-items: center;
+    margin-bottom:5px;
+    font-size:15px;
+}
+
+.meta-child{
+    display: flex;
+    gap:5px;
+}
+
+svg {
+	height: 18px;
+    width: 18px;
+}
+
+/*normalTooltip*/
+#normalTooltip {
+  position: relative;
+  display: inline-block;
+  width: 14px;
+}
+#normalTooltip #normalTooltipText {
+  visibility: hidden;
+  width: 420px;
+  background-color: #ffe98c;
+  color: black;
+  text-align: left;
+  border-radius: 6px;
+  padding: 15px;
+  position: absolute;
+  z-index: 1;
+  bottom: -250%;
+  right: 150%;
+  margin-left: 60px;
+}
+
+
+#normalTooltip:hover #normalTooltipText {
+  visibility: visible;
+}
+
+.productImg {
+	margin: 10px;
+	max-width: 100px;
+	max-height: 100px;
+	object-fit: cover;
+	border-radius: 5px;
 }

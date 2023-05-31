@@ -1,6 +1,7 @@
 package com.multi.withPuppy.user;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class UserVO {
 	private String user_id;
@@ -20,6 +21,7 @@ public class UserVO {
 	private String user_state;
 	private Timestamp user_joindate;
 	private int user_visit;
+	private String user_recentvisit;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -122,6 +124,12 @@ public class UserVO {
 	public void setUser_visit(int user_visit) {
 		this.user_visit = user_visit;
 	}
+	public String getUser_recentvisit() {
+		return user_recentvisit;
+	}
+	public void setUser_recentvisit(String user_recentvisit) {
+		this.user_recentvisit = user_recentvisit;
+	}
 	@Override
 	public String toString() {
 		return "UserVO [user_id=" + user_id + ", user_pw=" + user_pw + ", user_email=" + user_email + ", user_name="
@@ -129,6 +137,6 @@ public class UserVO {
 				+ ", user_addr3=" + user_addr3 + ", user_addr4=" + user_addr4 + ", user_addr5=" + user_addr5
 				+ ", user_nickname=" + user_nickname + ", user_img=" + user_img + ", user_level=" + user_level
 				+ ", user_interest=" + user_interest + ", user_state=" + user_state + ", user_joindate=" + user_joindate
-				+ ", user_visit=" + user_visit + "]";
+				+ ", user_visit=" + user_visit + ", user_recentvisit=" + user_recentvisit + "]";
 	}
 }

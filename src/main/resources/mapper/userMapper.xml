@@ -11,19 +11,54 @@
 	</insert>
 	
 	<select id="idCheck" parameterType="String" resultType="int">
-		select COUNT(*) from user where user_id = #{user_id}
+		select COUNT(*)
+		  from user
+		 where user_id = #{user_id}
 	</select>
 	
 	<select id="nicknameCheck" parameterType="String" resultType="int">
-		select COUNT(*) from user where user_nickname = #{user_nickname}
+		select COUNT(*)
+		  from user
+		 where user_nickname = #{user_nickname}
 	</select>
 	
-	<select id="loginUser" parameterType="userVO" resultType="userVO">
-		select * from user where user_id = #{user_id} and user_pw = #{user_pw}
+	<select id="loginUser" parameterType="Map" resultType="userVO">
+		select *
+		  from user
+		 where user_id = #{id} and user_pw = #{pw}
 	</select>
-
+	
+	<update id="recentvisitUser" parameterType="String">
+		update user
+		  set user_recentvisit = now()
+		 where user_id = #{id}
+	</update>
+	
+	<update id="visitUser" parameterType="String">
+		update user
+		   set user_visit = user_visit + 1
+		 where user_id = #{id}
+		   and user_recentvisit != DATE(now())
+	</update>
+	
+	<update id="updateLevel">
+	<![CDATA[
+		UPDATE user
+		   SET user_level = 
+		    CASE 
+		        WHEN user_commu >= 100 AND user_reply >= 100 AND user_visit >= 30 THEN '인플루언서'
+		        WHEN user_commu >= 50 AND user_reply >= 50 AND user_visit >= 10 THEN '프로 집사'
+		        WHEN user_commu >= 10 AND user_reply >= 10 AND user_visit >= 5 THEN '훈련사'
+		        ELSE '집사'
+		    END
+		 WHERE user_level <> '관리자' AND DATE(user_recentvisit) = CURDATE() - INTERVAL 1 DAY;
+	]]>
+	</update>
+	
 	<select id="pwCheck" resultType="String">
-		select user_pw from user where user_id = #{user_id}
+		select user_pw
+		  from user
+		 where user_id = #{user_id}
 	</select>
 	
 	<delete id="deleteUser">
@@ -36,8 +71,41 @@
 	</update>
 	
 	<update id="updatePw" parameterType="Map">
-		update user set user_pw = #{password} where user_id = #{id}
+		update user
+		   set user_pw = #{password}
+		 where user_id = #{id}
 	</update>
+	
+	<select id="userCommuList" parameterType="String" resultType="usercommuVO">
+		select c.commu_no, c.commu_title, c.commu_view, c.commu_date, 
+				(select count(*) from reply r where r.commu_no = c.commu_no) commu_reply
+		  from communities c 
+		 where commu_id = #{id}
+	  order by commu_date desc;
+	</select>
+	
+	<select id="userShoppingList" parameterType="String" resultType="usershoppingVO">
+		select *
+		  from order1
+		where user_id = #{id}
+		order by order_date desc
+	</select>
+	
+	<select id="userShoppingProductList" parameterType="String" resultType="usershoppingproductVO">
+		select od.order_id, od.ordered_cnt, p.product_name, p.product_img, p.product_price
+		  from order1 o
+	inner join order_detail od ON o.order_id = od.order_id
+	inner join product p ON od.product_id = p.product_id
+		 where o.user_id = #{id}
+	  order by o.order_date desc
+	</select>
+	
+	<select id="userReviewList" parameterType="String" resultType="userreviewVO">
+		select s.service_id, s.date, s.content, s.kind, s.explain, s.treat, s.facilities, s.price,
+				(select p.service_name from petservice p where p.service_id = s.service_id) service_name
+		  from star s
+	  order by s.date desc
+	</select>
 	
 	<select id="all"  resultType="userVO">
 		select * from user
