@@ -128,6 +128,8 @@
 				 return distance;
 			}
 			
+			//도메인 로직 길찾기 api 이용해서 길찾기 KM 단위로 변환 << 전략 중 하나임 // 
+			
 			function deg2rad(deg) {
 				  return deg * (Math.PI/180);
 				}
