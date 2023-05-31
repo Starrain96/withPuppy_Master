@@ -13,35 +13,7 @@
 						<div class="col-sm-12">
 							<div id="length" style="margin-bottom: 10px"></div>
 						    <ul class="list-group list-group-flush" id="userShoppingList">
-						        <!-- <li class="list-group-item">
-			                     	<div class="meta-area3">
-			                        	<p>
-				                        	44<br>
-				                        	2023-05-29 21:43:05
-			                        	</p>
-			                    	</div>
-			                    	<div class="d-flex  align-items-center">
-										<img src="" alt="image" />
-										<div class="author">
-											<div class="cartPTitle"><span class="info-label">상품명</span></div>
-												<div class="rating cntRow"><span class="info-value">가격원</span>
-												<div id="" class="cntRow"><span class="info-value">1개</span></div>
-											</div>
-										</div>
-									</div>
-									<div>
-										<span class="info-label">총 금액</span><span class="info-value">10400원</span>
-									</div>
-			                     	<div class="meta-area1">
-				                     	<p>
-				                     		<span class="info-label">배송지 정보</span><br>
-				                        	<span class="info-label">수령인</span><span class="info-value">누규누구</span><br>
-				                        	<span class="info-label">연락처</span><span class="info-value">01011112222</span><br>
-				                        	<span class="info-label">배송지명</span><span class="info-value">우리집</span><br>
-				                        	<span class="info-label">배송지</span><span class="info-value">주소주소</span>
-				                        </p>
-			                    	</div>
-			                   	</li> -->
+						        <!-- 쇼핑 목록 -->
 						    </ul>
 						</div>
 					</div>
@@ -92,7 +64,7 @@ function userShoppingList() {
 	                ` + data[i].order_id + `<br>
 	                ` + shopping_date + `
 	              </p>
-	            </div>
+	            </div><hr>
 	            <span class="info-label">주문 상품 정보</span><br><hr>`;
 	          
 	        var productList = data[i].productList;
@@ -116,13 +88,17 @@ function userShoppingList() {
 	          <div>
 	            <span class="info-label" style="margin-bottom: 20px; margin-top: 20px">총 금액</span><span class="info-value">` + data[i].total_price + `원</span>
 	          </div>
+	          <hr>
+	          <span class="info-label">배송지 정보</span><br><hr>
 	          <div class="meta-area1">
-	            <p>
-	              <span class="info-label">배송지 정보</span><br>
+	              <p>
 	              <span class="info-label">수령인</span><span class="info-value">` + data[i].receiver_name + `</span><br>
 	              <span class="info-label">연락처</span><span class="info-value">` + data[i].receiver_phone + `</span><br>
 	              <span class="info-label">배송지명</span><span class="info-value">` + data[i].receiver_id + `</span><br>
-	              <span class="info-label">배송지</span><span class="info-value">` + data[i].receiver_phone + `</span>
+	              <span class="info-label">배송지</span><br>
+	              <span class="info-value">` + data[i].addr1 + `</span><br>
+	              <span class="info-value">` + data[i].addr2 + `</span><br>
+	              <span class="info-value">` + data[i].addr3 + `</span>
 	            </p>
 	          </div>
 	        </li>`;

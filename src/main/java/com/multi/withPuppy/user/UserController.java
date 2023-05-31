@@ -54,10 +54,6 @@ public class UserController {
 	public void userReview() {
 	}
 	
-	@RequestMapping("/userManagement")
-	public void userManagement() {
-	}
-	
 	// 로그인
 	@RequestMapping("/loginUser")
 	@ResponseBody

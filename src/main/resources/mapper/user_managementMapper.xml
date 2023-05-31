@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user_management">
+	<!-- insert, delete, update는 무조건 resultType="int"이므로
+	     프로그래머가 써주지 않아도 이미 resultType="int"가 
+	     있는 것으로 본다.!
+	 -->
+	<select id="userList" parameterType="userpageVO" resultType="userVO">
+		select * from (
+		select ROW_NUMBER() over(order by user_joindate desc) as user_no, u.*
+		from user u) user2
+		 where user2.user_no between ${start} and ${end}
+	</select>
+	
+	<select id="userCount" resultType="Integer">
+		select count(*) from user
+	</select>
+</mapper>
+
+
+

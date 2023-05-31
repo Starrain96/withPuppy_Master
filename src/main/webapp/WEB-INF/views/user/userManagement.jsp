@@ -38,9 +38,10 @@
 	                			<div class="search-area-text">검색</div>
 	                			<div class="dropdown">
 							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="condition" data-bs-toggle="dropdown" aria-expanded="false">
-							    		검색 조건
+							    		전체
 							  		</button>
 							  		<ul class="dropdown-menu" id="condition-menu" aria-labelledby="condition">
+							    		<li><a class="dropdown-item">전체</a></li>
 							    		<li><a class="dropdown-item">이름</a></li>
 							   		 	<li><a class="dropdown-item">아이디</a></li>
 							  		</ul>
@@ -54,7 +55,7 @@
                 	</div>
                 </div>
                 <!-- table area -->
-                <div class="card-child">
+                <div class="card-child" id="result">
                 	<table class="table" style="width:100%">
                 		<colgroup>
 						    <col style="width: 50px;">
@@ -77,35 +78,34 @@
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach items="${list}" var="one">
 							<tr style="height:42px;">
-								<th scope="row">1</th>
-							    <td>aaaaaaaaaaaaaaaaaaa</td>
-							    <td>bbbbbbbbbbbbbbbbbbb</td>
-							    <td>ccccccccccccccccccc</td>
-							    <td>ddddddddddddddddddd</td>
-							    <td>eeeeeeeeeeeeeeeeeee</td>
+								<th scope="row">${one.user_no}</th>
+							    <td>${one.user_id}</td>
+							    <td>${one.user_name}</td>
+							    <td>${one.user_email}</td>
+							    <td>${one.user_level}</td>
+							    <td>${one.user_joindate}</td>
 							    <td style="vertical-align: middle;">
 							    	<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
 							  			<input class="delete" type="checkbox" name="color">
 							  		</div>
 							  	</td>
 							</tr>
-							<tr>
-								<th scope="row">2</th>
-							    <td>aaaaaaaaaaaaaaaaaaa</td>
-							    <td>bbbbbbbbbbbbbbbbbbb</td>
-							    <td>ccccccccccccccccccc</td>
-							    <td>ddddddddddddddddddd</td>
-							    <td>eeeeeeeeeeeeeeeeeeej</td>
-							    <td style="vertical-align: middle;">
-							    	<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-							  			<input class="delete" type="checkbox" name="color">
-							  		</div>
-							  	</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
                 </div>
+				<div id="pagenationBtn">
+				<%
+					int pages = (int)request.getAttribute("pages");
+					for(int p = 1; p <= pages; p++){
+				%>
+					<button class="pages"><%= p %></button>
+				<%		
+					}
+				%>
+					</div>
             </div>
             <div class="card-footer text-muted text-end">
                    	강아지와🐶
@@ -126,6 +126,23 @@ $('#condition-menu a.dropdown-item').click(function() {
 	var selectedItemText = $(this).text();
 	$('#condition').text(selectedItemText);
 });
+
+$(function() {
+	$('.pages').click(function() {
+		$.ajax({
+			url: "userList",
+			data : {
+				page : $(this).text()
+			},
+			success: function(x) {
+				$("#result").html(x)
+			},
+			error: function() {
+				alert("nope")
+			}
+	})		
+})
+})
 </script>
 
 </body>
