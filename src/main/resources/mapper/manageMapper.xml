@@ -26,17 +26,6 @@
 		where p_no between #{start_num} and #{end_num}
 	</select>
 	
-	<select id="cateS" resultType="statisticsVO">
-		SELECT bc.categoryName AS s_name, SUM(p2.mult) AS s_num
-		FROM big_category bc, category c, 
-    	(SELECT category2 AS categoryNum, (od.ordered_cnt * p.product_price) AS mult 
-     		FROM order_detail od, product p 
-     		WHERE od.product_id = p.product_id) AS p2
-		WHERE bc.categoryNum = c.bigCategoryNum AND c.categoryNum = p2.categoryNum
-		GROUP BY s_name
-		ORDER BY s_name ASC
-	</select>
-	
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
 	<!-- <select id="allProduct" parameterType="String" resultType="productVO">
