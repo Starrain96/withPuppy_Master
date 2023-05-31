@@ -146,7 +146,7 @@
 				tag2 = `
 				<div class="review-title">리얼후기</div>
 	<h1>
-	<button onclick="window.open('starpage?service_id=${bag.service_id}','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
+	<button class="btn btn-custom" onclick="window.open('starpage?service_id=${bag.service_id}','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
 	</h1>
 	<div class="review-all">총점</div>
 	<div id=review-avg style="width: 80%; height: 300px; margin: 0 auto;">
