@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,7 +95,6 @@ public class StarController {
 		model.addAttribute("savedName", savedName);
 	}
 
-	
 	@RequestMapping("insertBill") // 후기 사진 upload
 	public void insertBill(String ocr) throws Exception {
 		
@@ -105,7 +105,7 @@ public class StarController {
 		// String imageFile = "alone1.jpeg";
 		// String imageFile = "doc1.jpeg";
 		String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\"+ ocr;
-		// String imageFile = HttpServletRequest.getServletContext().getRealPath("/resources/upload/hp_fee01.jpg")
+		//String imageFile ="C:\\Users\\user\\Documents\\workspace-sts-3.9.14.RELEASE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\withPuppy_Master\\resources\\upload\\hp_fee01.JPG";
 		
 		try {
 			URL url = new URL(apiURL);

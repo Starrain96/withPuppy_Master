@@ -4,7 +4,7 @@ public class NaverVISIONAPI {
 
 	///// OCR /////
 	public final static String OCR_URL = "https://1o67d0sgq6.apigw.ntruss.com/custom/v1/22623/811d48943edc83cbd3bb0b7f8a527dabf1547ba807742580905cba971bbedf05/document/receipt";
-	public final static String SECRECT_KEY = "TE5iQUFjd3RlRWtFbUlzRkxjeGxrVURxaU5yeWNOeHk=";
+	public final static String SECRECT_KEY = "S2FCSUZkd2RVaHlma2J6c1hkdFZzaFBZR0RTVXBMc2g=";
 	///// OCR /////
 	
 	///// AI /////
