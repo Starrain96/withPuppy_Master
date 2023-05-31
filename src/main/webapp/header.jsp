@@ -82,6 +82,13 @@ function loginCheckAsk(){
 					class="nav-link link-secondary">로그인</a></li>
 				<%
 					} else {
+						if (userPageLevel.equals("관리자")) {
+				%>
+						<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/user/userManagement?page=1"
+ 						class="nav-link link-secondary">회원관리</a></li>
+ 				<%
+						}
 				%>
 				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/user/myPage"
@@ -110,7 +117,7 @@ function loginCheckAsk(){
 						
 					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
 						href="#"
-						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">쇼핑몰</a>
+						class="nav-link dropdown-toggle">쇼핑몰</a>
 						<ul class="dropdown-menu">
     						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12">쇼핑몰</a></li>
     						<li><a class="dropdown-item" onclick="loginCheckCart()">장바구니</a></li>
@@ -129,7 +136,7 @@ function loginCheckAsk(){
 						
 					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
 						href="#"
-						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">동물병원</a>
+						class="nav-link dropdown-toggle">동물병원</a>
 						<ul class="dropdown-menu">
     						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/petservice/listhospital">동물병원찾기</a></li>
     						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/petservice/mainFee">진료비비교</a></li>
@@ -138,7 +145,7 @@ function loginCheckAsk(){
 						
 					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
 						href="#"
-						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">고객센터</a>
+						class="nav-link dropdown-toggle">고객센터</a>
 						<ul class="dropdown-menu">
     						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/cs/selectFaqList">자주묻는질문</a></li>
     						<li><a class="dropdown-item" onclick="loginCheckAsk()">1:1문의</a></li>
