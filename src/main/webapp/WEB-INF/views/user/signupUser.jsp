@@ -349,6 +349,15 @@
         }).open();
     } // addrFind
     
+    // interest
+    $(document).ready(function() {
+        $('input[type="checkbox"]').change(function() {
+            if ($(this).is(':checked')) {
+                $('input[type="checkbox"]').not(this).prop('checked', false);
+            }
+        });
+    });
+    
     function insertUser() {
     	var id = $('#id').val();
     	var pw = $('#pw').val();
@@ -486,16 +495,16 @@
 	        <td class="col1">선호 카테고리</td>
 	        <td class="col2">
 			<label>
-			<input type="radio" name="service" value="community">커뮤니티</label>
+			<input type="checkbox" name="service" value="community">커뮤니티</label>
 			<span style="margin-right: 100px;"></span>
 			<label>
-			<input type="radio" name="service" value="shopping">쇼핑몰</label>
+			<input type="checkbox" name="service" value="shopping">쇼핑몰</label>
 			<span style="margin-right: 100px;"></span>
 			<label>
-			<input type="radio" name="service" value="pet-service">반려동물 서비스</label>
+			<input type="checkbox" name="service" value="pet-service">반려동물 서비스</label>
 			<span style="margin-right: 100px;"></span>
 			<label>
-			<input type="radio" name="service" value="pet-report">반려동물 신고</label></td>
+			<input type="checkbox" name="service" value="pet-report">반려동물 신고</label></td>
 	    </tr>
     </table>
   </div>

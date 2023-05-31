@@ -31,7 +31,10 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=clusterer"></script>
 	<script>
+	
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
 		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -44,7 +47,7 @@
 	//여기서부터 마커 이벤트 등록하기 위해 추가한 함수
 
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
-	var positions = [
+	  var positions = [
 		<c:forEach var="bag" items="${list}">
 		{content : '<div> ${bag.service_name} </div>',
 		latlng : new kakao.maps.LatLng(${bag.latitude}, ${bag.longitude})},
@@ -54,13 +57,13 @@
 	
 	];
 	
-	for (var i = 0; i < positions.length; i++) {
+	   for (var i = 0; i < positions.length; i++) {
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
 			map : map, // 마커를 표시할 지도
 			position : positions[i].latlng
 		// 마커의 위치
-		});
+		}); 
 
 		// 마커에 표시할 인포윈도우를 생성합니다 
 		var infowindow = new kakao.maps.InfoWindow({
@@ -95,6 +98,9 @@
 	
 	//클러스터리(군집마커) 코드 시작하는 곳입니다.
 	
+	// 마커 클러스터러를 생성합니다
+	
+	
 	//클러스터리(군집마커) 코드 끝나는 곳입니다.
 	
 	var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
@@ -127,6 +133,8 @@
 				const distance = R * c; // 두 지점 간의 거리 (단위: km)
 				 return distance;
 			}
+			
+			//도메인 로직 길찾기 api 이용해서 길찾기 KM 단위로 변환 << 전략 중 하나임 // 
 			
 			function deg2rad(deg) {
 				  return deg * (Math.PI/180);
@@ -173,8 +181,8 @@
 				<div class="info-box">
 					<div class="address">주소: `+ arrDistance[i].address + `</div>
 					<div class="parking">주차 가능 여부: `+  arrDistance[i].park + `</div>
-					<div class="distance">거리: `+ arrDistance[i].dist + `km</div>
-					<a href="hospital?service_id=`+ id +`"><button>자세히</button></a>
+					<div class="distance">직선거리: `+ arrDistance[i].dist + `km</div>
+					<a href="hospital?service_id=`+ id +`"><button class="btn btn-custom">자세히</button></a>
 				</div>
 			</li>`
 			

@@ -22,11 +22,11 @@ String contextPath = (String) request.getContextPath();
                         <li class="list-group-item">
 						<a href="<%=contextPath%>/user/myPage">프로필 관리</a></li>
 						<li class="list-group-item"><a href="<%=contextPath%>/user/myPet">내 반려동물</a></li>
-						<li class="list-group-item"><a href="<%=contextPath%>/user/userHistory">내 활동기록</a>
+						<li class="list-group-item"><a href="<%=contextPath%>/user/userCommu">내 활동기록</a>
 							<ul class="list-group2 list-group-flush">
-								<li class="list-group-item2"><a href="<%=contextPath%>/user/userHistory">커뮤니티</a></li>
-								<li class="list-group-item2"><a href="#">쇼핑몰</a></li>
-								<li class="list-group-item2"><a href="#">리뷰</a></li>
+								<li class="list-group-item2"><a href="<%=contextPath%>/user/userCommu">커뮤니티</a></li>
+								<li class="list-group-item2"><a href="<%=contextPath%>/user/userShopping">쇼핑몰</a></li>
+								<li class="list-group-item2"><a href="<%=contextPath%>/user/userReview">리뷰</a></li>
 							</ul>
 						</li>
                     </ul>

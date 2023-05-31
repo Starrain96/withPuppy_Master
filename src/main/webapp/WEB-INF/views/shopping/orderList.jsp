@@ -146,7 +146,7 @@ $(function bringCartData() {
   $(function() {
 	  $('#cash').click(function(){
 		  var receiver_name =$('#receiver_name').val();
-		  var receiver_phone =$('#receiver_phone').val();
+		  var receiver_phone =$('#tel1').val() + $('#tel2').val() + $('#tel3').val();
 		  var receiver_id =$('#receiver_id').val();
 		  var addr1 =$('#addr1').val();
 		  var addr2 =$('#addr2').val();
@@ -156,7 +156,7 @@ $(function bringCartData() {
 	    	type: 'POST',
 	        url:'insertOr',
 	        data : {
-	        	user_id : "apple",
+	        	user_id : "${bag.user_id}",
 	        	receiver_name: receiver_name,
 	        	receiver_phone: receiver_phone,
 	        	receiver_id: receiver_id,
@@ -310,8 +310,8 @@ $(function() {
 				<!-- 배송지 정보 -->
 				<div class="addressInfo_div">
 					<div class="addressInfo_button_div">
-						<button class="address_btn address_btn_1"
-							style="background-color: #3c3838;">배송지 입력</button>
+						<div class="address_btn address_btn_1"
+							style="background-color: #3c3838;">배송지 입력</div>
 					</div>
 					<div class="addressInfo_input_div_wrap">
 						<div class="addressInfo_input_div addressInfo_input_div_1"
@@ -326,11 +326,20 @@ $(function() {
 										<th>수령인</th>
 										<td><input class="addressee_input" id="receiver_name"
 											value="${bag.user_name}"></td>
+											<td><p><span id="receiver_name">※필수 입력란 입니다.</span></p></td>
 									</tr>
 									<tr>
 										<th>수령인 연락처</th>
-										<td><input class="addressee_input" id="receiver_phone"
-											value="${bag.user_tel}"></td>
+										<td>
+										<input type="text" id="tel1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3"
+										 style="width:67px;height:45px;">
+	        							<span class="hypen">-</span>
+	        							<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4"
+	        							style="width:67px;height:45px;">
+	        							<span class="hypen">-</span>
+	        							<input type="text" id="tel3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4"
+	        							style="width:67px;height:45px;">
+	        							</td>
 									</tr>
 									<tr>
 										<th>배송지명</th>
@@ -354,7 +363,8 @@ $(function() {
 		<div class="col-md-6"></div>
 		<div class="cartTotal" id="cartTotal"></div>
 		<button type="submit" class="btn-custom" id="cash">결제하기</button>
-
+		        	<button class="btn-custom" onClick="location.href=status?user_id=`+user_id1+`">주문현황</button>
+		
 		<input name="order_status" value="complete" type="hidden"
 			id="order_status"> <input name="refundCheck_YN" value="Y"
 			type="hidden" id="refundCheck_YN">

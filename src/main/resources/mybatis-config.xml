@@ -29,6 +29,10 @@
 		
 		<typeAlias type="com.multi.withPuppy.user.UserVO" alias="userVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.user.PetVO" alias="petVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserCommuVO" alias="usercommuVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserReviewVO" alias="userreviewVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserShoppingVO" alias="usershoppingVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserShoppingProductVO" alias="usershoppingproductVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.cs.FaqVO" alias="faqVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.cs.AskVO" alias="askVO"></typeAlias>

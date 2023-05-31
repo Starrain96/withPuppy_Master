@@ -10,11 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.multi.withPuppy.petservice.StarVO;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -83,6 +81,8 @@ public class PetController {
 	@ResponseBody
 	public List<PetVO> petList(Model model, HttpSession session) {
 		String pet_owner = (String) session.getAttribute("id");
+		System.out.println("pet?_owner : " + pet_owner);
+		
 		List<PetVO> petList = dao.petList(pet_owner);
 		System.out.println(petList);
 		model.addAttribute("petList", petList);
