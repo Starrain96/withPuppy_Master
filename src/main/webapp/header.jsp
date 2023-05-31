@@ -4,7 +4,14 @@
 <%@ page import="com.multi.withPuppy.user.UserVO"%>
 <%
 	UserVO userVo = (UserVO) session.getAttribute("bag");
-System.out.println("header bag : " + userVo);
+	System.out.println("header bag : " + userVo);
+
+	String userPageID = null;
+	String userPageLevel = null;
+	if (userVo != null) {
+	userPageID = userVo.getUser_id();
+	userPageLevel = userVo.getUser_level();
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +23,7 @@ System.out.println("header bag : " + userVo);
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/main.css" />
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
 .container {
@@ -37,7 +44,32 @@ body {
   padding-top: 230px;
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
 </style>
+<script type="text/javascript">
+var userPageID = "<%=userPageID%>";
+function loginCheckCart(){
+	if( userPageID != "null"){
+		console.log(userPageID);
+		location.href="${pageContext.request.contextPath}/shopping/cartList";
+	}else{
+		alert("로그인해야 이동가능한 페이지입니다.");
+	}
+}
+function loginCheckAsk(){
+	if( userPageID != "null"){
+		console.log(userPageID);
+		location.href="${pageContext.request.contextPath}/cs/selectAskList?Ask_writer=<%=userPageID%>";
+	}else{
+		alert("로그인해야 이동가능한 페이지입니다.");
+	}
+}
+</script>
+
 <body>
 	<header class="border-bottom">
 
@@ -75,21 +107,43 @@ body {
 					<li class="nav-item" style="padding: 0 30px;"><a
 						href="${pageContext.request.contextPath}/communities/communitiesMain?page=1"
 						class="nav-link link-secondary">커뮤니티</a></li>
-					<li class="nav-item" style="padding: 0 30px;"><a
-						href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12"
-						class="nav-link link-secondary">쇼핑몰</a></li>
+						
+					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
+						href="#"
+						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">쇼핑몰</a>
+						<ul class="dropdown-menu">
+    						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shoppingList?start=1&end=4&start_num=1&end_num=12">쇼핑몰</a></li>
+    						<li><a class="dropdown-item" onclick="loginCheckCart()">장바구니</a></li>
+    						<%
+    						if((userVo != null)&&(userPageLevel.equals("관리자"))){ %>
+    						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shopManageMain?start_num=1&end_num=10">관리자</a></li>
+						 	<%} %>
+						 </ul>
+					</li>
 					<li class="nav-item ml-auto"><a
 						href="${pageContext.request.contextPath}/main.jsp"
 						class="nav-link link-secondary"> <img
 							src="${pageContext.request.contextPath}/resources/img/homelogo.png"
 							alt="홈" width="70%" height="70%"
 							style="display: block; margin: auto;"></a></li>
-					<li class="nav-item" style="padding: 0 30px;"><a
-						href="${pageContext.request.contextPath}/petservice/listhospital"
-						class="nav-link link-secondary">동물병원</a></li>
-					<li class="nav-item" style="padding: 0 30px;"><a
-						href="${pageContext.request.contextPath}/cs/selectFaqList"
-						class="nav-link link-secondary">고객센터</a></li>
+						
+					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
+						href="#"
+						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">동물병원</a>
+						<ul class="dropdown-menu">
+    						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/petservice/listhospital">동물병원찾기</a></li>
+    						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/petservice/mainFee">진료비비교</a></li>
+						 </ul>
+					</li>
+						
+					<li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
+						href="#"
+						class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">고객센터</a>
+						<ul class="dropdown-menu">
+    						<li><a class="dropdown-item" href="${pageContext.request.contextPath}/cs/selectFaqList">자주묻는질문</a></li>
+    						<li><a class="dropdown-item" onclick="loginCheckAsk()">1:1문의</a></li>
+						 </ul>
+					</li>
 				</ul>
 			</div>
 		</nav>
