@@ -49,6 +49,11 @@
 	font-size : 20px; 
 }
 
+.sorting{
+	display: flex;
+	margin-left: 30px;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -148,9 +153,15 @@ function cateBring(){
         }
 	})
 	
+	monthlyData(1);	
+}
+
+function monthlyData(n){
+	arr2 = [];
 	//월별 매출 그래프
 	$.ajax({
         url : "MonthlyStatistics",
+        data : {num : n},
         success : function(data) {
         	for(i=0; i<data.length; i++){
         		var a = {s_name : data[i].s_name, s_num : data[i].s_num};
@@ -165,7 +176,21 @@ function cateBring(){
         	drawBasic(data1, 3);
         }
 	})
-	
+}
+
+
+function changePeriod(){
+	var select  = document.getElementById("showNum");
+	var selectVal = (select.options[select.selectedIndex].value);
+	if(selectVal == 1){
+		monthlyData(1);	
+	}
+	else if(selectVal == 2){
+		monthlyData(2);	
+	}
+	else{
+		monthlyData(3);	
+	}
 }
 
 </script>
@@ -209,6 +234,15 @@ function cateBring(){
   	<div>
 		<p class= "title">월별 매출</p>
 	</div>
+	<div class="sorting">
+			<form id="sort_id" action="#" class="sortDetail" onchange="changePeriod()">
+				<select name="showNum" id="showNum">
+					<option value="1">최근 1년</option>
+					<option value="2">최근 6개월</option>
+					<option value="3">최근 3개월</option>
+				</select>
+			</form>
+		</div>
   	<div id="chart_div3" class= "google_chart"></div>
 
 

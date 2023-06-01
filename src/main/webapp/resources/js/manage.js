@@ -11,9 +11,8 @@ function deleteProduct(){
         }
 	})
 }
-/**
- * 
- */var productCnt=0;
+
+var productCnt=0;
 var n1, n2;
 
 //쇼핑몰 list 가져오는 함수
@@ -93,7 +92,8 @@ function onClick1(p_id) {/* 상품수정하기 */
 		}
 		document.querySelector('.modal_close1').addEventListener('click', offClick1);
 	};
-	
+
+//상품 등록
 function addProduct(){
 	console.log("addproduct함수");
 	$.ajax({
@@ -109,6 +109,7 @@ function addProduct(){
 	})
 }
 
+//상품 수정 업데이트
 function editProduct(){
 	$.ajax({
         url : "updateProduct",
@@ -123,6 +124,7 @@ function editProduct(){
 	})
 }
 
+//상품 수정시 상품 데이터 가져오기
 function bringProductInfo(p_id){
 	$.ajax({
         url : "bringInfo",
@@ -134,30 +136,6 @@ function bringProductInfo(p_id){
         	$('input[name=product_cnt]').attr('value',data.product_cnt);
         	$('input[name=product_img]').attr('value',data.product_img);
         }
-	})
-}
-
-function main_(n, cnt) {
-	$.ajax({
-		url : "shopManageMain2",
-		data : {
-			start_num : 10*n,
-			end_num : 10*n+cnt-1
-		},
-		success : function(data) {
-			$('#manageList').empty();
-			for (i = 0; i < data.length; i++) {
-				var sen =`<tr id = "editBtn">
-					<td>`+data[i].product_id+`</td>
-					<td  ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
-					<td>`+data[i].category2+`</td>
-					<td>`+data[i].product_cnt+`</td>
-					<td>`+data[i].product_price+`</td>
-					<td></td>
-				</tr>`
-				$('#manageList').append(sen);
-			}
-		}
 	})
 }
 
