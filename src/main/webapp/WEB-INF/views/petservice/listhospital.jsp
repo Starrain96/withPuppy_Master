@@ -12,12 +12,15 @@
 	<div class="search-top-container">
 		<h3 class="title">동물병원·약국찾기</h3>
 	</div>
+	
+	<form action="searchHospital" method="get">
 	<div class="search-box-container">
 		<div class="inner">
-			<input type="text" placeholder="동물병원 검색">
+			<input type="text" id="service_name" name="service_name" placeholder="검색할 동물병원을 입력해주세요." onfocus="this.placeholder=''"
+			onblur="this.placeholder='검색할 동물병원을 입력해주세요.'"><button type="submit" class="search-button">검색</button>
 		</div>
-		<!-- <button type="button" class="search-button">검색</button> -->
 	</div>
+	</form>
 	<hr color=grey>
 
 	<div id="map" style="width: 800px; height: 350px; margin: 0 auto;"></div>
@@ -28,7 +31,10 @@
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=services,clusterer,drawing"></script>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05"></script>
+		<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9abec93832f88f2e23bb7d16acd54c05&libraries=clusterer"></script>
 	<script>
+	
+	
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
 		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -41,7 +47,7 @@
 	//여기서부터 마커 이벤트 등록하기 위해 추가한 함수
 
 	// 마커를 표시할 위치와 내용을 가지고 있는 객체 배열입니다 
-	var positions = [
+	  var positions = [
 		<c:forEach var="bag" items="${list}">
 		{content : '<div> ${bag.service_name} </div>',
 		latlng : new kakao.maps.LatLng(${bag.latitude}, ${bag.longitude})},
@@ -51,13 +57,13 @@
 	
 	];
 	
-	for (var i = 0; i < positions.length; i++) {
+	   for (var i = 0; i < positions.length; i++) {
 		// 마커를 생성합니다
 		var marker = new kakao.maps.Marker({
 			map : map, // 마커를 표시할 지도
 			position : positions[i].latlng
 		// 마커의 위치
-		});
+		}); 
 
 		// 마커에 표시할 인포윈도우를 생성합니다 
 		var infowindow = new kakao.maps.InfoWindow({
@@ -92,9 +98,12 @@
 	
 	//클러스터리(군집마커) 코드 시작하는 곳입니다.
 	
+	// 마커 클러스터러를 생성합니다
+	
+	
 	//클러스터리(군집마커) 코드 끝나는 곳입니다.
 	
-	var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 이중배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
+	var arrDistance = []; // 병원이름, 주소, 주차가능여부, 거리를 포함하는 배열 선언하는 곳입니다. 외부에 선언 나중에 if문 밖에서 쓰려구
 	
 	// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 	if (navigator.geolocation) {
@@ -125,6 +134,8 @@
 				 return distance;
 			}
 			
+			//도메인 로직 길찾기 api 이용해서 길찾기 KM 단위로 변환 << 전략 중 하나임 // 
+			
 			function deg2rad(deg) {
 				  return deg * (Math.PI/180);
 				}
@@ -139,7 +150,6 @@
 			//거리를 본인위치 기반 거리를 계산하여 이중 배열에 값을 넣는 시작부분입니다.
 			
 			let distString = "";
-			let test =1.1;
 			
 			<c:forEach var="bag" items="${list}">
 			hpLat = ${bag.latitude};
@@ -171,7 +181,8 @@
 				<div class="info-box">
 					<div class="address">주소: `+ arrDistance[i].address + `</div>
 					<div class="parking">주차 가능 여부: `+  arrDistance[i].park + `</div>
-					<div class="distance">거리: `+ arrDistance[i].dist + `km</div>
+					<div class="distance">직선거리: `+ arrDistance[i].dist + `km</div>
+					<a href="hospital?service_id=`+ id +`"><button class="btn btn-custom">자세히</button></a>
 				</div>
 			</li>`
 			

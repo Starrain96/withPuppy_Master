@@ -18,6 +18,7 @@
 		<typeAlias type="com.multi.withPuppy.shopping.Order_detailVO" alias="order_detailVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.CartVO" alias="cartVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.StatisticsVO" alias="statisticsVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.shopping.StatisticsPeriodVO" alias="statisticsPeriodVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.petservice.PetserviceVO" alias="petserviceVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.StarVO" alias="starVO"></typeAlias>
@@ -28,6 +29,10 @@
 		
 		<typeAlias type="com.multi.withPuppy.user.UserVO" alias="userVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.user.PetVO" alias="petVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserCommuVO" alias="usercommuVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserReviewVO" alias="userreviewVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserShoppingVO" alias="usershoppingVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserShoppingProductVO" alias="usershoppingproductVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.cs.FaqVO" alias="faqVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.cs.AskVO" alias="askVO"></typeAlias>
@@ -46,6 +51,7 @@
 		<mapper resource="mapper/order_detailMapper.xml" />
 		<mapper resource="mapper/cartMapper.xml" />
 		<mapper resource="mapper/manageMapper.xml" />
+		<mapper resource="mapper/statisticsMapper.xml" />
 		
 		<mapper resource="mapper/petserviceMapper.xml" />
 		<mapper resource="mapper/starMapper.xml" />

@@ -20,7 +20,8 @@ public class OrderDAO {
 		return result;
 	}
 
-	public int insert(Order_detailVO bag) {
+	public int insertDetail(Order_detailVO bag) {
+		System.out.println(bag);
 		int result = my.insert("order_detail.insertDe", bag);
 		System.out.println(result);
 		return result;
@@ -58,5 +59,11 @@ public class OrderDAO {
 	public List<ProductVO> listP(String user_id) {
 		List<ProductVO> list = my.selectList("cart.allProduct", user_id);
 		return list;
+	}
+	
+	
+	public int bringProductCnt(int product_id) {
+		int ans = my.selectOne("order_detail.productCnt", product_id);
+		return ans;
 	}
 }

@@ -7,6 +7,11 @@
 		<!-- category = "동물병원" -->
 	</select>
 	
+	<select id="searchHospital"  parameterType="String" resultType="petserviceVO">
+		select * from petservice where service_name like CONCAT('%', #{service_name}, '%')
+		<!-- category = "동물병원" -->
+	</select>
+	
 	<select id="hospital"  parameterType="int" resultType="petserviceVO">
 		select * from petservice
 		where service_id = #{service_id}

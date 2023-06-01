@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statistics">
+
+	<select id="all" resultType="int">
+		select * from product
+	</select>
+
+	<select id="cateS" resultType="statisticsVO">
+		SELECT bc.categoryName AS s_name,
+		SUM(p2.mult) AS s_num
+		FROM big_category bc, category c,
+		(SELECT category2 AS categoryNum, (od.ordered_cnt * p.product_price) AS mult
+		FROM order_detail od, product p
+		WHERE od.product_id = p.product_id) AS p2
+		WHERE bc.categoryNum =
+		c.bigCategoryNum AND c.categoryNum = p2.categoryNum
+		GROUP BY s_name
+		ORDER BY s_num desc
+	</select>
+
+	<select id="saleAll" resultType="int">
+		select IFNULL(sum(total_price),
+		0) from order1
+	</select>
+
+	<select id="saleDay" resultType="int">
+		select
+		IFNULL(sum(o.total_price), 0) from order1 o where
+		date_format(o.order_date, "%Y-%m-%d") = curdate()
+	</select>
+
+	<select id="saleMonth" resultType="int">
+		select
+		IFNULL(sum(o.total_price),0) from order1 o where
+		date_format(o.order_date, "%Y-%m") = date_format(now(), '%Y-%m');
+	</select>
+
+	<select id="saleYear" resultType="int">
+		select
+		IFNULL(sum(o.total_price),0) from order1 o where
+		date_format(o.order_date, "%Y") = date_format(now(), '%Y');
+	</select>
+
+	<select id="saleDayCate" resultType="statisticsVO">
+		SELECT bc.categoryName AS s_name, SUM(p2.mult) AS s_num
+		FROM big_category bc,
+		category c,
+		(SELECT category2 AS categoryNum, (od.ordered_cnt * p.product_price) AS mult
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id and date_format(o.order_date, "%Y-%m-%d")=
+		date_format(now(), '%Y-%m-%d')) AS p2
+		WHERE bc.categoryNum = c.bigCategoryNum
+		AND c.categoryNum = p2.categoryNum
+		GROUP BY s_name
+		ORDER BY s_num desc
+	</select>
+
+
+	<!-- 최근 1년-->
+	<select id="saleMonthly1" resultType="statisticsVO">
+		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
+			SUM(od.ordered_cnt * p.product_price) AS s_num
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id
+		  AND od.order_id = o.order_id 
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN  DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
+		GROUP BY s_name
+		ORDER BY s_name asc
+	</select>
+	
+	<!-- 최근 6개월 -->
+	<select id="saleMonthly2" resultType="statisticsVO">
+		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
+			SUM(od.ordered_cnt * p.product_price) AS s_num
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id
+		  AND od.order_id = o.order_id 
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 MONTH), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
+		GROUP BY s_name
+		ORDER BY s_name asc
+	</select>
+
+	<!-- 최근 3개월 -->
+	<select id="saleMonthly3" resultType="statisticsVO">
+		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
+			SUM(od.ordered_cnt * p.product_price) AS s_num
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id
+		  AND od.order_id = o.order_id 
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
+		GROUP BY s_name
+		ORDER BY s_name asc
+	</select>
+
+</mapper>

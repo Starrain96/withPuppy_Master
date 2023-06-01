@@ -28,7 +28,7 @@
 			<tr>
 				<td style="width: 100px">content :</td>
 				<td><textarea cols="50" rows="10"
-						style="width: 200px; height: 100px;" name=""></textarea></td>
+						style="width: 200px; height: 100px;" name="faq_content"></textarea></td>
 			</tr>
 			<tr>
 				<td style="width: 100px">writer :</td>

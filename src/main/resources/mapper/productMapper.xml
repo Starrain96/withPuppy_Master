@@ -25,17 +25,17 @@
 		where product_id = #{p_id}
 	</select>
 	
-	
-	<select id="all"  resultType="productVO">
-		select *
-		from product
-	</select>
-	
+	<!-- 페이징용 카테고리별 데이터 갯수 가져오기 -->
 	<select id="allCnt" parameterType="categoryVO" resultType="Int">
 		select count(product_id) from product
 		<![CDATA[
 				where category2 <= #{end} and category2 >= #{start}
 			]]>
+	</select>
+	
+	<select id="all"  resultType="productVO">
+		select *
+		from product
 	</select>
 	
 	<!-- 쇼핑몰 리스트 기본순-->
@@ -68,6 +68,12 @@
 		where p_no between #{start_num} and #{end_num}
 	</select>
 	
+	
+	<!-- 주문시 상품개수 감소 -->
+	<update id="updateCnt" parameterType="productVO">
+		UPDATE product SET product_cnt = #{product_cnt} WHERE product_id = #{product_id}
+	</update>
+		
 </mapper>
 
 

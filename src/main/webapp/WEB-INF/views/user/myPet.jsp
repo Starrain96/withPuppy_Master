@@ -23,31 +23,7 @@
 	                    </div>
 	                    <div class="row d-flex flex-column align-items-center" id="pet_info">
 	                    	<!-- 반려동물이 들어갈 영역 -->
-	                    	<%-- <div class="container ms-4">
-		                        <div id="pet_img" style="float: left; margin-right:30px; margin-top:70px" class="col-3">
-									<img class="img-wrapper" src="<%=contextPath%>/resources/img/profile.png" alt="profile img" id="img">
-								</div>
-		                        <div style="float: left;" class="col-8">
-		                            <ul class="list-group list-group-flush">
-		                            	<li class="list-group-item">
-										    <span class="info-label">반려동물 이름</span> 
-										    <span class="info-value">${mypet.pet_name}</span>
-										</li>
-		                                <li class="list-group-item">
-										    <span class="info-label">반려동물 출생일</span> 
-										    <span class="info-value">${mypet.pet_age}</span>
-										  </li>
-		                                <li class="list-group-item">
-		                                	<span class="info-label">반려동물 종</span> 
-										    <span class="info-value">${mypet.pet_kind}</span>
-										</li>
-		                                <li class="list-group-item">
-		              						<span class="info-label">반려동물 몸무게</span> 
-										    <span class="info-value">${mypet.pet_weight}</span>
-										</li>
-		                            </ul>
-		                     	</div>
-	                        </div> --%>
+	                    	
 	                    </div>
                     </div>
                 	</div>
