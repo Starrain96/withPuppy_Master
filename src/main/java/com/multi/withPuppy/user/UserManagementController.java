@@ -41,19 +41,15 @@ public class UserManagementController {
 	}
 	
 	@RequestMapping("searchUser")
-	@ResponseBody
-	public void searchUser(@RequestParam("user_level") String user_level,
-						   @RequestParam("user_condition") String user_condition,
-						   @RequestParam("searchWord") String searchWord, UserPageVO vo, Model model) {
+	public void searchUser(UserPageVO vo, Model model) {
 		vo.setStartEnd(vo.getPage());
 		System.out.println("contorller getPage : " + vo.getPage());
-		vo.setUser_level(user_level);
-		vo.setUser_condition(user_condition);
-		vo.setSearchWord(searchWord);
-		System.out.println("contorller UserPageVO : " + vo.getUser_level());
+		
+		System.out.println("!!!!!!!: "+vo.getUser_level() + ", " + vo.getUser_condition() + ", " + vo.getSearchWord());
+		
 		List<UserVO> list = dao.searchUser(vo);
 		System.out.println("contorller list : " + list);
-		int count = dao.userSearchCount();
+		int count = dao.userSearchCount(vo);
 		System.out.println("all count>> " + count);
 		int pages = 0; // 전체의 페이지 개수를 구하는 것
 		if(count%10 == 0) {

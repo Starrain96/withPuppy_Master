@@ -19,14 +19,43 @@
 	<select id="searchUser" parameterType="userpageVO" resultType="userVO">
 		select * from (
 		select ROW_NUMBER() over(order by user_joindate desc) as user_no, u.*
-		from user u where user_level = '집사'
+		from user u
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="user_level != '전체'">
+					u.user_level = #{user_level}
+	        </if>
+	        <if test="searchWord != null">
+		    	<choose>
+			    	<when test="user_condition == '이름'">
+						AND u.user_name like CONCAT('%', #{searchWord}, '%')
+					</when>
+			    	<otherwise>
+						AND u.user_id like CONCAT('%', #{searchWord}, '%')
+					</otherwise>
+		        </choose>
+	        </if>
+		</trim>
 		 ) user2
-		 where user2.user_no between ${start} and ${end}
+		 where user2.user_no between #{start} and #{end}
 	</select>
 	
-	<select id="userSearchCount" resultType="Integer">
-		select count(*) from user
-		where user_level = '집사'
+	<select id="userSearchCount" parameterType="userpageVO" resultType="Integer">
+		select count(*) from user u
+		<trim prefix="WHERE" prefixOverrides="AND | OR">
+			<if test="user_level != '전체'">
+					u.user_level = #{user_level}
+	        </if>
+	        <if test="searchWord != null">
+		    	<choose>
+			    	<when test="user_condition == '이름'">
+						AND u.user_name like CONCAT('%', #{searchWord}, '%')
+					</when>
+			    	<otherwise>
+						AND u.user_id like CONCAT('%', #{searchWord}, '%')
+					</otherwise>
+		        </choose>
+	        </if>
+		</trim>
 	</select>
 	
 	<update id="disableForeignKeyChecks">

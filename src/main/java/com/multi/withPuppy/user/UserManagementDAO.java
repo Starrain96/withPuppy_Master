@@ -27,8 +27,9 @@ public class UserManagementDAO {
 		return my.selectList("user_management.searchUser", vo);
 	}
 	
-	public int userSearchCount() {
-		return my.selectOne("user_management.userSearchCount");
+	public int userSearchCount(UserPageVO vo) {
+		System.out.println("다오!!!!!!!: "+vo.getUser_level() + ", " + vo.getUser_condition() + ", " + vo.getSearchWord());
+		return my.selectOne("user_management.userSearchCount", vo);
 	}  
 
 	public void deleteUsers(String userIds) {

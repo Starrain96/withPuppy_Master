@@ -47,7 +47,7 @@
 		   SET user_level = 
 		    CASE 
 		        WHEN user_commu >= 100 AND user_reply >= 100 AND user_visit >= 30 THEN '인플루언서'
-		        WHEN user_commu >= 50 AND user_reply >= 50 AND user_visit >= 10 THEN '프로 집사'
+		        WHEN user_commu >= 50 AND user_reply >= 50 AND user_visit >= 10 THEN '프로집사'
 		        WHEN user_commu >= 10 AND user_reply >= 10 AND user_visit >= 5 THEN '훈련사'
 		        ELSE '집사'
 		    END
