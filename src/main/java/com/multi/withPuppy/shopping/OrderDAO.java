@@ -20,7 +20,8 @@ public class OrderDAO {
 		return result;
 	}
 
-	public int insert(Order_detailVO bag) {
+	public int insertDetail(Order_detailVO bag) {
+		System.out.println(bag);
 		int result = my.insert("order_detail.insertDe", bag);
 		System.out.println(result);
 		return result;
