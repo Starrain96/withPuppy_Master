@@ -5,10 +5,8 @@
 		있는 것으로 본다.! -->
 	<insert id="insertDe" parameterType="order_detailVO">
 		insert into
-		order_detail(order_id, product_id, ordered_cnt, order_status,
-		refundCheck_YN)
-		values (#{order_id}, #{product_id}, #{ordered_cnt},
-		#{order_status}, #{refundCheck_YN})
+		order_detail(order_id, product_id, ordered_cnt, order_status, refundCheck_YN)
+		values (#{order_id}, #{product_id}, #{ordered_cnt},#{order_status}, #{refundCheck_YN})
 	</insert>
 
 	<select id="lastId" resultType="int">
@@ -21,8 +19,6 @@
 	<select id="productCnt" resultType="int">
 		select product_cnt from product p where product_id =#{product_id}
 	</select>
-
-
 </mapper>
 
 

@@ -46,9 +46,8 @@ $(function bringCartData() {
         	
         	$('#cart_list').empty();
         	var total = 0;
+        	productTmp = data;
         	for (i = 0; i < data.length; i++) {
-        		
-        		productTmp = data;
         		
         		total += data[i].product_cnt * data[i].product_price;
 				var sen = 
@@ -193,13 +192,10 @@ $(function bringCartData() {
 }) //function */
 
 //주문 요청 (order, order_detail 테이블에 데이터 입력) 
-
-var productList = {"productList" : JSON.stringify(productTmp)}
-
 $(function() {
 	  $('#cash').click(function(){
 		  var receiver_name =$('#receiver_name').val();
-		  var receiver_phone =$('#receiver_phone').val();
+		  var receiver_phone =$('#tel1').val() + $('#tel2').val() + $('#tel3').val();
 		  var receiver_id =$('#receiver_id').val();
 		  var addr1 =$('#addr1').val();
 		  var addr2 =$('#addr2').val();
@@ -220,6 +216,7 @@ $(function() {
 	        	
 	        },
 	    success : function(x) {
+	    	console.log(productTmp);
 			alert("주문이 입력되었습니다. 결제 창으로 이동합니다.")
 			
 			$('#result').append(x)
@@ -227,8 +224,10 @@ $(function() {
 			$.ajax({
 			    	type: 'POST',
 			        url:'insertDe',
-			        data : productList, 
+			        traditional: true,
+			        data : {productTmp : JSON.stringify(productTmp)},
 				    success : function(x) {
+				    	
 			  		} 	 
 			    })
 		} //success
