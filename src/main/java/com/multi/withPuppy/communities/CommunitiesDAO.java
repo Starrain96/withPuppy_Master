@@ -54,6 +54,18 @@ public class CommunitiesDAO {
 	public List<CommunitiesVO> list_category(PageVO vo2) {
 		return my.selectList("communities.list_category", vo2);
 	}
+	
+	public List<CommunitiesVO> Metrolist_category(PageVO vo2) {
+		return my.selectList("communities.Metrolist_category", vo2);
+	}
+	
+	public List<CommunitiesVO> Freelist_category(PageVO vo2) {
+		return my.selectList("communities.Freelist_category", vo2);
+	}
+	
+	public List<CommunitiesVO> Vincelist_category(PageVO vo2) {
+		return my.selectList("communities.Vincelist_category", vo2);
+	}
 
 
 	

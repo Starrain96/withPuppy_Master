@@ -158,9 +158,15 @@ $(function() {
   })
   bringReplyList();
 })
-$(function() {	
-	
-})
+
+function upBtn(upNum){
+		console.log(upNum)
+        window.open(
+            "reply_one?reply_no=" + upNum,
+            "reply_one_frame",
+            "width=500, height = 500"                   
+        );
+    }
 
 function delBtn(deletNum){
   			$('#result').empty();
@@ -178,33 +184,6 @@ function delBtn(deletNum){
 			}) //ajax
   		}
 
-/* function upBtn(updateNum) {
-    $.ajax({
-      url: "../reply/get_reply",
-      data: {
-        reply_no: updateNum
-      },
-		success : function(update) {
-			 var updateContent = prompt("수정할 내용을 입력하세요", reply.reply_content);
-		        if (updateContent !== null) {
-		          $.ajax({
-		            url: "../reply/update_reply",
-		            data: {
-		              reply_no: replyNo,
-		              reply_content: updateContent
-		            },
-		            success: function() {
-		              alert("수정이 정상적으로 처리되었습니다!");
-		              document.location.reload();
-		            }
-		          })
-		} //success
-	  }
-	}) //ajax
-}//bth-update */
-
-
-
 function bringReplyList() {
   $.ajax({
     url: "../reply/list_reply",
@@ -221,8 +200,8 @@ function bringReplyList() {
           '<span class="reply-date">' + reply.reply_date + '</span>' +
           '</div>' +
           '<div class="reply-content">' + reply.reply_content + '</div>' +
-          '<button id ="btn-update" onclick="upBtn('+reply.reply_no+')" class ="edit-delete">수정</button>'+
-          '<button id="btn-delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button>'+
+          '<button id ="btn_update" onclick="upBtn('+reply.reply_no+')" class ="edit-delete">수정</button>'+
+          '<button id="btn_delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button>'+
           '</div>';
 	// onclick 을 써서 paramater 을 넘겨주자.
           

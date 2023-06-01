@@ -28,13 +28,6 @@ public class ReplyController {
 		dao.insert(vo);
 	}
 	
-	@RequestMapping("update_reply")
-	public void update(ReplyVO bag) {
-		System.out.println("update요청됨.");
-		System.out.println(bag);
-		dao.update(bag);
-	}
-	
 	@RequestMapping("delete_reply")
 	@ResponseBody
 	public int delete(int reply_no) {
@@ -50,6 +43,14 @@ public class ReplyController {
 		System.out.println(Commu_id);
  
 	}
+	
+	@RequestMapping("Replyread")
+	@ResponseBody
+	public ReplyVO read(int reply_no) {
+		ReplyVO bag = dao.modify(reply_no);
+		return bag;
+	}
+	
 	
 	@RequestMapping("replyMain")
 	public void replyMain() {

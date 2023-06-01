@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ include file="../../../header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ include file="../../../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,25 +54,22 @@
 <script type="text/javascript">
 	$(function() {
 		$.ajax({
-			url: "read",
+			url: "Replyread",
 			data :{
-				commu_no : ${commu_no}
+				reply_no : ${reply_no}
 			},
 			success: function(x) {
-				$("#no").val(x.commu_no);
-				$("#title").val(x.commu_title);
-				$("#content").val(x.commu_content);
-				$("#img").val(x.commu_img);
+				$("#no").val(x.reply_no);
+				$("#content").val(x.reply_content);
 			}
 		})
 		$('#b1').click(function() {
 			$('#result').empty()
 			$.ajax({
-				url : "update",
+				url : "update_reply",
 				data : {
-					commu_no : $("#no").val(),
-					commu_title : $("#title").val(),
-					commu_content : $("#content").val()
+					reply_no : $("#no").val(),
+					reply_content : $("#content").val()
 				},
 				success : function(x) {
 					alert("수정이 정상적으로 처리됐습니다!")
@@ -91,9 +87,7 @@
 
 <form>
 	No :<input id="no" readonly><br>
-	Title :<input id="title"><br>
 	<textarea id="content" rows="10" cols="100"></textarea><br>
-	Image :<input id="img"><br>
 </form>
 <button id="b1" type="button" class="btn btn-secondary">수정하기📝</button>
 <a href="communitiesList?page=1">

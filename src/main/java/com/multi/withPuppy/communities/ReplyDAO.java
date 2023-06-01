@@ -38,4 +38,6 @@ public class ReplyDAO {
 		System.out.println("reply : " + list.size());
 		return list;
 	}
+	
+	
 }
