@@ -121,7 +121,7 @@ hr {
   background-color: #ff5f5f;
 }
 </style>
-<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript">
 $(function() {
   $("#b1").click(function() {
@@ -153,24 +153,65 @@ $(function() {
 				} //success
 			}) //ajax
 		})//commu_de
-      }
-    })
-  })
+      }//success
+    })//ajax
+  })//b1
   bringReplyList();
-})
+})//fun
 
-function upBtn(upNum){
-		console.log(upNum)
-        window.open(
-            "reply_one?reply_no=" + upNum,
-            "reply_one_frame",
-            "width=500, height = 500"                   
-        );
-    }
+function bringReplyList() {
+	  $.ajax({
+	    url: "../reply/list_reply",
+	    data: {
+	      commu_no: ${vo.commu_no}
+	    },
+	    success: function(x) {
+	      $('#result').empty();
+	      for (i = 0; i < x.length; i++) {
+	        var reply = x[i];
+	        var replySection =`<div class="reply-section" id="reply-section` + i + `">
+	          <div class="reply-info">
+	          <span class="reply-id">` + reply.reply_id + `</span>
+	          <span class="reply-date">` + reply.reply_date + `</span>
+	          </div>
+	          <div class="reply-content" id="reply-content` + i + `">` + reply.reply_content + `</div>
+	          <div id="reply-btn">
+	          <button id ="btn-update" onclick="upBtn(` + i + `, `+reply.reply_no+`, '`+reply.reply_content+`')" class ="edit-delete">수정</button>
+	          <button id="btn-delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button></div>
+	          </div>`;
+	    // onclick 을 써서 paramater 을 넘겨주자.
+	          
+	    
+	        $('#result').append(replySection);
+	      }
+	    }
+	  })
+	}
+function upBtn (i, no, content) {
+	     $('#reply-content'+ i +'').empty();
+	     var reply_update = `<textarea id="reply-update"></textarea>`
+	     $('#reply-content'+ i +'').append(reply_update);
+	    document.getElementById("reply-update").value = content;
+	    $('#reply-btn').empty();
+	    var upOkBtn = `<button id ="btn-update" onclick="upOkBtn(`+no+`)" class ="edit-delete">수정</button>`
+	    $('#reply-btn').append(upOkBtn);
+	}
+function upOkBtn (no) {
+	    	console.log(no);
+	    $.ajax({
+	        url: "../reply/update_reply",
+	        data: {
+	          reply_no: no,
+	          reply_content : $("#reply-update").val()
+	        },
+	        success: function(x) {
+	        	document.location.reload();
+	        }
+	      })
+	}
 
 function delBtn(deletNum){
   			$('#result').empty();
-  			console.log(deletNum);
 			$.ajax({
 				url : "../reply/delete_reply",
 				data : {
@@ -184,33 +225,6 @@ function delBtn(deletNum){
 			}) //ajax
   		}
 
-function bringReplyList() {
-  $.ajax({
-    url: "../reply/list_reply",
-    data: {
-      commu_no: ${vo.commu_no}
-    },
-    success: function(x) {
-      $('#result').empty();
-      for (i = 0; i < x.length; i++) {
-        var reply = x[i];
-        var replySection ='<div class="reply-section">' +
-          '<div class="reply-info">' +
-          '<span class="reply-id">' + reply.reply_id + '</span>' +
-          '<span class="reply-date">' + reply.reply_date + '</span>' +
-          '</div>' +
-          '<div class="reply-content">' + reply.reply_content + '</div>' +
-          '<button id ="btn_update" onclick="upBtn('+reply.reply_no+')" class ="edit-delete">수정</button>'+
-          '<button id="btn_delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button>'+
-          '</div>';
-	// onclick 을 써서 paramater 을 넘겨주자.
-          
-	
-        $('#result').append(replySection);
-      }
-    }
-  })
-}
 </script>
 
 </head>

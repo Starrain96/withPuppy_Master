@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,9 +26,6 @@ public class CommunitiesController {
 
 	@Autowired
 	CommunitiesDAO dao;
-	
-	@Autowired
-	ReplyDAO reply_dao;
 
 	@RequestMapping("insert")
 	public String insertCommunity(CommunitiesVO vo,
@@ -66,12 +64,9 @@ public class CommunitiesController {
 
 	@RequestMapping("one")
 	public void one(int commu_no, Model model) {
-		System.out.println("controller : " + commu_no);
+//		System.out.println("controller : " + commu_no);
 		CommunitiesVO vo = dao.one(commu_no);
 		model.addAttribute("vo", vo);
-		// vo에 검색결과 다 들어있음.
-		// views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
-		// views까지 전달할 속성으로 추가해주세요.
 	}
 
 	@RequestMapping("communitiesMain")
@@ -157,12 +152,14 @@ public class CommunitiesController {
 		
 	}
 	
-	@RequestMapping("reply_one")
-	@ResponseBody
-	public ReplyVO one2(int reply_no, Model model) {
-		System.out.println("controller : " + reply_no);
-		ReplyVO vo = reply_dao.modify(reply_no);
-		return vo;
+	@RequestMapping("getSearchList")
+	public List<CommunitiesVO> getSearchList(@RequestParam("type") String type,
+											 @RequestParam("keyword") String keyword, Model model)throws Exception{
+		CommunitiesVO vo = new CommunitiesVO();
+		vo.setType(type);
+		vo.setKeyword(keyword);
+		return getSearchList(type, keyword, model);
 	}
+	
 
 }

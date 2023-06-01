@@ -15,7 +15,8 @@
 	</delete>
 	
 	<update id="up"  parameterType="communitiesVO">
-		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} where commu_no = #{commu_no}
+		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} 
+		where commu_no = #{commu_no}
 	</update>
 	
 	<select id="one" parameterType="communitiesVO" resultType="communitiesVO">
@@ -62,6 +63,20 @@
 	<select id="count" resultType="Integer">
 		select count(*) from communities
 	</select>
+	
+<!--  커뮤니티 매퍼코드 -->
+    <update id="userCommu"  parameterType="String">
+        update user
+           set user_commu = user_commu + 1
+         where user_id = #{commu_id}
+    </update>
+<!--  댓글 매퍼 코드 -->
+    <update id="userReply"  parameterType="String">
+        update user
+           set user_reply = user_reply + 1
+         where user_id = #{reply_id}
+    </update>
+	
 	
 </mapper>
 

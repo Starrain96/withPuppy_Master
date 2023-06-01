@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
-<%@ include file="../../../header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,18 +49,24 @@
 		border-bottom: 1px solid #ddd;
 	}
 </style>
-<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript">
-	$(function() {
+	$(function(){
 		$.ajax({
 			url: "Replyread",
 			data :{
-				reply_no : ${reply_no}
+				reply_no : 6
 			},
 			success: function(x) {
+				console.log("reply_no : " + reply_no);
 				$("#no").val(x.reply_no);
 				$("#content").val(x.reply_content);
+			},
+			error: function() {
+				alert("nope");
 			}
+			
 		})
 		$('#b1').click(function() {
 			$('#result').empty()
@@ -72,21 +77,19 @@
 					reply_content : $("#content").val()
 				},
 				success : function(x) {
-					alert("수정이 정상적으로 처리됐습니다!")
-					document.location.reload() 
-					$('#result').append(x)
+					alert("수정이 정상적으로 처리됐습니다!");
+					document.location.reload() ;
+					$('#result').append(x);
+					window.close();
 				} //success
 			}) //ajax
 		})//b1
 	})
-
-
 </script>
 </head>
 <body>
-
 <form>
-	No :<input id="no" readonly><br>
+	No :<input id="no" readonly ><br>
 	<textarea id="content" rows="10" cols="100"></textarea><br>
 </form>
 <button id="b1" type="button" class="btn btn-secondary">수정하기📝</button>
