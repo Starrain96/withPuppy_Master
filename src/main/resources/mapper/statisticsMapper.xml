@@ -57,16 +57,40 @@
 	</select>
 
 
-	<select id="saleMonthly" resultType="statisticsVO">
+	<!-- 최근 1년-->
+	<select id="saleMonthly1" resultType="statisticsVO">
 		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
 			SUM(od.ordered_cnt * p.product_price) AS s_num
 		FROM order_detail od, product p, order1 o
 		WHERE od.product_id = p.product_id
 		  AND od.order_id = o.order_id 
-		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN '2023-02' AND '2023-05'
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN  DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 1 YEAR), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
+		GROUP BY s_name
+		ORDER BY s_name asc
+	</select>
+	
+	<!-- 최근 6개월 -->
+	<select id="saleMonthly2" resultType="statisticsVO">
+		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
+			SUM(od.ordered_cnt * p.product_price) AS s_num
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id
+		  AND od.order_id = o.order_id 
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 5 MONTH), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
 		GROUP BY s_name
 		ORDER BY s_name asc
 	</select>
 
+	<!-- 최근 3개월 -->
+	<select id="saleMonthly3" resultType="statisticsVO">
+		SELECT DATE_FORMAT(o.order_date, '%Y-%m') AS s_name, 
+			SUM(od.ordered_cnt * p.product_price) AS s_num
+		FROM order_detail od, product p, order1 o
+		WHERE od.product_id = p.product_id
+		  AND od.order_id = o.order_id 
+		  AND DATE_FORMAT(o.order_date, '%Y-%m') BETWEEN DATE_FORMAT(DATE_SUB(NOW(), INTERVAL 2 MONTH), '%Y-%m') AND DATE_FORMAT(NOW(), '%Y-%m')
+		GROUP BY s_name
+		ORDER BY s_name asc
+	</select>
 
 </mapper>

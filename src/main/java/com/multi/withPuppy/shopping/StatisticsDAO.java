@@ -59,9 +59,21 @@ public class StatisticsDAO {
 		return list;
 	}
 
-	// 월별 매출
-	public List<StatisticsVO> saleMonthly() {
-		List<StatisticsVO> list = my.selectList("statistics.saleMonthly");
+	// 월별 매출 1년
+	public List<StatisticsVO> saleMonthly1() {
+		List<StatisticsVO> list = my.selectList("statistics.saleMonthly1");
+		return list;
+	}
+
+	// 월별 매출 6개월
+	public List<StatisticsVO> saleMonthly2() {
+		List<StatisticsVO> list = my.selectList("statistics.saleMonthly2");
+		return list;
+	}
+
+	// 월별 매출 3개월
+	public List<StatisticsVO> saleMonthly3() {
+		List<StatisticsVO> list = my.selectList("statistics.saleMonthly3");
 		return list;
 	}
 

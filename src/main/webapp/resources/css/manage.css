@@ -21,6 +21,16 @@ thead {
 	width: 100%;
 }
 
+.sorting{
+	display: flex;
+	margin-left: 30px;
+}
+
+.sortDetail{
+	position : absolute;
+	right : 16%;
+}
+
 .realTable {
 	width: 100%;
 }

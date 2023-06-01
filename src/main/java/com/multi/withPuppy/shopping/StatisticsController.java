@@ -1,5 +1,6 @@
 package com.multi.withPuppy.shopping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class StatisticsController {
 	public List<StatisticsVO> bringStatistics() {
 		List<StatisticsVO> result = dao.bringS();
 		return result;
-	}
+	} 
 
 	// 당일 카테고리별 매출
 	@RequestMapping("shopping/todayStatistics")
@@ -39,8 +40,15 @@ public class StatisticsController {
 	// 월별 매출
 	@RequestMapping("shopping/MonthlyStatistics")
 	@ResponseBody
-	public List<StatisticsVO> MonthlyStatistics() {
-		List<StatisticsVO> result = dao.saleMonthly();
+	public List<StatisticsVO> MonthlyStatistics(int num) {
+		List<StatisticsVO> result = new ArrayList<StatisticsVO>();
+		if(num == 1) {
+			result = dao.saleMonthly1();
+		} else if(num == 2) {
+			result = dao.saleMonthly2();
+		} else {
+			result = dao.saleMonthly3();
+		}
 		return result;
 	}
 
