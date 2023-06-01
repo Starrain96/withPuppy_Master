@@ -142,7 +142,7 @@ $(function bringCartData() {
 	    }).open();  	
 }
   
-// 주문 요청 (order, order_detail 테이블에 데이터 입력) 
+/* // 주문 요청 (order, order_detail 테이블에 데이터 입력) 
   $(function() {
 	  $('#cash').click(function(){
 		  var receiver_name =$('#receiver_name').val();
@@ -188,6 +188,52 @@ $(function bringCartData() {
 				} //success
 	        }) //ajax
 	    }) //click
+	  
+	    
+}) //function */
+
+//주문 요청 (order, order_detail 테이블에 데이터 입력) 
+
+var productList = {"productList" : JSON.stringify(productTmp)}
+
+$(function() {
+	  $('#cash').click(function(){
+		  var receiver_name =$('#receiver_name').val();
+		  var receiver_phone =$('#receiver_phone').val();
+		  var receiver_id =$('#receiver_id').val();
+		  var addr1 =$('#addr1').val();
+		  var addr2 =$('#addr2').val();
+		  var addr3 =$('#addr3').val();
+		  var total_price =$('#total_price').val();
+	    $.ajax({
+	    	type: 'POST',
+	        url:'insertOr',
+	        data : {
+	        	user_id : "apple",
+	        	receiver_name: receiver_name,
+	        	receiver_phone: receiver_phone,
+	        	receiver_id: receiver_id,
+	        	addr1: addr1,
+	        	addr2: addr2,
+	        	addr3: addr3,
+	        	total_price: price_total
+	        	
+	        },
+	    success : function(x) {
+			alert("주문이 입력되었습니다. 결제 창으로 이동합니다.")
+			
+			$('#result').append(x)
+			  
+			$.ajax({
+			    	type: 'POST',
+			        url:'insertDe',
+			        data : productList, 
+				    success : function(x) {
+			  		} 	 
+			    })
+		} //success
+	}) //ajax
+}) //click
 	  
 	    
 }) //function

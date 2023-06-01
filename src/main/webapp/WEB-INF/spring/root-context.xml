@@ -64,7 +64,10 @@
 	<aop:config proxy-target-class="true">
 		<aop:pointcut id="insertOCR"
 			expression="execution(public * com.multi.withPuppy.*.insertOCR(..))" />
+		<aop:pointcut id="insertOrderDetail"
+			expression="execution(public * com.multi.withPuppy.*.insertOrderDetail(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="insertOCR" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="insertOrderDetail" />
 	</aop:config>
 
 	<!-- 선언적 Transaction 설정 -->
@@ -72,6 +75,7 @@
 		transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="insertOCR" rollback-for="Exception" />
+			<tx:method name="insertOrderDetail" rollback-for="Exception" />
 		</tx:attributes>
 	</tx:advice>
 </beans>
