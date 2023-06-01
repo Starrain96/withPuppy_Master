@@ -50,4 +50,9 @@ function loginUser() {
       	}
    	});
 }
+$(document).keyup(function(event) {
+    if (event.which === 13) {
+    	loginUser();
+    }
+});
 </script>
