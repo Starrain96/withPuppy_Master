@@ -24,8 +24,8 @@ public class StarDAO {
 	}
 	
 	
-	@Transactional
-	public void insertOCR(String [][] ocrAll) {
+	@Transactional(rollbackFor = Exception.class)
+	public void insertOCR(String [][] ocrAll) throws Exception {
 		
 			OcrVO bag = new OcrVO();
 			OcrVO bag2 = new OcrVO();
