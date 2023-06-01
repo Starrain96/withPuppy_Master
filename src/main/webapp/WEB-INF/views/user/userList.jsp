@@ -15,6 +15,7 @@
 		<col style="width: auto;">
 		<col style="width: auto;">
 		<col style="width: auto;">
+		<col style="width: 100px;">
 		<col style="width: 50px;">
 	</colgroup>
 	<thead style="background-color:#ffe98c">
@@ -25,6 +26,7 @@
 			<th scope="col">이메일</th>
 			<th scope="col">등급</th>
 			<th scope="col">가입일</th>
+			<th scope="col">상태</th>
 			<th scope="col">탈퇴</th>
 		</tr>
 		</thead>
@@ -37,9 +39,26 @@
 					<td>${one.user_email}</td>
 					<td>${one.user_level}</td>
 					<td>${one.user_joindate}</td>
+					<td>
+						<c:choose>
+							<c:when test="${one.user_state == 1}">
+							 	<span style="color: green;">활동</span>
+							</c:when>
+							<c:otherwise>
+							 	<span style="color: red;">탈퇴</span>
+							</c:otherwise>
+						</c:choose>
+					</td>
 					<td style="vertical-align: middle;">
 						<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-							<input class="delete" type="checkbox" name="color">
+							<c:choose>
+					                        <c:when test="${one.user_state == 0}">
+					                            <input class="delete-disabled" type="checkbox" checked disabled>
+					                        </c:when>
+					                        <c:otherwise>
+					                            <input class="delete" type="checkbox" name="chkBox">
+					                        </c:otherwise>
+					                    </c:choose>
 						</div>
 					</td>
 				</tr>
