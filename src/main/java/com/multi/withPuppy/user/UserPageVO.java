@@ -4,9 +4,6 @@ public class UserPageVO {
 	private int start;
 	private int end;
 	private int page;
-	private String user_level;
-	private String user_condition;
-	private String searchWord;
 
 	public void setStartEnd(int page) {
 		//page별로 start, end값만 구해주면 됨.
@@ -41,29 +38,6 @@ public class UserPageVO {
 
 	public void setEnd(int end) {
 		this.end = end;
-	}
-	public String getUser_level() {
-		return user_level;
-	}
-
-	public void setUser_level(String user_level) {
-		this.user_level = user_level;
-	}
-
-	public String getUser_condition() {
-		return user_condition;
-	}
-
-	public void setUser_condition(String user_condition) {
-		this.user_condition = user_condition;
-	}
-
-	public String getSearchWord() {
-		return searchWord;
-	}
-
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
 	}
 
 }

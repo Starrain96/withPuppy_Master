@@ -15,31 +15,6 @@
 	<select id="userCount" resultType="Integer">
 		select count(*) from user
 	</select>
-	
-	<select id="searchUser" parameterType="userpageVO" resultType="userVO">
-		select * from (
-		select ROW_NUMBER() over(order by user_joindate desc) as user_no, u.*
-		from user u where user_level = '집사'
-		 ) user2
-		 where user2.user_no between ${start} and ${end}
-	</select>
-	
-	<select id="userSearchCount" resultType="Integer">
-		select count(*) from user
-		where user_level = '집사'
-	</select>
-	
-	<update id="disableForeignKeyChecks">
-    	SET foreign_key_checks = 0
-  	</update>
-
-  	<update id="enableForeignKeyChecks">
-    	SET foreign_key_checks = 1
-  	</update>
-	
-	<select id="deleteUsers">
-		delete from user where user_id = #{userIds}
-	</select>
 </mapper>
 
 

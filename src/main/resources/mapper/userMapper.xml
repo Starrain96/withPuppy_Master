@@ -104,7 +104,6 @@
 		select s.service_id, s.date, s.content, s.kind, s.explain, s.treat, s.facilities, s.price,
 				(select p.service_name from petservice p where p.service_id = s.service_id) service_name
 		  from star s
-		 where s.id = #{id}
 	  order by s.date desc
 	</select>
 	

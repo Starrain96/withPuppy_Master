@@ -35,7 +35,7 @@
 								</div>
 	                		</div>
 	                		<div class="d-flex align-items-center">
-	                			<div class="search-area-text" id="search-word">검색어</div>
+	                			<div class="search-area-text">검색</div>
 	                			<div class="dropdown">
 							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="condition" data-bs-toggle="dropdown" aria-expanded="false">
 							    		전체
@@ -50,7 +50,7 @@
 	                		</div>
 	                	</div>
 	                	<div class="col-1 d-flex align-items-center">
-	                		<button class="btn custom-btn" onClick="searchUser()">검 색</button>
+	                		<button class="btn custom-btn">검 색</button>
 	                	</div>
                 	</div>
                 </div>
@@ -88,30 +88,24 @@
 							    <td>${one.user_joindate}</td>
 							    <td style="vertical-align: middle;">
 							    	<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-							  			<input class="delete" type="checkbox" name="chkBox">
+							  			<input class="delete" type="checkbox" name="color">
 							  		</div>
 							  	</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					
                 </div>
-				<div class="d-flex align-items-center">
-					<div class="pageBtn">
-					<%
-						int pages = (int)request.getAttribute("pages");
-						for(int p = 1; p <= pages; p++){
-					%>
-						<button class="pages"><%= p %></button>
-					<%		
-						}
-					%>
+				<div id="pagenationBtn">
+				<%
+					int pages = (int)request.getAttribute("pages");
+					for(int p = 1; p <= pages; p++){
+				%>
+					<button class="pages"><%= p %></button>
+				<%		
+					}
+				%>
 					</div>
-					<div id="save">
-						<button class="btn custom-btn" onClick="deleteSelectedUsers()">저장</button>
-					</div>
-				</div>
             </div>
             <div class="card-footer text-muted text-end">
                    	강아지와🐶
@@ -123,9 +117,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<%
-    String contextPath = (String) request.getContextPath();
-%>
 <script>
 $('#grade-menu a.dropdown-item').click(function() {
 	var selectedItemText = $(this).text();
@@ -144,68 +135,15 @@ $(function() {
 				page : $(this).text()
 			},
 			success: function(x) {
-				console.log(x);
 				$("#result").html(x)
 			},
 			error: function() {
 				alert("nope")
 			}
-		}) // ajax	
-	}) // page
-})  // function
-
-function searchUser() {
-	var userGrade = $('#grade').text();
-	var userCondition = $('#condition').text();
-	var searchWord = $('#search-word').val();
-	
-	if (userCondition == "이름") {
-		userCondition = "user_name";
-	} else if (userCondition == "아이디") {
-		userCondition = "user_id";
-	}
-	$.ajax({
-		url: "<%=contextPath%>"+'/user/searchUser',
-		data : {
-			user_level : userGrade,
-			user_condition : userCondition,
-			searchWord : searchWord
-		},
-		success: function(x) {
-			console.log(x);
-			$("#result").html(x)
-		}
-	}) // ajax	
-}
-
-function deleteSelectedUsers() {
-	  // 선택된 사용자 ID를 저장할 배열
-	  var selectedUserIds = [];
-
-	  // 체크된 모든 체크박스를 찾기
-	  $('input[name="chkBox"]:checked').each(function() {
-	    // 해당 사용자 ID를 가져옴
-	    var userId = $(this).closest('tr').find('td:eq(0)').text();
-	    selectedUserIds.push(userId);
-	    console.log(userId);
-	  });
-
-	  if (selectedUserIds.length === 0) {
-	    alert('삭제할 사용자를 선택해주세요.');
-	    return;
-	  }
-
-	  // 선택된 사용자를 삭제하기 위해 AJAX 요청을 보냅니다.
-	  $.ajax({
-	    url: "<%=contextPath%>" + '/user/deleteUsers',
-	    method: 'POST',
-	    data: { userIds: selectedUserIds },
-	    success: function(response) {
-	    	alert('삭제 되었습니다!');
-	    	location.reload();
-	    }
-	  });
-	}
+	})		
+})
+})
 </script>
+
 </body>
 </html>

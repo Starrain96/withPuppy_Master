@@ -4,11 +4,7 @@
 <%@ page import="com.multi.withPuppy.user.UserVO"%>
 <%
 	UserVO userVo = (UserVO) session.getAttribute("bag");
-	System.out.println("header bag : " + userVo);
-	String user_level = null;
-	if(userVo != null){
-		user_level = userVo.getUser_level();
-	}
+System.out.println("header bag : " + userVo);
 %>
 <!DOCTYPE html>
 <html>
@@ -55,11 +51,6 @@ body {
 				<%
 					} else {
 				%>
-				<% if (user_level != null && user_level.equals("관리자")) { %>
-				<li class="nav-item"><a
-					href="${pageContext.request.contextPath}/user/userManagement?page=1"
-					class="nav-link link-secondary">회원관리</a></li>
-				<%} %>
 				<li class="nav-item"><a
 					href="${pageContext.request.contextPath}/user/myPage"
 					class="nav-link link-secondary">마이페이지</a></li>
