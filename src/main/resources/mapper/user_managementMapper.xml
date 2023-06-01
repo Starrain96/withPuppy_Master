@@ -66,9 +66,9 @@
     	SET foreign_key_checks = 1
   	</update>
 	
-	<select id="deleteUsers">
-		delete from user where user_id = #{userIds}
-	</select>
+	<update id="deleteUsers">
+		update user set user_state = 0 where user_id = #{userIds}
+	</update>
 </mapper>
 
 

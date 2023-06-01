@@ -33,8 +33,6 @@ public class UserManagementDAO {
 	}  
 
 	public void deleteUsers(String userIds) {
-		my.update("user_management.disableForeignKeyChecks");
-		my.delete("user_management.deleteUsers", userIds);
-		my.update("user_management.enableForeignKeyChecks");
+		my.update("user_management.deleteUsers", userIds);
 	}
 }
