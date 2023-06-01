@@ -21,7 +21,7 @@
 <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
     rel="stylesheet">
-<link rel="stylesheet" href="../resources/css/main.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <style>
@@ -29,9 +29,11 @@
   padding-right: 10%;
   padding-left: 10%;
 }
+
 .navbar-fluid ul.navbar-nav {
     margin-left: auto;
 }
+
 header {
   position: fixed;
   top: 0;
@@ -39,9 +41,13 @@ header {
   right: 0;
   z-index: 9999;
 }
+
 body {
+	margin-left : 15%;
+	margin-right : 15%;
   padding-top: 230px;
 }
+
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0;
@@ -101,7 +107,7 @@ function loginCheckAsk(){
         </nav>
         <nav style="background-color: #F2EAD3;"
             class="navbar navbar-expand-sm justify-content-center">
-            <div class="container-fluid">
+            <div class="container-fluid01">
                 <!-- Links -->
                 <ul class="navbar-nav"
                     style="margin: auto; display: flex; justify-content: center; align-items: center;">
