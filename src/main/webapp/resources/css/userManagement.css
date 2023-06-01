@@ -40,6 +40,7 @@
 	border:2px solid #ffe98c;
 	width:5rem;
 	height:3rem;
+	background-color: white;
 }
 .custom-btn:hover{
 	background-color: #ffe98c;
@@ -76,8 +77,30 @@
 	box-shadow: 0 0 10px #848383;
 }
 .delete:checked {
-  	background-image: url('../resources/img/check.png');
+  	background-image: url('../img/check.png');
 }
 .delete:checked::before {
-  	background-image: url('../resources/img/check.png');
+  	background-image: url('../img/check.png');
+}
+.pages {
+	display: inline-block;
+	margin: 5px;
+	padding: 6px 12px;
+	border: none;
+	border-radius: 50%;
+	text-align: center;
+	cursor: pointer;
+	background-color: white;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	transition: background-color 200ms linear, color 200ms linear;
+}
+
+.pages:hover {
+	background-color: #ffe98c;
+}
+.pageBtn {
+	margin: auto;
+	text-align: center;
 }
