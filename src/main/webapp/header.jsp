@@ -52,6 +52,10 @@ body {
     display: block;
     margin-top: 0;
 }
+
+thead {
+	background-color: #FFE98C
+}
 </style>
 <script type="text/javascript">
 var userPageID = "<%=userPageID%>";
@@ -111,10 +115,17 @@ function loginCheckAsk(){
                 <!-- Links -->
                 <ul class="navbar-nav"
                     style="margin: auto; display: flex; justify-content: center; align-items: center;">
-                    <li class="nav-item" style="padding: 0 30px;"><a
-                        href="${pageContext.request.contextPath}/communities/communitiesMain?page=1"
-                        class="nav-link link-secondary">커뮤니티</a></li>
-                        
+                    
+                    <li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
+                        href="#"
+                        class="nav-link dropdown-toggle">커뮤니티</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/communities/communitiesMain?page=1">전체게시물</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/communities/communitiesMain?page=1">수도권</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/communities/communitiesMain?page=1">지방</a></li>
+                         </ul>
+                    </li>
+                    
                     <li class="nav-item dropdown link-secondary" style="padding: 0 30px;"><a
                         href="#"
                         class="nav-link dropdown-toggle">쇼핑몰</a>
@@ -123,10 +134,12 @@ function loginCheckAsk(){
                             <li><a class="dropdown-item" onclick="loginCheckCart()">장바구니</a></li>
                             <%
                             if((userVo != null)&&(userPageLevel.equals("관리자"))){ %>
-                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shopManageMain?start_num=1&end_num=10">관리자</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shopManageMain?start_num=1&end_num=10">상품관리</a></li>
+                            <li><a class="dropdown-item" href="${pageContext.request.contextPath}/shopping/shopManageStatis">통계</a></li>
                             <%} %>
                          </ul>
                     </li>
+                    
                     <li class="nav-item ml-auto"><a
                         href="${pageContext.request.contextPath}/main.jsp"
                         class="nav-link link-secondary"> <img
