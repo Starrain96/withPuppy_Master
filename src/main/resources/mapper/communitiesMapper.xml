@@ -15,7 +15,8 @@
 	</delete>
 	
 	<update id="up"  parameterType="communitiesVO">
-		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} where commu_no = #{commu_no}
+		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} 
+		where commu_no = #{commu_no}
 	</update>
 	
 	<select id="one" parameterType="communitiesVO" resultType="communitiesVO">
@@ -38,9 +39,44 @@
 			where c2.c_no between ${start} and ${end}
 	</select>
 	
+	<select id="Metrolist_category" parameterType="pageVO" resultType="communitiesVO">
+		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
+			from communities c) c2
+			where c2.category1 = 2 limit 5
+	</select>
+	
+	<select id="Freelist_category" parameterType="pageVO" resultType="communitiesVO">
+		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
+			from communities c) c2
+			where c2.category1 = 1 limit 5
+	</select>
+	
+	<select id="Vincelist_category" parameterType="pageVO" resultType="communitiesVO">
+		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
+			from communities c) c2
+			where c2.category1 = 3 limit 5
+	</select>
+	
 	<select id="count" resultType="Integer">
 		select count(*) from communities
 	</select>
+	
+<!--  커뮤니티 매퍼코드 -->
+    <update id="userCommu"  parameterType="String">
+        update user
+           set user_commu = user_commu + 1
+         where user_id = #{commu_id}
+    </update>
+<!--  댓글 매퍼 코드 -->
+    <update id="userReply"  parameterType="String">
+        update user
+           set user_reply = user_reply + 1
+         where user_id = #{reply_id}
+    </update>
+	
 	
 </mapper>
 

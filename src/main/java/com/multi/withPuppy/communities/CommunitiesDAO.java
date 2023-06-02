@@ -1,7 +1,6 @@
 package com.multi.withPuppy.communities;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ public class CommunitiesDAO {
 	
 	public int insert(CommunitiesVO vo) {
 		int result = my.insert("communities.insert",vo);
+		my.update("communities.userCommu",vo.getCommu_id());
 //		System.out.println(vo);
 		return result;
 	}
@@ -54,7 +54,21 @@ public class CommunitiesDAO {
 	public List<CommunitiesVO> list_category(PageVO vo2) {
 		return my.selectList("communities.list_category", vo2);
 	}
+	
+	public List<CommunitiesVO> Metrolist_category(PageVO vo2) {
+		return my.selectList("communities.Metrolist_category", vo2);
+	}
+	
+	public List<CommunitiesVO> Freelist_category(PageVO vo2) {
+		return my.selectList("communities.Freelist_category", vo2);
+	}
+	
+	public List<CommunitiesVO> Vincelist_category(PageVO vo2) {
+		return my.selectList("communities.Vincelist_category", vo2);
+	}
 
-
+	public List<CommunitiesVO> selectSearchList(CommunitiesVO vo) {
+		return my.selectList("");
+	}
 	
 }
