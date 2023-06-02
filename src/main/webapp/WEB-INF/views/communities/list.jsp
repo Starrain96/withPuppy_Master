@@ -15,12 +15,12 @@ th, td {
 }
 
 th {
-	background-color: #3aa4c1;
-	color: white;
+	background-color: #ffe98c;
+	color: black;
 }
 
 tr:nth-child(even) {
-	background-color: #f2f2f2;
+	background-color: #ffe98c;
 }
 
 tr:hover {
@@ -28,17 +28,17 @@ tr:hover {
 }
 
 a:link, a:visited {
-	color: #3aa4c1;
+	color: #ffe98c;
 	text-decoration: none;
 }
 
 a:hover, a:active {
-	color: #1e80a3;
+	color: #ffe98c;
 	text-decoration: underline;
 }
 
 .top {
-	background-color: #f1f1f1;
+	background-color: #ffe98c;
 	font-weight: bold;
 }
 
@@ -49,11 +49,11 @@ a:hover, a:active {
 
 <table>
 	<tr>
-		<th class="top">번호</th>
-		<th class="top">제목</th>
-		<th class="top">작성일</th>
-		<th class="top">글쓴이</th>
-		<th class="top">조회수</th>
+		<th class="top" style=background-color:#ffe98c;>번호</th>
+		<th class="top" style=background-color:#ffe98c;>제목</th>
+		<th class="top" style=background-color:#ffe98c;>작성일</th>
+		<th class="top" style=background-color:#ffe98c;>글쓴이</th>
+		<th class="top" style=background-color:#ffe98c;>조회수</th>
 	</tr>
 
 	<c:forEach items="${list}" var="vo">
