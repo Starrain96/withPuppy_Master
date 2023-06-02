@@ -15,12 +15,12 @@ th, td {
 }
 
 th {
-	background-color: #3aa4c1;
-	color: white;
+	background-color: #ffe98c;
+	color: black;
 }
 
 tr:nth-child(even) {
-	background-color: #f2f2f2;
+	background-color: #ffe98c;
 }
 
 tr:hover {
@@ -28,17 +28,17 @@ tr:hover {
 }
 
 a:link, a:visited {
-	color: #3aa4c1;
+	color: #ffe98c;
 	text-decoration: none;
 }
 
 a:hover, a:active {
-	color: #1e80a3;
+	color: #ffe98c;
 	text-decoration: underline;
 }
 
 .top {
-	background-color: #f1f1f1;
+	background-color: #ffe98c;
 	font-weight: bold;
 }
 
