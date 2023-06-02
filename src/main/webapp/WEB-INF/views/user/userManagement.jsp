@@ -21,9 +21,7 @@
 	                		<div class="d-flex align-items-center mb-4">
 	                			<div class="search-area-text">회원등급</div>
 	                			<div class="dropdown">
-							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="grade" data-bs-toggle="dropdown" aria-expanded="false">
-							    		전체
-							  		</button>
+							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="grade" data-bs-toggle="dropdown" aria-expanded="false">전체</button>
 							  		<ul class="dropdown-menu" id="grade-menu" aria-labelledby="grade">
 							    		<li><a class="dropdown-item">전체</a></li>
 							    		<li><a class="dropdown-item">집사</a></li>
@@ -37,9 +35,7 @@
 	                		<div class="d-flex align-items-center">
 	                			<div class="search-area-text" id="search-word">검색어</div>
 	                			<div class="dropdown">
-							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="condition" data-bs-toggle="dropdown" aria-expanded="false">
-							    		전체
-							  		</button>
+							  		<button class="btn dropdown-toggle custom-dropdown-btn" type="button" id="condition" data-bs-toggle="dropdown" aria-expanded="false">전체</button>
 							  		<ul class="dropdown-menu" id="condition-menu" aria-labelledby="condition">
 							    		<li><a class="dropdown-item">전체</a></li>
 							    		<li><a class="dropdown-item">이름</a></li>
@@ -55,8 +51,9 @@
                 	</div>
                 </div>
                 <!-- table area -->
+                <div id="search-result">
                 <div class="card-child" id="result">
-                	<table class="table" style="width:100%">
+                	<table class="table" id="user-table"style="width:100%">
                 		<colgroup>
 						    <col style="width: 50px;">
 						    <col style="width: auto;">
@@ -64,6 +61,7 @@
 						    <col style="width: auto;">
 						    <col style="width: auto;">
 						    <col style="width: auto;">
+						    <col style="width: 100px;">
 						    <col style="width: 50px;">
 						</colgroup>
 						<thead style="background-color:#ffe98c">
@@ -74,6 +72,7 @@
 							    <th scope="col">이메일</th>
 							    <th scope="col">등급</th>
 							    <th scope="col">가입일</th>
+							    <th scope="col">상태</th>
 							    <th scope="col">탈퇴</th>
 							</tr>
 						</thead>
@@ -86,17 +85,33 @@
 							    <td>${one.user_email}</td>
 							    <td>${one.user_level}</td>
 							    <td>${one.user_joindate}</td>
+							    <td>
+							        <c:choose>
+							        	<c:when test="${one.user_state == 1}">
+							          		<span style="color: green;">활동</span>
+							        	</c:when>
+							        	<c:otherwise>
+							          		<span style="color: red;">탈퇴</span>
+							        	</c:otherwise>
+							      	</c:choose>
+							    </td>
 							    <td style="vertical-align: middle;">
 							    	<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-							  			<input class="delete" type="checkbox" name="chkBox">
+							  			<c:choose>
+					                        <c:when test="${one.user_state == 0}">
+					                            <input class="delete-disabled" type="checkbox" checked disabled>
+					                        </c:when>
+					                        <c:otherwise>
+					                            <input class="delete" type="checkbox" name="chkBox">
+					                        </c:otherwise>
+					                    </c:choose>
 							  		</div>
 							  	</td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					
-                </div>
+				</div>
 				<div class="d-flex align-items-center">
 					<div class="pageBtn">
 					<%
@@ -112,7 +127,8 @@
 						<button class="btn custom-btn" onClick="deleteSelectedUsers()">저장</button>
 					</div>
 				</div>
-            </div>
+            	</div>
+              </div>
             <div class="card-footer text-muted text-end">
                    	강아지와🐶
             </div>
@@ -152,28 +168,35 @@ $(function() {
 			}
 		}) // ajax	
 	}) // page
+	
+	var userState = $('#user-table').closest('tr').find('td:eq(5)').text();
+	if (userState == "1") {
+		$(this).closest('tr').find('td:eq(5)').val("활동");
+	} else {
+		$(this).closest('tr').find('td:eq(5)').val("탈퇴");
+	}
 })  // function
 
 function searchUser() {
-	var userGrade = $('#grade').text();
-	var userCondition = $('#condition').text();
-	var searchWord = $('#search-word').val();
-	
-	if (userCondition == "이름") {
-		userCondition = "user_name";
-	} else if (userCondition == "아이디") {
-		userCondition = "user_id";
+	var user_level = $('#grade').text();
+	var user_condition = $('#condition').text();
+	var searchWord = $('#search-input').val();
+	if (user_condition == "전체" && searchWord!="") {
+		alert("검색어 조건을 선택해주세요.");
+		return;
 	}
+	console.log(searchWord);
 	$.ajax({
 		url: "<%=contextPath%>"+'/user/searchUser',
 		data : {
-			user_level : userGrade,
-			user_condition : userCondition,
-			searchWord : searchWord
+			user_level : user_level,
+			user_condition : user_condition,
+			searchWord : searchWord,
+			page : 1
 		},
 		success: function(x) {
 			console.log(x);
-			$("#result").html(x)
+			$("#search-result").html(x)
 		}
 	}) // ajax	
 }
@@ -195,7 +218,7 @@ function deleteSelectedUsers() {
 	    return;
 	  }
 
-	  // 선택된 사용자를 삭제하기 위해 AJAX 요청을 보냅니다.
+	  // 선택된 사용자를 삭제
 	  $.ajax({
 	    url: "<%=contextPath%>" + '/user/deleteUsers',
 	    method: 'POST',

@@ -113,7 +113,7 @@ public class UserDAO {
 
 	// 회원탈퇴
 	public int deleteUser(String id) {
-		return my.delete("user.deleteUser", id);
+		return my.update("user.deleteUser", id);
 	}
 
 	// 회원수정

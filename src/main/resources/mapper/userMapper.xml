@@ -7,13 +7,13 @@
 	 -->
 	<insert id="insertUser" parameterType="userVO">
 		insert into user (user_id, user_pw, user_name, user_email, user_tel, user_nickname, user_addr1, user_addr2, user_addr3, user_addr4, user_addr5, user_interest, user_img, user_level, user_state, user_joindate, user_visit)
-		values (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_tel}, #{user_nickname}, #{user_addr1}, #{user_addr2}, #{user_addr3}, #{user_addr4}, #{user_addr5}, #{user_interest}, "profile.png", "집사", NULL, now(), 0)
+		values (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_tel}, #{user_nickname}, #{user_addr1}, #{user_addr2}, #{user_addr3}, #{user_addr4}, #{user_addr5}, #{user_interest}, "profile.png", "집사", 1, now(), 0)
 	</insert>
 	
 	<select id="idCheck" parameterType="String" resultType="int">
 		select COUNT(*)
 		  from user
-		 where user_id = #{user_id}
+		 where user_id = #{user_id} 
 	</select>
 	
 	<select id="nicknameCheck" parameterType="String" resultType="int">
@@ -25,7 +25,7 @@
 	<select id="loginUser" parameterType="Map" resultType="userVO">
 		select *
 		  from user
-		 where user_id = #{id} and user_pw = #{pw}
+		 where user_id = #{id} and user_pw = #{pw} and user_state = 1
 	</select>
 	
 	<update id="recentvisitUser" parameterType="String">
@@ -47,7 +47,7 @@
 		   SET user_level = 
 		    CASE 
 		        WHEN user_commu >= 100 AND user_reply >= 100 AND user_visit >= 30 THEN '인플루언서'
-		        WHEN user_commu >= 50 AND user_reply >= 50 AND user_visit >= 10 THEN '프로 집사'
+		        WHEN user_commu >= 50 AND user_reply >= 50 AND user_visit >= 10 THEN '프로집사'
 		        WHEN user_commu >= 10 AND user_reply >= 10 AND user_visit >= 5 THEN '훈련사'
 		        ELSE '집사'
 		    END
@@ -61,9 +61,9 @@
 		 where user_id = #{user_id}
 	</select>
 	
-	<delete id="deleteUser">
-		delete from user where user_id = #{user_id}
-	</delete>
+	<update id="deleteUser">
+		update user set user_state = 0 where user_id = #{user_id}
+	</update>
 	
 	<update id="updateUser" parameterType="userVO">
 		update user set user_tel = #{user_tel}, user_nickname =  #{user_nickname},
