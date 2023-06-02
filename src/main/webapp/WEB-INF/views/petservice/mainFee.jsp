@@ -3,6 +3,7 @@
 <%@ include file="../../../header.jsp"%>
 
 
+
 <div id="searchFee">
 	<h3>진료비 평균가 조회</h3>
 	<hr>
@@ -21,7 +22,7 @@
 	<div id="listFeeDetail" class="row">
 		<div id="fee1" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>검진/접종</th>
 					</tr>
@@ -40,7 +41,7 @@
 		</div>
 		<div id="fee2" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>수술</th>
 					</tr>
@@ -59,7 +60,7 @@
 		</div>
 		<div id="fee3" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>치료</th>
 					</tr>

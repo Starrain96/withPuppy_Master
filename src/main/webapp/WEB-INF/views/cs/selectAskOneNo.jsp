@@ -13,7 +13,7 @@ String userLevel = userVo.getUser_level();
 	<h4>1:1 문의</h4>
 	<hr>
 	<table class="table">
-		<thead class="table-primary">
+		<thead>
 			<tr>
 				<th colspan="2">${vo.ask_title}</th>
 			</tr>
@@ -50,7 +50,7 @@ String userLevel = userVo.getUser_level();
 	<h5>댓글</h5>
 	<div id="replyAnswer"></div>
 	<table class="table">
-		<thead class="table-primary">
+		<thead>
 			<tr>
 				<th style="width: 65px;">writer</th>
 				<th style="width: 300px;">content</th>

@@ -23,7 +23,7 @@ String userLevel = userVo.getUser_level();
 		<button type="submit">검색</button>
 	</form>
 	<table class="table">
-		<thead class="table-primary">
+		<thead>
 			<tr>
 				<th style="width: 10px">no</th>
 				<th style="width: 350px">제목</th>
@@ -46,7 +46,7 @@ String userLevel = userVo.getUser_level();
 	
 <%
 	if(!userLevel.equals("관리자")){%>
-	<button type="button" onclick="location='writeAsk'">글쓰기</button>
+	<type="button" class="btn btn-warning" onclick="location='writeAsk'">글쓰기</button>
 	<%} %>
 </div>
 
