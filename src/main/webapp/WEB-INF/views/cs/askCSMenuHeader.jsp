@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.multi.withPuppy.user.UserVO"%>
+<style type="text/css">
+	.nav-pills > .nav-item > .active {
+		background-color: #FFE98C !important; /* 배경색 */
+		color: black !important; /* 글자색을 회색으로 변경 */
+	}
+</style>
 	<%
 	UserVO user2Vo = (UserVO) session.getAttribute("bag");
 	System.out.println("header bag : " + user2Vo);

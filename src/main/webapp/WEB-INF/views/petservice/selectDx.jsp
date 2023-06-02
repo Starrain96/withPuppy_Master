@@ -27,7 +27,7 @@
 	<div id="statFeeDetail" class="row">
 		<div id="sido2" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th colspan="2"><div id = "sidoName">시/도 평균가</div></th>
 					</tr>
@@ -53,7 +53,7 @@
 		</div>
 		<div id="gugun2" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th colspan="2"><div id = "gugunName">구/군 평균가</div></th>
 					</tr>
@@ -79,7 +79,7 @@
 		</div>
 		<div id="total2" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th colspan="2"><div id = "totalName">전국 평균가</div></th>
 					</tr>
@@ -110,7 +110,7 @@
 	<div id="listFeeDetail" class="row">
 		<div id="fee1" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>검진/접종</th>
 					</tr>
@@ -145,7 +145,7 @@
 		</div>
 		<div id="fee2" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>수술</th>
 					</tr>
@@ -180,7 +180,7 @@
 		</div>
 		<div id="fee3" class="col">
 			<table class="table">
-				<thead class="table-primary">
+				<thead>
 					<tr>
 						<th>치료</th>
 					</tr>
