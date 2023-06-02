@@ -153,6 +153,7 @@ public class CommunitiesController {
 	}
 	
 	@RequestMapping("getSearchList")
+	@ResponseBody
 	public List<CommunitiesVO> getSearchList(@RequestParam("type") String type,
 											 @RequestParam("keyword") String keyword, Model model)throws Exception{
 		CommunitiesVO vo = new CommunitiesVO();

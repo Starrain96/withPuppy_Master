@@ -248,7 +248,7 @@
 		</tr>
 
 		<c:forEach items="${list}" var="vo">
-
+		
 			<tr>
 				<td class="down">${vo.commu_no}</td>
 				<td class="down"><a href = "one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
@@ -290,7 +290,7 @@
 	})
 })
 
-function getSearchList(){
+/* function getSearchList(){
 	$.ajax({
 		type: 'GET',
 		url : "/getSearchList",
@@ -312,7 +312,7 @@ function getSearchList(){
 			}
 		}
 	})
-}
+} */
 	</script>
 </body>
 </html>

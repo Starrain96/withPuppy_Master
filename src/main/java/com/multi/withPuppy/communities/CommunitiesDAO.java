@@ -68,7 +68,7 @@ public class CommunitiesDAO {
 	}
 
 	public List<CommunitiesVO> selectSearchList(CommunitiesVO vo) {
-		return my.selectList("");
+		return my.selectList("communities.selectSearchList", vo);
 	}
 	
 }

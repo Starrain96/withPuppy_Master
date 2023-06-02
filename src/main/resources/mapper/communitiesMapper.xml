@@ -43,7 +43,7 @@
 		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
 			from communities c) c2
-			where c2.category1 = 2 limit 5
+			where c2.category1 = 2 limit 10
 	</select>
 	
 	<select id="Freelist_category" parameterType="pageVO" resultType="communitiesVO">
@@ -76,6 +76,12 @@
            set user_reply = user_reply + 1
          where user_id = #{reply_id}
     </update>
+    
+    <select id="selectSearchList" parameterType="communitiesVO" resultType="communitiesVO">
+    select*
+    from communities
+    where 
+    </select>
 	
 	
 </mapper>
