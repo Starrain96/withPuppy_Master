@@ -18,7 +18,6 @@
 		<typeAlias type="com.multi.withPuppy.shopping.Order_detailVO" alias="order_detailVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.CartVO" alias="cartVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.shopping.StatisticsVO" alias="statisticsVO"></typeAlias>
-		<typeAlias type="com.multi.withPuppy.shopping.StatisticsPeriodVO" alias="statisticsPeriodVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.petservice.PetserviceVO" alias="petserviceVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.petservice.StarVO" alias="starVO"></typeAlias>
@@ -33,6 +32,7 @@
 		<typeAlias type="com.multi.withPuppy.user.UserReviewVO" alias="userreviewVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.user.UserShoppingVO" alias="usershoppingVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.user.UserShoppingProductVO" alias="usershoppingproductVO"></typeAlias>
+		<typeAlias type="com.multi.withPuppy.user.UserPageVO" alias="userpageVO"></typeAlias>
 		
 		<typeAlias type="com.multi.withPuppy.cs.FaqVO" alias="faqVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.cs.AskVO" alias="askVO"></typeAlias>
@@ -61,6 +61,7 @@
 		
 		<mapper resource="mapper/userMapper.xml" />
 		<mapper resource="mapper/petMapper.xml" />
+		<mapper resource="mapper/user_managementMapper.xml" />
 		
 		<mapper resource="mapper/faqMapper.xml" />
 		<mapper resource="mapper/askMapper.xml" />

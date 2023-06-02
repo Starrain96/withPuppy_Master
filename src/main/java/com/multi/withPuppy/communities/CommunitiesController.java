@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,18 +64,18 @@ public class CommunitiesController {
 
 	@RequestMapping("one")
 	public void one(int commu_no, Model model) {
-		System.out.println("controller : " + commu_no);
+//		System.out.println("controller : " + commu_no);
 		CommunitiesVO vo = dao.one(commu_no);
 		model.addAttribute("vo", vo);
-		// vo에 검색결과 다 들어있음.
-		// views아래 one.jsp로 쓸 수 있도록 설정해주어야 함.
-		// views까지 전달할 속성으로 추가해주세요.
 	}
 
 	@RequestMapping("communitiesMain")
 	public void communitiesMain(PageVO vo2,Model model) {
 		vo2.setStartEnd(vo2.getPage());
 		List<CommunitiesVO> list = dao.list(vo2);
+		List<CommunitiesVO> Metrolist_category = dao.Metrolist_category(vo2);
+		List<CommunitiesVO> Freelist_category = dao.Freelist_category(vo2);
+		List<CommunitiesVO> Vincelist_category = dao.Vincelist_category(vo2);
 		int count = dao.count();
 		int pages = 0; // 전체의 페이지 개수를 구하는 것
 		if(count%10 == 0) {
@@ -83,6 +84,9 @@ public class CommunitiesController {
 			pages = count / 10 + 1;
 		}
 		model.addAttribute("list", list);
+		model.addAttribute("Metrolist_category", Metrolist_category);
+		model.addAttribute("Freelist_category", Freelist_category);
+		model.addAttribute("Vincelist_category", Vincelist_category);
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages);
 	}
@@ -113,6 +117,7 @@ public class CommunitiesController {
 		model.addAttribute("count", count);
 		model.addAttribute("pages", pages);
 	}
+	// 클릭하면 category1 값을 넘겨줘서 가져오기 if 문
 
 	@RequestMapping("communitiesFnD")
 	public void communitiesFnd(int commu_no, Model model , PageVO vo2) {
@@ -142,9 +147,18 @@ public class CommunitiesController {
 	@RequestMapping("list_category")
 	public void list_category(PageVO vo,Model model) {
 		vo.setStartEnd(vo.getPage());
-		List<CommunitiesVO> list = dao.list(vo);	
-		model.addAttribute("list", list);
+		List<CommunitiesVO> list_category = dao.list(vo);	
+		model.addAttribute("list_category", list_category);
 		
+	}
+	
+	@RequestMapping("getSearchList")
+	public List<CommunitiesVO> getSearchList(@RequestParam("type") String type,
+											 @RequestParam("keyword") String keyword, Model model)throws Exception{
+		CommunitiesVO vo = new CommunitiesVO();
+		vo.setType(type);
+		vo.setKeyword(keyword);
+		return getSearchList(type, keyword, model);
 	}
 	
 

@@ -15,7 +15,7 @@
 		where reply_no = #{reply_no}
 	</delete>
 	
-	<update id="update_reply"  parameterType="replyVO">
+	<update id="update_reply" parameterType="Map">
 		update reply 
 		set reply_content = #{reply_content} 
 		where reply_no = #{reply_no}
@@ -23,6 +23,12 @@
 	
 	<select id="one" parameterType="replyVO" resultType="replyVO">
 		select * 
+		from reply
+		where reply_no = #{reply_no}
+	</select>
+	
+	<select id="upone" parameterType="replyVO" resultType="replyVO">
+		select reply_content 
 		from reply
 		where reply_no = #{reply_no}
 	</select>
