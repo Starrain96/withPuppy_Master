@@ -162,7 +162,7 @@ $(function() {
 	    	type: 'POST',
 	        url:'insertOr',
 	        data : {
-	        	user_id : "apple",
+	        	user_id : "${bag.user_id}",
 	        	receiver_name: receiver_name,
 	        	receiver_phone: receiver_phone,
 	        	receiver_id: receiver_id,
