@@ -77,8 +77,6 @@
 	width:20px;
 	max-width:20px;
 	height:20px;
-	border:2px solid #5B5B5B;
-	border-radius:5px;
 }
 .delete:hover{
 	border-color: #000000;
@@ -90,7 +88,7 @@
 .delete:checked::before {
   	background-image: url('../img/check.png');
 }
-.pages {
+.pages, .search-pages {
 	display: inline-block;
 	margin: 5px;
 	padding: 6px 12px;
@@ -105,7 +103,7 @@
 	transition: background-color 200ms linear, color 200ms linear;
 }
 
-.pages:hover {
+.pages:hover, .search-pages:hover {
 	background-color: #ffe98c;
 }
 .pageBtn {
