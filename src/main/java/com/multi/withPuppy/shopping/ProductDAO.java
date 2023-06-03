@@ -64,4 +64,19 @@ public class ProductDAO {
 		List<ProductVO> list = my.selectList("product.dogcate3", bag);
 		return list;
 	}
+
+	public List<ProductVO> list11(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate11", bag);
+		return list;
+	}
+	
+	public List<ProductVO> list22(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate22", bag);
+		return list;
+	}
+	
+	public List<ProductVO> list33(CategoryVO bag) {
+		List<ProductVO> list = my.selectList("product.dogcate33", bag);
+		return list;
+	}
 }
