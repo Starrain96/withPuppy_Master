@@ -55,6 +55,7 @@
 						<td>재고 수량</td>
 						<td>가격</td>
 						<td>품절</td>
+						<td>판매상태</td>
 					</tr>
 				</thead>
 				<tbody id="manageList">
@@ -65,7 +66,8 @@
 							<td>${bag.category2}</td>
 							<td>${bag.product_cnt}</td>
 							<td>${bag.product_price}</td>
-							<td></td>
+							<td>${bag.soldout_YN}</td>
+							<td>${bag.status}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -75,29 +77,29 @@
 		<div class="sideBar">
 			<ul class="category">
 				<li class="categoryLi"><a class="cateBtn" id="firstBtn"
-					onclick="btnChange(1,4,1,12,this);">사료</a></li>
+					onclick="btnChange1(1,4,1,12,this);">사료</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(5,14,1,12,this);">간식</a></li>
+					onclick="btnChange1(5,14,1,12,this);">간식</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(15,23,1,12,this);">건강관리</a></li>
+					onclick="btnChange1(15,23,1,12,this);">건강관리</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(24,29,1,12,this);">위생/배변</a></li>
+					onclick="btnChange1(24,29,1,12,this);">위생/배변</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(30,36,1,12,this);">미용/목욕</a></li>
+					onclick="btnChange1(30,36,1,12,this);">미용/목욕</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(37,41,1,12,this)">급식기/급수기</a></li>
+					onclick="btnChange1(37,41,1,12,this)">급식기/급수기</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(42,46,1,12,this)">하우스/울타리</a></li>
+					onclick="btnChange1(42,46,1,12,this)">하우스/울타리</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(47,49,1,12,this)">이동장</a></li>
+					onclick="btnChange1(47,49,1,12,this)">이동장</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(50,56,1,12,this)">의류/악세서리</a></li>
+					onclick="btnChange1(50,56,1,12,this)">의류/악세서리</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(57,60,1,12,this)">목줄/인식표/리드줄</a></li>
+					onclick="btnChange1(57,60,1,12,this)">목줄/인식표/리드줄</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(61,66,1,12,this)">장난감</a></li>
+					onclick="btnChange1(61,66,1,12,this)">장난감</a></li>
 				<li class="categoryLi"><a class="cateBtn"
-					onclick="btnChange(67,67,1,12,this)">훈련</a></li>
+					onclick="btnChange1(67,67,1,12,this)">훈련</a></li>
 			</ul>
 			<button id="modal_btn" class="addBtn">상품 등록</button>
 		</div>

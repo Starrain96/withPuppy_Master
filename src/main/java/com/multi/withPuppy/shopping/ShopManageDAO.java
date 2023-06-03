@@ -36,6 +36,11 @@ public class ShopManageDAO {
 		int n = my.update("product.update", bag);
 		return n;
 	}
+
+	public int updateManage(ProductVO bag) {
+		int n = my.update("product.Manage", bag);
+		return n;
+	}
 	
 	public int deleteProduct(int product_id) {
 		int n = my.delete("manage.delete", product_id);

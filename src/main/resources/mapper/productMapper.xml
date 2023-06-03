@@ -18,6 +18,11 @@
 		UPDATE product SET product_name = #{product_name},product_price =#{product_price},category2 =#{category2},product_img =#{product_img},product_cnt =#{product_cnt} WHERE product_id = #{product_id}
 	</update>
 
+	<!-- 관리자 품절 및 판매상태 관리-->
+	<update id="Manage" parameterType="productVO">
+		UPDATE product SET soldout_YN = #{soldout_YN}, status =#{status} WHERE product_id = #{product_id}
+	</update>
+
 	<!-- 관리자 상품 수정용 가져오기 -->
 	<select id="bringOne" parameterType="Int" resultType="productVO">
 		select * 
@@ -45,7 +50,7 @@
 			<![CDATA[
 				where category2 <= #{end} and category2 >= #{start}
 			]]>) p2
-		where p_no between #{start_num} and #{end_num}
+		where p_no between #{start_num} and #{end_num} 
 	</select>
 	
 	<!-- 쇼핑몰 리스트 가격 저렴한 순 조회 -->
@@ -64,6 +69,36 @@
 		select row_number() over(order by product_price desc) as p_no, p.* from product p 
 			<![CDATA[
 				where category2 <= #{end} and category2 >= #{start}
+			]]>) p2
+		where p_no between #{start_num} and #{end_num}
+	</select>
+
+	<!-- 관리자 아닐 경우 -->
+	<select id="dogcate11" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_id) as p_no, p.* from product p 
+			<![CDATA[
+				where category2 <= #{end} and category2 >= #{start} and soldout_YN ='N' and status ='판매중'
+			]]>) p2
+		where p_no between #{start_num} and #{end_num} 
+	</select>
+	
+	<!-- 쇼핑몰 리스트 가격 저렴한 순 조회 -->
+	<select id="dogcate22" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_price) as p_no, p.* from product p 
+			<![CDATA[
+				where category2 <= #{end} and category2 >= #{start} and soldout_YN ='N' and status ='판매중'
+			]]>) p2
+		where p_no between #{start_num} and #{end_num} 
+	</select>
+	
+	<!-- 쇼핑몰 리스트 가격 비싼 순 조회 -->
+	<select id="dogcate33" parameterType="categoryVO" resultType="productVO">
+		select * from (
+		select row_number() over(order by product_price desc) as p_no, p.* from product p 
+			<![CDATA[
+				where category2 <= #{end} and category2 >= #{start} and soldout_YN ='N' and status ='판매중'
 			]]>) p2
 		where p_no between #{start_num} and #{end_num}
 	</select>
