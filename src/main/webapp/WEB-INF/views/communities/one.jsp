@@ -135,8 +135,13 @@ $(function() {
           reply_id:writer
       },
       success: function(x) {
-		$('#commu_de').click(function() {
-			$('#result').empty()
+          alert("성공!");
+          $('#reply').val(''); // 작성 후 글자 사라지게 하는것
+          document.location.reload();
+      }//success
+    })//ajax
+  })//b1
+	$('#commu_de').click(function() {
 			$.ajax({
 				url : "delete",
 				data : {
@@ -144,13 +149,10 @@ $(function() {
 				},
 				success : function(x) {
 					history.back();
-					$('#result').append(x)
+					$('#result').append(x);
 				} //success
 			}) //ajax
 		})//commu_de
-      }//success
-    })//ajax
-  })//b1
   bringReplyList();
 })//fun
 
@@ -172,7 +174,7 @@ function bringReplyList() {
 	          <div class="reply-content" id="reply-content` + i + `">` + reply.reply_content + `</div>
 	          <div id="reply-btn">
 	          <button id ="btn-update" onclick="upBtn(` + i + `, `+reply.reply_no+`, '`+reply.reply_content+`')" class ="edit-delete">수정</button>
-	          <button id="btn-delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button></div>
+	          <button id="btn-delete" onclick="delBtn(`+reply.reply_no+`)" class="edit-delete">삭제</button></div>
 	          </div>`;
 	    // onclick 을 써서 paramater 을 넘겨주자.
 	          

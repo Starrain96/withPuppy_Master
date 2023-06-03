@@ -27,16 +27,6 @@ tr:hover {
 	background-color: #ddd;
 }
 
-a:link, a:visited {
-	color: #3aa4c1;
-	text-decoration: none;
-}
-
-a:hover, a:active {
-	color: #1e80a3;
-	text-decoration: underline;
-}
-
 .top {
 	background-color: #ffe98c;
 	font-weight: bold;
