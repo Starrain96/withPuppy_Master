@@ -246,7 +246,7 @@
 			<td class="top">글쓴이</td>
 			<td class="top">조회수</td>
 		</tr>
-
+		
 		<c:forEach items="${list}" var="vo">
 		
 			<tr>
@@ -258,6 +258,7 @@
 			</tr>
 
 		</c:forEach>
+		
 		</table>
 	</div>
 	<%

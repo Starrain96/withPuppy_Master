@@ -135,11 +135,6 @@ $(function() {
           reply_id:writer
       },
       success: function(x) {
-          alert("성공!");
-          $('#reply').val(''); // 작성 후 글자 사라지게 하는것
-          document.location.reload();
-          // val() : 입력한 값을 가져온다.
-          // val("안녕") : 안녕 이란 값을 input 에 value안으로 넣는다.
 		$('#commu_de').click(function() {
 			$('#result').empty()
 			$.ajax({
