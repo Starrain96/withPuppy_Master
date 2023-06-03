@@ -13,6 +13,24 @@ function btnChange(n11, n22, n3, n4, item) {
 	bringCnt(n1, n2);
 	
 	//카테고리별 list 불러오기
+	bringList(n1, n2, n3, n4, 11);
+}
+
+//카테고리 선택시 호출되는 함수
+function btnChange1(n11, n22, n3, n4, item) {
+	
+	n1 = n11;
+	n2 = n22;
+	
+	$('#menuName').empty();
+	var cateName = $(item).text();
+	console.log(cateName);
+	$('#menuName').append(cateName);
+	
+	//카테고리별 갯수 가져와서 전역변수 저장 -> 페이징 버튼 용
+	bringCnt(n1, n2);
+	
+	//카테고리별 list 불러오기
 	bringList(n1, n2, n3, n4, 1);
 }
 

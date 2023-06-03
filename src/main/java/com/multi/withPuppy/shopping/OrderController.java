@@ -66,9 +66,11 @@ public class OrderController {
 			bag.setRefundCheck_YN("Y");
 			list.add(bag);
 		}
-		
+		try {
 		orderService.insertOrderDetail(list);
-		 
+		}catch (Exception e) {
+			System.out.println(e);
+		}
 		return 1;
 	}
 

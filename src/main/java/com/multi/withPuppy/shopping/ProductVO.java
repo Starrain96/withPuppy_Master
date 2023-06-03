@@ -11,7 +11,21 @@ public class ProductVO {
 	private int detail;
 	private String product_img;
 	private int product_cnt;
+	private String soldout_YN;
+	private String status;
 	
+	public String getSoldout_YN() {
+		return soldout_YN;
+	}
+	public void setSoldout_YN(String soldout_YN) {
+		this.soldout_YN = soldout_YN;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -68,10 +82,12 @@ public class ProductVO {
 	}
 	@Override
 	public String toString() {
-		return "ProductVO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
-				+ product_price + ", category1=" + category1 + ", category2=" + category2 + ", detail=" + detail
-				+ ", product_img=" + product_img + ", product_cnt=" + product_cnt + "]";
+		return "ProductVO [product_id=" + product_id + ", cart_id=" + cart_id + ", product_name=" + product_name
+				+ ", product_price=" + product_price + ", category1=" + category1 + ", category2=" + category2
+				+ ", detail=" + detail + ", product_img=" + product_img + ", product_cnt=" + product_cnt
+				+ ", soldout_YN=" + soldout_YN + ", status=" + status + "]";
 	}
+	
 
 	
 }
