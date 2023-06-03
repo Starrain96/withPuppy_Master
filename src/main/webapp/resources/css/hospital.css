@@ -9,8 +9,8 @@
 }
 
 body {
-	margin-right: 5%;
-	margin-left: 5%;
+	margin-right: 15%;
+	margin-left: 15%;
 }
 
 .con1 {
@@ -183,12 +183,6 @@ h1 {
 	text-align: center;
 	font-size: 14px;
 	font-weight: bold;
-}
-
-.container-fluid {
-	padding: 50px 10%;
-	 display: flex;
-  justify-content: center;
 }
 
 .card-center{

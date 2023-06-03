@@ -70,6 +70,15 @@ public class ShopManageController {
 		int result = dao.updateProduct(bag);
 		return result;
 	}
+
+	//관리자 품질 및 판매상태 수정
+	@RequestMapping("shopping/updateManage")
+	@ResponseBody
+	public int updateManage(ProductVO bag) {
+		System.out.println("control : " + bag);
+		int result = dao.updateManage(bag);
+		return result;
+	}
 	
 	@RequestMapping("shopping/deleteProduct")
 	@ResponseBody

@@ -56,12 +56,12 @@ function sorting(){
 	var select  = document.getElementById("showNum");
 	var selectVal = (select.options[select.selectedIndex].value);
 	if(selectVal == 3){
-		bringList(n1, n2, 1, 12, 3);
+		bringList(n1, n2, 1, 12, 33);
 	}
 	else if(selectVal == 2){
-		bringList(n1, n2, 1, 12, 2);
+		bringList(n1, n2, 1, 12, 22);
 	}
 	else{
-		bringList(n1, n2, 1, 12, 1);
+		bringList(n1, n2, 1, 12, 11);
 	}
 }

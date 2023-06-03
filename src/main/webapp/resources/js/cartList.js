@@ -17,7 +17,7 @@ $(function bringCartData() {
 						class="delBtn" />
 					</div>
 				<div class="d-flex">
-					<img src= ` + data[i].product_img +
+					<img class="img1" src= ` + data[i].product_img +
 						` alt="image" />
 					<div class="author ">
 						<div class = "cartPTitle" onclick="location.href='productDetail?product_id=`+

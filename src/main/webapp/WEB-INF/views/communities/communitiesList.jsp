@@ -17,8 +17,8 @@
 	}
 
 	th {
-		background-color: #3aa4c1;
-		color: white;
+		background-color: #ffe98c;
+		color: black;
 	}
 
 	tr:nth-child(even){
@@ -40,7 +40,7 @@
 	}
 
 	.top{
-		background-color: #f1f1f1;
+		background-color: #ffe98c;
 		font-weight: bold;
 	}
 
@@ -231,8 +231,8 @@
 			<option>작성자</option>
 			<option>제목+내용</option>
 		</select>
-		<input type="text">
-		<button type="button" class="btn-search">검색</button>
+		<input type="text" placeholder="검색어 입력">
+		<button type="button" class="btn-search" onclick="getSearchList()">검색</button>
 		<a href="../communities/communitiesWrite"><button type="button" class="btn-write">글쓰기📝</button></a>
 	</div>
 		
@@ -289,6 +289,30 @@
 		})		
 	})
 })
+
+function getSearchList(){
+	$.ajax({
+		type: 'GET',
+		url : "/getSearchList",
+		data : $("form[name=search-form]").serialize(),
+		success : function(result){
+			//테이블 초기화
+			$('#boardtable > tbody').empty();
+			if(result.length>=1){
+				result.forEach(function(item){
+					str='<tr>'
+					str += "<td>"+item.idx+"</td>";
+					str+="<td>"+item.writer+"</td>";
+					str+="<td><a href = '/board/detail?idx=" + item.idx + "'>" + item.title + "</a></td>";
+					str+="<td>"+item.date+"</td>";
+					str+="<td>"+item.hit+"</td>";
+					str+="</tr>"
+					$('#boardtable').append(str);
+        		})				 
+			}
+		}
+	})
+}
 	</script>
 </body>
 </html>

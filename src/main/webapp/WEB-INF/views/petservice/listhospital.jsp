@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.multi.withPuppy.user.UserVO"%>
-<%
-    UserVO userVo = (UserVO) session.getAttribute("bag");
-    System.out.println("header bag : " + userVo);
-%>
+
 <%@ include file="serviceheader.jsp"%>
 </head>
 <body>
@@ -23,7 +19,7 @@
 	</form>
 	<hr color=grey>
 
-	<div id="map" style="width: 800px; height: 350px; margin: 0 auto;"></div>
+	<div id="map" style="width: 80%; height: 500px; margin: 0 auto;"></div>
 	<hr color=grey>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -38,7 +34,7 @@
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 	mapOption = {
 		center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-		level : 5
+		level : 4
 	// 지도의 확대 레벨
 	};
 

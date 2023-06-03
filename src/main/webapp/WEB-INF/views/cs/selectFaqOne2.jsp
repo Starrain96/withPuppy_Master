@@ -22,7 +22,7 @@
 	<h4>리스트</h4>
 	<hr>
 	<table class="table">
-		<thead class="table-primary">
+		<thead>
 			<tr>
 				<th style="width: 10px">no</th>
 				<th style="width: 120px">category</th>

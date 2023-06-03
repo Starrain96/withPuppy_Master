@@ -28,14 +28,24 @@ function bringList(n1, n2, n3, n4, sortN){
 		success : function(data) {
 			$('#manageList').empty();
 			for (i = 0; i < data.length; i++) {
+			let result1 = '<option value="Y">Y</option>'
+			let result2 = '<option value="판매대기">판매대기</option>'
+			console.log(i + ">>>>" + data[i].status)
+			if(data[i].soldout_YN == 'Y'){
+				result1 = '<option value="N">N</option>'
+			}
+			if(data[i].status == '판매대기'){
+				result2 = '<option value="판매중">판매중</option>'
+			}
 				var sen =`<tr>
 					<td>`+data[i].product_id+`</td>
 					<td ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
 					<td>`+data[i].category2+`</td>
 					<td>`+data[i].product_cnt+`</td>
 					<td>`+data[i].product_price+`</td>
-					<td></td>
-				</tr>`
+					<td><select class="soldout_YN" id="save1" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].soldout_YN +`>`+data[i].soldout_YN+`</option>` + result1 + `</select></td>
+					<td><select class="status" id="save2" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].status+` >`+data[i].status+`</option>` + result2 + `</select></td></tr>`
+					
 				$('#manageList').append(sen);
 			}
 			$('#pagingList').empty();
@@ -124,6 +134,33 @@ function editProduct(){
 	})
 }
 
+
+//상품 수정 업데이트
+function updateManage(p_id){
+	let select1 =  document.getElementById("save1");
+	let select2 =  document.getElementById("save2");
+	var selectVal1 = (select1.options[select1.selectedIndex].value);
+	var selectVal2 = (select2.options[select2.selectedIndex].value);
+	$.ajax({
+        url : "updateManage",
+        type : 'POST',
+        data : {
+        	product_id : p_id,
+        	soldout_YN : selectVal1,
+        	status : selectVal2
+        },
+        success : function(data) {
+        	alert("수정되었습니다.");
+        }
+	})
+}
+
+
+
+
+
+
+
 //상품 수정시 상품 데이터 가져오기
 function bringProductInfo(p_id){
 	$.ajax({
@@ -161,14 +198,23 @@ function searching(){
 			else{
 				$('#manageList').empty();
 				for (i = 0; i < data.length; i++) {
+					let result1 = '<option value="Y">Y</option>'
+					let result2 = '<option value="판매대기">판매대기</option>'
+					console.log(i + ">>>>" + data[i].status)
+					if(data[i].soldout_YN == 'Y'){
+						result1 = '<option value="N">N</option>'
+					}
+					if(data[i].status == '판매대기'){
+						result2 = '<option value="판매중">판매중</option>'
+					}
 					var sen =`<tr id = "editBtn">
 						<td>`+data[i].product_id+`</td>
 						<td  ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
 						<td>`+data[i].category2+`</td>
 						<td>`+data[i].product_cnt+`</td>
 						<td>`+data[i].product_price+`</td>
-						<td></td>
-					</tr>`
+						<td><select class="soldout_YN" id="save1" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].soldout_YN +`>`+data[i].soldout_YN+`</option>` + result1 + `</select></td>
+						<td><select class="status" id="save2" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].status+` >`+data[i].status+`</option>` + result2 + `</select></td></tr>`
 					$('#manageList').append(sen);
 				}
 			}

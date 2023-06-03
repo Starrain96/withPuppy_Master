@@ -6,10 +6,6 @@
 	font-family: 'Noto Sans KR', sans-serif;
 
 }
-body {
-	margin-left: 15%;
-	margin-right: 15%;
-}
 
 .cart-wrapper {
 	width: 80%;
@@ -47,7 +43,7 @@ body {
 	align-items: center;
 }
 
-img {
+.img1 {
 	margin: 10px;
 	max-width: 100px;
 	max-height: 100px;
@@ -326,7 +322,6 @@ img {
 }
  .content_main{
     min-height: 700px;
-    padding-right: 350px;
     position: relative;
  }
  table{

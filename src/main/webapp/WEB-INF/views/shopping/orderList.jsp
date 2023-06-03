@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../../../shoppingHeader.jsp"%>
+<%@ include file="../../../header.jsp"%>
 
 
 
@@ -14,10 +14,10 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 확인</title>
-<link rel="stylesheet" href="../resources/css/order.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="../resources/css/order.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script
@@ -29,6 +29,13 @@
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
+
+<style>
+body {
+	margin-right: 15%;
+	margin-left: 15%;
+}
+</style>
 
 <script type="text/javascript">
 let price_total = 0
@@ -53,7 +60,7 @@ $(function bringCartData() {
 				var sen = 
 					`<li class="list-group-item">
 				<div class="d-flex  align-items-center">
-					<img src= ` + data[i].product_img +
+					<img class="img1" src= ` + data[i].product_img +
 						` alt="image" />
 					<div class="author ">
 					<div class="cartPTitle">` +data[i].product_name+`</div>
@@ -139,57 +146,7 @@ $(function bringCartData() {
 	            
 	        }
 	    }).open();  	
-}
-  
-/* // 주문 요청 (order, order_detail 테이블에 데이터 입력) 
-  $(function() {
-	  $('#cash').click(function(){
-		  var receiver_name =$('#receiver_name').val();
-		  var receiver_phone =$('#tel1').val() + $('#tel2').val() + $('#tel3').val();
-		  var receiver_id =$('#receiver_id').val();
-		  var addr1 =$('#addr1').val();
-		  var addr2 =$('#addr2').val();
-		  var addr3 =$('#addr3').val();
-		  var total_price =$('#total_price').val();
-	    $.ajax({
-	    	type: 'POST',
-	        url:'insertOr',
-	        data : {
-	        	user_id : "${bag.user_id}",
-	        	receiver_name: receiver_name,
-	        	receiver_phone: receiver_phone,
-	        	receiver_id: receiver_id,
-	        	addr1: addr1,
-	        	addr2: addr2,
-	        	addr3: addr3,
-	        	total_price: price_total
-	        },
-	    success : function(x) {
-			alert("주문이 입력되었습니다. 결제 창으로 이동합니다.")
-			
-			$('#result').append(x)
-			  
-			  for(i=0; i<productTmp.length; i++){
-		    $.ajax({
-		    	type: 'POST',
-		        url:'insertDe',
-		        data :
-		         { 
-		        	product_id: productTmp[i].product_id,
-		        	ordered_cnt:productTmp[i].product_cnt,
-		        	order_status:  "complete",
-		        	refundCheck_YN: "Y"
-		        }, 
-			    success : function(x) {
-		  }  
-		    })
-			  }
-				} //success
-	        }) //ajax
-	    }) //click
-	  
-	    
-}) //function */
+}  
 
 //주문 요청 (order, order_detail 테이블에 데이터 입력) 
 $(function() {
@@ -294,6 +251,7 @@ $(function() {
 					</tr>
 				</thead>
 			</table>
+
 			<div class="content_main">
 				<!-- 회원 정보 -->
 				<div class="member_info_div">
@@ -325,20 +283,19 @@ $(function() {
 										<th>수령인</th>
 										<td><input class="addressee_input" id="receiver_name"
 											value="${bag.user_name}"></td>
-											<td><p><span id="receiver_name">※필수 입력란 입니다.</span></p></td>
+										<td>※필수 입력란 입니다.</td>
 									</tr>
 									<tr>
 										<th>수령인 연락처</th>
-										<td>
-										<input type="text" id="tel1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="3"
-										 style="width:67px;height:45px;">
-	        							<span class="hypen">-</span>
-	        							<input type="text" id="tel2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4"
-	        							style="width:67px;height:45px;">
-	        							<span class="hypen">-</span>
-	        							<input type="text" id="tel3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4"
-	        							style="width:67px;height:45px;">
-	        							</td>
+										<td><input type="text" id="tel1"
+											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											maxlength="3" style="width: 67px; height: 45px;"> <span
+											class="hypen">-</span> <input type="text" id="tel2"
+											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											maxlength="4" style="width: 67px; height: 45px;"> <span
+											class="hypen">-</span> <input type="text" id="tel3"
+											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											maxlength="4" style="width: 67px; height: 45px;"></td>
 									</tr>
 									<tr>
 										<th>배송지명</th>
@@ -358,14 +315,15 @@ $(function() {
 					</div>
 				</div>
 			</div>
+			<div class="col-md-6"></div>
+			<div class="cartTotal" id="cartTotal"></div>
+			<button type="submit" class="btn-custom" id="cash">결제하기</button>
 		</div>
-		<div class="col-md-6"></div>
-		<div class="cartTotal" id="cartTotal"></div>
-		<button type="submit" class="btn-custom" id="cash">결제하기</button>
-		        	<button class="btn-custom" onClick="location.href=status?user_id=`+user_id1+`">주문현황</button>
-		
-		<input name="order_status" value="complete" type="hidden"
-			id="order_status"> <input name="refundCheck_YN" value="Y"
-			type="hidden" id="refundCheck_YN">
+	</div>
+
+	<input name="order_status" value="complete" type="hidden"
+		id="order_status">
+	<input name="refundCheck_YN" value="Y" type="hidden"
+		id="refundCheck_YN">
 </body>
 </html>

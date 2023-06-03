@@ -85,6 +85,28 @@ public class ProductController {
         List<ProductVO> list = dao.list3(bag);
         return list;
     }
+
+	
+	@RequestMapping("shopping/shoppingList11")
+	@ResponseBody
+	public List<ProductVO> shopping11(Model model, CategoryVO bag) {
+		List<ProductVO> list = dao.list11(bag);
+		return list;
+	}
+	
+	@RequestMapping("shopping/shoppingList22")
+	@ResponseBody
+	public List<ProductVO> shopping22(Model model, CategoryVO bag) {
+		List<ProductVO> list = dao.list22(bag);
+		return list;
+	}
+	
+	@RequestMapping("shopping/shoppingList33")
+	@ResponseBody
+	public List<ProductVO> shopping33(Model model, CategoryVO bag) {
+		List<ProductVO> list = dao.list33(bag);
+		return list;
+	}
 	
 
 }
