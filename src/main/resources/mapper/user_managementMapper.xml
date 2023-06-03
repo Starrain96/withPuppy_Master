@@ -36,7 +36,7 @@
 	        </if>
 		</trim>
 		 ) user2
-		 where user2.user_no between #{start} and #{end}
+		 where user2.user_no between ${start} and ${end}
 	</select>
 	
 	<select id="userSearchCount" parameterType="userpageVO" resultType="Integer">
