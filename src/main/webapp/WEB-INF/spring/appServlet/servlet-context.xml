@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans
-	xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -28,7 +31,29 @@
 
 	<context:component-scan
 		base-package="com.multi.withPuppy" />
+	<beans:bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dbcp" />
+	</beans:bean>
 
+	<!-- Transaction을 위한 AOP 설정 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="insertOCR"
+			expression="execution(public * com.multi.withPuppy.*.*.insertOCR(..))" />
+			<aop:pointcut id="insertOrderDetail"
+			expression="execution(public * com.multi.withPuppy.*.*.insertOrderDetail(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="insertOCR" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="insertOrderDetail" />
+	</aop:config>
+
+	<!-- 선언적 Transaction 설정 -->
+	<tx:advice id="txAdvice"
+		transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="insertOCR" rollback-for="Exception" />
+			<tx:method name="insertOrderDetail" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
 
 
 </beans:beans>
