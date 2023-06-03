@@ -23,7 +23,6 @@ public class UserManagementDAO {
 	}  
 	
 	public List<UserVO> searchUser(UserPageVO vo) {
-		System.out.println("dao list : " + my.selectList("user_management.searchUser", vo));
 		return my.selectList("user_management.searchUser", vo);
 	}
 	

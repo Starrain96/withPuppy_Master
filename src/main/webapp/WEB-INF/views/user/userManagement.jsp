@@ -160,7 +160,6 @@ $(function() {
 				page : $(this).text()
 			},
 			success: function(x) {
-				console.log(x);
 				$("#result").html(x)
 			},
 			error: function() {
@@ -168,13 +167,6 @@ $(function() {
 			}
 		}) // ajax	
 	}) // page
-	
-	var userState = $('#user-table').closest('tr').find('td:eq(5)').text();
-	if (userState == "1") {
-		$(this).closest('tr').find('td:eq(5)').val("활동");
-	} else {
-		$(this).closest('tr').find('td:eq(5)').val("탈퇴");
-	}
 })  // function
 
 function searchUser() {
@@ -184,6 +176,8 @@ function searchUser() {
 	if (user_condition == "전체" && searchWord!="") {
 		alert("검색어 조건을 선택해주세요.");
 		return;
+	} else if (user_level == "전체" && user_condition == "전체" ) {
+		$('#search-input').val("");
 	}
 	console.log(searchWord);
 	$.ajax({
@@ -195,11 +189,28 @@ function searchUser() {
 			page : 1
 		},
 		success: function(x) {
-			console.log(x);
 			$("#search-result").html(x)
 		}
 	}) // ajax	
 }
+
+/* $(function() {
+	$('.search-pages').click(function() {
+		$.ajax({
+			url: "searchUserList",
+			data : {
+				page : $(this).text()
+			},
+			success: function(x) {
+				console.log(x);
+				$("#result").html(x)
+			},
+			error: function() {
+				alert("nope")
+			}
+		}) // ajax
+	}) // page
+})  // function */
 
 function deleteSelectedUsers() {
 	  // 선택된 사용자 ID를 저장할 배열

@@ -501,10 +501,7 @@
 			<input type="checkbox" name="service" value="shopping">쇼핑몰</label>
 			<span style="margin-right: 100px;"></span>
 			<label>
-			<input type="checkbox" name="service" value="pet-service">반려동물 서비스</label>
-			<span style="margin-right: 100px;"></span>
-			<label>
-			<input type="checkbox" name="service" value="pet-report">반려동물 신고</label></td>
+			<input type="checkbox" name="service" value="pet-service">동물병원</label></td>
 	    </tr>
     </table>
   </div>

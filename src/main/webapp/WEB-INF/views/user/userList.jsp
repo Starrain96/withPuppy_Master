@@ -52,13 +52,13 @@
 					<td style="vertical-align: middle;">
 						<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
 							<c:choose>
-					                        <c:when test="${one.user_state == 0}">
-					                            <input class="delete-disabled" type="checkbox" checked disabled>
-					                        </c:when>
-					                        <c:otherwise>
-					                            <input class="delete" type="checkbox" name="chkBox">
-					                        </c:otherwise>
-					                    </c:choose>
+					        	<c:when test="${one.user_state == 0}">
+					            	<input class="delete-disabled" type="checkbox" checked disabled>
+					           	</c:when>
+					        	<c:otherwise>
+					            	<input class="delete" type="checkbox" name="chkBox">
+					       		</c:otherwise>
+					   		</c:choose>
 						</div>
 					</td>
 				</tr>
