@@ -21,7 +21,19 @@ public class OrderService {
 	@Transactional
 	public void insertOrderDetail (List<Order_detailVO> list) throws Exception{
 		
-		for(int i=0; i<list.size(); i++) {
+			
+			Order_detailVO bag = new Order_detailVO();
+			bag.setOrder_id(list.get(0).getOrder_id());
+			bag.setProduct_id(list.get(0).getProduct_id());
+			bag.setOrdered_cnt(list.get(0).getOrdered_cnt());
+			bag.setOrder_status("complete");
+			bag.setRefundCheck_YN("Y");
+			
+			int result = dao.insertDetail(bag);		
+			
+			int p_cnt = dao.bringProductCnt(1);
+		
+			/*for(int i=0; i<list.size(); i++) {
 			
 			Order_detailVO bag = new Order_detailVO();
 			bag.setOrder_id(list.get(i).getOrder_id());
@@ -30,16 +42,30 @@ public class OrderService {
 			bag.setOrder_status("complete");
 			bag.setRefundCheck_YN("Y");
 			
+			
 			int result = dao.insertDetail(bag);		
 			
+			//수량이 마이너스 되지 않는지 확인
 			int p_cnt = dao.bringProductCnt(bag.getProduct_id());
+			if(p_cnt - bag.getOrdered_cnt() < 0){
+				//수량 마이너스 시 exception 발생
+				throw new Exception();
+			}else if(p_cnt - bag.getOrdered_cnt() == 0){
+				//상품 품절로 상태 변경
+			}
+			
 			
 			//상품 재고 마이너스
 			ProductVO bag2 = new ProductVO();
 			bag2.setProduct_id(bag.getProduct_id());
 			bag2.setProduct_cnt(p_cnt - bag.getOrdered_cnt());
 			int cntResult = dao1.minusProductCnt(bag2);
-		}
+			throw new Exception();
+			
+		}*/
+			/*
+			 * try { }catch (Exception e) { throw new Exception(); }
+			 */
 		
 	}
 
