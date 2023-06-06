@@ -65,11 +65,11 @@
 								</ul>
 								<div class="mt-3">
 									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file1" >
-									 <button class="btn btn-outline-danger">영수증 사진 추가</button><input type="file" id="ocr" name="file2" >
+									 <button class="btn btn-custom">영수증 사진 추가</button><input type="file" id="ocr" name="file2" >
 								</div>
 							</div>
 						</div>
-						<button type="submit">후기 등록</button>
+						<button type="btn btn-custom">후기 등록</button>
 					</div>
 					<div class="card-footer text-muted text-end">강아지와🐶</div>
 				</div>

@@ -12,24 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PetserviceController {
 	
 	@Autowired
-	PetserviceDAO dao;
+	PetserviceServiceInterface petserviceService;
 	
 	@RequestMapping("listhospital")
 	public void all(Model model,String category) {
-		List<PetserviceVO> list = dao.list(category);
+		List<PetserviceVO> list = petserviceService.all(category);
 		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping("searchHospital")
 	public void searchHp(Model model,String service_name) {
 		System.out.println(service_name);
-		List<PetserviceVO> list = dao.listhp(service_name);
+		List<PetserviceVO> list = petserviceService.searchHp(service_name);
 		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping("hospital")
 	public void one(PetserviceVO bag1, Model model) {
-		PetserviceVO bag = dao.hospital(bag1);
+		PetserviceVO bag = petserviceService.one(bag1);
 		model.addAttribute("bag", bag);
 	}
 }
