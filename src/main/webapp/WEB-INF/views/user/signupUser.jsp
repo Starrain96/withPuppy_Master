@@ -374,7 +374,7 @@
 
     	
     	if ($('#idDoubleChk').val(true) && $('#pwDoubleChk').val(true) && $('#pwDoubleChk2').val(true) &&
-    			$('#nameDoubleChk').val(true) && $('#emailDoubleChk').val(true) && $('#addrDoubleChk').val(true)){
+    			$('#nameDoubleChk').val(true) && $('#emailDoubleChk').val(true) && $('#nicknameDoubleChk').val(true) && $('#addrDoubleChk').val(true)){
     		$.ajax({
                 type: 'POST',
                 url: "<%=contextPath%>"+'/user/insertUser',
