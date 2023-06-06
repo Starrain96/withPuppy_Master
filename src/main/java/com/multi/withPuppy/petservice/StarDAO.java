@@ -9,20 +9,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class StarDAO {
+public class StarDAO implements StarDAOInterface {
 
 	@Autowired
 	SqlSessionTemplate my;
 
+	@Override
 	public void insert(StarVO bag) {
 		my.insert("star.insertStar", bag);
 	}
 
+	@Override
 	public List<StarVO> list(int service_id) {
 		List<StarVO> list = my.selectList("star.listStar", service_id);
 		return list;
 	}
 
+	@Override
 	@Transactional
 	public void insertOCR(String[][] ocrAll) throws Exception {
 
