@@ -138,10 +138,10 @@ $(function() {
           alert("성공!");
           $('#reply').val(''); // 작성 후 글자 사라지게 하는것
           document.location.reload();
-          // val() : 입력한 값을 가져온다.
-          // val("안녕") : 안녕 이란 값을 input 에 value안으로 넣는다.
-		$('#commu_de').click(function() {
-			$('#result').empty()
+      }//success
+    })//ajax
+  })//b1
+	$('#commu_de').click(function() {
 			$.ajax({
 				url : "delete",
 				data : {
@@ -149,13 +149,10 @@ $(function() {
 				},
 				success : function(x) {
 					history.back();
-					$('#result').append(x)
+					$('#result').append(x);
 				} //success
 			}) //ajax
 		})//commu_de
-      }//success
-    })//ajax
-  })//b1
   bringReplyList();
 })//fun
 
@@ -177,7 +174,7 @@ function bringReplyList() {
 	          <div class="reply-content" id="reply-content` + i + `">` + reply.reply_content + `</div>
 	          <div id="reply-btn">
 	          <button id ="btn-update" onclick="upBtn(` + i + `, `+reply.reply_no+`, '`+reply.reply_content+`')" class ="edit-delete">수정</button>
-	          <button id="btn-delete" onclick="delBtn('+reply.reply_no+')" class="edit-delete">삭제</button></div>
+	          <button id="btn-delete" onclick="delBtn(`+reply.reply_no+`)" class="edit-delete">삭제</button></div>
 	          </div>`;
 	    // onclick 을 써서 paramater 을 넘겨주자.
 	          

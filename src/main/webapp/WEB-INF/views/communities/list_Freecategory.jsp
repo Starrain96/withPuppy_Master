@@ -27,16 +27,6 @@ tr:hover {
 	background-color: #ddd;
 }
 
-a:link, a:visited {
-	color: #ffe98c;
-	text-decoration: none;
-}
-
-a:hover, a:active {
-	color: #ffe98c;
-	text-decoration: underline;
-}
-
 .top {
 	background-color: #ffe98c;
 	font-weight: bold;
@@ -56,7 +46,7 @@ a:hover, a:active {
 		<th class="top">조회수</th>
 	</tr>
 
-	<c:forEach items="${list}" var="vo">
+	<c:forEach items="${Freelist_category}" var="vo">
 
 		<tr>
 			<td class="down">${vo.commu_no}</td>

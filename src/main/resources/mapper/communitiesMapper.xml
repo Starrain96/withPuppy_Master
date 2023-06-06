@@ -35,33 +35,44 @@
 	<select id="list_category" parameterType="pageVO" resultType="communitiesVO">
 		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view 
-			from communities c) c2
+			from communities c where c.category1 = ${category1}) c2
 			where c2.c_no between ${start} and ${end}
 	</select>
 	
 	<select id="Metrolist_category" parameterType="pageVO" resultType="communitiesVO">
 		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
-			from communities c) c2
-			where c2.category1 = 2 limit 5
+			from communities c where c.category1 = 2) c2
+			where c2.c_no between ${start} and ${end}
 	</select>
 	
 	<select id="Freelist_category" parameterType="pageVO" resultType="communitiesVO">
 		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
-			from communities c) c2
-			where c2.category1 = 1 limit 5
+			from communities c where c.category1 = 1) c2
+			where c2.c_no limit 5
 	</select>
 	
 	<select id="Vincelist_category" parameterType="pageVO" resultType="communitiesVO">
 		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
-			from communities c) c2
-			where c2.category1 = 3 limit 5
+			from communities c where c.category1 = 3) c2
+			where c2.c_no limit 5
 	</select>
 	
 	<select id="count" resultType="Integer">
 		select count(*) from communities
+		
+	</select>
+	
+	<select id="count2" parameterType="pageVO" resultType="Integer">
+		select count(*) from communities
+		where category1 = ${category1}
+	</select>
+	
+	<select id="count3" parameterType="pageVO" resultType="Integer">
+		select count(*) from communities
+		where commu_title like CONCAT('%', #{keyword}, '%')
 	</select>
 	
 <!--  커뮤니티 매퍼코드 -->
@@ -76,6 +87,13 @@
            set user_reply = user_reply + 1
          where user_id = #{reply_id}
     </update>
+    
+    <select id="selectSearchList" parameterType="pageVO" resultType="communitiesVO">
+   		select*from (
+			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
+			from communities c where c.commu_title like CONCAT('%', #{keyword}, '%')) c2
+			where c2.c_no between ${start} and ${end}
+    </select>
 	
 	
 </mapper>
