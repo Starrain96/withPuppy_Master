@@ -20,7 +20,7 @@ th {
 }
 
 tr:nth-child(even) {
-	background-color: #f2f2f2;
+	background-color: #ffe98c;
 }
 
 tr:hover {
@@ -39,14 +39,14 @@ tr:hover {
 
 <table>
 	<tr>
-		<th class="top" >번호</th>
-		<th class="top" >제목</th>
-		<th class="top" >작성일</th>
-		<th class="top" >글쓴이</th>
-		<th class="top" >조회수</th>
+		<th class="top">번호</th>
+		<th class="top">제목</th>
+		<th class="top">작성일</th>
+		<th class="top">글쓴이</th>
+		<th class="top">조회수</th>
 	</tr>
 
-	<c:forEach items="${list}" var="vo">
+	<c:forEach items="${list_Metrocategory}" var="vo">
 
 		<tr>
 			<td class="down">${vo.commu_no}</td>
