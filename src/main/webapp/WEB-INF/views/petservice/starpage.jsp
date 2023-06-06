@@ -64,8 +64,8 @@
 									</li>
 								</ul>
 								<div class="mt-3">
-									<label class="btn btn-custom">리뷰 사진 추가</label><input type="file" id="img1" name="file1" ><br>
-									 <label class="btn btn-custom">영수증 사진 추가</label><input type="file" id="ocr" name="file2" >
+									<button class="btn btn-custom">리뷰 사진 추가</button><input type="file" id="img1" name="file1" >
+									 <button class="btn btn-custom">영수증 사진 추가</button><input type="file" id="ocr" name="file2" >
 								</div>
 							</div>
 						</div>
