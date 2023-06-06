@@ -25,9 +25,11 @@
 	
 	<!-- 원래는 파라미터로 user_id가져와야함 -->
 	<select id="allProduct" parameterType="String" resultType="productVO">
-		select p.product_id, c.cart_id, product_name, product_price, detail, product_img, c.product_cnt 
+		select p.product_id, c.cart_id, product_name, product_price, detail, product_img, c.product_cnt, p.soldout_YN, p.status 
 		from product p left join cart c 
-		on(p.product_id = c.product_id) where c.user_id = #{user_id} order by p.product_id
+		on(p.product_id = c.product_id) 
+		where c.user_id = #{user_id} and p.soldout_YN ='N' and p.status ='판매중' 
+		order by p.product_id
 	</select>
 	
 	<select id="emptyCheck" parameterType="cartVO" resultType="Int"> 

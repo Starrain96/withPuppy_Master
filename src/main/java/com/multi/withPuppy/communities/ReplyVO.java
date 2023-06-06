@@ -8,6 +8,7 @@ public class ReplyVO {
 	private String reply_content;
 	private int commu_no;
 	private Timestamp reply_date;
+	
 	public int getReply_no() {
 		return reply_no;
 	}

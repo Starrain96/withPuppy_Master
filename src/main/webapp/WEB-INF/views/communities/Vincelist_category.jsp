@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../../../header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -217,6 +218,9 @@
 	<div class="search">
 		<select>
 			<option>제목</option>
+			<option>내용</option>
+			<option>작성자</option>
+			<option>제목+내용</option>
 		</select>
 		<input type="text" placeholder="검색어 입력">
 		<button type="button" class="btn-search" onclick="getSearchList()">검색</button>
@@ -234,7 +238,7 @@
 			<td class="top">조회수</td>
 		</tr>
 		
-		<c:forEach items="${list}" var="vo">
+		<c:forEach items="${Vincelist_category}" var="vo">
 		
 			<tr>
 				<td class="down">${vo.commu_no}</td>
@@ -248,7 +252,7 @@
 		
 		</table>
 	</div>
-	<%
+<%
 	int pages = (int)request.getAttribute("pages");
     for (int p = 1; p <= pages; p++) {
 %>	
@@ -262,25 +266,9 @@
 	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 	<script type="text/javascript">
 	$(function() {
-		//검색했을 때 AJAX,
-		//성공했을 때,
-		//페이지랑 페이지 목록 for문 돌린걸 div를 만들어서 껴주자..!
-		//$('.pages2').click(function() {
-		/* 	$.ajax({
-				url: "list",
-				data : {
-					page : $(this).text()
-				},
-				success: function(x) {
-					$("#result").html(x)
-				},
-				error: function() {
-					alert("nope")
-				}
-		})	 */
 		$('.pages').click(function() {
 			$.ajax({
-				url: "list",
+				url: "list_Vincecategory",
 				data : {
 					page : $(this).text()
 				},

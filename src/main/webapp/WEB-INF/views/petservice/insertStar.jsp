@@ -21,6 +21,7 @@
 					ocr : "${bag.ocr}"	// 입력된 OCR 이미지 이름
 				},
 				success : function() {
+					//console.log("호호신난다");
 					alert("영수증 후기가 등록되었습니다!")						
 					window.close();
 				}, //success

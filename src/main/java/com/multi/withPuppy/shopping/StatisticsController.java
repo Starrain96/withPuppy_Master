@@ -13,6 +13,9 @@ public class StatisticsController {
 
 	@Autowired
 	StatisticsDAO dao;
+	
+	@Autowired
+	StatisticsService statisticsService;
 
 	// 매출현황 데이터
 	@RequestMapping("shopping/bringSalesAll")
@@ -42,13 +45,7 @@ public class StatisticsController {
 	@ResponseBody
 	public List<StatisticsVO> MonthlyStatistics(int num) {
 		List<StatisticsVO> result = new ArrayList<StatisticsVO>();
-		if(num == 1) {
-			result = dao.saleMonthly1();
-		} else if(num == 2) {
-			result = dao.saleMonthly2();
-		} else {
-			result = dao.saleMonthly3();
-		}
+		result = statisticsService.MonthlySt(num);
 		return result;
 	}
 
