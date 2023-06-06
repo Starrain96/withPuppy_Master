@@ -62,6 +62,15 @@ public class UserManagementController {
 		model.addAttribute("pages", pages);
 	}
 	
+	@RequestMapping("searchUserList")
+	public void searchUserList(UserPageVO vo, Model model) {
+		vo.setStartEnd(vo.getPage());
+		System.out.println("브이오점겟페이지 : " + vo.getPage());
+		List<UserVO> list = dao.searchUser(vo);
+		System.out.println("contorller list UserPageVO : " + list);
+		model.addAttribute("list", list);
+	}
+	
 	@RequestMapping("deleteUsers")
 	@ResponseBody
 	public String deleteUsers(@RequestParam("userIds[]") String[] userIds) {

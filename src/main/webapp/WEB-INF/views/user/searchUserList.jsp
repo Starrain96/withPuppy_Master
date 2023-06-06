@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/userManagement.css">
-</head>
-<body>
 <table class="table" style="width:100%">
 	<colgroup>
 		<col style="width: 50px;">
@@ -52,18 +45,16 @@
 					<td style="vertical-align: middle;">
 						<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
 							<c:choose>
-					                        <c:when test="${one.user_state == 0}">
-					                            <input type="checkbox" class="delete-disabled" checked disabled>
-					                        </c:when>
-					                        <c:otherwise>
-					                            <input class="delete" type="checkbox" name="chkBox">
-					                        </c:otherwise>
-					                    </c:choose>
+					        	<c:when test="${one.user_state == 0}">
+					            	<input class="delete-disabled" type="checkbox" checked disabled>
+					           	</c:when>
+					        	<c:otherwise>
+					            	<input class="delete" type="checkbox" name="chkBox">
+					       		</c:otherwise>
+					   		</c:choose>
 						</div>
 					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>                		
-</body>
-</html>
+	</table>
