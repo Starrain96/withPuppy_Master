@@ -135,7 +135,7 @@ tr:hover {
 			</div>
 			<div class="col-md-6">
 				<div class="card-container">
-					<a href="communitiesList?page=1" class="link">수도권</a>
+					<a href="Metrolist_category?page=1" class="link">수도권</a>
 					<hr>
 					<table>
 						<tr>
@@ -145,7 +145,7 @@ tr:hover {
 							<th>글쓴이</th>
 							<th>조회수</th>
 						</tr>
-						<c:forEach items="${Metrolist_category}" var="vo">
+						<c:forEach items="${Metrolist_category }" var="vo">
 							<tr>
 								<td>${vo.commu_no}</td>
 								<td><a href="one?commu_no=${vo.commu_no}">${vo.commu_title}</a></td>
@@ -161,7 +161,7 @@ tr:hover {
 		<div class="row">
 			<div class="col-md-6">
 				<div class="card-container">
-					<a href="communitiesList?page=1" class="link">자유게시판</a>
+					<a href="Freelist_category?page=1" class="link">자유게시판</a>
 					<hr>
 					<table>
 						<tr>
@@ -185,7 +185,7 @@ tr:hover {
 			</div>
 			<div class="col-md-6">
 				<div class="card-container">
-					<a href="communitiesList?page=1" class="link">지방</a>
+					<a href="Vincelist_category?page=1" class="link">지방</a>
 					<hr>
 					<table>
 						<tr>
