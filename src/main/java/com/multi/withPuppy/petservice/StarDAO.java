@@ -42,7 +42,7 @@ public class StarDAO {
 			System.out.println(i + ocrAll[i][5]);
 			System.out.println(i + ocrAll[i][6]);
 
-			//bag2.setBill_no(ocrAll[0][0]);
+			bag2.setBill_no(ocrAll[0][0]);
 			bag2.setBill_dx(ocrAll[i][5]);
 			bag2.setBill_fee(ocrAll[i][6]);
 
