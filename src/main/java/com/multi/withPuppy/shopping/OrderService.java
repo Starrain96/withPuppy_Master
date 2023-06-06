@@ -1,13 +1,10 @@
 package com.multi.withPuppy.shopping;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Service
 public class OrderService {
@@ -20,7 +17,6 @@ public class OrderService {
 
 	@Transactional
 	public void insertOrderDetail(List<Order_detailVO> list) throws Exception {
-		//try {
 		for (int i = 0; i < list.size(); i++) {
 
 			// 수량이 마이너스 되지 않는지 확인
@@ -52,15 +48,8 @@ public class OrderService {
 			//detail에 안들어 갔거나, 재고 마이너스가 되지 않았을 경우 exception
 			if(result == 0 || cntResult == 0) {
 				throw new Exception();
-				//exception 처리를 어케하지..훔
 			}
-			
 		}
-		
-//		}catch (Exception e) {	//이거 되나
-//			//결제 중 에러났을 경우 처리
-//			throw new Exception();
-//		}
 	}
 
 }
