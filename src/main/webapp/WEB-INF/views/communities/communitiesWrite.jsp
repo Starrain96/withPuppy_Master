@@ -113,7 +113,8 @@ button[type="submit"]:hover {
 		<div class="card">
 			<h5 class="card-header">강아지 게시판 글쓰기</h5>
 			<div class="card-body" style="display: flex; flex-direction: column;">
-				<form action="../communities/insert" method="post" enctype="multipart/form-data">
+				<form action="../communities/insert" method="post"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="category">카테고리</label> <select id="category"
 							name="category1">
@@ -129,7 +130,7 @@ button[type="submit"]:hover {
 					</div>
 					<div class="form-group">
 						<label for="writer">작성자</label> <input type="text" id="writer"
-							name="commu_id" required>
+							name="commu_id" value="admin1234" readonly>
 					</div>
 					<div class="form-group">
 						<label for="image">이미지</label> <input type="file" id="image"
@@ -140,20 +141,21 @@ button[type="submit"]:hover {
 						<textarea id="content" name="commu_content" required></textarea>
 					</div>
 					<div class="form-group">
-						<label for="view">내용</label>
-						<textarea id="view" name="commu_view" required >1</textarea>
+						<label for="view">조회수(미구현)</label>
+						<textarea id="view" name="commu_view" required>1</textarea>
 					</div>
 					<div style="display: flex; justify-content: flex-end;">
-						<button id = "b10" type="submit">작성</button>
+						<button id="b10" type="submit">작성</button>
 					</div>
 				</form>
 			</div>
 			<div class="card-footer text-muted text-end">강아지와🐶</div>
 		</div>
 	</div>
-<!-- 스크립트 -->
+	<!-- 스크립트 -->
 	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
 	<script type="text/javascript">
+		
 	</script>
 </body>
 </html>
