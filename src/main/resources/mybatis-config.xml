@@ -38,7 +38,6 @@
 		<typeAlias type="com.multi.withPuppy.cs.AskVO" alias="askVO"></typeAlias>
 		<typeAlias type="com.multi.withPuppy.cs.AnswerVO" alias="answerVO"></typeAlias>
 		
-		<typeAlias type="com.multi.withPuppy.report.ReportVO" alias="reportVO"></typeAlias>
 	</typeAliases>
    <mappers>
 		<mapper resource="mapper/communitiesMapper.xml" />
@@ -65,6 +64,5 @@
 		<mapper resource="mapper/askMapper.xml" />
 		<mapper resource="mapper/answerMapper.xml" />
 		
-		<mapper resource="mapper/reportMapper.xml" />
 	</mappers>
 </configuration>
