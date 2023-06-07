@@ -24,6 +24,42 @@ public class UserDAO {
 	@Autowired
 	SqlSessionTemplate my;
 
+	public int nidUser(String id, String nid) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("nid", nid);
+		return my.update("user.nidUser", params);
+	}
+	
+	public int naverLogin(String nid) {
+		int result = 0;
+		result = my.selectOne("user.naverLogin", nid);
+		return result;
+	}
+	
+	public UserVO naverUser(String nid) {
+		UserVO vo = my.selectOne("user.naverUser", nid);
+		return vo;
+	}
+	
+	public int kidUser(String id, String kid) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("kid", kid);
+		return my.update("user.kidUser", params);
+	}
+	
+	public int kakaoLogin(String kid) {
+		int result = 0;
+		result = my.selectOne("user.kakaoLogin", kid);
+		return result;
+	}
+	
+	public UserVO kakaoUser(String kid) {
+		UserVO vo = my.selectOne("user.kakaoUser", kid);
+		return vo;
+	}
+	
 	@Transactional
 	public UserVO loginUser(String id, String pw) {
 		Map<String, Object> params = new HashMap<>();

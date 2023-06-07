@@ -278,3 +278,20 @@ svg {
 	object-fit: cover;
 	border-radius: 5px;
 }
+
+.social {
+	display:flex;
+}
+
+.social-icon {
+	margin-left: 50px;
+}
+
+.social-label {
+	margin-top: 10px;
+}
+
+.social-icon-m {
+	margin-left: 20px;
+	margin-bottom: 20px;
+}

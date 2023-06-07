@@ -103,21 +103,6 @@ function onClick1(p_id) {/* 상품수정하기 */
 		document.querySelector('.modal_close1').addEventListener('click', offClick1);
 	};
 
-//상품 등록
-function addProduct(){
-	console.log("addproduct함수");
-	$.ajax({
-        url : "addProduct",
-        type : 'POST',
-        data : $("#addForm").serialize(),
-        success : function(data) {
-        	alert("상품 등록 완료");
-        	document.querySelector('.modal_wrap').style.display = 'none';
-			document.querySelector('.black_bg').style.display = 'none';
-			document.location.reload();
-        }
-	})
-}
 
 //상품 수정 업데이트
 function editProduct(){
