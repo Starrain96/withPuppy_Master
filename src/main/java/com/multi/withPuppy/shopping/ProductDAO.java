@@ -45,6 +45,11 @@ public class ProductDAO {
 		return result;
 	}
 	
+	public int productSoldout(int product_id) {
+		int result = my.update("product.update2soldout", product_id);
+		return result;
+	}
+	
 	public ProductVO one(int id) {
 		ProductVO vo = my.selectOne("product.one", id);
 		return vo;

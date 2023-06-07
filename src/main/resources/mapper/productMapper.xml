@@ -108,6 +108,11 @@
 	<update id="updateCnt" parameterType="productVO">
 		UPDATE product SET product_cnt = #{product_cnt} WHERE product_id = #{product_id}
 	</update>
+	
+	<!-- 상품 개수 0이 될 경우  -->
+	<update id="update2soldout" parameterType="int">
+		UPDATE product SET soldout_YN = "Y", status = "판매대기" WHERE product_id = #{product_id}
+	</update>
 		
 </mapper>
 
