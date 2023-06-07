@@ -31,6 +31,8 @@ function btnChange1(n11, n22, n3, n4, item) {
 	bringCnt(n1, n2);
 	
 	//카테고리별 list 불러오기
+	console.log("n3 :" + n3);
+	console.log("n4 :" + n4);
 	bringList(n1, n2, n3, n4, 1);
 }
 
