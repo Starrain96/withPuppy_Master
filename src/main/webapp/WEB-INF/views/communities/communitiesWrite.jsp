@@ -140,7 +140,7 @@ button[type="submit"]:hover {
 						<textarea id="content" name="commu_content" required></textarea>
 					</div>
 					<div class="form-group">
-						<label for="view">내용</label>
+						<label for="view">조회수(미구현)</label>
 						<textarea id="view" name="commu_view" required >1</textarea>
 					</div>
 					<div style="display: flex; justify-content: flex-end;">
