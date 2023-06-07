@@ -5,6 +5,42 @@
 	     프로그래머가 써주지 않아도 이미 resultType="int"가 
 	     있는 것으로 본다.!
 	 -->
+	<update id="nidUser" parameterType="Map">
+		update user
+		  set user_nid = #{nid}
+		 where user_id = #{id}
+	</update>
+	
+	<select id="naverLogin" parameterType="String" resultType="int">
+		select COUNT(*)
+		  from user
+		 where user_nid = #{user_nid} 
+	</select>
+	
+	<select id="naverUser" parameterType="String" resultType="userVO">
+		select *
+		  from user
+		 where user_nid = #{user_nid} and user_state = 1
+	</select>
+	
+	<update id="kidUser" parameterType="Map">
+		update user
+		  set user_kid = #{kid}
+		 where user_id = #{id}
+	</update>
+	
+	<select id="kakaoLogin" parameterType="String" resultType="int">
+		select COUNT(*)
+		  from user
+		 where user_kid = #{user_kid} 
+	</select>
+	
+	<select id="kakaoUser" parameterType="String" resultType="userVO">
+		select *
+		  from user
+		 where user_kid = #{user_kid} and user_state = 1
+	</select>
+	
 	<insert id="insertUser" parameterType="userVO">
 		insert into user (user_id, user_pw, user_name, user_email, user_tel, user_nickname, user_addr1, user_addr2, user_addr3, user_addr4, user_addr5, user_interest, user_img, user_level, user_state, user_joindate, user_visit)
 		values (#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{user_tel}, #{user_nickname}, #{user_addr1}, #{user_addr2}, #{user_addr3}, #{user_addr4}, #{user_addr5}, #{user_interest}, "profile.png", "집사", 1, now(), 0)

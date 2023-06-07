@@ -2,6 +2,7 @@ package com.multi.withPuppy.user;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,6 +56,70 @@ public class UserController {
 	public void userReview() {
 	}
 	
+	// 마이페이지 : 네이버 아이디 연동
+	@RequestMapping("/naverSocial")
+	@ResponseBody
+	public int naverSocial(@RequestParam("nid") String nid, HttpSession session) throws IOException {
+		String id = (String) session.getAttribute("id");
+		int result = 0;
+		result = dao.nidUser(id, nid);
+		return result;
+	}
+	
+	// 네이버 로그인
+	@RequestMapping("/naverLogin")
+	@ResponseBody
+	public int naverLogin(@RequestParam("nid") String nid, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		result = dao.naverLogin(nid);
+		if (result == 1) {
+			UserVO vo = dao.naverUser(nid);
+			model.addAttribute("vo", vo);
+			//System.out.println("컨트롤러 vo : " + vo);
+			if (vo != null) {
+				session.setAttribute("id", vo.getUser_id());
+				session.setAttribute("bag", vo);
+				System.out.println("login success");
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		return 0;
+	}
+	
+	// 마이페이지 : 카카오 아이디 연동
+	@RequestMapping("/kakaoSocial")
+	@ResponseBody
+	public int kakaoSocial(@RequestParam("kid") String kid, HttpSession session) throws IOException {
+		String id = (String) session.getAttribute("id");
+		int result = 0;
+		result = dao.kidUser(id, kid);
+		return result;
+	}
+	
+	// 카카오 로그인
+	@RequestMapping("/kakaoLogin")
+	@ResponseBody
+	public int kakaoLogin(@RequestParam("kid") String kid, Model model, HttpSession session) throws IOException {
+		int result = 0;
+		result = dao.kakaoLogin(kid);
+		if (result == 1) {
+			UserVO vo = dao.kakaoUser(kid);
+			model.addAttribute("vo", vo);
+			//System.out.println("컨트롤러 vo : " + vo);
+			if (vo != null) {
+				session.setAttribute("id", vo.getUser_id());
+				session.setAttribute("bag", vo);
+				System.out.println("login success");
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+		return 0;
+	}
+		
 	// 로그인
 	@RequestMapping("/loginUser")
 	@ResponseBody

@@ -71,7 +71,7 @@ $.ajax({
 				var commuList = 
 					`<li class="list-group-item" style="cursor:pointer" onClick="location.href='<%=contextPath%>/communities/one?commu_no=`+data[i].commu_no+`'">
                      	<div class="meta-area1">
-                        	<span>`+data[i].commu_title+`</span>
+                        	<span class="info-label">`+data[i].commu_title+`</span>
                         	<span class="badge bg-secondary text-light ms-auto">`+commu_date+`</span>
                     	</div>
                     	<div class="meta-area2">
