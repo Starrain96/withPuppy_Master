@@ -13,6 +13,7 @@ public class ProductVO {
 	private int product_cnt;
 	private String soldout_YN;
 	private String status;
+	private String categoryDetail;
 	
 	public String getSoldout_YN() {
 		return soldout_YN;
@@ -80,13 +81,21 @@ public class ProductVO {
 	public void setProduct_cnt(int product_cnt) {
 		this.product_cnt = product_cnt;
 	}
+	public String getCategoryDetail() {
+		return categoryDetail;
+	}
+	public void setCategoryDetail(String categoryDetail) {
+		this.categoryDetail = categoryDetail;
+	}
 	@Override
 	public String toString() {
 		return "ProductVO [product_id=" + product_id + ", cart_id=" + cart_id + ", product_name=" + product_name
 				+ ", product_price=" + product_price + ", category1=" + category1 + ", category2=" + category2
 				+ ", detail=" + detail + ", product_img=" + product_img + ", product_cnt=" + product_cnt
-				+ ", soldout_YN=" + soldout_YN + ", status=" + status + "]";
+				+ ", soldout_YN=" + soldout_YN + ", status=" + status + ", categoryDetail=" + categoryDetail + "]";
 	}
+	
+	
 	
 
 	

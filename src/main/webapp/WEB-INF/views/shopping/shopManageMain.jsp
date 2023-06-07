@@ -27,12 +27,38 @@
 			bringList(n1, n2, 1, 12, 1);
 		}
 	}
+	
+	//상품 등록
+	function addProduct(){
+
+		var form = $('#addForm')[0];
+	    var formData = new FormData(form);
+		
+		$.ajax({
+	        url : "addProduct",
+	        type : 'POST',
+	        data : formData,
+	        contentType : false,
+	        processData : false,
+	        success : function(data) {
+	        	console("data : " + data);
+	        	alert("상품 등록 완료");
+	        	document.querySelector('.modal_wrap').style.display = 'none';
+				document.querySelector('.black_bg').style.display = 'none';
+				$("#firstBtn").trigger('click');
+	        },
+	        error : function(){
+	        alert("에러!");
+	        }
+		})
+	}
 </script>
 
 <body>
+<h5 id="menuName">사료</h5>
 	<div class="flex">
 		<input type="text" id="searching" placeholder="상품이름을 입력하세요">
-		<button onclick="searching()">search</button>
+		<button onclick="searching()" class = "addBtn">search</button>
 		<div class="sorting">
 			<form id="sort_id" action="#" class="sortDetail" onchange="sorting()">
 				<select name="showNum" id="showNum">
@@ -112,7 +138,7 @@
 			<a href="#">close</a>
 		</div>
 		<div class="modal_content">
-			<form id="addForm">
+			<form id="addForm" enctype="multipart/form-data" method="post">
 				<table>
 					<tr>
 						<td>상품명 :</td>
@@ -141,8 +167,9 @@
 					</tr>
 					<tr>
 						<td>이미지 url:</td>
-						<td><input type="text" name="product_img" class="inputForm"
-							id="product_img" placeholder="이미지 url"></td>
+						<td><input type="file" id="img1" name="file1" >
+						<!-- <input type="text" name="product_img" class="inputForm"
+							id="product_img" placeholder="이미지 url"> --></td>
 					</tr>
 				</table>
 				<button class="addBtn" onclick="addProduct()">상품 추가하기</button>

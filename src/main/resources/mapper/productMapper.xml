@@ -11,7 +11,7 @@
 	
 	<!-- 상품 추가 - 관리자페이지에서 사용 -->
 	<insert id="insert" parameterType="productVO">
-		insert into product values (null, #{product_name},#{product_price}, 1, #{category2},#{detail},#{product_img},#{product_cnt})
+		insert into product values (null, #{product_name},#{product_price}, 1, #{category2},#{detail},#{product_img},#{product_cnt},"N","판매대기", null)
 	</insert>
 	
 	<update id="update" parameterType="productVO">
@@ -107,6 +107,11 @@
 	<!-- 주문시 상품개수 감소 -->
 	<update id="updateCnt" parameterType="productVO">
 		UPDATE product SET product_cnt = #{product_cnt} WHERE product_id = #{product_id}
+	</update>
+	
+	<!-- 상품 개수 0이 될 경우  -->
+	<update id="update2soldout" parameterType="int">
+		UPDATE product SET soldout_YN = "Y", status = "판매대기" WHERE product_id = #{product_id}
 	</update>
 		
 </mapper>
