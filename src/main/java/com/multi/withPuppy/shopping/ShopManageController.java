@@ -75,7 +75,6 @@ public class ShopManageController {
 	@RequestMapping("shopping/updateManage")
 	@ResponseBody
 	public int updateManage(ProductVO bag) {
-		System.out.println("control : " + bag);
 		int result = dao.updateManage(bag);
 		return result;
 	}

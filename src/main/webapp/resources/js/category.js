@@ -1,4 +1,4 @@
-//카테고리 선택시 호출되는 함수
+//카테고리 선택시 호출되는 함수 - 일반 사용자
 function btnChange(n11, n22, n3, n4, item) {
 	
 	n1 = n11;
@@ -16,7 +16,7 @@ function btnChange(n11, n22, n3, n4, item) {
 	bringList(n1, n2, n3, n4, 11);
 }
 
-//카테고리 선택시 호출되는 함수
+//카테고리 선택시 호출되는 함수 - 관리자 
 function btnChange1(n11, n22, n3, n4, item) {
 	
 	n1 = n11;
