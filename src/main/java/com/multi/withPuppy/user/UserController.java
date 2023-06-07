@@ -223,6 +223,7 @@ public class UserController {
 	// 회원수정 : 제출 버튼
 	@RequestMapping("/updateUser")
 	public void updateUser(UserVO userVO, HttpSession session, HttpServletRequest request, MultipartFile file, Model model) throws Exception {
+		System.out.print("업데이트 유저 : " + userVO);
 		if (!file.isEmpty()) {
 			String savedName = file.getOriginalFilename();
 			String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
@@ -231,21 +232,23 @@ public class UserController {
 			
 			model.addAttribute("savedName", savedName);
 			userVO.setUser_img(savedName);
+		} else if (file.isEmpty()) {
+			userVO.setUser_img("profile.png");
 		}
 		String id = (String) session.getAttribute("id");
 		userVO.setUser_id(id);
 		dao.updateUser(userVO);
-		UserVO vo = (UserVO) session.getAttribute("bag");
-		vo.setUser_tel(userVO.getUser_tel());
-		vo.setUser_addr1(userVO.getUser_addr1());
-		vo.setUser_addr2(userVO.getUser_addr2());
-		vo.setUser_addr3(userVO.getUser_addr3());
-		vo.setUser_addr4(userVO.getUser_addr4());
-		vo.setUser_addr5(userVO.getUser_addr5());
-		vo.setUser_nickname(userVO.getUser_nickname());
-		vo.setUser_img(userVO.getUser_img());
-		System.out.println("업데이트 vo : " + userVO);
-		model.addAttribute("bag", userVO);
+		UserVO userVo = (UserVO) session.getAttribute("bag");
+		userVo.setUser_tel(userVO.getUser_tel());
+		userVo.setUser_nickname(userVO.getUser_nickname());
+		userVo.setUser_addr1(userVO.getUser_addr1());
+		userVo.setUser_addr2(userVO.getUser_addr2());
+		userVo.setUser_addr3(userVO.getUser_addr3());
+		userVo.setUser_addr4(userVO.getUser_addr4());
+		userVo.setUser_addr5(userVO.getUser_addr5());
+		userVo.setUser_img(userVO.getUser_img());
+		System.out.print("업데이트 유저222 : " + userVo);
+		model.addAttribute("bag", userVo);
 	}
 
 	// 회원수정 : 비밀번호 변경 제출 버튼

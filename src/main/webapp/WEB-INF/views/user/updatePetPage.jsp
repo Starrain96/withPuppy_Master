@@ -47,7 +47,7 @@ String pet_no = request.getParameter("pet_no");
 	                    <div class="row">
 	                    	<!-- 하단 우측 버튼을 위한 영역 -->
 	                    	<div class="register-div">
-						    	<button class="btn btn-custom" type="submit" style="float: right; margin-right:35px">반려동물 수정</button>
+						    	<button class="btn btn-custom" type="submit" style="float: right; margin-right:35px" onClick="updatePet()">반려동물 수정</button>
 							</div>
 	                    </div>
 	                    </form>
@@ -139,21 +139,35 @@ function deleteImage() {
 	$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
 }
 
-function checkForm() {
+function updatePet() {
     var petname = $('#petName').val();
     var petbirth = $('#petBirth').val();
     var petkind = $('#petKind').val();
     var petweight = $('#petWeight').val();
     var petimg = $('#file-input').val();
+    console.log(petimg);
     
     if (petname == "" || petbirth == "" || petkind == "" || petweight == "") {
         alert("정보를 모두 입력하세요!");
         console.log("정보 미입력");
         return false;
-    }
+    } else {
+    	$.ajax({
+        url: "<%=contextPath%>"+'/user/updatePet',
+        type: 'POST',
+        data: { pet_name: petname,
+        	pet_birth: petbirth,
+        	pet_kind: petkind,
+        	pet_weight: petweight,
+        	pet_img: petimg},
+        success: function(result) {
+        	console.log(result);
+        } 	
+    });
     alert("반려동물 정보 수정 완료!")
     location.replace("<%=contextPath%>/user/myPet");
     return true;
+    }
 }
 </script>
 </body>
