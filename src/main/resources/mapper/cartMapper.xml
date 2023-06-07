@@ -12,6 +12,11 @@
 		where cart_id = #{cart_id} and user_id = #{user_id}
 	</delete>
 	
+	<delete id="emptyCart"  parameterType="String">
+		delete from cart 
+		where user_id = #{user_id}
+	</delete>
+	
 	<update id="update"  parameterType="cartVO">
 		update cart 
 		set product_cnt = #{product_cnt} 

@@ -40,7 +40,7 @@ function bringList(n1, n2, n3, n4, sortN){
 				var sen =`<tr>
 					<td>`+data[i].product_id+`</td>
 					<td ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
-					<td>`+data[i].category2+`</td>
+					<td>`+data[i].categoryDetail+`</td>
 					<td>`+data[i].product_cnt+`</td>
 					<td>`+data[i].product_price+`</td>
 					<td><select class="soldout_YN" id="save1" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].soldout_YN +`>`+data[i].soldout_YN+`</option>` + result1 + `</select></td>
@@ -135,7 +135,7 @@ function editProduct(){
 }
 
 
-//상품 수정 업데이트
+//상품 수정 업데이트 판매상태, 품절
 function updateManage(p_id){
 	let select1 =  document.getElementById("save1");
 	let select2 =  document.getElementById("save2");
@@ -210,7 +210,7 @@ function searching(){
 					var sen =`<tr id = "editBtn">
 						<td>`+data[i].product_id+`</td>
 						<td  ondblclick="onClick1(`+data[i].product_id+`)">`+data[i].product_name+`</td>
-						<td>`+data[i].category2+`</td>
+						<td>`+data[i].categoryDetail+`</td>
 						<td>`+data[i].product_cnt+`</td>
 						<td>`+data[i].product_price+`</td>
 						<td><select class="soldout_YN" id="save1" onchange="updateManage(`+data[i].product_id+`)"><option value=`+data[i].soldout_YN +`>`+data[i].soldout_YN+`</option>` + result1 + `</select></td>

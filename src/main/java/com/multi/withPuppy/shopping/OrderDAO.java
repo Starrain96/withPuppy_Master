@@ -66,4 +66,10 @@ public class OrderDAO {
 		int ans = my.selectOne("order_detail.productCnt", product_id);
 		return ans;
 	}
+	
+	//결제 완료 후 장바구니 비우기
+	public int emptyCart(String user_id) {
+		int ans = my.delete("cart.emptyCart", user_id);
+		return ans;
+	}
 }
