@@ -148,19 +148,21 @@ $(function bringCartData() {
 	    }).open();  	
 }  
 
-//주문 요청 (order, order_detail 테이블에 데이터 입력) 
+
 $(function() {
-	  $('#cash').click(function(){
-		  var receiver_name =$('#receiver_name').val();
-		  var receiver_phone =$('#tel1').val() + $('#tel2').val() + $('#tel3').val();
-		  var receiver_id =$('#receiver_id').val();
-		  var addr1 =$('#addr1').val();
-		  var addr2 =$('#addr2').val();
-		  var addr3 =$('#addr3').val();
-		  var total_price =$('#total_price').val();
-	    $.ajax({
+	$('#cash').click(function(){
+		var receiver_name =$('#receiver_name').val();
+		var receiver_phone =$('#tel1').val() + $('#tel2').val() + $('#tel3').val();
+		var receiver_id =$('#receiver_id').val();
+		var addr1 =$('#addr1').val();
+		var addr2 =$('#addr2').val();
+		var addr3 =$('#addr3').val();
+		var total_price =$('#total_price').val();
+		
+		$.ajax({
 	    	type: 'POST',
-	        url:'insertOr',
+	        url:'insertOrderSum',
+	        traditional: true,
 	        data : {
 	        	user_id : "${bag.user_id}",
 	        	receiver_name: receiver_name,
@@ -169,36 +171,18 @@ $(function() {
 	        	addr1: addr1,
 	        	addr2: addr2,
 	        	addr3: addr3,
-	        	total_price: price_total
-	        	
+	        	total_price: price_total,
+	        	productTmp : JSON.stringify(productTmp)
 	        },
-	    success : function(x) {
-	    	console.log(productTmp);
-			alert("주문이 입력되었습니다. 결제 창으로 이동합니다.")
-			
-			$('#result').append(x)
-			  
-			$.ajax({
-			    	type: 'POST',
-			        url:'insertDe',
-			        traditional: true,
-			        data : {productTmp : JSON.stringify(productTmp)},
-				    success : function(x) {
-				    	payLoad();
-			  		},
-			        error : function(){
-			        	alert("상품의 변경으로 인해 주문이 실패하였습니다. 다시 시도해주세요");
-			        }
-			    })
-		}, //success
-		error : function(){
-			alert("상품의 변경으로 인해 주문이 실패하였습니다. 다시 시도해주세요");
-		}
-	}) //ajax
-}) //click
-	  
-	    
-}) //function
+	    	success : function(x) {
+	    		payLoad();
+	    	},
+	    	error : function(){
+        		alert("상품의 변경으로 인해 주문이 실패하였습니다. 다시 시도해주세요"); 
+        	}
+		}) //ajax
+	})
+})
 
 
 function payLoad() {
@@ -223,15 +207,31 @@ function payLoad() {
 			msg += '상점 거래ID : ' + rsp.merchant_uid;
 			msg += '결제 금액 : ' + rsp.paid_amount;
 			msg += '카드 승인번호 : ' + rsp.apply_num;
-			alert(msg)
+			alert("결제가 완료되었습니다");
+			emptyBag();
+			return location.href = '../user/userShopping';
 		} else {
 			var msg = '결제에 실패하였습니다.';
 			msg += '에러내용 : ' + rsp.error_msg;
-			alert(msg)
+			alert(msg);
+			return location.href = '../shopping/cartList';
 		}
 	});
 }
 
+function emptyBag(){
+	$.ajax({
+    	type: 'POST',
+        url:'emptyCart',
+        data : {
+        	user_id : "${bag.user_id}"
+        },
+    	success : function(x) {
+    	},
+    	error : function(){
+    	}
+	}) //ajax
+}
 
 	
 </script>

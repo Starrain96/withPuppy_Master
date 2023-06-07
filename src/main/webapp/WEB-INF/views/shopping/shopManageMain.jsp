@@ -30,9 +30,10 @@
 </script>
 
 <body>
+<h5 id="menuName">사료</h5>
 	<div class="flex">
 		<input type="text" id="searching" placeholder="상품이름을 입력하세요">
-		<button onclick="searching()">search</button>
+		<button onclick="searching()" class = "addBtn">search</button>
 		<div class="sorting">
 			<form id="sort_id" action="#" class="sortDetail" onchange="sorting()">
 				<select name="showNum" id="showNum">
