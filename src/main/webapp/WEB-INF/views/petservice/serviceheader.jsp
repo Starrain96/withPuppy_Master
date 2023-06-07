@@ -8,9 +8,11 @@
 
 	String userPageID = null;
 	String userPageLevel = null;
+	String userPageNick = null;
 	if (userVo != null) {
 	userPageID = userVo.getUser_id();
 	userPageLevel = userVo.getUser_level();
+	userPageNick = userVo.getUser_nickname();
 	}
 %>
 <!DOCTYPE html>
@@ -82,9 +84,14 @@ function loginCheckAsk(){
 					href="${pageContext.request.contextPath}/user/loginPage"
 					class="nav-link link-secondary">로그인</a></li>
 				<%
-					} else {
-						if (userPageLevel.equals("관리자")) {
-				%>
+                    } else {
+                %>
+                <li class="nav-item"><a
+                    href="#"
+                    class="nav-link link-secondary"><%=userPageNick%>님 반갑습니다.</a></li>
+                <%    	
+                        if (userPageLevel.equals("관리자")) {
+                %>
 						<li class="nav-item">
 						<a href="${pageContext.request.contextPath}/user/userManagement?page=1"
  						class="nav-link link-secondary">회원관리</a></li>
