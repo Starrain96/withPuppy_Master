@@ -152,8 +152,7 @@
 							</div>
 							<div class="timestamp">` + currentFormatDate + `</div>
 							<div class="content">` +
-							star[i].content + `<img
-									src="https://via.placeholder.com/150" alt="image" />
+							star[i].content + `
 							</div>
 						</li>
 					</ul>`
