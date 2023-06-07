@@ -44,15 +44,24 @@ public class CommunitiesDAO {
 		return my.selectOne("communities.count2",vo2);
 	}
 	
+	public int count3(PageVO vo2) {
+		return my.selectOne("communities.count3",vo2);
+	}
+	
 	
 	 // 게시물 정보 가져오기
     public CommunitiesVO modify(int commu_no) {
         CommunitiesVO bag = my.selectOne("communities.one",commu_no);
+        System.out.println("DAO ===>"+bag);
         return bag;
     }
   
 	public List<CommunitiesVO> list(PageVO vo2) {
 		return my.selectList("communities.list", vo2);
+	}
+	
+	public List<CommunitiesVO> titleSearch(PageVO vo2) {
+		return my.selectList("communities.titleSearch", vo2);
 	}
 
 	public List<CommunitiesVO> list_category(PageVO vo2) {
@@ -60,9 +69,9 @@ public class CommunitiesDAO {
 	}
 	
 	public List<CommunitiesVO> Metrolist_category(PageVO vo2) {
-		System.out.println("=====DAO vo2:" + vo2);
+		//System.out.println("=====DAO vo2:" + vo2);
 		List<CommunitiesVO> list =my.selectList("communities.Metrolist_category", vo2);
-		System.out.println("=====DAO list: " + list.size());
+		//System.out.println("=====DAO list: " + list.size());
 		return list;
 	}
 	

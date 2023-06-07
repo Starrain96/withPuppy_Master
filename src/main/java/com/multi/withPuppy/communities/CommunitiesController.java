@@ -90,6 +90,7 @@ public class CommunitiesController {
 	@ResponseBody
 	public CommunitiesVO read(int commu_no) {
 		CommunitiesVO bag = dao.modify(commu_no);
+		System.out.println("read >>>" + bag);
 		return bag;
 	}
 
@@ -216,5 +217,25 @@ public class CommunitiesController {
 	
 		model.addAttribute("list", dao.getSearchList(vo));
 	}
+	
+	@RequestMapping("titleSearch")
+	public void titleSearch(PageVO vo ,Model model) {
+		vo.setStartEnd(vo.getPage());
+		List<CommunitiesVO> list = dao.titleSearch(vo);
+		int count = dao.count3(vo);
+		int pages = 0; // 전체의 페이지 개수를 구하는 것 if(count%10 == 0) { pages = count / 10; }else {
+		pages = count / 10 + 1;
+		model.addAttribute("list", list);
+		model.addAttribute("count", count);
+		model.addAttribute("pages", pages);
+	}
+	
+	@RequestMapping("titleSearch2")
+	public void titleSearch2(PageVO vo ,Model model) {
+		vo.setStartEnd(vo.getPage());
+		List<CommunitiesVO> list = dao.titleSearch(vo);
+		model.addAttribute("list", list);
+	}
+	
 
 }
