@@ -50,8 +50,8 @@ public class PetController {
 	
 	// 반려동물 업데이트
 	@RequestMapping("updatePet")
-	public void updatePet(PetVO petVO, HttpServletRequest request, MultipartFile file, Model model) throws Exception {
-		System.out.print(petVO);
+	public void updatePet(PetVO petVO, HttpSession session, HttpServletRequest request, MultipartFile file, Model model) throws Exception {
+		System.out.print("업데이트 펫 : " + petVO);
 		if (!file.isEmpty()) {
 			String savedName = file.getOriginalFilename();
 			String uploadPath = request.getSession().getServletContext().getRealPath("resources/upload");
@@ -61,8 +61,9 @@ public class PetController {
 			System.out.println("target : "+ target);  ///<<<< upload 되는 절대경로 찾는 방법!!!
 			model.addAttribute("savedName", savedName);
 			petVO.setPet_img(savedName);
+		} else if (file.isEmpty()) {
+			petVO.setPet_img("profile.png");
 		}
-		
 		dao.updatePet(petVO);
 		model.addAttribute("bag", petVO);
 		// 컨트롤로의 vo변수명을 맨앞글자만 소문자로 바꾸어서 변수를 만들면,
