@@ -85,8 +85,22 @@ input[type="text"]:focus, select:focus, textarea:focus {
 	border-color: #ffe98c;
 }
 
-textarea {
-	height: 200px;
+input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+textarea[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+}
+
+#content{
+	height : 200px;
+}
+
+#view {
+	height : 50px;
 }
 
 button[type="submit"] {
@@ -142,7 +156,7 @@ button[type="submit"]:hover {
 					</div>
 					<div class="form-group">
 						<label for="view">조회수(미구현)</label>
-						<textarea id="view" name="commu_view" required>1</textarea>
+						<textarea id="view" name="commu_view" readonly>1</textarea>
 					</div>
 					<div style="display: flex; justify-content: flex-end;">
 						<button id="b10" type="submit">작성</button>
@@ -153,7 +167,7 @@ button[type="submit"]:hover {
 		</div>
 	</div>
 	<!-- 스크립트 -->
-	<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 	<script type="text/javascript">
 		
 	</script>

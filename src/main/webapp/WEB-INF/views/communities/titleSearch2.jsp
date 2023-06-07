@@ -1,15 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="../../../header.jsp"%>
-<%@ page import="com.multi.withPuppy.user.UserVO"%>
-<%
-	String user_id = userVo.getUser_id();
-	System.out.println("user_id == " + user_id);
-%>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>강아지와🐶</title>
 <style type="text/css">
 
 	table{
@@ -216,27 +207,7 @@
 }
 </style>
 
-</head>
-<script type="text/javascript">
-var commu_id1 = "<%=user_id%>";
-</script>
-<body>
-<!-- 검색 폼 -->
-	<div class="search">
-		<select id = "select">
-			<option >제목</option>
-		</select>
-		<input type="text" placeholder="검색어 입력" id = "keyword">
-		<button type="button" class="btn-search" id = "searchBtn">검색</button>
-		<%
-		if(user_id != null) {%>
-		<a href="../communities/communitiesWrite?commu_id=${vo.commu_id}"><button type="button" id="ListWrite" class="btn-write">글쓰기📝</button></a>		
-	<%} %>
-	</div>
-		
-		<div id="SearchResult">
-<!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
-	<div id="result">
+
 		<table>
 		<tr>
 			<td class="top">번호</td>
@@ -259,93 +230,3 @@ var commu_id1 = "<%=user_id%>";
 		</c:forEach>
 		
 		</table>
-	</div>
-	<%
-	int pages = (int)request.getAttribute("pages");
-    for (int p = 1; p <= pages; p++) {
-%>	
-	
-		<button class ="pages"><%= p %></button>
-	
-<%
-	}
-%>
-</div>
-
-	<!-- 스크립트 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-	<script type="text/javascript">
-$(function() {
-	$('#searchBtn').on('click', function() {
-		let hi = $("#select option:selected").text();
-		let bye = $("#keyword").val();
-		let site = '';
-		if(hi == '제목'){
-			site = 'titleSearch'
-		}
-		$.ajax({
-			url: site,
-			data : {
-				page : 1,
-				keyword : bye
-			},
-			success: function(x) {
-				$("#SearchResult").html(x)
-				$('.pages').click(function() {
-					$.ajax({
-						url: site+"2",
-						data : {
-							page : $(this).text(),
-							keyword : bye
-							},
-						success: function(x) {
-							$("#result").html(x)
-						},
-						error: function() {
-							alert("nope")
-						}//error
-				})//AJAX		
-				
-			})//pages
-			},
-			error: function() {
-				alert("nope")
-			}
-	})
-		
-	})
-
-		//검색했을 때 AJAX,
-		//성공했을 때,
-		//페이지랑 페이지 목록 for문 돌린걸 div를 만들어서 껴주자..!
-		//$('.pages2').click(function() {
-		/* 	$.ajax({
-				url: "list",
-				data : {
-					page : $(this).text()
-				},
-				success: function(x) {
-					$("#result").html(x)
-				},
-				error: function() {
-					alert("nope")
-				}
-		})	 */
-		$('.pages').click(function() {
-			$.ajax({
-				url: "list",
-				data : {
-					page : $(this).text()
-				},
-				success: function(x) {
-					$("#result").html(x)
-				},
-				error: function() {
-					alert("nope")
-				}
-		})		
-	})
-})
-	</script>
-</body>
-</html>

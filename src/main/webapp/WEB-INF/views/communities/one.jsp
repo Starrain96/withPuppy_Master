@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="../../../header.jsp"%>
+<%
+String user_id = userVo.getUser_id();
+System.out.println("user_id : " + user_id);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +29,7 @@ hr {
 }
 
 .container {
-	max-width: 600px;
+	max-width: 1500px;
 	margin: 0 auto;
 }
 
@@ -121,12 +126,16 @@ hr {
   background-color: #ff5f5f;
 }
 </style>
+
+<script type="text/javascript">
+var user_id1 = "<%=user_id%>";
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript">
 $(function() {
   $("#b1").click(function() {
     content = $('#reply').val()
-    writer = "yang"
+    writer = user_id1
     $.ajax({
       url:"../reply/insert_reply",
       data:{

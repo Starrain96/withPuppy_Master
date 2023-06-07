@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ include file="../../../header.jsp"%>
+<%@ include file="../../../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +31,10 @@
 	tr:hover {
 		background-color: #ddd;
 	}
-
-	a:link, a:visited {
-		color: #3aa4c1;
-		text-decoration: none;
-	}
-
-	a:hover, a:active {
-		color: #1e80a3;
-		text-decoration: underline;
+	
+	#no{
+		background-color: #f5f5f5;
+    	cursor: not-allowed;
 	}
 
 	.top{
@@ -51,7 +46,7 @@
 		border-bottom: 1px solid #ddd;
 	}
 </style>
-<script type="text/javascript" src="../resources/js/jquery-3.6.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$.ajax({
@@ -63,7 +58,6 @@
 				$("#no").val(x.commu_no);
 				$("#title").val(x.commu_title);
 				$("#content").val(x.commu_content);
-				$("#img").val(x.commu_img);
 			}
 		})
 		$('#b1').click(function() {
@@ -73,12 +67,12 @@
 				data : {
 					commu_no : $("#no").val(),
 					commu_title : $("#title").val(),
-					commu_content : $("#content").val()
+					commu_content : $("#content").val(),
 				},
 				success : function(x) {
-					alert("수정이 정상적으로 처리됐습니다!")
-					document.location.reload() 
-					$('#result').append(x)
+					alert("수정이 정상적으로 처리됐습니다!");
+					history.back(); 
+					$('#result').append(x);
 				} //success
 			}) //ajax
 		})//b1
@@ -93,7 +87,7 @@
 	No :<input id="no" readonly><br>
 	Title :<input id="title"><br>
 	<textarea id="content" rows="10" cols="100"></textarea><br>
-	Image :<input id="img"><br>
+	Image :<input type="file" id="image" name="file" ><br>
 </form>
 <button id="b1" type="button" class="btn btn-secondary">수정하기📝</button>
 <a href="communitiesList?page=1">
