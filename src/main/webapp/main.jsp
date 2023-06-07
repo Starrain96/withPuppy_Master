@@ -125,15 +125,64 @@
 			</a>
 		</div>
 	</div>
-</div>
+
 
 <%
 	}
 %>
+	<hr>
+	<div class="row">
+		<div id="top5Title" class="col-md-6">
+		<a href="${pageContext.request.contextPath}/communities/communitiesMain?page=1" class="btn" style="background-color: #FFE98C !important;">최근 게시물</a>
+		<br>
+		<br>
+		<div id="mainTop5">
+		
+		</div>
+		</div>
+		<div id="faqTitle" class="col-md-6" class="border border-4">
+		<a href="${pageContext.request.contextPath}/cs/selectFaqList" class="btn" style="background-color: #FFE98C !important;">자주묻는질문</a>
+		<br>
+		<br>
+		<div id="mainFaq">
+		
+		</div>
+		</div>
+	</div>
+</div>	
 
-<div style="text-align: center;">
-	<img src="resources/img/sample.png">
-</div>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.js"></script>
+<script type="text/javascript">
+// 메인 게시판 리스트 첫 호출
+$(function start() {
+	selectMainTop5();
+	selectMainFaq();
+})
+
+// 커뮤니티 top5 호출 함수
+function selectMainTop5() {
+	$('#mainTop5').empty()
+	$.ajax({
+		url : "${pageContext.request.contextPath}/main/mainTop5",
+		success : function(x) {	
+			$('#mainTop5').append(x)
+		}
+	}) //ajax
+}
+
+// faq top5 호출 함수
+function selectMainFaq() {
+	$('#mainFaq').empty()
+	$.ajax({
+		url : "${pageContext.request.contextPath}/main/mainFaq",
+		success : function(x) {	
+			$('#mainFaq').append(x)
+		}
+	}) //ajax
+}
+
+</script>
 
 </body>
 </html>
