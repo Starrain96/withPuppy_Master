@@ -68,70 +68,143 @@
 				sum_fa = 0.0,
 				sum_pr = 0.0;
 				
-				for (i=0; i<star.length; i++) {
-					date = new Date(star[i].date);
+				if(star[0]==null) {
 					
-					//let timeString = date.toLocaleString("en-US", {timeZone: "Asia/Seoul"});
-					//let timeString_KR = date.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
-					//console.log(timeString);
-					//console.log(timeString_KR);
+					tag2 = `
+						<div class="review-title">리얼후기</div>
+			<h1>
+			<button class="btn btn-custom" onclick="window.open('starpage?service_id=${bag.service_id}','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
+			</h1>
+			<div class="review-all">총점</div>
+			<div id=review-avg style="width: 80%; height: 300px; margin: 0 auto;">
+				<div class="review-avg">` + 0 + `</div>
+				<div class="review-container">
+					<div class="review-item">
+						<h2>친절</h2>
+						<p>` + 0 + `</p>
+					</div>
+					<div class="review-item">
+						<h2>설명</h2>
+						<p>` + 0 + `</p>
+					</div>
+					<div class="review-item">
+						<h2>진료</h2>
+						<p>` + 0 + `</p>
+					</div>
+					<div class="review-item">
+						<h2>시설</h2>
+						<p>` + 0 + `</p>
+					</div>
+					<div class="review-item">
+						<h2>가격</h2>
+						<p>` + 0 + `</p>
+					</div>
+				</div>
+			</div>`
+					
+				} else {
 					
 					
-					function dateFormat(date) { //date 값 변환
-				        let month = date.getMonth() + 1;
-				        let day = date.getDate();
-				        let hour = date.getHours();
-				        let minute = date.getMinutes();
-				        let second = date.getSeconds();
-
-				        month = month >= 10 ? month : '0' + month;
-				        day = day >= 10 ? day : '0' + day;
-				        hour = hour >= 10 ? hour : '0' + hour;
-				        minute = minute >= 10 ? minute : '0' + minute;
-				        second = second >= 10 ? second : '0' + second;
-
-				        return date.getFullYear() + '-' + month + '-' + day;
-				}
-
-
-				var currentDate = new Date(star[i].date);
-
-				// timestamp를 yyyy-MM-dd HH:mm:ss 로 출력
-				var currentFormatDate = dateFormat(currentDate);
-					
-				avg = parseFloat(star[i].kind + star[i].explain + star[i].treat + star[i].facilities + star[i].price)/5
-				sum_ki +=parseFloat(star[i].kind);
-				sum_ex +=parseFloat(star[i].explain);
-				sum_tr +=parseFloat(star[i].treat);
-				sum_fa +=parseFloat(star[i].facilities);
-				sum_pr +=parseFloat(star[i].price);
+					for (i=0; i<star.length; i++) {
+						date = new Date(star[i].date);
 						
-					tag = `
-					<ul class="comment-list">
-					<li class="comment">
-						<div class="author">` +
-						star[i].id
-							+`<div class="rating">` + avg + `</div>
-						</div>
-						<div class="timestamp">` + currentFormatDate + `</div>
-						<div class="content">` +
-						star[i].content + `<img
-								src="https://via.placeholder.com/150" alt="image" />
-						</div>
-					</li>
-				</ul>`
-			
-					$('#comment-wrapper').append(tag);
+						//let timeString = date.toLocaleString("en-US", {timeZone: "Asia/Seoul"});
+						//let timeString_KR = date.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
+						//console.log(timeString);
+						//console.log(timeString_KR);
+						
+						
+						function dateFormat(date) { //date 값 변환
+					        let month = date.getMonth() + 1;
+					        let day = date.getDate();
+					        let hour = date.getHours();
+					        let minute = date.getMinutes();
+					        let second = date.getSeconds();
+
+					        month = month >= 10 ? month : '0' + month;
+					        day = day >= 10 ? day : '0' + day;
+					        hour = hour >= 10 ? hour : '0' + hour;
+					        minute = minute >= 10 ? minute : '0' + minute;
+					        second = second >= 10 ? second : '0' + second;
+
+					        return date.getFullYear() + '-' + month + '-' + day;
+					}
+
+
+					var currentDate = new Date(star[i].date);
+
+					// timestamp를 yyyy-MM-dd HH:mm:ss 로 출력
+					var currentFormatDate = dateFormat(currentDate);
+						
+					avg = parseFloat(star[i].kind + star[i].explain + star[i].treat + star[i].facilities + star[i].price)/5
+					sum_ki +=parseFloat(star[i].kind);
+					sum_ex +=parseFloat(star[i].explain);
+					sum_tr +=parseFloat(star[i].treat);
+					sum_fa +=parseFloat(star[i].facilities);
+					sum_pr +=parseFloat(star[i].price);
+							
+						tag = `
+						<ul class="comment-list">
+						<li class="comment">
+							<div class="author">` +
+							star[i].id
+								+`<div class="rating">` + avg + `</div>
+							</div>
+							<div class="timestamp">` + currentFormatDate + `</div>
+							<div class="content">` +
+							star[i].content + `<img
+									src="https://via.placeholder.com/150" alt="image" />
+							</div>
+						</li>
+					</ul>`
+				
+						$('#comment-wrapper').append(tag);
+						
 					
+					}//for
+					
+					avg_ki = sum_ki/(star.length);
+					avg_ex = sum_ex/(star.length);
+					avg_tr = sum_tr/(star.length);
+					avg_fa = sum_fa/(star.length);
+					avg_pr = sum_pr/(star.length);
+					avg_all = (avg_ki + avg_ex + avg_tr + avg_fa + avg_pr + avg_all)/5
+					
+					tag2 = `
+						<div class="review-title">리얼후기</div>
+			<h1>
+			<button class="btn btn-custom" onclick="window.open('starpage?service_id=${bag.service_id}','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
+			</h1>
+			<div class="review-all">총점</div>
+			<div id=review-avg style="width: 80%; height: 300px; margin: 0 auto;">
+				<div class="review-avg">` + avg_all.toFixed(1) + `</div>
+				<div class="review-container">
+					<div class="review-item">
+						<h2>친절</h2>
+						<p>` + avg_ki.toFixed(1) + `</p>
+					</div>
+					<div class="review-item">
+						<h2>설명</h2>
+						<p>` + avg_ex.toFixed(1) + `</p>
+					</div>
+					<div class="review-item">
+						<h2>진료</h2>
+						<p>` + avg_tr.toFixed(1) + `</p>
+					</div>
+					<div class="review-item">
+						<h2>시설</h2>
+						<p>` + avg_fa.toFixed(1) + `</p>
+					</div>
+					<div class="review-item">
+						<h2>가격</h2>
+						<p>` + avg_pr.toFixed(1) + `</p>
+					</div>
+				</div>
+			</div>`
+				}
 				
-				}//for
 				
-				avg_ki = sum_ki/(star.length);
-				avg_ex = sum_ex/(star.length);
-				avg_tr = sum_tr/(star.length);
-				avg_fa = sum_fa/(star.length);
-				avg_pr = sum_pr/(star.length);
-				avg_all = (avg_ki + avg_ex + avg_tr + avg_fa + avg_pr + avg_all)/5
+				
 				//console.log(avg_ki.toFixed(1));
 				//console.log(avg_ex.toFixed(1));
 				//console.log(avg_tr.toFixed(1));
@@ -139,37 +212,7 @@
 				//console.log(avg_pr.toFixed(1));
 				//console.log(avg_all.toFixed(1));
 				
-				tag2 = `
-				<div class="review-title">리얼후기</div>
-	<h1>
-	<button class="btn btn-custom" onclick="window.open('starpage?service_id=${bag.service_id}','리얼후기 작성하기','width=600,height=600,location=no,status=no,scrollbars=yes');">후기 작성하기</button>
-	</h1>
-	<div class="review-all">총점</div>
-	<div id=review-avg style="width: 80%; height: 300px; margin: 0 auto;">
-		<div class="review-avg">` + avg_all.toFixed(1) + `</div>
-		<div class="review-container">
-			<div class="review-item">
-				<h2>친절</h2>
-				<p>` + avg_ki.toFixed(1) + `</p>
-			</div>
-			<div class="review-item">
-				<h2>설명</h2>
-				<p>` + avg_ex.toFixed(1) + `</p>
-			</div>
-			<div class="review-item">
-				<h2>진료</h2>
-				<p>` + avg_tr.toFixed(1) + `</p>
-			</div>
-			<div class="review-item">
-				<h2>시설</h2>
-				<p>` + avg_fa.toFixed(1) + `</p>
-			</div>
-			<div class="review-item">
-				<h2>가격</h2>
-				<p>` + avg_pr.toFixed(1) + `</p>
-			</div>
-		</div>
-	</div>`
+				
 				
 				$('#review-all').append(tag2);
 			}, //success
