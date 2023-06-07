@@ -220,7 +220,7 @@
 		</select>
 		<input type="text" placeholder="검색어 입력">
 		<button type="button" class="btn-search" onclick="getSearchList()">검색</button>
-		<a href="../communities/communitiesWrite"><button type="button" class="btn-write">글쓰기📝</button></a>
+		<a href="../communities/communitiesWrite?commu_id=${vo.commu_id}"><button type="button" class="btn-write">글쓰기📝</button></a>
 	</div>
 		
 <!-- 여기에 게시물 목록이 동적으로 추가됩니다. -->
