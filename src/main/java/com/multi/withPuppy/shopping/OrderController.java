@@ -36,86 +36,15 @@ public class OrderController {
 	@Autowired
 	OrderService orderService;
 	
-	//order1테이블에 추가
-	@RequestMapping("insertOr")
+	@RequestMapping("insertOrderSum")
 	@ResponseBody
-	public int insert(OrderVO bag) {
-		System.out.println("orderVO : " + bag);
-		int result = dao.insert(bag);
-		return result;
-	}
-
-	//orderDetail테이블에 추가
-	@RequestMapping("insertDe")
-	@ResponseBody
-	public int insert(String productTmp) throws Exception{
-		int order_id = dao.lastId();
-		System.out.println("order_id : " + order_id);
-		List<Order_detailVO> list = new ArrayList<Order_detailVO>();
+	public int insertOrderSum(OrderSumVO bag) throws Exception {
 		
-		JSONParser jp = new JSONParser(); 
-		JSONArray ja = (JSONArray)jp.parse(productTmp);
-		for(int i=0; i<ja.size(); i++) {
-			JSONObject jo = (JSONObject)ja.get(i);
-			
-			Order_detailVO bag = new Order_detailVO();
-			
-			bag.setProduct_id(Integer.parseInt(String.valueOf(jo.get("product_id"))));
-			bag.setOrdered_cnt(Integer.parseInt(String.valueOf(jo.get("product_cnt"))));
-			bag.setOrder_id(order_id);
-			bag.setOrder_status("complete");
-			bag.setRefundCheck_YN("Y");
-			list.add(bag);
-		}
-		orderService.insertOrderDetail(list);
+		orderService.insertOrderDetail(bag);
 
 		return 1;
 	}
-	
-//	@RequestMapping("insertOrderSum")
-//	@ResponseBody
-//	public int insertOrderSum(OrderSumVO bag) throws Exception {
-//		OrderVO vo1 = new OrderVO();
-//		vo1.setUser_id(bag.getUser_id());
-//		vo1.setReceiver_name(bag.getReceiver_name());
-//		vo1.setReceiver_id(bag.getReceiver_id());
-//		vo1.setReceiver_phone(bag.getReceiver_phone());
-//		vo1.setAddr1(bag.getAddr1());
-//		vo1.setAddr2(bag.getAddr2());
-//		vo1.setAddr3(bag.getAddr3());
-//		vo1.setTotal_price(bag.getTotal_price());
-//
-//		int result = dao.insert(vo1);
-//
-//		int order_id = dao.lastId();
-//		System.out.println("order_id : " + order_id);
-//		List<Order_detailVO> list = new ArrayList<Order_detailVO>();
-//
-//		JSONParser jp = new JSONParser();
-//		JSONArray ja = (JSONArray) jp.parse(bag.getProductTmp());
-//		for (int i = 0; i < ja.size(); i++) {
-//			JSONObject jo = (JSONObject) ja.get(i);
-//
-//			Order_detailVO vo2 = new Order_detailVO();
-//
-//			vo2.setProduct_id(Integer.parseInt(String.valueOf(jo.get("product_id"))));
-//			vo2.setOrdered_cnt(Integer.parseInt(String.valueOf(jo.get("product_cnt"))));
-//			vo2.setOrder_id(order_id);
-//			vo2.setOrder_status("complete");
-//			vo2.setRefundCheck_YN("Y");
-//			list.add(vo2);
-//		}
-////		try {
-//		orderService.insertOrderDetail(list);
-////		}catch (Exception e) {
-////			System.out.println(e);
-////		}
-//
-//		return 1;
-//	}
-//	
-//	
-//
+
 	@RequestMapping("delete")
 	public String delete(String title) {
 		dao.delete(title);
@@ -134,6 +63,13 @@ public class OrderController {
 		UserVO bag = dao.bringUser(user_id);
 		model.addAttribute("bag", bag);
 		
+	}
+	
+	//결제 성공 시 장바구니 비우기
+	@RequestMapping("emptyCart")
+	public int emptyCart(String user_id) {
+		int ans = dao.emptyCart(user_id);
+		return ans;
 	}
 
 }
