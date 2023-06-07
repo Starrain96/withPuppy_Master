@@ -11,7 +11,7 @@
 	
 	<!-- 상품 추가 - 관리자페이지에서 사용 -->
 	<insert id="insert" parameterType="productVO">
-		insert into product values (null, #{product_name},#{product_price}, 1, #{category2},#{detail},#{product_img},#{product_cnt})
+		insert into product values (null, #{product_name},#{product_price}, 1, #{category2},#{detail},#{product_img},#{product_cnt},"N","판매대기", null)
 	</insert>
 	
 	<update id="update" parameterType="productVO">

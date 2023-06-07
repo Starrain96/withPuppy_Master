@@ -19,8 +19,16 @@ System.out.println("bag : " + bag); */
                             <img class="img-wrapper" src="<%=contextPath%>/resources/upload/${bag.user_img}">
                         </div>
 						<div class="col-md-8">
-							<!-- <h5 class="card-title">John Doe</h5> 
-                            <hr>-->
+							<div class="d-flex flex-row justify-content-end">
+								<div class="social-label"><span class="info-label">소셜 로그인 연동</span></div>
+								
+						        <div id="naver_id_login" style="display:none"></div>
+						        <img id="naverLogin" class="social-icon-m" src="<%=contextPath%>/resources/img/social-login-icon-n.png">
+						        <div id="kakao_id_login" class="social-icon-m">
+						        	<a href="javascript:loginWithKakao()">
+						        	<img src="<%=contextPath%>/resources/img/social-login-icon-k.png"></a>
+						        </div>
+					        </div>
 							<ul class="list-group list-group-flush">
 								<li class="list-group-item"><span class="info-label">이름</span>
 									<span class="info-value">${bag.user_id}</span></li>
@@ -71,8 +79,9 @@ System.out.println("bag : " + bag); */
 
 
 <!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="../resources/js/mypage.js"></script>
 <script type="text/javascript">
@@ -81,6 +90,72 @@ if (!"${bag.user_img}") { // 프로필 이지미지가 null이면
 	$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
 } else {
 	$("#img").attr("src", "<%=contextPath%>/resources/upload/${bag.user_img}");
+}
+
+//네이버 소셜 로그인
+
+$(document).on("click", "#naverLogin", function(){ 
+	var btnNaverLogin = document.getElementById("naver_id_login").firstChild;
+	btnNaverLogin.click();
+});
+var naver_id_login = new naver_id_login("pSvOlTLlb71TIAJn2QUg", "http://localhost:8887/withPuppy/user/mypageCallback.jsp");
+var state = naver_id_login.getUniqState();
+naver_id_login.setDomain("http://localhost:8887/withPuppy");
+naver_id_login.setState(state);
+//naver_id_login.setPopup();
+naver_id_login.init_naver_id_login();
+
+
+// 2. 카카오 초기화
+Kakao.init('7dbc3e7a51df45caeb2bf1a6ac3235de');
+console.log( Kakao.isInitialized() ); // 초기화 판단여부
+
+// 3. 데모버전으로 들어가서 카카오로그인 코드를 확인.
+function loginWithKakao() {
+    Kakao.Auth.login({
+        success: function (authObj) {
+            console.log(authObj); // access토큰 값
+            Kakao.Auth.setAccessToken(authObj.access_token); // access토큰값 저장
+
+            getInfo();
+        },
+        fail: function (err) {
+            console.log(err);
+        }
+    });
+}
+
+// 4. 엑세스 토큰을 발급받고, 아래 함수를 호출시켜서 사용자 정보를 받아옴.
+function getInfo() {
+    Kakao.API.request({
+        url: '/v2/user/me',
+        success: function (res) {
+            console.log(res);
+            // 이메일, 성별, 닉네임, 프로필이미지
+            var email = res.kakao_account.email;
+            console.log(email);
+            idx = email.indexOf("@"); 
+            kid = email.substring(0, idx);
+            console.log(kid);
+            $.ajax({
+              	type: 'POST',
+                  url: "<%=contextPath%>"+'/user/kakaoSocial',
+                  data: { 
+                      	kid: kid
+               			},
+                 	success: function(data) {
+                 		console.log("카카오 아이디 로그인 연동되었습니다!");
+                 		if (data == 1) {
+                 			alert("카카오 아이디 로그인 연동되었습니다!");
+                 			location.replace("<%=contextPath%>"+'/user/myPage');
+                 		}
+                  	}
+             	});
+        },
+        fail: function (error) {
+            alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
+        }
+    });
 }
 </script>
 </body>

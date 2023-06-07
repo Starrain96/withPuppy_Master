@@ -17,7 +17,7 @@ System.out.println("editUser bag : " + userVo2); */
 	                    	<!-- 개인정보 수정이 들어갈 영역 -->
 	                    	<div class="container ms-4">
 		                        <div id="pet_img" style="float: left; margin-top:40px; text-align: center" class="col-3">
-									<img class="img-wrapper" src="<%=contextPath%>/resources/upload/${bag.user_img}" alt="profile img" id="img">
+									<img class="img-wrapper" src="" alt="profile img" id="img">
 									<label for="file-input" class="upload-btn">프로필 사진 변경</label>
 									<a href="#" class="btn btn-custom" id="file-delete" onclick="deleteImage()">프로필 사진 삭제</a>
 									<input type="file" id="file-input" name="file" style="display: none">
@@ -159,8 +159,7 @@ System.out.println("editUser bag : " + userVo2); */
 	
 	// 프로필 사진 삭제
 	function deleteImage() {
-		var img = document.getElementById("img");
-		img.src = "<%=contextPath%>/resources/upload/profile.png";
+		$("#img").attr("src", "<%=contextPath%>/resources/upload/profile.png");
 	}
 	
 	 // 현재 비밀번호 입력
@@ -263,17 +262,40 @@ System.out.println("editUser bag : " + userVo2); */
     	var tel = tel1 + tel2 + tel3;
     	$('#tel').val(tel);
     	
+    	var userimg = $('#file-input').val();
+    	console.log(userimg);
+    	var nickname =  $('#nickname').val();
+    	
     	var addr5 = $('#addr1').val() + "/" + $('#addr2').val() + "/" + $('#addr3').val() + "/" + $('#addr4').val();
     	$('#addr5').val(addr5);
     	
     	if (tel.length == "11" && $('#nicknameDoubleChk').val(true)) {
-	    	alert("회원정보 수정 완료!");
-	    	window.location.replace("<%=contextPath%>/user/myPage");
-    		return true;
+    		$.ajax({
+                url: "<%=contextPath%>"+'/user/updateUser',
+                type: 'POST',
+                data: { user_tel: tel,
+                	user_nickname: nickname,
+                	user_addr1: $('#addr1').val(),
+                	user_addr2: $('#addr2').val(),
+                	user_addr3: $('#addr3').val(),
+                	user_addr4: $('#addr4').val(),
+                	user_addr5: addr5,
+                	user_img: userimg},
+                success: function(result) {
+                	console.log(result);
+                	if (result === 1){
+                		alert("회원정보 수정 완료!");
+            	    	window.location.replace("<%=contextPath%>/user/myPage");
+                		return true;
+                	}
+                } 	
+            });
     	} else {
     		alert("회원 정보를 다시 입력해주세요.");
     		return false;
     	}
+    	alert("회원정보 수정 완료!")
+        location.href="<%=contextPath%>/user/myPage";
     	return true;
     }
     

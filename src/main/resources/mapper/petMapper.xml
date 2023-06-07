@@ -8,8 +8,8 @@
 	
 	<update id="updatePet" parameterType="petVO">
 		update pet set pet_name =  #{pet_name},
-		pet_birth = #{pet_birth}, pet_kind = #{pet_kind}, pet_weight = #{pet_weight},
-					 <if test="pet_img!=null">pet_img = #{pet_img}</if> where pet_no = #{pet_no}
+		pet_birth = #{pet_birth}, pet_kind = #{pet_kind}, pet_weight = #{pet_weight}
+					 <if test="pet_img!=null">, pet_img = #{pet_img}</if> where pet_no = #{pet_no}
 	</update>
 	
 	<delete id="deletePet">

@@ -15,7 +15,7 @@
 	</delete>
 	
 	<update id="up"  parameterType="communitiesVO">
-		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} 
+		update communities set commu_title = #{commu_title} , commu_content = #{commu_content} , commu_img = #{commu_img}
 		where commu_no = #{commu_no}
 	</update>
 	
@@ -88,7 +88,7 @@
          where user_id = #{reply_id}
     </update>
     
-    <select id="selectSearchList" parameterType="pageVO" resultType="communitiesVO">
+    <select id="titleSearch" parameterType="pageVO" resultType="communitiesVO">
    		select*from (
 			select ROW_NUMBER() over(order by commu_no desc) as c_no , commu_no,commu_title,commu_date,commu_id,commu_view,category1 
 			from communities c where c.commu_title like CONCAT('%', #{keyword}, '%')) c2
