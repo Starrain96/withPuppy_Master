@@ -7,9 +7,11 @@
     System.out.println("header bag : " + userVo);
     String userPageID = null;
     String userPageLevel = null;
+    String userPageNick = null;
     if (userVo != null) {
     userPageID = userVo.getUser_id();
     userPageLevel = userVo.getUser_level();
+    userPageNick = userVo.getUser_nickname();
     }
 %>
 <!DOCTYPE html>
@@ -87,6 +89,11 @@ function loginCheckAsk(){
                     class="nav-link link-secondary">로그인</a></li>
                 <%
                     } else {
+                %>
+                <li class="nav-item"><a
+                    href="#"
+                    class="nav-link link-secondary"><%=userPageNick%>님 반갑습니다.</a></li>
+                <%    	
                         if (userPageLevel.equals("관리자")) {
                 %>
                         <li class="nav-item">
