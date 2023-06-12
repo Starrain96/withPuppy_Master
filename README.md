@@ -4,6 +4,8 @@
 
 강아지 커뮤니티부터 쇼핑몰, 관련 다양한 서비스까지 한눈에 제공되는 사이트입니다. 
 
+notion -> https://electric-hat-2a3.notion.site/8beb79dc8c9a4817885614ba245c9e2b?pvs=4
+
 ## 메뉴구성도
 <img src="https://github.com/Starrain96/withPuppy_Master/assets/51588209/640ea52e-08fe-459d-a865-e140d59d59ea" width="600" height="370"/>
 
