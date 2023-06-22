@@ -30,6 +30,10 @@ https://electric-hat-2a3.notion.site/8beb79dc8c9a4817885614ba245c9e2b?pvs=4
 
 ### 동물병원
 - 동물병원 찾기 페이지, 본인 위치 기반 근처 5개의 병원 리스트업, 검색
+- 상세 동물병원 페이지, 병원 기본 정보, 위치 표시(카카오맵API), 후기 점수 및 내용 리스트업
+- 후기 작성하기 페이지, 후기 작성 및 영수증 이미지 첨부 시 OCR API 호출하여 영수증 JSON 데이터 추출 후 입력
+- 진료비 페이지, 추출한 영수증 데이터로 자료 표준화, 지역 별 검색 가능(본인 위치기반 검색이 기본), 항목 별 검색
+  
 ![동물병원-1](https://github.com/Starrain96/withPuppy_Master/assets/124110590/b5e6e98b-74bf-4a32-909f-e03ed6295fbd)
 ![동물병원-2](https://github.com/Starrain96/withPuppy_Master/assets/124110590/a141a7c4-915b-434f-8efd-9616e4d71c77)
 ![동물병원-3](https://github.com/Starrain96/withPuppy_Master/assets/124110590/938a367e-14ce-4c97-b9e8-335198917cb3)
