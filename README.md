@@ -3,8 +3,11 @@
 > 반려견 관련 종합 컨텐츠
 
 강아지 커뮤니티부터 쇼핑몰, 관련 다양한 서비스까지 한눈에 제공되는 사이트입니다. 
+## notion
+https://electric-hat-2a3.notion.site/8beb79dc8c9a4817885614ba245c9e2b?pvs=4
 
-notion -> https://electric-hat-2a3.notion.site/8beb79dc8c9a4817885614ba245c9e2b?pvs=4
+## 프로젝트개요
+![프로젝트개요](https://github.com/Starrain96/withPuppy_Master/assets/124110590/570cb47f-4152-43a9-bcdb-1544cf34258d)
 
 ## 메뉴구성도
 ![메뉴구성도](https://github.com/Starrain96/withPuppy_Master/assets/124110590/6384e2e5-65b3-4466-82ac-97d04d62d016)
