@@ -74,7 +74,7 @@ public class StarController {
 			File target = new File(uploadPath + "/" + savedName);
 			ocr.transferTo(target);
 			
-			System.out.println("target : "+ target);  // <<<< upload 되는 절대경로 찾는 방법!!!
+			System.out.println("target : "+ target); 
 			
 			model.addAttribute("savedName", savedName);
 			starVO.setOcr(savedName);
@@ -99,7 +99,7 @@ public class StarController {
 		model.addAttribute("savedName", savedName);
 	}
 
-	@RequestMapping("insertBill") // 후기 사진 upload
+	@RequestMapping("insertBill") // 영수증 사진 OCR 호출
 	public void insertBill(String ocr) throws Exception {
 		starService.insertBill(ocr);
 	}	

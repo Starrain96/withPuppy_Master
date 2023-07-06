@@ -165,21 +165,16 @@ public class StarService implements StarServiceInterface {
 			// 사업자등록번호
 			org.json.simple.JSONObject bizNum2 = (org.json.simple.JSONObject) storeInfo2.get("bizNum");
 			String brn = (String) bizNum2.get("text");
-			// System.out.println("6-1. " +bizNum2);
 			// 병원명
 			org.json.simple.JSONObject name2 = (org.json.simple.JSONObject) storeInfo2.get("name");
 			String name = (String) name2.get("text");
-			// System.out.println("6-2. " +name2);
 			// 주소
 			org.json.simple.JSONArray addresses2 = (org.json.simple.JSONArray) storeInfo2.get("addresses");
 			org.json.simple.JSONObject addresses2One = (org.json.simple.JSONObject) addresses2.get(0);
 			String addr = (String) addresses2One.get("text");
-			// System.out.println("6-3. " +addresses2One);
 			// 개별진료항목명 및 진료비 찾기 1
 			org.json.simple.JSONArray subResults2 = (org.json.simple.JSONArray) result2.get("subResults");
-			// System.out.println("7-0. " +subResults2);
 			org.json.simple.JSONObject subResults2One = (org.json.simple.JSONObject) subResults2.get(0);
-			// System.out.println("7-1. " +subResults2One);
 			org.json.simple.JSONArray items2 = (org.json.simple.JSONArray) subResults2One.get("items");
 			 ArrayList<String> dxList = new ArrayList<>();
 	            ArrayList<Integer> feeList = new ArrayList<>();

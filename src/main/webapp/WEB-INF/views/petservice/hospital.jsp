@@ -107,13 +107,7 @@
 					
 					for (i=0; i<star.length; i++) {
 						date = new Date(star[i].date);
-						
-						//let timeString = date.toLocaleString("en-US", {timeZone: "Asia/Seoul"});
-						//let timeString_KR = date.toLocaleString("ko-KR", {timeZone: "Asia/Seoul"});
-						//console.log(timeString);
-						//console.log(timeString_KR);
-						
-						
+				
 						function dateFormat(date) { //date 값 변환
 					        let month = date.getMonth() + 1;
 					        let day = date.getDate();
@@ -133,7 +127,7 @@
 
 					var currentDate = new Date(star[i].date);
 
-					// timestamp를 yyyy-MM-dd HH:mm:ss 로 출력
+					// timestamp를 yyyy-MM-dd로 출력
 					var currentFormatDate = dateFormat(currentDate);
 						
 					avg = parseFloat(star[i].kind + star[i].explain + star[i].treat + star[i].facilities + star[i].price)/5
